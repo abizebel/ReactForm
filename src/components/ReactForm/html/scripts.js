@@ -16,5 +16,26 @@ $(document).ready(function(){
             $(this).removeClass('filled')
         }
     });
+    //Select
+
+    $(document).click(function(e){
+        if ($(e.target).closest('.rf-select').length == 0) {
+            $('.rf-select').removeClass('active')
+        }
+
+    })
+    $('.rf-select').click(function(e){
+        if(!$(this).hasClass('active')) {
+            $('.rf-select').removeClass('active')
+            $(this).addClass('active')
+        }
+        else {
+            if ($(e.target).closest('.rf-options').length == 0) {
+                $(this).removeClass('active')
+            }
+            
+        }
+
+    })
 
 });

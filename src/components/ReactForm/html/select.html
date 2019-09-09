@@ -7,25 +7,157 @@
     <title>React Form</title>
     <link rel="stylesheet" href="../ReactForm.css">
     <script src="jquery.min.js"></script>
-    <script>
-    $(document).ready(function(){
-  
+    <script src="scripts.js"></script>
 
-    });
-    </script>
 </head>
 <body>
-    <div style="width:600px;padding:20px;border:1px solid #ddd; margin:20px">
-
-        <!-- rtl -->
-        <div class="rf-input rf-rtl">
-            <input type="text" class="filled" />
+    <div style="width:50%;padding:40px;border:1px solid #ddd; margin:100px auto">
+        <!-- ltr -->
+        <div class="rf-select">
+            <input type="text" class="filled" value="item 1" />
             <label>Last Name</label>
             <span class="rf-line"></span>
+            <span class="rf-icon"><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M7,10L12,15L17,10H7Z" /></svg></span>
+            <div class="rf-options">
+                <div class="rf-options-search">
+                    <input  placeholder="search in list type="text" />
+                </div>
+                <div class="rf-options-item">Abbas hosseini</div>
+                <div class="rf-options-item">Mohammad feiz</div>
+                <div class="rf-options-item">Reza ranjbar</div>
+                <div class="rf-options-item">Amir abouei</div>
+            </div>
+
+        </div>
+
+        <!-- rtl -->
+        <div class="rf-select rf-rtl">
+            <input type="text" class="filled" value="item 1" />
+            <label>Last Name</label>
+            <span class="rf-line"></span>
+            <span class="rf-icon"><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M7,10L12,15L17,10H7Z" /></svg></span>
+            <div class="rf-options">
+                <div class="rf-options-search">
+                    <input placeholder="search in list" type="text" />
+                </div>
+                <div class="rf-options-item">Abbas hosseini</div>
+                <div class="rf-options-item">Mohammad feiz</div>
+                <div class="rf-options-item">Reza ranjbar</div>
+                <div class="rf-options-item">Amir abouei</div>
+            </div>
+
+        </div>
+
+        <!-- ltr &&  disabled -->
+        <div class="rf-select  rf-disabled">
+            <input type="text" class="filled" value="item 1" />
+            <label>Last Name</label>
+            <span class="rf-line"></span>
+            <span class="rf-icon"><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M7,10L12,15L17,10H7Z" /></svg></span>
+            <span class="rf-message">this field has a error</span>  
+            <div class="rf-options">
+                <div class="rf-options-search">
+                    <input placeholder="search in list" type="text" />
+                </div>
+                <div class="rf-options-item">Abbas hosseini</div>
+                <div class="rf-options-item">Mohammad feiz</div>
+                <div class="rf-options-item">Reza ranjbar</div>
+                <div class="rf-options-item">Amir abouei</div>
+            </div>
+
+        </div>
+        <!-- rtl &&  disabled -->
+        <div class="rf-select rf-rtl rf-disabled rf-bordered">
+            <input type="text" class="filled" value="item 1" />
+            <label>Last Name</label>
+            <span class="rf-line"></span>
+            <span class="rf-icon"><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M7,10L12,15L17,10H7Z" /></svg></span>
+            <span class="rf-message">this field has a error</span>  
+            <div class="rf-options">
+                <div class="rf-options-search">
+                    <input placeholder="search in list" type="text" />
+                </div>
+                <div class="rf-options-item">Abbas hosseini</div>
+                <div class="rf-options-item">Mohammad feiz</div>
+                <div class="rf-options-item">Reza ranjbar</div>
+                <div class="rf-options-item">Amir abouei</div>
+            </div>
+
         </div>
 
 
-        
+        <!-- ltr &&  bordered -->
+        <div class="rf-select rf-rtl rf-bordered">
+            <input type="text" class="filled" value="item 1" />
+            <label>Last Name</label>
+            <span class="rf-line"></span>
+            <span class="rf-icon"><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M7,10L12,15L17,10H7Z" /></svg></span>
+            <span class="rf-message">this field has a error</span>  
+            <div class="rf-options">
+                <div class="rf-options-search">
+                    <input placeholder="search in list" type="text" />
+                </div>
+                <div class="rf-options-item">Abbas hosseini</div>
+                <div class="rf-options-item">Mohammad feiz</div>
+                <div class="rf-options-item">Reza ranjbar</div>
+                <div class="rf-options-item">Amir abouei</div>
+            </div>
+
+        </div>
+        <!-- rtl &&  bordered -->
+        <div class="rf-select rf-rtl rf-bordered">
+            <input type="text" class="filled" value="item 1" />
+            <label>Last Name</label>
+            <span class="rf-line"></span>
+            <span class="rf-icon"><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M7,10L12,15L17,10H7Z" /></svg></span>
+            <span class="rf-message">this field has a error</span>  
+            <div class="rf-options">
+                <div class="rf-options-search">
+                    <input placeholder="search in list" type="text" />
+                </div>
+                <div class="rf-options-item">Abbas hosseini</div>
+                <div class="rf-options-item">Mohammad feiz</div>
+                <div class="rf-options-item">Reza ranjbar</div>
+                <div class="rf-options-item">Amir abouei</div>
+            </div>
+
+        </div>
+        <!-- ltr &&  message -->
+        <div class="rf-select rf-error">
+                <input type="text" class="filled" value="item 1" />
+                <label>Last Name</label>
+                <span class="rf-line"></span>
+                <span class="rf-icon"><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M7,10L12,15L17,10H7Z" /></svg></span>
+                <span class="rf-message">this field has a error</span>  
+                <div class="rf-options">
+                    <div class="rf-options-search">
+                        <input placeholder="search in list" type="text" />
+                    </div>
+                    <div class="rf-options-item">Abbas hosseini</div>
+                    <div class="rf-options-item">Mohammad feiz</div>
+                    <div class="rf-options-item">Reza ranjbar</div>
+                    <div class="rf-options-item">Amir abouei</div>
+                </div>
+
+            </div>
+            <!-- ltr &&  message -->
+            <div class="rf-select rf-rtl rf-error">
+                <input type="text" class="filled" value="item 1" />
+                <label>Last Name</label>
+                <span class="rf-line"></span>
+                <span class="rf-icon"><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M7,10L12,15L17,10H7Z" /></svg></span>
+                <span class="rf-message">this field has a error</span>  
+                <div class="rf-options">
+                    <div class="rf-options-search">
+                        <input placeholder="search in list" type="text" />
+                    </div>
+                    <div class="rf-options-item">Abbas hosseini</div>
+                    <div class="rf-options-item">Mohammad feiz</div>
+                    <div class="rf-options-item">Reza ranjbar</div>
+                    <div class="rf-options-item">Amir abouei</div>
+                </div>
+
+            </div>
     </div>
 </body>
 </html>

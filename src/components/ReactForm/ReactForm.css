@@ -1,6 +1,6 @@
 :root {
   /* Sizes */
-  --input-font-size : 1 ;
+  --input-font-size :  ;
   --input-space-around : 2;
   /* Colors */
   --error : #F44336;
@@ -8,23 +8,26 @@
   --input-disabled :#ddd;
   --input-focus-border: #145AF9;
   --input-text: #333;
+  --select-text: #333;
 
 }
+body {
+    font-size: 1em;
+    font-family: arial
+}
+
+
 
 
 /************************
 * INPUT
 *************************/
-body {
-    font-size: 1em;
-    font-family: arial
-}
+
 .rf-input {
     position: relative;
     margin-top:  calc(var(--input-space-around) * 1rem) ;
     margin-bottom: calc(var(--input-space-around) * 1rem) ;
     font-size: calc(var(--input-font-size) * 1em);
-    
 }
 .rf-input > input {
     background-color: #fff;
@@ -39,35 +42,6 @@ body {
     width: 100%;
     margin: 0 0 8px 0;
     padding: 0 10px;
-
-}
-
-/* Disabled */
-.rf-input.rf-disabled > input {
-    border-bottom: 1px dashed var(--input-disabled) !important;
-}
-.rf-input.rf-bordered.rf-disabled > input {
-    border: 1px dashed var(--input-disabled) !important;
-}
-.rf-input.rf-disabled > input {
-    color: var(--input-border)
-}
-.rf-input.rf-disabled .rf-line{
-    display: none
-}
-
-/* Bordered */
-.rf-input.rf-bordered > input {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    height: 3.5rem;
-}
-.rf-input.rf-bordered > input:focus {
-    border: 2px solid var(--input-focus-border);    
-}
-.rf-input > .rf-message {
-    font-size: .8em;
-    display: none
 }
 .rf-input > label {
     position:absolute;
@@ -86,8 +60,33 @@ body {
     -ms-transition: 300ms ease all;
     background:transparent
 }
+/* Disabled */
+.rf-input.rf-disabled > input {
+    border-bottom: 1px dashed var(--input-disabled) !important;
+}
+.rf-input.rf-bordered.rf-disabled > input {
+    border: 1px dashed var(--input-disabled) !important;
+}
+.rf-input.rf-disabled > input {
+    color: var(--input-border)
+}
 
 
+/* Bordered */
+.rf-input.rf-bordered > input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 3.5rem;
+}
+.rf-input.rf-bordered > input:focus {
+    border: 2px solid var(--input-focus-border);    
+}
+.rf-input > .rf-message {
+    font-size: .8em;
+    display: none
+}
+
+/* Line */
 .rf-input.rf-bordered > .rf-line {
     display: none
 }
@@ -108,6 +107,8 @@ body {
 	
 }
 
+
+
 /* Icon */
 .rf-input > .rf-icon {
     display: none;
@@ -119,9 +120,11 @@ body {
 .rf-input > .rf-icon > svg {
     width: 20px
 }
+
 /* Error */
 .rf-input.rf-error > .rf-message{
     display: block;
+    padding: 0 10px;
     color : var(--error);
 }
 .rf-input.rf-error > label {
@@ -150,7 +153,6 @@ body {
 	transform: scaleX(1);
 	visibility: visible;
 }
-
 /* RTL */
 .rf-input.rf-rtl > input{
     text-align: right ;
@@ -164,9 +166,225 @@ body {
   left: unset ;
     right: 0 ;
 }
+
 .rf-input.rf-rtl .rf-message {
+    text-align: right;
+    direction: rtl;
+    float: right;
+}
+
+
+
+
+
+
+
+
+
+/************************
+* SELECT
+*************************/
+.rf-select{
+    position: relative;
+    margin-top:  calc(var(--input-space-around) * 1rem) ;
+    margin-bottom: calc(var(--input-space-around) * 1rem) ;
+    font-size: calc(var(--input-font-size) * 1em);
+    -webkit-user-select: none; /* Safari 3.1+ */
+   -moz-user-select: none; /* Firefox 2+ */
+   -ms-user-select: none; /* IE 10+ */
+   user-select: none; /* Standard syntax */
+    
+}
+.rf-select> input {
+    background-color: #fff;
+    color:var(--input-text);
+    font-size: 1em; 
+    border: none;
+    cursor: pointer;
+    border-bottom: 1px solid var(--input-border);
+    border-radius: 0;
+    outline: none;
+    height:  3rem ;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 0 8px 0;
+    padding: 0 10px;
+    color: transparent;
+    text-shadow: 0 0 0 var(--input-text);
+}
+.rf-select> label {
+    position:absolute;
+    top: 18px;
+    left: 0;
+    height: 20px;
+    bottom: 0;
+    margin: 0 4px;
+    padding: 0 6px;
+    cursor: text;
+    color: var(--input-border);
+    pointer-events: none;
+    transition: 300ms ease all;
+    -webkit-transition: 300ms ease all;
+    -moz-transition: 300ms ease all;
+    -ms-transition: 300ms ease all;
+    background:transparent
+}
+
+/* Options */
+.rf-select > .rf-options {
+    display: none;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    z-index: 2;
+    left: 0;
+    top: calc(3rem + 4px)
+}
+.rf-select.active  .rf-options {
+    display: block
+}
+.rf-select  .rf-options-item {
+    padding:14px 24px;
+    color: var(--select-text);
+    cursor: pointer;
+    font-size: .9em
+}
+.rf-select  .rf-options-item:hover {
+    background: #f2f2f2
+}
+.rf-select  .rf-options-search {
+     width:calc(100% - 48px);
+}
+.rf-select  .rf-options-search > input{
+    width: 100%;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    padding:12px 24px;
+    font-size: .9em;
+    color: var(--select-text);
+}
+/* Line */
+.rf-select.rf-bordered > .rf-line {
+    display: none
+}
+.rf-select > .rf-line {
+    position: absolute;
+	top: 3rem;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 2px;
+	border: none;
+	background:var( --input-focus-border);
+	will-change: transform, visibility;
+	transition: all 200ms ease-out;
+	transform: scaleX(0);
+	visibility: hidden;
+	
+}
+
+/* Disabled */
+.rf-select.rf-disabled > input {
+    border-bottom: 1px dashed var(--input-disabled) !important;
+}
+.rf-select.rf-bordered.rf-disabled > input {
+    border: 1px dashed var(--input-disabled) !important;
+}
+.rf-select.rf-disabled > input {
+    color: var(--input-border)
+}
+
+/* Bordered */
+.rf-select.rf-bordered > input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 3.5rem;
+}
+.rf-select.rf-bordered > input:focus {
+    border: 2px solid var(--input-focus-border);    
+}
+.rf-select> .rf-message {
+    font-size: .8em;
+    padding: 0 10px;
+    display: none
+}
+.rf-select.rf-bordered  .rf-options {
+    top: calc(3.5rem + 3px)
+}
+
+/* Icon */
+.rf-select> .rf-icon {
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    transition: .3s ease all;
+    -webkit-transition: .3s ease all;
+    
+}
+.rf-select.active > .rf-icon {
+    transition: .3s ease all;
+    -webkit-transition: .3s ease all;
+    transform: rotate(180deg)
+} 
+.rf-select> .rf-icon > svg {
+    width: 30px;
+    color : var(--input-text)
+}
+/* Error */
+.rf-select.rf-error > .rf-message{
+    display: block;
+    color : var(--error);
+}
+.rf-select.rf-error > label {
+    color : var(--error);
+}
+
+/* Focus */
+.rf-select > input:focus {
+    outline: none
+}
+.rf-select> label{
+    top: -14px;
+    font-size: .8em;
+}
+.rf-select.rf-bordered > label{
+    top: -8px;
+    font-size: .8em;
+    background: #fff
+
+}
+.rf-select.active > input:focus ~ .rf-line {
+	transform: scaleX(1);
+	visibility: visible;
+}
+
+/* RTL */
+.rf-select.rf-rtl > input{
+    text-align: right ;
+    direction: rtl
+}
+.rf-select.rf-rtl >.rf-icon {
+    right: unset;
+    left: 0
+}
+.rf-select.rf-rtl > label {
+  left: unset ;
+   right: 0 ;
+}
+.rf-select.rf-rtl .rf-message {
     text-align: right;
     direction: rtl;
     float: right;
 
 }
+.rf-select.rf-rtl .rf-options-item ,
+.rf-select.rf-rtl .rf-options-search > input {
+    text-align: right;
+    direction: rtl
+    
+}
+
