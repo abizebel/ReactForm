@@ -485,15 +485,9 @@ body {
     margin-bottom: 1rem;
     position: relative
 }
-.rf-tag .rf-tag-list{
-    padding: 0;
-    margin: 0;
-     padding: 20px 10px 0 10px;
-    
-}
 .rf-tag > label {
     position: absolute;
-    bottom: 16px;
+    bottom: 12px;
     left: 0;
     color : var(--label-color);
     font-size: calc(var(--text-size) * 1em);
@@ -520,6 +514,13 @@ body {
     border-bottom: 1px solid var(--label-color);
     font-size: calc(var(--text-size) * 1em);
 }
+.rf-tag .rf-tag-list{
+    padding: 0;
+    margin: 0;
+    padding: 20px 10px 0 10px;
+    
+}
+
 .rf-tag .rf-tag-list-item{
    display: inline-block;
    height: 32px;
@@ -568,6 +569,28 @@ body {
 	will-change: transform, visibility;
 	transition: all 200ms ease-out;
 	transform: scaleX(0);	
+}
+/* Disabled */
+.rf-tag.rf-disabled > input{
+    border-bottom: 1px dashed var(--disabled-color) !important;    
+}
+.rf-tag.rf-bordered.rf-disabled {
+    border: 1px dashed var(--disabled-color) !important;   
+
+}
+.rf-tag.rf-bordered.rf-disabled .rf-tag-list-item {
+    background: #f1f1f1
+}
+.rf-tag.rf-disabled .rf-line{
+    display: none
+}
+.rf-tag.rf-bordered.rf-disabled .rf-tag-list-item ,
+.rf-tag.rf-bordered.rf-disabled .rf-tag-list-item .rf-tag-icon svg{
+     color: var(--label-color);
+    fill: var(--label-color)
+}
+.rf-tag.rf-disabled > input {
+    color: var(--label-color)
 }
 
 /* Focus */
