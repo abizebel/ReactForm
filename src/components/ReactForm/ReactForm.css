@@ -526,6 +526,7 @@ body {
     font-size: (--text-size);
     border-bottom: 1px solid var(--label-color);
     font-size: calc(var(--text-size) * 1em);
+    font-family: inherit
 }
 .rf-tag .rf-tag-list{
     padding: 0;
