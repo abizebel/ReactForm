@@ -3,7 +3,9 @@
   --input-font-size : 1 ;
   --input-space-around : 2;
   /* Colors */
+  --error : #F44336;
   --input-border: #9e9e9e;
+  --input-disabled :#ddd;
   --input-focus-border: #145AF9;
   --input-text: #333;
 
@@ -35,11 +37,25 @@ body {
     height:  3rem ;
     box-sizing: border-box;
     width: 100%;
-    font-size: 16px;
     margin: 0 0 8px 0;
     padding: 0 10px;
 
 }
+
+/* Disabled */
+.rf-input.rf-disabled > input {
+    border-bottom: 1px dashed var(--input-disabled) !important;
+}
+.rf-input.rf-bordered.rf-disabled > input {
+    border: 1px dashed var(--input-disabled) !important;
+}
+.rf-input.rf-disabled > input {
+    color: var(--input-border)
+}
+.rf-input.rf-disabled .rf-line{
+    display: none
+}
+
 /* Bordered */
 .rf-input.rf-bordered > input {
     border: 1px solid #ccc;
@@ -48,6 +64,10 @@ body {
 }
 .rf-input.rf-bordered > input:focus {
     border: 2px solid var(--input-focus-border);    
+}
+.rf-input > .rf-message {
+    font-size: .8em;
+    display: none
 }
 .rf-input > label {
     position:absolute;
@@ -58,7 +78,7 @@ body {
     margin: 0 4px;
     padding: 0 6px;
     cursor: text;
-    color: var(--input-border);;
+    color: var(--input-border);
     pointer-events: none;
     transition: 300ms ease all;
     -webkit-transition: 300ms ease all;
@@ -66,24 +86,14 @@ body {
     -ms-transition: 300ms ease all;
     background:transparent
 }
-.rf-input > input:focus ~ label,
-.rf-input > input.filled ~ label{
-    top: -14px;
-    font-size: .8em;
-}
-.rf-input.rf-bordered > input:focus ~ label,
-.rf-input.rf-bordered > input.filled ~ label{
-    top: -8px;
-    font-size: .8em;
-    background: #fff
 
-}
-.rf-input.rf-bordered > span {
+
+.rf-input.rf-bordered > .rf-line {
     display: none
 }
-.rf-input > span {
+.rf-input > .rf-line {
     position: absolute;
-	bottom: 6px;
+	top: 3rem;
 	left: 0;
 	margin: 0;
 	padding: 0;
@@ -97,7 +107,46 @@ body {
 	visibility: hidden;
 	
 }
-.rf-input >	input:focus ~ span {
+
+/* Icon */
+.rf-input > .rf-icon {
+    display: none;
+    position: absolute;
+    top: 1rem;
+    right: 8px;
+    
+}
+.rf-input > .rf-icon > svg {
+    width: 20px
+}
+/* Error */
+.rf-input.rf-error > .rf-message{
+    display: block;
+    color : var(--error);
+}
+.rf-input.rf-error > label {
+    color : var(--error);
+}
+.rf-input.rf-error > .rf-icon {
+    display: block
+}
+.rf-input > .rf-icon > svg {
+     fill : var(--error);
+}
+/* Focus */
+.rf-input > input:focus ~ label,
+.rf-input > input.filled ~ label{
+    top: -14px;
+    font-size: .8em;
+}
+.rf-input.rf-bordered > input:focus ~ label,
+.rf-input.rf-bordered > input.filled ~ label{
+    top: -8px;
+    font-size: .8em;
+    background: #fff
+
+}
+.rf-input >	input:focus ~ .rf-line {
 	transform: scaleX(1);
 	visibility: visible;
 }
@@ -107,8 +156,17 @@ body {
     text-align: right ;
     direction: rtl
 }
-
+.rf-input.rf-rtl >.rf-icon {
+    right: unset;
+    left: 8px
+}
 .rf-input.rf-rtl > label {
   left: unset ;
     right: 0 ;
+}
+.rf-input.rf-rtl .rf-message {
+    text-align: right;
+    direction: rtl;
+    float: right;
+
 }
