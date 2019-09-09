@@ -43,6 +43,22 @@ body {
     margin: 0 0 8px 0;
     padding: 0 10px;
 }
+/* input icon */
+.rf-input.rf-has-icon > input{
+    padding-left: 40px
+}
+.rf-input.rf-has-icon > .rf-input-icon {
+    position: absolute;
+    top: .9rem;
+    left: 10px;
+}
+.rf-input.rf-has-icon > .rf-input-icon svg {
+    width: 25px;
+    color: var(--input-text)
+}
+.rf-input.rf-has-icon > label {
+   left: 30px
+}
 .rf-input > label {
     position:absolute;
     top: 18px;
@@ -167,13 +183,22 @@ body {
     right: 0 ;
 }
 
-.rf-input.rf-rtl .rf-message {
-    text-align: right;
-    direction: rtl;
-    float: right;
+
+
+.rf-input.rf-rtl.rf-has-icon > .rf-input-icon {
+    left: unset;
+    right: 10px;
 }
-
-
+.rf-input.rf-rtl.rf-has-icon > .rf-input-icon svg {
+    width: 25px;
+    color: var(--input-text)
+}
+.rf-input.rf-rtl.rf-has-icon > label {
+   right: 30px
+}
+.rf-input.rf-rtl.rf-has-icon > input{
+    padding-right: 40px
+}
 
 
 
@@ -228,6 +253,28 @@ body {
     -moz-transition: 300ms ease all;
     -ms-transition: 300ms ease all;
     background:transparent
+}
+
+/* input icon */
+.rf-select.rf-has-icon > input{
+    padding-left: 40px
+}
+.rf-select.rf-has-icon > .rf-input-icon {
+    position: absolute;
+    top: .9rem;
+    left: 10px;
+}
+.rf-select.rf-has-icon > .rf-input-icon svg {
+    width: 25px;
+    color: var(--input-text)
+}
+.rf-select.rf-has-icon > label {
+   left: 30px
+}
+.rf-input.rf-rtl .rf-message {
+    text-align: right;
+    direction: rtl;
+    float: right;
 }
 
 /* Options */
@@ -387,4 +434,20 @@ body {
     direction: rtl
     
 }
+.rf-select.rf-rtl.rf-has-icon > .rf-input-icon {
+    left: unset;
+    right: 10px;
+}
+.rf-select.rf-rtl.rf-has-icon > .rf-input-icon svg {
+    width: 25px;
+    color: var(--input-text)
+}
+.rf-select.rf-rtl.rf-has-icon > label {
+   right: 30px
+}
+.rf-select.rf-rtl.rf-has-icon > input{
+    padding-right: 40px
+}
+
+
 
