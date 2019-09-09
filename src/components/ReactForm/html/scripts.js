@@ -38,6 +38,29 @@ $(document).ready(function(){
 
     })
     //Tag
+    $(".rf-tag > input").each(function(i, el){
+
+        if($(el).val().length) {
+            $(el).closest('.rf-tag').addClass('filled')
+        } 
+        else {
+            $(el).closest('.rf-tag').removeClass('filled')
+        }
+    })
+    $(".rf-tag > input").change(function(){
+        if($(this).val().length) {
+            $(this).closest('.rf-tag').addClass('filled')
+        } 
+        else {
+            $(this).closest('.rf-tag').removeClass('filled')
+        }
+    });
+    $(".rf-tag > ul").each(function(i, el){
+        if($(el).find('li').length) {
+            $(el).closest('.rf-tag').addClass('filled')
+        } 
+
+    })
     $(document).click(function(e){
         if ($(e.target).closest('.rf-tag').length == 0) {
             $('.rf-tag').removeClass('active')
