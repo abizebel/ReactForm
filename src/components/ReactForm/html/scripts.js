@@ -37,5 +37,25 @@ $(document).ready(function(){
         }
 
     })
+    //Tag
+    $(document).click(function(e){
+        if ($(e.target).closest('.rf-tag').length == 0) {
+            $('.rf-tag').removeClass('active')
+        }
+
+    })
+    $('.rf-tag').click(function(e){
+        if(!$(this).hasClass('active')) {
+            $('.rf-tag').removeClass('active')
+            $(this).addClass('active')
+        }
+        else {
+            if ($(e.target).closest('.rf-options').length == 0) {
+                $(this).removeClass('active')
+            }
+            
+        }
+
+    })
 
 });

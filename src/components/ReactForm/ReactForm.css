@@ -293,11 +293,21 @@ body {
     display: block
 }
 .rf-select  .rf-options-item {
-    padding:14px 24px;
+    position: relative;
+    padding:16px 24px;
     color: var(--text-color);
     cursor: pointer;
     font-size: .9em
 }
+.rf-select.rf-has-icon .rf-option-icon {
+    position: absolute;
+    left: 16px;
+    top: 10px
+}
+.rf-select.rf-has-icon .rf-options-item  {
+   padding-left: 50px
+}
+
 .rf-select  .rf-options-item:hover {
     background: #f2f2f2
 }
@@ -450,5 +460,13 @@ body {
     padding-right: 40px
 }
 
+.rf-select.rf-rtl.rf-has-icon .rf-option-icon {
+    left: unset;
+    right: 16px;
+}
+.rf-select.rf-rtl.rf-has-icon .rf-options-item  {
+    padding-left: 24x;
+   padding-right: 50px
+}
 
 
