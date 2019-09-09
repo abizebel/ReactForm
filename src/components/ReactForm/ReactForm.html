@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React Form</title>
+    <link rel="stylesheet" href="ReactForm.css">
+    <script src="jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $(".rf-input > input").each(function(i, el){
+            if($(el).val().length) {
+                $(el).addClass('filled')
+            } 
+            else {
+                $(el).removeClass('filled')
+            }
+        })
+        $(".rf-input > input").change(function(){
+            if($(this).val().length) {
+                $(this).addClass('filled')
+            }  
+            else {
+                $(this).removeClass('filled')
+            }
+        });
+
+    });
+    </script>
+</head>
+<body>
+    <div style="width:600px;padding:20px;border:1px solid #ddd; margin:20px">
+        <div class="rf-input rf-rtl">
+            <input type="text" class="filled" />
+            <label>Last Name</label>
+            <span class="rf-line"></span>
+        </div>
+        <div class="rf-input">
+            <input type="text" />
+            <span class="rf-line"></span>
+            <label>Last Name</label>
+            
+         </div>  
+    </div>
+       
+
+</body>
+</html>
