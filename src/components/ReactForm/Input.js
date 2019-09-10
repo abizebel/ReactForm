@@ -1,28 +1,81 @@
 import React, {Component, Fragment} from 'react';
-
+import icons from './icons';
+import './ReactForm.css';
 
 class Input extends Component {
     constructor (props) {
         super(props);
+        this.state = {
+            value : this.props.value || ''
+
+        }
     }
 
+    handleChange (e){
+        const {change} = this.props;
 
+        this.setState({value : e.target.value});
+        change(e.target.value)
+    }
 
     render (){
+        const {rtl, outline, label, disabled, error, multiline, success} = this.props;
+        const {value} = this.state;
+        const filledClass = value.length > 0 ? ' filled' :''; 
+        const rtlClass = rtl ? ' rf-rtl' :''; 
+        const outlineClass = outline ? ' rf-bordered' :''; 
+        const disabledClass = disabled ? ' rf-disabled' :''; 
+        const errorClass = error.length > 0 ? ' rf-error' :''; 
+        const sucessClass = success > 0 ? ' rf-success' :''; 
         return (
             
-            <div className="rf-input  rf-error">
-                <input type="text" className="filled" value="abbas" />
-                <label>Last Name</label>
+            <div className={`rf-input${filledClass}${rtlClass}${outlineClass}${disabledClass}${errorClass}${sucessClass}`} >
+                
+                
+                {
+                    multiline ? 
+                    <textarea 
+                        type="text" 
+                        value={value}
+                        onChange={this.handleChange.bind(this)}
+                        disabled = {disabled}
+                    > </textarea>:
+                    <input 
+                        type="text" 
+                        value={value}
+                        onChange={this.handleChange.bind(this)}
+                        disabled = {disabled}
+                    />
+                }
+                
+                <label>{label}</label>
                 <span className="rf-line"></span>
-                {/* <span className="rf-icon"><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M13,13H11V7H13M13,17H11V15H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg></span> */}
-                <span className="rf-message">You should fill this field</span>    
+                 
+                {error.length > 0 &&
+                    <Fragment>
+                        <span className="rf-icon">{icons.error}</span>  
+                        <span className="rf-message">{error}</span> 
+                    </Fragment>     
+                }
+                {success > 0 &&
+                    <span className="rf-icon">{icons.success}</span>  
+                }
+                
+                
             </div>
         )
     }
 
 }
 
-
+Input.defaultProps = {
+    label : 'not set',
+    rtl : false,
+    outline : false,
+    disabled : false,
+    error : '',
+    multiline: false,
+    success : false,
+}
 
 export default Input

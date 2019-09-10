@@ -1,5 +1,6 @@
 import Input from './Input';
 
-
-
-export default{Input} 
+// without default
+export {
+    Input,
+}
