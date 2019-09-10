@@ -2,18 +2,34 @@ $(document).ready(function(){
     //Input
     $(".rf-input > input").each(function(i, el){
         if($(el).val().length) {
-            $(el).addClass('filled')
+            $(el).closest('.rf-input').addClass('filled')
         } 
         else {
-            $(el).removeClass('filled')
+            $(el).closest('.rf-input').removeClass('filled')
         }
     })
     $(".rf-input > input").change(function(){
         if($(this).val().length) {
-            $(this).addClass('filled')
+            $(this).closest('.rf-input').addClass('filled')
         }  
         else {
-            $(this).removeClass('filled')
+            $(this).closest('.rf-input').removeClass('filled')
+        }
+    });
+    $(".rf-input > textarea").each(function(i, el){
+        if($(el).val().length) {
+            $(el).closest('.rf-input').addClass('filled')
+        } 
+        else {
+            $(el).closest('.rf-input').removeClass('filled')
+        }
+    })
+    $(".rf-input > textarea").change(function(){
+        if($(this).val().length) {
+            $(this).closest('.rf-input').addClass('filled')
+        }  
+        else {
+            $(this).closest('.rf-input').removeClass('filled')
         }
     });
     //Select
