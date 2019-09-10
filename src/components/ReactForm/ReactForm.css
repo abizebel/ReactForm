@@ -91,7 +91,8 @@ body {
 /* input icon */
 .rf-input.rf-has-icon > input,
 .rf-input.rf-has-icon > textarea{
-    padding-left: 40px
+    padding-left: unset;
+    padding-left: 40px ;
 }
 .rf-input.rf-has-icon > .rf-input-icon {
     position: absolute;
@@ -127,7 +128,7 @@ body {
 .rf-input.rf-bordered > textarea {
     border: 1px solid var(--label-color);
     border-radius: 4px;
-    padding-left: 16px;
+    /*! padding-left: 16px; */
 }
 .rf-input.rf-bordered > label {
     margin-left: 8px;

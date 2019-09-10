@@ -189,18 +189,39 @@ class App extends Component {
           />
         </div>
         <div style={boxStyle} >
+          <div style={boxTileStyle}>Inputs with Iocn</div>
           <Input 
             label={'Last Name'}
-              value={'Hosseini'} 
-              change={this.changeInput.bind(this)} />
+            value={'Hosseini'} 
+            icon={<svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>}
+            change={this.changeInput.bind(this)} />
           <Input 
-              label={'نام خانوادگی'}
-              rtl={true} 
-              value={'حسینی'} 
-              error ={'ورود این فیلد الزامیست'}
-              change={this.changeInput.bind(this)} 
+            label={'نام خانوادگی'}
+            icon={<svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>}
+            rtl={true} 
+            value={'حسینی'} 
+            change={this.changeInput.bind(this)} 
           />
         </div>
+        <div style={boxStyle} >
+        <div style={boxTileStyle}>Outlined Inputs with Iocn</div>
+          <Input 
+            label={'Last Name'}
+            value={'Hosseini'} 
+            outline={true}
+            icon={<svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>}
+            change={this.changeInput.bind(this)} />
+          <Input 
+            label={'نام خانوادگی'}
+           icon={<svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>}
+            rtl={true} 
+            outline={true}
+
+            value={'حسینی'} 
+            change={this.changeInput.bind(this)} 
+          />
+        </div>
+        
       </Fragment>
       
     );

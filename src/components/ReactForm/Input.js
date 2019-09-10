@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import {createIcon} from './functions';
 import icons from './icons';
 import './ReactForm.css';
 
@@ -19,19 +20,18 @@ class Input extends Component {
     }
 
     render (){
-        const {rtl, outline, label, disabled, error, multiline, success} = this.props;
+        const {rtl, outline, label, disabled, error, multiline, success, icon} = this.props;
         const {value} = this.state;
         const filledClass = value.length > 0 ? ' filled' :''; 
         const rtlClass = rtl ? ' rf-rtl' :''; 
         const outlineClass = outline ? ' rf-bordered' :''; 
         const disabledClass = disabled ? ' rf-disabled' :''; 
         const errorClass = error.length > 0 ? ' rf-error' :''; 
-        const sucessClass = success > 0 ? ' rf-success' :''; 
+        const sucessClass = success ? ' rf-success' :''; 
+        const iconClass = icon !== null ? ' rf-has-icon' :''; 
+        const inputIcon = createIcon(icon);
         return (
-            
-            <div className={`rf-input${filledClass}${rtlClass}${outlineClass}${disabledClass}${errorClass}${sucessClass}`} >
-                
-                
+            <div className={`rf-input${filledClass}${rtlClass}${outlineClass}${disabledClass}${errorClass}${sucessClass}${iconClass}`} >  
                 {
                     multiline ? 
                     <textarea 
@@ -50,6 +50,10 @@ class Input extends Component {
                 
                 <label>{label}</label>
                 <span className="rf-line"></span>
+                {   icon !== null &&
+                    <span class="rf-input-icon">{inputIcon}</span>
+                }
+                
                  
                 {error.length > 0 &&
                     <Fragment>
@@ -76,6 +80,7 @@ Input.defaultProps = {
     error : '',
     multiline: false,
     success : false,
+    icon : null,
 }
 
 export default Input
