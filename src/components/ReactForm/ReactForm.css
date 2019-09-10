@@ -115,7 +115,7 @@ body {
     border-bottom: 1px dashed var(--disabled-color) !important;
 }
 .rf-input.rf-has-icon.rf-disabled > .rf-input-icon ,
-.rf-input.rf-has-icon.rf-disabled > .rf-icon {
+.rf-input.rf-disabled > .rf-icon {
     opacity: .3
 }
 
@@ -441,10 +441,10 @@ body {
     border-bottom: 1px dashed var(--disabled-color) !important;
 }
 .rf-select.rf-has-icon.rf-disabled > .rf-input-icon ,
-.rf-select.rf-has-icon.rf-disabled > .rf-icon{
+.rf-select.rf-disabled > .rf-icon{
     opacity: .3
 }
-
+.rf-select > .rf-icon > svg
 .rf-select.rf-bordered.rf-disabled > input {
     border: 1px dashed var(--disabled-color) !important;
 }
