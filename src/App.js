@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import {Input} from './components/ReactForm';
+import {Input, Select} from './components/ReactForm';
 
 class App extends Component {
 
@@ -7,6 +7,7 @@ class App extends Component {
    console.log(val)
   }
   render (){
+    const sampleIcon = <svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>;
     const boxStyle ={width:'500px', padding : '40px',border : '1px solid #ddd',margin : '50px auto',boxShadow : '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)'}
     const boxTileStyle = {fontSize : '15px',fontWeight: 'bold',paddingBottom :'40px'};
     return (
@@ -31,6 +32,9 @@ class App extends Component {
              <li>Autocomplete</li>
              <li>Select</li>  
            </ul>
+         </div>
+         <div style={boxStyle} >
+           <h1 >Input Samples</h1>  
          </div>
         <div style={boxStyle} >
           <div style={boxTileStyle}>Inputs</div>
@@ -193,11 +197,11 @@ class App extends Component {
           <Input 
             label={'Last Name'}
             value={'Hosseini'} 
-            icon={<svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>}
+            icon={sampleIcon}
             change={this.changeInput.bind(this)} />
           <Input 
             label={'نام خانوادگی'}
-            icon={<svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>}
+            icon={sampleIcon}
             rtl={true} 
             value={'حسینی'} 
             change={this.changeInput.bind(this)} 
@@ -209,19 +213,289 @@ class App extends Component {
             label={'Last Name'}
             value={'Hosseini'} 
             outline={true}
-            icon={<svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>}
+            icon={sampleIcon}
             change={this.changeInput.bind(this)} />
           <Input 
             label={'نام خانوادگی'}
-           icon={<svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>}
+           icon={sampleIcon}
             rtl={true} 
             outline={true}
 
             value={'حسینی'} 
             change={this.changeInput.bind(this)} 
           />
+          
         </div>
+        <div style={boxStyle} >
+           <h1 >Select Samples</h1>  
+         </div>
         
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Selects</div>
+          <Select 
+            label={'Last Name'}
+            defaultValue ={33}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select 
+            rtl={true}
+            label={'Last Name'}
+            defaultValue ={33}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Outlined Selects</div>
+          <Select 
+            label={'Last Name'}
+            defaultValue ={33}
+            outline={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select 
+            rtl={true}
+            outline={true}
+            label={'Last Name'}
+            defaultValue ={33}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+
+
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Selects with Search</div>
+          <Select 
+            label={'Last Name'}
+            defaultValue ={33}
+            search = {true}
+            searchLabel = {'search your item'}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select 
+            rtl={true}
+            label={'Last Name'}
+            defaultValue ={33}
+            search = {true}
+            searchLabel = {'آیتم مورد نظرتان را جستجو کنید'}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Outlined Selects with Search</div>
+          <Select 
+            label={'Last Name'}
+            defaultValue ={33}
+            outline={true}
+            search = {true}
+            searchLabel = {'search your item'}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select 
+            rtl={true}
+            outline={true}
+            label={'Last Name'}
+            defaultValue ={33}
+            search = {true}
+            searchLabel = {'آیتم مورد نظرتان را جستجو کنید'}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Selects with Icon</div>
+          <Select 
+            label={'Last Name'}
+            defaultValue ={33}
+            search = {true}
+            searchLabel = {'search your item'}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+          <Select 
+            rtl={true}
+            label={'Last Name'}
+            defaultValue ={33}
+            search = {true}
+            searchLabel = {'آیتم مورد نظرتان را جستجو کنید'}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+
+        </div>
+
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Outlined Selects with Icon</div>
+          <Select 
+            label={'Last Name'}
+            defaultValue ={33}
+            search = {true}
+            searchLabel = {'search your item'}
+            outline={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+          <Select 
+            rtl={true}
+            outline={true}
+            label={'Last Name'}
+
+            defaultValue ={33}
+            search = {true}
+            searchLabel = {'آیتم مورد نظرتان را جستجو کنید'}            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+
+        </div>
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Disabled Selects</div>
+          <Select 
+            label={'Last Name'}
+            defaultValue ={33}
+            disabled={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select 
+            rtl={true}
+            label={'Last Name'}
+            defaultValue ={33}
+            disabled={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Disabled Outlined Selects</div>
+          <Select 
+            label={'Last Name'}
+            defaultValue ={33}
+            outline={true}
+            disabled={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select 
+            rtl={true}
+            outline={true}
+            label={'Last Name'}
+            defaultValue ={33}
+            disabled={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
       </Fragment>
       
     );

@@ -28,7 +28,7 @@ class Input extends Component {
         const disabledClass = disabled ? ' rf-disabled' :''; 
         const errorClass = error.length > 0 ? ' rf-error' :''; 
         const sucessClass = success ? ' rf-success' :''; 
-        const iconClass = icon !== null ? ' rf-has-icon' :''; 
+        const iconClass = icon !==null ? ' rf-has-icon' :''; 
         const inputIcon = createIcon(icon);
         return (
             <div className={`rf-input${filledClass}${rtlClass}${outlineClass}${disabledClass}${errorClass}${sucessClass}${iconClass}`} >  
@@ -50,7 +50,7 @@ class Input extends Component {
                 
                 <label>{label}</label>
                 <span className="rf-line"></span>
-                {   icon !== null &&
+                {   icon !==null &&
                     <span class="rf-input-icon">{inputIcon}</span>
                 }
                 
@@ -80,7 +80,7 @@ Input.defaultProps = {
     error : '',
     multiline: false,
     success : false,
-    icon : null,
+    icon : null
 }
 
 export default Input
