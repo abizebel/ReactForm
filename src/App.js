@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import {Input, Select, Autocomplete} from './components/ReactForm';
+import {Input, Select, Autocomplete, Tag} from './components/ReactForm';
 
 class App extends Component {
 
@@ -40,12 +40,12 @@ class App extends Component {
           <div style={boxTileStyle}>Input</div>
           <Input 
             label={'Last Name'}
-            value={'Hosseini'} 
+            value={''} 
             change={this.changeInput.bind(this)} />
           <Input 
              label={'نام خانوادگی'}
             rtl={true} 
-            value={'حسینی'} 
+            value={''} 
             change={this.changeInput.bind(this)} 
           />
         </div>
@@ -53,14 +53,14 @@ class App extends Component {
           <div style={boxTileStyle}>Oulined Input</div>
           <Input 
            label={'Last Name'}
-            value={'Hosseini'} 
+            value={''} 
             outline ={true}
             change={this.changeInput.bind(this)} />
           <Input 
             label={'نام خانوادگی'}
             rtl={true} 
             outline ={true}
-            value={'حسینی'} 
+            value={''} 
             change={this.changeInput.bind(this)} 
           />
         </div>
@@ -692,6 +692,75 @@ class App extends Component {
             ]}
             mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
           />
+
+        </div>
+        <div style={boxStyle} >
+           <h1 >Tag Samples</h1>  
+         </div>
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Tag</div>
+          <Tag 
+            label={'Last Name'}
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+          <Tag 
+            rtl={true}
+            label={'نام خانوادگی'}
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}},
+              {id:'55',name:'جعفری', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+
+
+        </div>
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Outlined Tag</div>
+          <Tag 
+            outline = {true}
+            label={'Last Name'}
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+          <Tag 
+            rtl={true}
+            outline = {true}
+
+            label={'نام خانوادگی'}
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}},
+              {id:'55',name:'جعفری', info:{icon:sampleIcon}}
+
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+
 
         </div>
       </Fragment>

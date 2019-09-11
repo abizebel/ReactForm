@@ -907,6 +907,7 @@ body {
 
 
 }
+
 .rf-tag > input {
     border: 0;
     outline: 0;
@@ -920,13 +921,61 @@ body {
     font-size: calc(var(--text-size) * 1em);
     font-family: inherit
 }
+
+
+/* Options */
+.rf-tag > .rf-options {
+    display: none;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    z-index: 3;
+    left: 0;
+    top: calc(100% + 3px)
+}
+.rf-tag.active  .rf-options {
+    display: block
+}
+
+.rf-tag  .rf-options-item {
+    position: relative;
+    padding:16px 24px;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: .9em
+}
+.rf-tag.rf-has-icon .rf-option-icon {
+    position: absolute;
+    left: 16px;
+    top: 10px
+}
+.rf-tag.rf-has-icon .rf-option-icon > svg {
+    width: 26px;
+    height: 26px;
+}
+.rf-tag.rf-has-icon .rf-options-item  {
+   padding-left: 50px
+}
+
+.rf-tag  .rf-options-item:hover {
+    background: #f2f2f2
+}
+/* Tag List */
 .rf-tag .rf-tag-list{
     padding: 0;
     margin: 0;
     padding: 20px 10px 0 10px;
     
 }
-
+.rf-tag .rf-tag-list-item > img {
+    float: left;
+    margin: 0 8px 0 -12px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    
+}
 .rf-tag .rf-tag-list-item{
    display: inline-block;
    height: 32px;
@@ -949,7 +998,7 @@ body {
     float: right;
     font-size: 16px;
     line-height: 32px;
-    padding:5px 0 0 10px;
+    padding:9px 0 0 10px;
 }
 
 /* Bordered */
@@ -984,7 +1033,9 @@ body {
     border: 1px dashed var(--disabled-color) !important;   
 
 }
-
+.rf-tag.rf-disabled .rf-tag-list-item > img {
+    opacity: .4
+}
 .rf-tag.rf-bordered.rf-disabled .rf-tag-list-item {
     background: #f1f1f1
 }
@@ -1028,7 +1079,12 @@ body {
     float: unset;
     float: left;
     line-height: 32px;
-    padding:5px 10px 0 0;    
+    padding:9px 10px 0 0;    
+}
+.rf-tag.rf-rtl .rf-options-item{
+    text-align: right;
+    direction: rtl
+    
 }
 .rf-tag.rf-rtl > label {
     left: unset;
@@ -1038,6 +1094,11 @@ body {
 .rf-tag.rf-rtl .rf-tag-list {
     text-align: right;
     direction: rtl;
+}
+.rf-tag.rf-rtl .rf-tag-list-item > img  {
+    float: none;
+    float: right;
+    margin: 0 -12px 0 8px;
 }
 .rf-tag.rf-rtl > input{
     text-align: right;

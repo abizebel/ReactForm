@@ -105,14 +105,14 @@ $(document).ready(function(){
         }
 
     })
-    $('.rf-tag').click(function(e){
-        if(!$(this).hasClass('active')) {
+    $('.rf-tag > input').keyup(function(e){
+        if(!$(e.target).closest('.rf-tag').hasClass('active')) {
             $('.rf-tag').removeClass('active')
-            $(this).addClass('active')
+            $(e.target).closest('.rf-tag').addClass('active')
         }
         else {
             if ($(e.target).closest('.rf-options').length == 0) {
-                $(this).removeClass('active')
+                $(e.target).closest('.rf-tag').removeClass('active')
             }
             
         }

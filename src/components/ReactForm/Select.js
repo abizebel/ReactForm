@@ -1,4 +1,4 @@
-import React, {Component, createRef} from 'react';
+import React, {Component} from 'react';
 import {getValueByProp, createIcon, getValueById} from './functions';
 import icons from './icons';
 import './ReactForm.css';
@@ -7,7 +7,6 @@ import $ from 'jquery';
 class Select extends Component {
     constructor(props) {
         super(props);
-        this.selectDom = createRef();
         this.state = {
             open : false,
             selectedValue : this.props.defaultValue,
@@ -104,7 +103,7 @@ class Select extends Component {
 
 
         return (
-            <div ref={this.selectDom} className={`rf-select${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div className={`rf-select${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
             <input type="text" className="filled" value={selectedItem[mapping.text]}  onClick={this.open.bind(this)}/>
             <label>{label}</label>
             <span className="rf-line"></span>

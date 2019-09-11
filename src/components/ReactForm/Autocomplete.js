@@ -1,4 +1,4 @@
-import React, {Component, createRef} from 'react';
+import React, {Component} from 'react';
 import {getValueByProp, createIcon, getValueById} from './functions';
 import icons from './icons';
 import './ReactForm.css';
@@ -7,7 +7,6 @@ import $ from 'jquery';
 class Autcomplete extends Component {
     constructor(props) {
         super(props);
-        this.selectDom = createRef();
         this.state = {
             open : false,
             searchValue : this.props.defaultValue.value || '',
@@ -102,7 +101,7 @@ class Autcomplete extends Component {
         
         
         return (
-            <div ref={this.selectDom} className={`rf-autocomplete${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div className={`rf-autocomplete${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
             <input type="text" className="filled" value={searchValue}  onChange={this.search.bind(this)}/>
             <label>{label}</label>
             <span className="rf-line"></span>
