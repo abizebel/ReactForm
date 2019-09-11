@@ -3,7 +3,7 @@ import {Input, Select, Autocomplete, Tag} from '../components/ReactForm';
 
 class AutocomplteContainer extends Component {
 
-  changeInput (val){
+  changeTag (val){
    console.log(val)
   }
   render (){
@@ -15,7 +15,7 @@ class AutocomplteContainer extends Component {
 
         <div style={boxStyle} >
           <div style={boxTileStyle}>Tag</div>
-          <Tag 
+          <Tag change={this.changeTag.bind(this)}
             label={'Last Name'}
             defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
             values ={
@@ -27,7 +27,7 @@ class AutocomplteContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
           />
-          <Tag 
+          <Tag change={this.changeTag.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
             defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
@@ -46,7 +46,7 @@ class AutocomplteContainer extends Component {
         </div>
         <div style={boxStyle} >
           <div style={boxTileStyle}>Outlined Tag</div>
-          <Tag 
+          <Tag change={this.changeTag.bind(this)}
             outline = {true}
             label={'Last Name'}
             defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
@@ -59,9 +59,79 @@ class AutocomplteContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
           />
-          <Tag 
+          <Tag change={this.changeTag.bind(this)}
             rtl={true}
             outline = {true}
+
+            label={'نام خانوادگی'}
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}},
+              {id:'55',name:'جعفری', info:{icon:sampleIcon}}
+
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+        </div>
+          <div style={boxStyle} >
+          <div style={boxTileStyle}>Disabled Tag</div>
+          <Tag change={this.changeTag.bind(this)}
+            label={'Last Name'}
+            disabled={true}
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+          <Tag change={this.changeTag.bind(this)}
+            rtl={true}
+            disabled={true}
+
+            label={'نام خانوادگی'}
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}},
+              {id:'55',name:'جعفری', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+
+
+        </div>
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Disabled Outlined Tag</div>
+          <Tag change={this.changeTag.bind(this)}
+            outline = {true}
+            label={'Last Name'}
+            disabled={true}
+
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+          <Tag change={this.changeTag.bind(this)}
+            rtl={true}
+            outline = {true}
+            disabled={true}
 
             label={'نام خانوادگی'}
             defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}

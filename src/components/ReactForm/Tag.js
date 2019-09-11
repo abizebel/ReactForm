@@ -22,11 +22,8 @@ class Tag extends Component {
         this.inputDom = createRef()
     }
 
-    handleChange (e){
-        const {change} = this.props;
-        
+    handleChange (e){        
         this.setState({searchValue : e.target.value});
-        //change(e.target.value)
     }
 
 
@@ -72,32 +69,22 @@ class Tag extends Component {
 
             const tags = values.map((o, i) =>{
                 return (
-                    <li key={i} class="rf-tag-list-item" >{o[mapping.text]}
-                        <span className="rf-tag-icon">{icons.close}</span>
+                    <li key={i} className="rf-tag-list-item" >{o[mapping.text]}
+                        <span className="rf-tag-icon" onClick={this.removeTag.bind(this, i)}>{icons.close}</span>
                     </li>
                 )
             });
 
-            return (<ul class="rf-tag-list">{tags}</ul>)
+            return (<ul className="rf-tag-list">{tags}</ul>)
     }
-    removeTag (index){
-        this.setState((prevState) =>({
-            values : prevState.values.splice(1, index)
-        }))
 
-    }
     select (item){
-        const { mapping} = this.props;
-        this.setState({selectedItem:item})
-        this.setState((prevState) =>{
-            prevState.values.push(item)
-            return {
-                values : prevState.values
-            }
-        })
+        const { mapping, change} = this.props;
 
+        this.setState({selectedItem:item})
+        this.addTag(item)
         this.setState({open:false})
-        //change(e.target.value)
+        change(this.state.values)
     }
     open (e){        
         const len = $(e.target).closest('.rf-options').length;
@@ -134,17 +121,42 @@ class Tag extends Component {
     }
     ////////////////////// CHANGE //////////////////////
 
-    
-    enter (e){
+    isExist (){
+        const {values} = this.state;
         const {mapping} = this.props;
+    }
+
+    addTag (tag){
+        const {mapping, disabled} = this.props;
+
+        if (this.isExist(tag)) return ;
+        if (disabled) return ;
+
+        this.setState((prevState) =>{
+            prevState.values.push(tag)
+            return {
+                values : prevState.values
+            }
+        })
+    }
+    removeTag (index){
+        const {change,disabled} = this.props;
+
+        if (disabled) return ;
+
+        let {values} = this.state
+        values.splice(index, 1 )
+        this.setState({values})
+        change(values)
+
+    }
+
+    enter (e){
+        const {mapping, change} = this.props;
         if (e.keyCode === 13) {
-            this.setState((prevState) =>{
-                prevState.values.push({[mapping.text] : this.inputDom.current.value})
-                return {
-                    values : prevState.values
-                }
-            })
-            this.setState({open:false})
+            this.addTag( {[mapping.text] : this.inputDom.current.value});
+            this.setState({open:false});
+            change(this.state.values);
         }
        
     }
@@ -179,14 +191,14 @@ class Tag extends Component {
         const disabledClass = disabled ? ' rf-disabled' :''; 
         const activeClass = open ? ' active' : '';
         const hasIconClass =  mapping.icon ? ' rf-has-icon' : '';
-
+        
 
         return (
             <div className={`rf-tag${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`}  >
                 {this.renderTags()}
                 <input ref={this.inputDom} type="text" onChange={this.search.bind(this)} onKeyUp={this.enter.bind(this)}/>
                 <label>{label}</label>
-                <span class="rf-line"></span>
+                <span className="rf-line"></span>
                 {this.open && this.renderOptions()}
             </div>
         )

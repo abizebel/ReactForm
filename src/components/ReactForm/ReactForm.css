@@ -1031,6 +1031,10 @@ body {
     border-bottom: 1px dashed var(--disabled-color) !important; 
     cursor: not-allowed   
 }
+
+.rf-tag.rf-disabled .rf-tag-icon {
+    opacity: .3;
+}
 .rf-tag.rf-bordered.rf-disabled {
     border: 1px dashed var(--disabled-color) !important;   
 
