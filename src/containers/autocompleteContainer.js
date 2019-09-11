@@ -3,7 +3,7 @@ import {Input, Select, Autocomplete, Tag} from '../components/ReactForm';
 
 class AutocomplteContainer extends Component {
 
-  changeInput (val){
+  changeAutocomplete (val){
    console.log(val)
   }
   render (){
@@ -16,7 +16,7 @@ class AutocomplteContainer extends Component {
      
         <div style={boxStyle} >
           <div style={boxTileStyle}>Autocomplete</div>
-          <Autocomplete 
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
             values ={
@@ -28,7 +28,7 @@ class AutocomplteContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-          <Autocomplete 
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
             defaultValue ={{value : 'حسینی' ,icon : sampleIcon}}
@@ -45,7 +45,7 @@ class AutocomplteContainer extends Component {
         </div>
         <div style={boxStyle} >
           <div style={boxTileStyle}>Outlined Autocomplete</div>
-          <Autocomplete 
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             outline = {true}
             defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
@@ -58,7 +58,7 @@ class AutocomplteContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-          <Autocomplete 
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
             rtl={true}
             outline = {true}
             label={'نام خانوادگی'}
@@ -82,7 +82,7 @@ class AutocomplteContainer extends Component {
 
         <div style={boxStyle} >
           <div style={boxTileStyle}>Autocomplete with Icon</div>
-          <Autocomplete 
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
             values ={
@@ -94,7 +94,7 @@ class AutocomplteContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
           />
-          <Autocomplete 
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
             defaultValue ={{value : 'حسینی' ,icon : sampleIcon}}
@@ -111,7 +111,7 @@ class AutocomplteContainer extends Component {
         </div>
         <div style={boxStyle} >
           <div style={boxTileStyle}>Outlined Autocomplete with Icon</div>
-          <Autocomplete 
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             outline = {true}
             defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
@@ -124,7 +124,7 @@ class AutocomplteContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
           />
-          <Autocomplete 
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
             rtl={true}
             outline = {true}
             label={'نام خانوادگی'}
@@ -142,7 +142,7 @@ class AutocomplteContainer extends Component {
         </div>
         <div style={boxStyle} >
           <div style={boxTileStyle}>Disabled Autocomplete</div>
-          <Autocomplete 
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             disabled={true}
             defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
@@ -155,7 +155,7 @@ class AutocomplteContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
           />
-          <Autocomplete 
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
             disabled={true}
@@ -174,7 +174,7 @@ class AutocomplteContainer extends Component {
         </div>
         <div style={boxStyle} >
           <div style={boxTileStyle}>Disabled  Autocomplete</div>
-          <Autocomplete 
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             outline = {true}
             disabled={true}
@@ -189,7 +189,7 @@ class AutocomplteContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
           />
-          <Autocomplete 
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
             rtl={true}
             outline = {true}
             disabled={true}

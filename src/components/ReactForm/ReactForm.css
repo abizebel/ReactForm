@@ -741,6 +741,7 @@ body {
 .rf-autocomplete.rf-disabled > input{
     border-bottom: 1px dashed var(--disabled-color) !important;
     color: var(--label-color);
+    cursor: not-allowed;
     
 }
 .rf-autocomplete.rf-disabled.rf-bordered > input {
@@ -1027,7 +1028,8 @@ body {
 }
 /* Disabled */
 .rf-tag.rf-disabled > input{
-    border-bottom: 1px dashed var(--disabled-color) !important;    
+    border-bottom: 1px dashed var(--disabled-color) !important; 
+    cursor: not-allowed   
 }
 .rf-tag.rf-bordered.rf-disabled {
     border: 1px dashed var(--disabled-color) !important;   

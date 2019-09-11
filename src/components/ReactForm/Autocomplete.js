@@ -51,10 +51,11 @@ class Autcomplete extends Component {
     }
 
     select (item){
-        const { mapping} = this.props;
-        this.setState({searchValue:item[mapping.value]})
+        const {mapping, change} = this.props;
+        this.setState({searchValue:item[mapping.text]})
         this.setState({selectedItem:item})
-        this.setState({open:false})
+        this.setState({open:false});
+        change(item[mapping.text])
     }
     open (e){        
         const len = $(e.target).closest('.rf-options').length;
@@ -64,12 +65,12 @@ class Autcomplete extends Component {
     }
 
     search (e){
-        const {values, mapping, disabled} = this.props;
+        const {values, mapping, disabled, change} = this.props;
         if (disabled) return;
 
        // handle change
        this.setState({searchValue : e.target.value});
-
+       change(e.target.value)
        //Close 
         if(e.target.value.length === 0) {
             this.setState({open : false})
