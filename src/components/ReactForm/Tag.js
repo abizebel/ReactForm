@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {getValueByProp, createIcon, getValueById} from './functions';
+import React, {Component, createRef} from 'react';
+import {getValueByProp, createIcon, getValueById, gene} from './functions';
 import icons from './icons';
 import './ReactForm.css';
 import $ from 'jquery';
@@ -19,6 +19,7 @@ class Tag extends Component {
             usedTags : [],
             selectedItem : null
         }
+        this.inputDom = createRef()
     }
 
     handleChange (e){
@@ -133,7 +134,19 @@ class Tag extends Component {
     }
     ////////////////////// CHANGE //////////////////////
 
-
+    add (e){
+        const {mapping} = this.props;
+        if (e.keyCode === 13) {
+            this.setState((prevState) =>{
+                prevState.values.push({[mapping.text] : this.inputDom.current.value})
+                return {
+                    values : prevState.values
+                }
+            })
+            this.setState({open:false})
+        }
+       
+    }
 
     search (e){
         const {values, mapping, disabled} = this.props;
@@ -170,7 +183,7 @@ class Tag extends Component {
         return (
             <div className={`rf-tag${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`}  >
                 {this.renderTags()}
-                <input type="text" onChange={this.search.bind(this)}/>
+                <input ref={this.inputDom} type="text" onChange={this.search.bind(this)} onKeyUp={this.add.bind(this)}/>
                 <label>{label}</label>
                 <span class="rf-line"></span>
                 {this.open && this.renderOptions()}

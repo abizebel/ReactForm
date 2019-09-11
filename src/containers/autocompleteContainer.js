@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import {Input, Select, Autocomplete, Tag} from './components/ReactForm';
+import {Input, Select, Autocomplete, Tag} from '../components/ReactForm';
 
 class AutocomplteContainer extends Component {
 
@@ -13,10 +13,7 @@ class AutocomplteContainer extends Component {
     return (
       <Fragment>
         
-        <div style={boxStyle} >
-           <h1 >Autocomplete Samples</h1>  
-         </div>
-        
+     
         <div style={boxStyle} >
           <div style={boxTileStyle}>Autocomplete</div>
           <Autocomplete 

@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import {Input, Select, Autocomplete, Tag} from './components/ReactForm';
+import {Input, Select, Autocomplete, Tag} from '../components/ReactForm';
 
 class InputContainer extends Component {
 
@@ -12,30 +12,7 @@ class InputContainer extends Component {
     const boxTileStyle = {fontSize : '15px',fontWeight: 'bold',paddingBottom :'40px'};
     return (
       <Fragment>
-         <div style={boxStyle} >
-           <h1 >React Material Forms</h1>  
-           <h3 >Author : Abbas Hosseini</h3>
-           <h3 >Features : </h3>
-           <ul>
-             <li>Pure Html/Css version for razor pages</li>
-             <li>Clean Code</li>
-             <li>Easy to Use</li>
-             <li>Supports RTL</li>
-             <li>Object Oriented & Extensible</li>
-             <li>Both Oulined & inlined Components</li>
-           </ul>
-           <h3 >Components :</h3>
-           <ul>
-             <li>Input</li>
-             <li>Tag</li>
-             <li>Checkbox</li>
-             <li>Autocomplete</li>
-             <li>Select</li>  
-           </ul>
-         </div>
-         <div style={boxStyle} >
-           <h1 >Input Samples</h1>  
-         </div>
+
         <div style={boxStyle} >
           <div style={boxTileStyle}>Input</div>
           <Input 
