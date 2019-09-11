@@ -22,7 +22,10 @@ class Tag extends Component {
         this.inputDom = createRef()
     }
 
-    handleChange (e){        
+    handleChange (e){    
+        const {disabled} = this.props;
+        if (disabled) return ;
+
         this.setState({searchValue : e.target.value});
     }
 

@@ -1048,10 +1048,12 @@ body {
 .rf-tag.rf-disabled .rf-line{
     display: none
 }
+.rf-tag.rf-disabled .rf-tag-list-item ,
+.rf-tag.rf-disabled .rf-tag-list-item .rf-tag-icon svg,
 .rf-tag.rf-bordered.rf-disabled .rf-tag-list-item ,
 .rf-tag.rf-bordered.rf-disabled .rf-tag-list-item .rf-tag-icon svg{
      color: var(--label-color);
-    fill: var(--label-color)
+    fill: var(--label-color);
 }
 .rf-tag.rf-disabled > input {
     color: var(--label-color)
