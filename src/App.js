@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import {Input, Select} from './components/ReactForm';
+import {Input, Select, Autocomplete} from './components/ReactForm';
 
 class App extends Component {
 
@@ -37,7 +37,7 @@ class App extends Component {
            <h1 >Input Samples</h1>  
          </div>
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Inputs</div>
+          <div style={boxTileStyle}>Input</div>
           <Input 
             label={'Last Name'}
             value={'Hosseini'} 
@@ -50,7 +50,7 @@ class App extends Component {
           />
         </div>
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Oulined Inputs</div>
+          <div style={boxTileStyle}>Oulined Input</div>
           <Input 
            label={'Last Name'}
             value={'Hosseini'} 
@@ -65,7 +65,7 @@ class App extends Component {
           />
         </div>
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Disabled Inputs</div>
+          <div style={boxTileStyle}>Disabled Input</div>
           <Input 
            label={'Last Name'}
             value={'Hosseini'} 
@@ -80,7 +80,7 @@ class App extends Component {
           />
         </div>
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Oulined Disabled Inputs</div>
+          <div style={boxTileStyle}>Oulined Disabled Input</div>
           <Input 
            label={'Last Name'}
             value={'Hosseini'} 
@@ -97,7 +97,7 @@ class App extends Component {
           />
         </div>
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Inputs with Success Icon</div>
+          <div style={boxTileStyle}>Input with Success Icon</div>
           <Input 
            label={'Last Name'}
             value={'Hosseini'} 
@@ -112,7 +112,7 @@ class App extends Component {
           />
         </div>
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Outlined Inputs with Success Icon</div>
+          <div style={boxTileStyle}>Outlined Input with Success Icon</div>
           <Input 
            label={'Last Name'}
             value={'Hosseini'} 
@@ -129,7 +129,7 @@ class App extends Component {
           />
         </div>
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Inputs with Erros</div>
+          <div style={boxTileStyle}>Input with Erros</div>
           <Input 
            label={'Last Name'}
             value={'Hosseini'} 
@@ -144,7 +144,7 @@ class App extends Component {
           />
         </div>
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Outlined Inputs with Erros</div>
+          <div style={boxTileStyle}>Outlined Input with Erros</div>
           <Input 
            label={'Last Name'}
             value={'Hosseini'} 
@@ -193,7 +193,7 @@ class App extends Component {
           />
         </div>
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Inputs with Iocn</div>
+          <div style={boxTileStyle}>Input with Iocn</div>
           <Input 
             label={'Last Name'}
             value={'Hosseini'} 
@@ -208,7 +208,7 @@ class App extends Component {
           />
         </div>
         <div style={boxStyle} >
-        <div style={boxTileStyle}>Outlined Inputs with Iocn</div>
+        <div style={boxTileStyle}>Outlined Input with Iocn</div>
           <Input 
             label={'Last Name'}
             value={'Hosseini'} 
@@ -231,7 +231,7 @@ class App extends Component {
          </div>
         
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Selects</div>
+          <div style={boxTileStyle}>Select</div>
           <Select 
             label={'Last Name'}
             defaultValue ={33}
@@ -261,7 +261,7 @@ class App extends Component {
         </div>
 
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Outlined Selects</div>
+          <div style={boxTileStyle}>Outlined Select</div>
           <Select 
             label={'Last Name'}
             defaultValue ={33}
@@ -294,7 +294,7 @@ class App extends Component {
 
 
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Selects with Search</div>
+          <div style={boxTileStyle}>Select with Search</div>
           <Select 
             label={'Last Name'}
             defaultValue ={33}
@@ -328,7 +328,7 @@ class App extends Component {
         </div>
 
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Outlined Selects with Search</div>
+          <div style={boxTileStyle}>Outlined Select with Search</div>
           <Select 
             label={'Last Name'}
             defaultValue ={33}
@@ -363,7 +363,7 @@ class App extends Component {
 
         </div>
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Selects with Icon</div>
+          <div style={boxTileStyle}>Select with Icon</div>
           <Select 
             label={'Last Name'}
             defaultValue ={33}
@@ -397,7 +397,7 @@ class App extends Component {
         </div>
 
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Outlined Selects with Icon</div>
+          <div style={boxTileStyle}>Outlined Select with Icon</div>
           <Select 
             label={'Last Name'}
             defaultValue ={33}
@@ -432,7 +432,7 @@ class App extends Component {
 
         </div>
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Disabled Selects</div>
+          <div style={boxTileStyle}>Disabled Select</div>
           <Select 
             label={'Last Name'}
             defaultValue ={33}
@@ -464,7 +464,7 @@ class App extends Component {
         </div>
 
         <div style={boxStyle} >
-          <div style={boxTileStyle}>Disabled Outlined Selects</div>
+          <div style={boxTileStyle}>Disabled Outlined Select</div>
           <Select 
             label={'Last Name'}
             defaultValue ={33}
@@ -493,6 +493,204 @@ class App extends Component {
               {id:'44',name:'رنجبر', info:{icon:sampleIcon}}
             ]}
             mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+
+        <div style={boxStyle} >
+           <h1 >Autocomplete Samples</h1>  
+         </div>
+        
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Autocomplete</div>
+          <Autocomplete 
+            label={'Last Name'}
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Autocomplete 
+            rtl={true}
+            label={'نام خانوادگی'}
+            defaultValue ={{value : 'حسینی' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Outlined Autocomplete</div>
+          <Autocomplete 
+            label={'Last Name'}
+            outline = {true}
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Autocomplete 
+            rtl={true}
+            outline = {true}
+            label={'نام خانوادگی'}
+            defaultValue ={{value : 'حسینی' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+
+
+
+      
+
+
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Autocomplete with Icon</div>
+          <Autocomplete 
+            label={'Last Name'}
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+          <Autocomplete 
+            rtl={true}
+            label={'نام خانوادگی'}
+            defaultValue ={{value : 'حسینی' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+
+        </div>
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Outlined Autocomplete with Icon</div>
+          <Autocomplete 
+            label={'Last Name'}
+            outline = {true}
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+          <Autocomplete 
+            rtl={true}
+            outline = {true}
+            label={'نام خانوادگی'}
+            defaultValue ={{value : 'حسینی' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+
+        </div>
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Disabled Autocomplete</div>
+          <Autocomplete 
+            label={'Last Name'}
+            disabled={true}
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+          <Autocomplete 
+            rtl={true}
+            label={'نام خانوادگی'}
+            disabled={true}
+
+            defaultValue ={{value : 'حسینی' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+
+        </div>
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Disabled  Autocomplete</div>
+          <Autocomplete 
+            label={'Last Name'}
+            outline = {true}
+            disabled={true}
+
+            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+          <Autocomplete 
+            rtl={true}
+            outline = {true}
+            disabled={true}
+
+            label={'نام خانوادگی'}
+            defaultValue ={{value : 'حسینی' ,icon : sampleIcon}}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
           />
 
         </div>

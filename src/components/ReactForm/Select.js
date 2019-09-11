@@ -64,13 +64,14 @@ class Select extends Component {
 
     search (e){
         const {values, mapping} = this.props;
-        
+
+        //Reset list if input hasnt value
         if(e.target.value.length === 0) {
             this.setState({values})
         }
 
+        //Search
         const target = e.target.value.toLowerCase();
-
         const foundValues = values.filter(o => {
             return o[mapping.text].toLowerCase().indexOf(target)!== -1
         })
