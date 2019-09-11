@@ -13,3 +13,20 @@
     rtl={true} //rtl support
     multiline={true} //textarea
 />
+
+<Select 
+    label={'Last Name'}
+    defaultValue ={33}
+    outline={true}
+    disabled={true}
+    search = {true}
+    searchLabel = {'search your item'}
+    values ={
+    [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+    {id:'22',name:'feiz', info:{icon:sampleIcon}},
+    {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+    {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+    {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+    ]}
+    mapping = {{text : 'name', value : 'id'}}
+/>

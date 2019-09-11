@@ -53,6 +53,28 @@ $(document).ready(function(){
         }
 
     })
+
+
+    //Autocomplete
+    $(document).click(function(e){
+        if ($(e.target).closest('.rf-autocomplete').length == 0) {
+            $('.rf-autocomplete').removeClass('active')
+        }
+
+    })
+    $('.rf-autocomplete > input').keyup(function(e){
+        if(!$(e.target).closest('.rf-autocomplete').hasClass('active')) {
+            $('.rf-autocomplete').removeClass('active')
+            $(e.target).closest('.rf-autocomplete').addClass('active')
+        }
+        else {
+            if ($(e.target).closest('.rf-options').length == 0) {
+                $(e.target).closest('.rf-autocomplete').removeClass('active')
+            }
+            
+        }
+
+    })
     //Tag
     $(".rf-tag > input").each(function(i, el){
 
