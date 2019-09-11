@@ -14,24 +14,22 @@ body {
 }
 
 
-
 :root {
-  /* General */ 
-  --label-size :0.7;
-  --label-color : #9e9e9e; /* label + border */
-  --text-size :.9;
-  --text-color : #333;
-  --disabled-color : #ddd;
-  --focus-color : #145AF9;
-  --space-around : 2; 
-  --error-color : #F44336;
-  --success-color : #4CAF50;
-  --tag-bg-color : #e4e4e4;
-  --tag-text-color : rgba(0,0,0,0.6);
-   
-
+    /* General */ 
+    --label-size :0.7;
+    --label-color : #9e9e9e; /* label + border */
+    --text-size :.9;
+    --text-color : #333;
+    --disabled-color : #ddd;
+    --focus-color : #145AF9;
+    --space-around : 2; 
+    --error-color : #F44336;
+    --success-color : #4CAF50;
+    --tag-bg-color : #e4e4e4;
+    --tag-text-color : rgba(0,0,0,0.6);
+     
 }
-
+  
 
 /************************
 * INPUT
@@ -405,7 +403,8 @@ body {
    padding-left: 50px
 }
 
-.rf-select  .rf-options-item:hover {
+.rf-select .rf-options-item:hover,
+.rf-select .rf-options-item.selected  {
     background: #f2f2f2
 }
 .rf-select  .rf-options-search {
@@ -446,6 +445,7 @@ body {
 .rf-select.rf-disabled > input{
     border-bottom: 1px dashed var(--disabled-color) !important;
     color: var(--label-color);
+    cursor: not-allowed
     
 }
 .rf-select.rf-disabled.rf-bordered > input {
@@ -609,7 +609,7 @@ body {
     color:var(--text-color);
     font-size:calc(var(--text-size) * 1em); 
     border: none;
-    cursor: pointer;
+    cursor: text;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;

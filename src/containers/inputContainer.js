@@ -203,11 +203,7 @@ class InputContainer extends Component {
           />
           
         </div>
-        <div style={boxStyle} >
-           <h1 >Select Samples</h1>  
-         </div>
-        
-
+  
       </Fragment>
       
     );

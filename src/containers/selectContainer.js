@@ -3,7 +3,7 @@ import {Input, Select, Autocomplete, Tag} from '../components/ReactForm';
 
 class SelectContainer extends Component {
 
-  changeInput (val){
+  changeSelect (val){
    console.log(val)
   }
   render (){
@@ -17,7 +17,7 @@ class SelectContainer extends Component {
         
         <div style={boxStyle} >
           <div style={boxTileStyle}>Select</div>
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
             defaultValue ={33}
             values ={
@@ -29,7 +29,7 @@ class SelectContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
             defaultValue ={33}
@@ -47,7 +47,7 @@ class SelectContainer extends Component {
 
         <div style={boxStyle} >
           <div style={boxTileStyle}>Outlined Select</div>
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
             outline={true}
@@ -60,7 +60,7 @@ class SelectContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             rtl={true}
             outline={true}
             label={'نام خانوادگی'}
@@ -76,11 +76,79 @@ class SelectContainer extends Component {
           />
 
         </div>
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Select with Id</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            showKey ={true}
+            defaultValue ={33}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            showKey ={true}
+            label={'نام خانوادگی'}
+            defaultValue ={33}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+
+        <div style={boxStyle} >
+          <div style={boxTileStyle}>Outlined Select with Id</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            showKey ={true}
+            defaultValue ={33}
+            outline={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            outline={true}
+            showKey ={true}
+            label={'نام خانوادگی'}
+            defaultValue ={33}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+
+
+
 
 
         <div style={boxStyle} >
           <div style={boxTileStyle}>Select with Search</div>
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
             search = {true}
@@ -94,7 +162,7 @@ class SelectContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
             defaultValue ={33}
@@ -114,7 +182,7 @@ class SelectContainer extends Component {
 
         <div style={boxStyle} >
           <div style={boxTileStyle}>Outlined Select with Search</div>
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
             outline={true}
@@ -129,7 +197,7 @@ class SelectContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             rtl={true}
             outline={true}
             label={'نام خانوادگی'}
@@ -149,7 +217,7 @@ class SelectContainer extends Component {
         </div>
         <div style={boxStyle} >
           <div style={boxTileStyle}>Select with Icon</div>
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
             search = {true}
@@ -163,7 +231,7 @@ class SelectContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
           />
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
             defaultValue ={33}
@@ -183,7 +251,7 @@ class SelectContainer extends Component {
 
         <div style={boxStyle} >
           <div style={boxTileStyle}>Outlined Select with Icon</div>
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
             search = {true}
@@ -198,7 +266,7 @@ class SelectContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
           />
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             rtl={true}
             outline={true}
             label={'نام خانوادگی'}
@@ -218,7 +286,7 @@ class SelectContainer extends Component {
         </div>
         <div style={boxStyle} >
           <div style={boxTileStyle}>Disabled Select</div>
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
             disabled={true}
@@ -231,7 +299,7 @@ class SelectContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             rtl={true}
             label={'Last Name'}
             defaultValue ={33}
@@ -250,7 +318,7 @@ class SelectContainer extends Component {
 
         <div style={boxStyle} >
           <div style={boxTileStyle}>Disabled Outlined Select</div>
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
             outline={true}
@@ -264,7 +332,7 @@ class SelectContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-          <Select 
+          <Select   change={this.changeSelect.bind(this)}
             rtl={true}
             outline={true}
             label={'نام خانوادگی'}

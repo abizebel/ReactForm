@@ -134,7 +134,8 @@ class Tag extends Component {
     }
     ////////////////////// CHANGE //////////////////////
 
-    add (e){
+    
+    enter (e){
         const {mapping} = this.props;
         if (e.keyCode === 13) {
             this.setState((prevState) =>{
@@ -183,7 +184,7 @@ class Tag extends Component {
         return (
             <div className={`rf-tag${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`}  >
                 {this.renderTags()}
-                <input ref={this.inputDom} type="text" onChange={this.search.bind(this)} onKeyUp={this.add.bind(this)}/>
+                <input ref={this.inputDom} type="text" onChange={this.search.bind(this)} onKeyUp={this.enter.bind(this)}/>
                 <label>{label}</label>
                 <span class="rf-line"></span>
                 {this.open && this.renderOptions()}

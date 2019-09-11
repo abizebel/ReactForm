@@ -25,7 +25,6 @@ class Select extends Component {
 
     open (e){
         const {disabled} = this.props;
-
         if (disabled) return;
         
         const len = $(e.target).closest('.rf-options').length;
@@ -36,23 +35,32 @@ class Select extends Component {
         }
     }
 
-    select (selectedValue){
-        this.setState({selectedValue})
-        this.setState({open:false})
+    select (selectedItem){
+        const {change, mapping} = this.props;
+
+        this.setState({selectedValue:selectedItem[mapping.value]})
+        this.setState({open:false});
+
+        change({
+            text : selectedItem[mapping.text],
+            value : selectedItem[mapping.value],
+        })
     }
 
     renderOptions (){
-        const {mapping, search } = this.props;
-        const {values } = this.state;
+        const {mapping, search ,showKey} = this.props;
+        const {values , selectedValue } = this.state;
         
         const options = values.map((o, i) => {
+            const selectedClass = (o[mapping.value] == selectedValue) ? ' selected' : '';
             return (
-                <div key={i} className="rf-options-item" onClick={this.select.bind(this,o[mapping.value])}>
+                <div key={i} className={`rf-options-item${selectedClass}`} onClick={this.select.bind(this,o)}>
                     {mapping.icon && 
                         <span className="rf-option-icon">
                             {createIcon(getValueByProp(o, mapping.icon))}
                         </span> 
                     }
+                    {showKey && `${getValueByProp(o, mapping.value)} - ` }
                     {getValueByProp(o, mapping.text)}
                 </div>
             )
@@ -83,14 +91,14 @@ class Select extends Component {
         const searchLableText = searchLabel ? searchLabel : (rtl ? 'جستجو ...' : 'Search ...')
 
         return (
-            <div class="rf-options-search">
+            <div className="rf-options-search">
                 <input onChange={this.search.bind(this)} placeholder={searchLableText} type="text" />
             </div>
         )
     }
 
     render (){
-        const {values, label, mapping, rtl, disabled, outline} = this.props;
+        const {values, label, mapping, rtl, disabled, outline, showKey} = this.props;
         const {open, selectedValue} = this.state;
 
         const activeClass = open ? ' active' : '';
@@ -99,12 +107,11 @@ class Select extends Component {
         const outlineClass = outline ? ' rf-bordered' :''; 
         const disabledClass = disabled ? ' rf-disabled' :''; 
         const selectedItem = getValueById(values, selectedValue, mapping.value);
-
-
+        const inputValue = `${showKey ? selectedItem[mapping.value]:''}   ${selectedItem[mapping.text]}`
 
         return (
             <div className={`rf-select${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
-            <input type="text" className="filled" value={selectedItem[mapping.text]}  onClick={this.open.bind(this)}/>
+            <input type="text" className="filled" onChange={()=>{}} value={inputValue}  onClick={this.open.bind(this)}/>
             <label>{label}</label>
             <span className="rf-line"></span>
             {mapping.icon &&

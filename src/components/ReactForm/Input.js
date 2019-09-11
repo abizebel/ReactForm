@@ -30,10 +30,11 @@ class Input extends Component {
         const sucessClass = success ? ' rf-success' :''; 
         const iconClass = icon !==null ? ' rf-has-icon' :''; 
         const inputIcon = createIcon(icon);
+
         return (
             <div className={`rf-input${filledClass}${rtlClass}${outlineClass}${disabledClass}${errorClass}${sucessClass}${iconClass}`} >  
-                {
-                    multiline ? 
+                
+                {   multiline ? 
                     <textarea 
                         type="text" 
                         value={value}
@@ -50,8 +51,9 @@ class Input extends Component {
                 
                 <label>{label}</label>
                 <span className="rf-line"></span>
+
                 {   icon !==null &&
-                    <span class="rf-input-icon">{inputIcon}</span>
+                    <span className="rf-input-icon">{inputIcon}</span>
                 }
                 
                  
@@ -61,6 +63,7 @@ class Input extends Component {
                         <span className="rf-message">{error}</span> 
                     </Fragment>     
                 }
+
                 {success > 0 &&
                     <span className="rf-icon">{icons.success}</span>  
                 }
