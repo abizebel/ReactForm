@@ -22,6 +22,7 @@ body {
     --text-color : #333;
     --disabled-color : #ddd;
     --focus-color : #145AF9;
+    --gradient-color :#1C3585;
     --space-around : 2; 
     --error-color : #F44336;
     --success-color : #4CAF50;
@@ -40,9 +41,12 @@ body {
 
   
 .rf-button{
+  position: relative;
+  overflow: hidden;
   margin-top: 1rem;
   margin-bottom: 1rem;
-    cursor: pointer;
+  cursor: pointer;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
   background: var(--focus-color);
   color:#fff;
    border-radius: 2px;
@@ -56,6 +60,24 @@ body {
    line-height: 36px;
    padding: 0 16px;  
 }
+.rf-button.rf-gradient {
+    background: linear-gradient(40deg,var(--focus-color),var(--gradient-color))!important;
+}
+.rf-button.rf-flat {
+  background: none;
+  color: var(--text-color);
+  border: 1px solid var(--label-color);
+  box-shadow: unset !important;
+}
+.rf-button.rf-rounded {
+  border-radius: 25px
+} 
+.rf-button:hover {
+    opacity: .9;
+    -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+    transition: ease 0.2s all;
+}
 .rf-button.rf-samll{
    height: 30px;
    line-height:32px;
@@ -66,14 +88,49 @@ body {
    height: 36px;
    line-height: 38px;
    padding: 0 16px;  
-   font-size: calc(var(--text-size) * 1.1em)
+  font-size: calc(var(--text-size) * .9em)
+
 }
 .rf-button.rf-big{
    height: 44px;
    line-height: 46px;
    padding: 0 20px;   
-   font-size: calc(var(--text-size) * 1.3em)
+  font-size: calc(var(--text-size) * .9em)
+
 }
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 250px;
+    height: 250px;
+    opacity: 0;
+  }
+}
+.rf-ripple:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: currentColor;
+  visibility: hidden;
+  z-index: 2;
+}
+.rf-ripple:not(:active):before {
+  animation: ripple 2s cubic-bezier(0, 0, 0.2, 1);
+  transition: visibility 2s step-end;
+}
+.rf-ripple:active:before {
+  visibility: visible;
+}
+
 /************************
 * CHECKBOX
 *************************/
