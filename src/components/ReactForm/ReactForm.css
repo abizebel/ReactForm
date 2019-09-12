@@ -29,7 +29,51 @@ body {
     --tag-text-color : rgba(0,0,0,0.6);
      
 }
+
   
+  
+/************************
+* Button
+*************************/  
+
+
+
+  
+.rf-button{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+    cursor: pointer;
+  background: var(--focus-color);
+  color:#fff;
+   border-radius: 2px;
+   display: inline-block;
+   direction: rtl;
+   text-transform: uppercase;
+   -webkit-user-select: none; /* Safari 3.1+ */
+   -moz-user-select: none; /* Firefox 2+ */ /* IE 10+ */
+   user-select: none; /* Standard syntax */
+   height: 36px;
+   line-height: 36px;
+   padding: 0 16px;  
+}
+.rf-button.rf-samll{
+   height: 30px;
+   line-height:32px;
+   padding: 0 12px;  
+  font-size: calc(var(--text-size) * .9em)
+}
+.rf-button.rf-normal{
+   height: 36px;
+   line-height: 38px;
+   padding: 0 16px;  
+   font-size: calc(var(--text-size) * 1.1em)
+}
+.rf-button.rf-big{
+   height: 44px;
+   line-height: 46px;
+   padding: 0 20px;   
+   font-size: calc(var(--text-size) * 1.3em)
+}
 /************************
 * CHECKBOX
 *************************/
