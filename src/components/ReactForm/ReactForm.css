@@ -22,7 +22,7 @@ body {
     --text-color : #333;
     --disabled-color : #ddd;
     --focus-color : #145AF9;
-    --gradient-color :#1C3585;
+    --gradient-color :#45cafc;
     --space-around : 2; 
     --error-color : #F44336;
     --success-color : #4CAF50;
@@ -30,17 +30,20 @@ body {
     --tag-text-color : rgba(0,0,0,0.6);
      
 }
-
-  
-  
+ 
 /************************
 * Button
 *************************/  
 
+/* Rtl */
+.rf-button.rf-rtl {
+  text-align:right
+}
+.rf-button {
+    display:inline-block;
+}
+.rf-button  .rf-button-text{
 
-
-  
-.rf-button{
   position: relative;
   overflow: hidden;
   margin-top: 1rem;
@@ -50,8 +53,7 @@ body {
   background: var(--focus-color);
   color:#fff;
    border-radius: 2px;
-   display: inline-block;
-   direction: rtl;
+  
    text-transform: uppercase;
    -webkit-user-select: none; /* Safari 3.1+ */
    -moz-user-select: none; /* Firefox 2+ */ /* IE 10+ */
@@ -59,39 +61,41 @@ body {
    height: 36px;
    line-height: 36px;
    padding: 0 16px;  
+  font-size:calc(var(--text-size) * 1em)
+ 
 }
-.rf-button.rf-gradient {
+.rf-button .rf-button-text.rf-gradient {
     background: linear-gradient(40deg,var(--focus-color),var(--gradient-color))!important;
 }
-.rf-button.rf-flat {
+.rf-button .rf-button-text.rf-flat{
   background: none;
   color: var(--text-color);
   border: 1px solid var(--label-color);
   box-shadow: unset !important;
 }
-.rf-button.rf-rounded {
+.rf-button  .rf-button-text.rf-rounded{
   border-radius: 25px
 } 
-.rf-button:hover {
+.rf-button .rf-button-text:hover{
     opacity: .9;
     -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
     transition: ease 0.2s all;
 }
-.rf-button.rf-samll{
+.rf-button .rf-button-text.rf-samll{
    height: 30px;
    line-height:32px;
    padding: 0 12px;  
   font-size: calc(var(--text-size) * .9em)
 }
-.rf-button.rf-normal{
+.rf-button .rf-button-text.rf-normal{
    height: 36px;
    line-height: 38px;
    padding: 0 16px;  
   font-size: calc(var(--text-size) * .9em)
 
 }
-.rf-button.rf-big{
+.rf-button .rf-button-text.rf-big{
    height: 44px;
    line-height: 46px;
    padding: 0 20px;   
@@ -135,6 +139,9 @@ body {
 * CHECKBOX
 *************************/
 /* Rtl */
+.rf-checkbox.rf-rtl{
+  text-align: right
+}
 .rf-checkbox.rf-rtl .checkbox-material {
   float: none;
   float: right
@@ -151,12 +158,14 @@ body {
 
 
 .rf-checkbox {
-  display: inline-block;
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: calc(var(--text-size) * 1em);
   cololr: var(--text-color);
   transform: translateZ(0);
+     -webkit-user-select: none; /* Safari 3.1+ */
+   -moz-user-select: none; /* Firefox 2+ */ /* IE 10+ */
+   user-select: none; /* Standard syntax */
 
 }
 .rf-checkbox .checkbox-text {
@@ -165,6 +174,8 @@ body {
 .rf-checkbox label {
   cursor: pointer;
   padding: 0;
+    display: inline-block;
+
 
 }
 .rf-checkbox input[type=checkbox] {
@@ -184,7 +195,7 @@ body {
 }
 .rf-checkbox .checkbox-material:before {
   position: absolute;
-  left: 10px;
+  left: 9px;
   top: 9px;
   content: "";
   background-color: rgba(0, 0, 0, 0.5);
@@ -1171,7 +1182,7 @@ body {
 *************************/
 .rf-tag {
    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     position: relative
 }
 .rf-tag > label {
