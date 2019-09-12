@@ -143,7 +143,7 @@ body {
   transform: rotate(-45deg);
 }
 .rf-checkbox .checkbox-material .check {
-  color: var(--focus-color);
+  color: var(--label-color);
 }
 .rf-checkbox .checkbox-material:before {
   background-color: #2faef8;
