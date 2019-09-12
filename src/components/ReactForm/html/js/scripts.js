@@ -1,4 +1,5 @@
 $(document).ready(function(){
+)
     //Input
     $(".rf-input > input").each(function(i, el){
         if($(el).val().length) {
