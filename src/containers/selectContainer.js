@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import {Input, Select, Autocomplete, Tag} from '../components/ReactForm';
+import {Select} from '../components/ReactForm';
 
 class SelectContainer extends Component {
 

@@ -1,5 +1,5 @@
 import React, {Component, createRef} from 'react';
-import {getValueByProp, createIcon, getValueById, gene} from './functions';
+import {getValueByProp, createIcon} from './functions';
 import icons from './icons';
 import './ReactForm.css';
 import $ from 'jquery';
@@ -82,7 +82,7 @@ class Tag extends Component {
     }
 
     select (item){
-        const { mapping, change} = this.props;
+        const {change} = this.props;
 
         this.setState({selectedItem:item})
         this.addTag(item)
@@ -125,12 +125,11 @@ class Tag extends Component {
     ////////////////////// CHANGE //////////////////////
 
     isExist (){
-        const {values} = this.state;
-        const {mapping} = this.props;
+        return false
     }
 
     addTag (tag){
-        const {mapping, disabled} = this.props;
+        const { disabled} = this.props;
 
         if (this.isExist(tag)) return ;
         if (disabled) return ;
@@ -165,7 +164,7 @@ class Tag extends Component {
     }
 
     search (e){
-        const {values, mapping, disabled} = this.props;
+        const {disabled} = this.props;
         if (disabled) return;
 
         //handlechange
@@ -186,7 +185,7 @@ class Tag extends Component {
     }
 
     render (){
-        const {rtl, outline, label, disabled, multiline, icon, mapping} = this.props;
+        const {rtl, outline, label, disabled, mapping} = this.props;
         const {searchValue, open} = this.state;
         const filledClass = searchValue.length > 0 ? ' filled' :''; 
         const rtlClass = rtl ? ' rf-rtl' :''; 

@@ -22,7 +22,7 @@ body {
     --text-color : #333;
     --disabled-color : #ddd;
     --focus-color : #145AF9;
-    --gradient-color :#1a8cb2;
+    --gradient-color :#3cc2d3;
     --space-around : 2; 
     --error-color : #F44336;
     --success-color : #4CAF50;
@@ -64,6 +64,9 @@ body {
   font-size:calc(var(--text-size) * 1em)
  
 }
+.rf-button .rf-button-text.rf-simple {
+  border: none !important;
+} 
 .rf-button .rf-button-text.rf-gradient {
     background: linear-gradient(40deg,var(--focus-color),var(--gradient-color))!important;
 }

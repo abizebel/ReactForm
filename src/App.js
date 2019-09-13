@@ -1,6 +1,5 @@
-import React, {Component,Fragment} from 'react';
+import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import {Input, Select, Autocomplete, Tag} from './components/ReactForm';
 import InputContainer from './containers/inputContainer'
 import SelectContainer from './containers/selectContainer'
 import AutocompleteContainer from './containers/autocompleteContainer'

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {getValueByProp, createIcon, getValueById} from './functions';
-import icons from './icons';
+import {getValueByProp, createIcon} from './functions';
 import './ReactForm.css';
 import $ from 'jquery';
 
