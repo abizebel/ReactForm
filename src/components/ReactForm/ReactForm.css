@@ -37,10 +37,13 @@ body {
 
 /* Rtl */
 .rf-button.rf-rtl {
-  text-align:right
+  text-align:right;
+    margin-right: unset;
+   margin-left: 8px;
 }
 .rf-button {
     display:inline-block;
+  margin-right: 8px;
 }
 .rf-button  .rf-button-text{
 
@@ -161,9 +164,11 @@ body {
 
 
 .rf-checkbox {
+    
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: calc(var(--text-size) * 1em);
+  cursor: pointer;
   cololr: var(--text-color);
   transform: translateZ(0);
      -webkit-user-select: none; /* Safari 3.1+ */
@@ -1196,6 +1201,7 @@ body {
     color : var(--label-color);
     font-size: calc(var(--text-size) * 1em);
     z-index: 2;
+    pointer-events: none;
     height: 18px;
     margin-left: 10px;
     pointer-events: none;
@@ -1208,6 +1214,8 @@ body {
 }
 
 .rf-tag > input {
+    background-color: #fff;
+
     border: 0;
     outline: 0;
     left: 0;
@@ -1335,6 +1343,9 @@ body {
     border-bottom: 1px dashed var(--disabled-color) !important; 
     cursor: not-allowed   
 }
+.rf-tag.rf-disabled.rf-bordered > input{
+    border-bottom:nonet; 
+}
 
 .rf-tag.rf-disabled .rf-tag-icon {
     opacity: .3;
@@ -1366,7 +1377,8 @@ body {
 /* Focus */
 
 .rf-tag > input:focus ~ label,
-.rf-tag.filled > label{
+.rf-tag.filled > label,
+.rf-tag.rf-disabled > label{
    top: -10px;
    font-size:calc(var(--label-size) * 1em) ;
    background: #fff;

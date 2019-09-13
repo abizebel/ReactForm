@@ -111,7 +111,14 @@ class Select extends Component {
 
         return (
             <div className={`rf-select${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
-            <input type="text" className="filled" onChange={()=>{}} value={inputValue}  onClick={this.open.bind(this)}/>
+            <input 
+                disabled={disabled} 
+                type="text" 
+                className="filled" 
+                onChange={()=>{}} 
+                value={inputValue} 
+                onClick={this.open.bind(this)}
+             />
             <label>{label}</label>
             <span className="rf-line"></span>
             {mapping.icon &&

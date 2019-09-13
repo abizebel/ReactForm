@@ -198,7 +198,12 @@ class Tag extends Component {
         return (
             <div className={`rf-tag${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`}  >
                 {this.renderTags()}
-                <input ref={this.inputDom} type="text" onChange={this.search.bind(this)} onKeyUp={this.enter.bind(this)}/>
+                <input 
+                    disabled={disabled}
+                    ref={this.inputDom} type="text" 
+                    onChange={this.search.bind(this)} 
+                    onKeyUp={this.enter.bind(this)}
+                />
                 <label>{label}</label>
                 <span className="rf-line"></span>
                 {this.open && this.renderOptions()}

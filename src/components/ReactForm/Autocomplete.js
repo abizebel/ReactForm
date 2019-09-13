@@ -102,7 +102,13 @@ class Autcomplete extends Component {
         
         return (
             <div className={`rf-autocomplete${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
-            <input type="text" className="filled" value={searchValue}  onChange={this.search.bind(this)}/>
+            <input 
+                disabled={disabled} 
+                type="text" 
+                className="filled" 
+                value={searchValue}  
+                onChange={this.search.bind(this)}
+            />
             <label>{label}</label>
             <span className="rf-line"></span>
             

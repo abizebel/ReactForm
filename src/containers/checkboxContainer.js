@@ -12,7 +12,7 @@ class CheckboxContainer extends Component {
         
      
         <div className="page-content-box" >
-          <div className="page-content-title">Checkbox</div>
+          <div className="page-content-title">Checkbox & Disabled</div>
             <Checkbox 
                 label={'I Agree'}
                 change={this.changeCheckbox.bind(this)}
@@ -25,7 +25,7 @@ class CheckboxContainer extends Component {
 
         </div>
         <div className="page-content-box" >
-          <div className="page-content-title"> Checkbox</div>
+          <div className="page-content-title">RTL Checkbox  & Disabled</div>
           <Checkbox 
                 label={'موافقم'}
                 rtl={true}

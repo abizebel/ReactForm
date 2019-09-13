@@ -49,7 +49,7 @@ class ButtonContainer extends Component {
       
 
 
-        <div className="page-content-box" >
+        <div className="page-content-box" style={{textAlign:'right'}}>
           <div className="page-content-title">Rtl buttons</div>
           <div class="rf-button rf-rtl"><div class=" rf-button-text rf-ripple rf-big"> دانلود نرم افزار</div></div>
             <div class="rf-button rf-rtl"><div class=" rf-button-text rf-ripple rf-normal"> دانلود نرم افزار</div></div>

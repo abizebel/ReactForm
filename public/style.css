@@ -32,6 +32,7 @@
     display: block;
     padding: 5px;
     border-top: 1px solid transparent;
+    cursor: pointer;
 }
 .page-content {
     width:80%;
