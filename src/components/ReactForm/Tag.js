@@ -125,7 +125,7 @@ class Tag extends Component {
     ////////////////////// CHANGE //////////////////////
 
     isExist (){
-        return false
+        const {values} = this.state;
     }
 
     addTag (tag){
@@ -141,6 +141,7 @@ class Tag extends Component {
             }
         })
     }
+    
     removeTag (index){
         const {change,disabled} = this.props;
 
