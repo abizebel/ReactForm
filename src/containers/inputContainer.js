@@ -8,13 +8,11 @@ class InputContainer extends Component {
   }
   render (){
     const sampleIcon = <svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>;
-    const boxStyle ={width:'500px', padding : '40px',border : '1px solid #ddd',margin : '50px auto',boxShadow : '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)'}
-    const boxTileStyle = {fontSize : '15px',fontWeight: 'bold',paddingBottom :'40px'};
     return (
       <Fragment>
 
-        <div style={boxStyle} >
-          <div style={boxTileStyle}>Input</div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Input</div>
           <Input 
             label={'Last Name'}
             value={''} 
@@ -26,8 +24,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div style={boxStyle} >
-          <div style={boxTileStyle}>Oulined Input</div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Oulined Input</div>
           <Input 
            label={'Last Name'}
             value={''} 
@@ -41,8 +39,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div style={boxStyle} >
-          <div style={boxTileStyle}>Disabled Input</div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Disabled Input</div>
           <Input 
            label={'Last Name'}
             value={'Hosseini'} 
@@ -56,8 +54,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div style={boxStyle} >
-          <div style={boxTileStyle}>Oulined Disabled Input</div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Oulined Disabled Input</div>
           <Input 
            label={'Last Name'}
             value={'Hosseini'} 
@@ -73,8 +71,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div style={boxStyle} >
-          <div style={boxTileStyle}>Input with Success Icon</div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Input with Success Icon</div>
           <Input 
            label={'Last Name'}
             value={'Hosseini'} 
@@ -88,8 +86,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div style={boxStyle} >
-          <div style={boxTileStyle}>Outlined Input with Success Icon</div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Outlined Input with Success Icon</div>
           <Input 
            label={'Last Name'}
             value={'Hosseini'} 
@@ -105,8 +103,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div style={boxStyle} >
-          <div style={boxTileStyle}>Input with Erros</div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Input with Erros</div>
           <Input 
            label={'Last Name'}
             value={'Hosseini'} 
@@ -120,8 +118,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div style={boxStyle} >
-          <div style={boxTileStyle}>Outlined Input with Erros</div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Outlined Input with Erros</div>
           <Input 
            label={'Last Name'}
             value={'Hosseini'} 
@@ -137,8 +135,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div style={boxStyle} >
-          <div style={boxTileStyle}>Textarea</div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Textarea</div>
           <Input 
            label={'Description'}
             value={'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy'} 
@@ -152,8 +150,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div style={boxStyle} >
-          <div style={boxTileStyle}>Outlined Textarea</div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Outlined Textarea</div>
           <Input 
            label={'Description'}
            outline={true}
@@ -169,8 +167,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div style={boxStyle} >
-          <div style={boxTileStyle}>Input with Iocn</div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Input with Iocn</div>
           <Input 
             label={'Last Name'}
             value={'Hosseini'} 
@@ -184,8 +182,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div style={boxStyle} >
-        <div style={boxTileStyle}>Outlined Input with Iocn</div>
+        <div className="page-content-box" >
+        <div className="page-content-title">Outlined Input with Iocn</div>
           <Input 
             label={'Last Name'}
             value={'Hosseini'} 

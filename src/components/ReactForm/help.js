@@ -18,6 +18,7 @@
  * Select Component
  ************************************************************/
 <Select 
+    change={this.changeSelect.bind(this)}    
     label={'Last Name'}//lable of Select
     values ={
         [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
@@ -34,4 +35,57 @@
     search = {true} // active search tool in select list
     searchLabel = {'search your item'}
 
+/>
+
+
+
+/************************************************************
+ * AUTOCOMPLETE
+ ************************************************************/
+<Autocomplete 
+    change={this.changeAutocomplete.bind(this)}
+    label={'Last Name'}
+    outline = {true}
+    rtl = {true}
+    disabled={true}
+    defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+    values ={
+    [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+    {id:'22',name:'feiz', info:{icon:sampleIcon}},
+    {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+    {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+    {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+    ]}
+    mapping = {{text : 'name', value : 'id'}}
+/>
+
+
+/************************************************************
+ * TAG
+ ************************************************************/
+<Tag 
+    change={this.changeTag.bind(this)}
+    label={'Last Name'}
+    rtl={true}
+    disabled={true}
+    outline = {true}
+    defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+    values ={
+        [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+        {id:'22',name:'feiz', info:{icon:sampleIcon}},
+        {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+        {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+        {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+    ]}
+    mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+/>
+
+/************************************************************
+ * CHECKBOX
+ ************************************************************/
+
+<Checkbox 
+change={this.changeCheckbox.bind(this)}
+rtl={true}
+disabled={true}
 />
