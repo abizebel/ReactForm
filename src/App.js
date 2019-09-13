@@ -15,7 +15,7 @@ class App extends Component {
    return (
     <Router>
         <div className="page-sidebar">
-            <h3 >React Material Forms</h3>  
+            <h3 >React Material Forms </h3>  
             <h4 >Author : Abbas Hosseini</h4>
             <ul>
               <li><Link to="/button/">Button</Link></li>
@@ -25,7 +25,9 @@ class App extends Component {
               <li><Link to="/autocomplete/">Autocomplete</Link> </li>
               <li><Link to="/tag/">Tag</Link> </li>
             </ul>
+           
         </div>
+
         <div  className="page-content">
         <Route exact path="/" component={ButtonContainer} />
 

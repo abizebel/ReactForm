@@ -110,14 +110,14 @@ class Select extends Component {
         const inputValue = `${showKey ? selectedItem[mapping.value]:''}   ${selectedItem[mapping.text]}`
 
         return (
-            <div className={`rf-select${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div onClick={this.open.bind(this)} className={`rf-select${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
             <input 
                 disabled={disabled} 
                 type="text" 
                 className="filled" 
                 onChange={()=>{}} 
                 value={inputValue} 
-                onClick={this.open.bind(this)}
+                
              />
             <label>{label}</label>
             <span className="rf-line"></span>
