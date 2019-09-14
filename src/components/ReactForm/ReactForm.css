@@ -24,7 +24,7 @@ body {
   
     --disabled-color : #ddd;
     --focus-color : #145AF9;
-    --gradient-color :#3cc2d3;
+    --gradient-color : #0a3d79;;
     --space-around : 2; 
     --error-color : #F44336;
     --success-color : #4CAF50;
@@ -36,19 +36,34 @@ body {
 * Popup
 
 *************************/   
+@media screen and (max-width:768px) {
+  .rf-popup.rf-center  {
+       margin: 0 auto !important;;
+       width :100%;
+  }
+
+}
 
 
 .rf-popup {
+  border-radius:2px;
   position: relative;
   width:500px;
   box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
   background: #fff;
 }
+
+.rf-popup.rf-center {
+
+    margin: 4rem auto;
+}
 .rf-popup.rf-side {
   position: fixed;
   left: 0;
   top: 0;
-  height: 100%
+  height:100%;
+  overflow-x: hidden;
+  overflow-y: auto;  
 }
 .rf-popup-backdrop {
     position: fixed;
@@ -72,16 +87,26 @@ body {
 }
 .rf-popup-footer {
     width: calc(100% - 2rem);
-    position: absolute;
-    bottom: 0;
-    padding: 1rem;
     border-top: 1px solid #dee2e6;
     display: flex;
     align-items:end;
     padding: 1rem 1rem;
-    border-bottom: 1px solid #dee2e6;
     border-top-left-radius: .3rem;
     border-top-right-radius: .3rem;
+    justify-content: end;
+
+}
+.rf-popup-footer-flat {
+    width: calc(100% - 2rem);
+    display: flex;
+    align-items:end;
+    padding: 1rem 1rem;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    justify-content: center;
+ 
+
+
 }
 
 .rf-popup-content {
@@ -89,6 +114,7 @@ body {
 }
 .rf-popup-header-title {
   color: var(--text-color);
+  
 }
 .rf-popup-close {
 
@@ -124,6 +150,12 @@ body {
   text-align:right;
     margin-right: unset;
    margin-left: 8px;
+}
+/* Disabled */
+.rf-button .rf-button-text.rf-disabled,
+.rf-button .rf-button-text.rf-disabled:hover{
+ opacity: .3;
+  cursor: not-allowed
 }
 .rf-button {
     display:inline-block;
@@ -163,7 +195,7 @@ body {
   box-shadow: unset !important;
 }
 .rf-button  .rf-button-text.rf-rounded{
-  border-radius: 25px
+  border-radius: 30px
 } 
 .rf-button .rf-button-text:hover{
     opacity: .9;
@@ -187,7 +219,7 @@ body {
 .rf-button .rf-button-text.rf-big{
    height: 44px;
    line-height: 46px;
-   padding: 0 20px;   
+   padding: 2px 22px;   
   font-size: calc(var(--text-size) * .9em)
 
 }
@@ -266,6 +298,7 @@ body {
   cursor: pointer;
   padding: 0;
     display: inline-block;
+  color:var(--text-color)
 
 
 }
@@ -574,7 +607,12 @@ body {
     color : var(--error-color);
     font-size: calc(var(--label-size) * 1em)
 }
-
+.rf-input.rf-success > .rf-message{
+    display: block;
+    padding: 0 10px;
+    color : var(--success-color);
+    font-size: calc(var(--label-size) * 1em)
+}
 .rf-input.rf-error > .rf-icon ,
 .rf-input.rf-success > .rf-icon{
     display: block
@@ -667,7 +705,8 @@ body {
     padding-right: 40px
 }
 
-.rf-input.rf-rtl.rf-error > .rf-message{
+.rf-input.rf-rtl.rf-error > .rf-message,
+.rf-input.rf-rtl.rf-success > .rf-message{
     text-align: right;
     direction:rtl;
 }
