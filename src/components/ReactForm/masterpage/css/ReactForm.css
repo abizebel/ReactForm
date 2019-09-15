@@ -1439,7 +1439,9 @@ table .rf-checkbox {
     background: #fff;
     z-index: 3;
     left: 0;
-    top: calc(100% + 3px)
+    top: calc(100% + 3px);
+     height: 300px;
+  overflow-y: auto
 }
 .rf-tag.active  .rf-options {
     display: block
@@ -1452,6 +1454,9 @@ table .rf-checkbox {
     cursor: pointer;
     font-size: .9em
 }
+.rf-tag  .rf-options-item.hide {
+  display: none
+} 
 .rf-tag.rf-has-icon .rf-option-icon {
     position: absolute;
     left: 16px;
