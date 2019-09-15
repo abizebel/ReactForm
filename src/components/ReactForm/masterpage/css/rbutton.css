@@ -93,6 +93,7 @@
     top: 100%;
     direction:inherit;
     left: 0;
+    z-index: 10;
   }
   .r-button.rtl .r-button-popup{
     left:unset;

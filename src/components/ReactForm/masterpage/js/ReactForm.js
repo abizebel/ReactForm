@@ -1,5 +1,10 @@
 
 
+
+
+
+
+
     $(document).ready(function(){
 
         $('.r-button.jq').click(function(e){
@@ -97,12 +102,26 @@
             }
     
         })
-        //Tag
-    
-        
-    
-    
-    
+        //Tag       
+        function removeTag (tagDom, index){
+            tagDom.find('.rf-tag-list .rf-tag-list-item').eq(index).remove()
+        }
+
+        function addTag (tagDom, txt,name, index){
+            tagDom.find('.rf-tag-list').append(`
+                <li class="rf-tag-list-item"><input name="${name}" type="checkbox" checked/>${txt}<span class="rf-tag-icon"><span class="mdi mdi-close"></span></span></li>
+            `) ;
+
+            setTimeout(function(){
+                $(".rf-tag-icon").click(function(e){
+                    removeTag($(e.target).closest('.rf-tag'), $(this).closest('.rf-tag-list-item').index())
+                })
+            },100)
+        }
+
+        $(".rf-tag-icon").click(function(e){
+            removeTag($(e.target).closest('.rf-tag'), $(this).closest('.rf-tag-list-item').index())
+        })
     
         $(".rf-tag > input").each(function(i, el){
             if($(el).val().length) {
@@ -152,24 +171,24 @@
     
         }
 
-        function addTag (tagDom, txt){
-            tagDom.find('.rf-tag-list').append(`
-              <li class="rf-tag-list-item">${txt}<span class="rf-tag-icon"><span class="mdi mdi-close"></span></span></li>
-            `) 
-        }
+
+        
 
 
         $('.rf-options-item').click((e) =>{
             var flag = false;
-            var selectedValue = $(e.target).closest('.rf-options-item').attr('data-value')
-            $(e.target).closest('.rf-tag').find('.rf-tag-list-item').each((i , o) =>{
+            var selectedValue = $(e.target).closest('.rf-options-item').attr('data-value');
+            var selectedName = $(e.target).closest('.rf-options-item').attr('data-name');
+            var list =  $(e.target).closest('.rf-tag').find('.rf-tag-list-item');
+            list.each((i , o) =>{
                 if ($(o).text() == selectedValue) {
                     flag = true
                 }
             })
             if (flag) return ;
 
-            addTag($(e.target).closest('.rf-tag'), selectedValue)
+            addTag($(e.target).closest('.rf-tag'), selectedValue,selectedName,list.length)
+            $(e.target).closest('.rf-tag').removeClass('active')
         })
 
         $('.rf-tag > input').keyup(function(e){
@@ -179,5 +198,9 @@
                 $('.rf-tag').removeClass('active')
                 $(e.target).closest('.rf-tag').addClass('active')
             }
+        })
+        $('.rf-tag > input').click(function(e){
+            $('.rf-tag').removeClass('active')
+            $(e.target).closest('.rf-tag').addClass('active')
         })
     });

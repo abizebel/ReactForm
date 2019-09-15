@@ -1440,8 +1440,11 @@ table .rf-checkbox {
     z-index: 3;
     left: 0;
     top: calc(100% + 3px);
-     height: 300px;
+     max-height: 300px;
   overflow-y: auto
+}
+.rf-tag > .rf-options input{
+  display: none
 }
 .rf-tag.active  .rf-options {
     display: block
