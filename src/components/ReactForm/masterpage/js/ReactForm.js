@@ -1,4 +1,17 @@
 $(document).ready(function(){
+        //
+
+
+        $('.r-button.jq').click(function(e){
+            $(e.target).closest('.r-button.jq').find('.r-button-popup').toggle()
+        })
+        
+
+    //Loading
+
+    setTimeout(function(){
+        $('.preLoader').hide()
+    },2000)
     //Popup
     $('.rf-popup-close').click(function(e){
         if ($(e.target).closest('.rf-popup').hasClass('open')) {

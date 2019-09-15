@@ -6,7 +6,7 @@ class Toolbar{
         var {items,size,container,rtl} = this.props;
         var str = '';
         str += `
-            <div class="toolbar" style="width:100%;float:left;box-sizing:border-box;padding:6px;text-align:center;">
+            <div class="toolbar" style="border-bottom:1px solid #eee;width:100%;float:left;box-sizing:border-box;padding:6px;text-align:center;">
             </div>
         `;
         var dom = $(str);

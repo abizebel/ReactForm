@@ -12,7 +12,11 @@
     background:none;
     cursor:pointer;
     position:relative;
-    font-family: inherit
+    font-family: inherit;
+  }
+  .r-button.jq .r-button-popup{
+    display:none
+
   }
   .r-button.disabled{
     opacity:.4;

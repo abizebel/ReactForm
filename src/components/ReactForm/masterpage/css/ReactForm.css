@@ -289,12 +289,18 @@ body {
 /************************
 * CHECKBOX
 *************************/
+
+ 
 /* Fix */
 table .rf-checkbox {
   margin:0;
-  margin-top: 10px
-}
+  margin-top: 10px;
+  box-sizing: border-box;
 
+}
+.rf-checkbox *{
+  box-sizing: unset
+}
 /* Small */
 .rf-checkbox.small .checkbox-material .check {
     width: 14px;
@@ -1493,7 +1499,7 @@ table .rf-checkbox {
 .rf-tag .rf-tag-list-item >.rf-tag-icon {
     position: relative;
 }
-.rf-tag .rf-tag-list-item >.rf-tag-icon >svg{
+.rf-tag .rf-tag-list-item >.rf-tag-icon svg{
     width: 13px;
     cursor: pointer;
     float: right;
@@ -1501,7 +1507,13 @@ table .rf-checkbox {
     line-height: 32px;
     padding:9px 0 0 10px;
 }
-
+.rf-tag .rf-tag-list-item >.rf-tag-icon span{
+    cursor: pointer;
+    float: right;
+    font-size: 14px;
+    line-height: 32px;
+    padding:0px 0 0 10px;
+}
 /* Bordered */
 .rf-tag.rf-bordered {
     border: 1px solid var(--label-color);
