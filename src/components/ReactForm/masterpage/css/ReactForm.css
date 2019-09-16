@@ -32,6 +32,12 @@ body {
     --tag-text-color : rgba(0,0,0,0.6);
      
 }
+/************************
+* Fix Bug
+*************************/ 
+[class^="rf-"] * {
+  box-sizing:unset
+}
 
 
 /************************
@@ -303,11 +309,7 @@ body {
 * CHECKBOX
 *************************/
 
- 
-/* Fix */
-table .rf-checkbox *{
-  box-sizing:unset
-}
+
 table .rf-checkbox {
   margin:0;
   margin-top: 10px;
@@ -547,6 +549,8 @@ table .rf-checkbox {
     margin: 0 0 8px 0;
     padding: 2px 8px 0 8px;
     font-family: inherit;
+    box-sizing:unset
+
 }
 .rf-input > textarea {
     height:  3.5rem ;
