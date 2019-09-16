@@ -177,6 +177,7 @@ body {
 }
 
 
+
 /************************
 * Button
 *************************/  
@@ -196,6 +197,10 @@ body {
 .rf-button {
     display:inline-block;
   margin-right: 8px;
+  outline: 0;
+  border: 0;
+  background: 0;
+  font-family : inherit;
 }
 .rf-button  .rf-button-text{
   position: relative;
@@ -215,7 +220,8 @@ body {
    height: 36px;
    line-height: 36px;
    padding: 0 16px;  
-  font-size:calc(var(--text-size) * 1em)
+  font-size:calc(var(--text-size) * 1em);
+  
  
 }
 .rf-button .rf-button-text.rf-simple {
@@ -292,12 +298,16 @@ body {
   visibility: visible;
 }
 
+
 /************************
 * CHECKBOX
 *************************/
 
  
 /* Fix */
+table .rf-checkbox *{
+  box-sizing:unset
+}
 table .rf-checkbox {
   margin:0;
   margin-top: 10px;

@@ -109,7 +109,7 @@
 
         function addTag (tagDom, txt,name, index){
             tagDom.find('.rf-tag-list').append(`
-                <li class="rf-tag-list-item"><input name="${name}" type="checkbox" checked/>${txt}<span class="rf-tag-icon"><span class="mdi mdi-close"></span></span></li>
+                <li class="rf-tag-list-item"><input style="display:none" name="${name}" type="text" checked/>${txt}<span class="rf-tag-icon"><span class="mdi mdi-close"></span></span></li>
             `) ;
 
             setTimeout(function(){
