@@ -1,0 +1,292 @@
+
+/************************
+* AUROCOMPLETE
+*************************/
+.rf-autocomplete{
+    position: relative;
+    margin-top:  calc(var(--space-around) * 1rem) ;
+    margin-bottom: calc(var(--space-around) * 1rem) ;
+    font-size: calc(var(--input-font-size) * 1em);
+    -webkit-user-select: none; /* Safari 3.1+ */
+   -moz-user-select: none; /* Firefox 2+ */ /* IE 10+ */
+   user-select: none; /* Standard syntax */
+    cursor: pointer
+    
+}
+.rf-autocomplete > input {
+    background-color: #fff;
+    color:var(--text-color);
+    font-size:calc(var(--text-size) * 1em); 
+    border: none;
+    cursor: text;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-bottom: 1px solid var(--label-color);
+    border-radius: 0;
+    outline: none;
+    height:  3rem ;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 0 8px 0;
+    padding: 4px 10px 0 10px;
+    font-family: inherit;
+
+}
+.rf-autocomplete> label {
+    position:absolute;
+    top: 13px;
+    left: 0;
+    height: 20px;
+    bottom: 0;
+    margin: 0 4px;
+    padding: 0 6px;
+    cursor: text;
+    color: var(--label-color);
+    font-size:calc(var(--text-size) * 1em) ;
+    pointer-events: none;
+    transition: 300ms ease all;
+    -webkit-transition: 300ms ease all;
+    -moz-transition: 300ms ease all;
+    -ms-transition: 300ms ease all;
+    background:transparent
+}
+
+/* input icon */
+.rf-autocomplete.rf-has-icon > input{
+    padding-left: 40px
+}
+.rf-autocomplete.rf-has-icon > .rf-input-icon {
+    position: absolute;
+    top: .7rem;
+    left: 10px;
+}
+.rf-autocomplete.rf-has-icon > .rf-input-icon sapn{
+  font-size: 22px
+}
+.rf-autocomplete.rf-has-icon > .rf-input-icon svg {
+    width: 25px;
+    color: var(--text-color)
+}
+.rf-autocomplete.rf-has-icon > label {
+   left: 31px;
+}
+.rf-autocomplete.rf-rtl .rf-message {
+    text-align: right;
+    direction: rtl;
+    float: right;
+}
+
+/* Options */
+.rf-autocomplete > .rf-options {
+    display: none;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    z-index: 2;
+    left: 0;
+    top: calc(3rem + 4px)
+}
+.rf-autocomplete.active  .rf-options {
+    display: block
+}
+.rf-autocomplete  .rf-options-item {
+    position: relative;
+    padding:16px 24px;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: .9em
+}
+.rf-autocomplete.rf-has-icon .rf-option-icon {
+    position: absolute;
+    left: 16px;
+    top: 10px
+}
+.rf-autocomplete.rf-has-icon .rf-option-icon > svg {
+    width: 26px;
+    height: 26px;
+}
+.rf-autocomplete.rf-has-icon .rf-options-item  {
+   padding-left: 50px
+}
+
+.rf-autocomplete  .rf-options-item:hover {
+    background: #f2f2f2
+}
+.rf-autocomplete  .rf-options-search {
+     width:calc(100% - 48px);
+}
+.rf-autocomplete  .rf-options-search > input{
+    width: 100%;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    padding:12px 24px;
+    font-size:calc(var(--text-size * 1em));
+    color: var(--text-color);
+    font-family: inherit;
+}
+/* Line */
+.rf-autocomplete.rf-bordered > .rf-line {
+    display: none
+}
+.rf-autocomplete > .rf-line {
+    position: absolute;
+	top: 3rem;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 2px;
+	border: none;
+	background:var( --focus-color);
+	will-change: transform, visibility;
+	transition: all 200ms ease-out;
+	transform: scaleX(0);
+	visibility: hidden;
+	
+}
+
+/* Disabled */
+.rf-autocomplete.rf-disabled > input{
+    border-bottom: 1px dashed var(--disabled-color) !important;
+    color: var(--label-color);
+    cursor: not-allowed;
+    
+}
+.rf-autocomplete.rf-disabled.rf-bordered > input {
+    border: 1px dashed var(--disabled-color) !important;
+    color: var(--label-color);
+
+}
+.rf-autocomplete.rf-has-icon.rf-disabled > .rf-input-icon ,
+.rf-autocomplete.rf-disabled > .rf-icon{
+    opacity: .3
+}
+.rf-autocomplete > .rf-icon > svg
+.rf-autocomplete.rf-bordered.rf-disabled > input {
+    border: 1px dashed var(--disabled-color) !important;
+}
+
+/* Bordered */
+.rf-autocomplete.rf-bordered > input {
+    border: 1px solid var(--label-color);
+    border-radius: 4px;
+
+}
+.rf-autocomplete> .rf-message {
+    font-size: calc(var(--label-size) * 1em);
+    padding: 0 10px;
+    display: none
+}
+.rf-autocomplete.rf-bordered  .rf-options {
+    top: calc(3rem + 4px)
+}
+
+/* Icon */
+.rf-autocomplete> .rf-icon {
+    position: absolute;
+    top: .8rem;
+    right: 0;
+    transition: .2s ease all;
+    -webkit-transition: .2s ease all;  
+}
+.rf-autocomplete.active > .rf-icon {
+    transition: .2s ease all;
+    -webkit-transition: .2s ease all;
+    transform: rotate(180deg);
+    top: 5px
+} 
+.rf-autocomplete> .rf-icon > svg {
+    width: 30px;
+    color : var(--text-color)
+}
+
+
+/* Error */
+.rf-autocomplete.rf-error > .rf-message{
+    display: block;
+    color : var(--error-color);
+}
+.rf-autocomplete.rf-error > label {
+    color : var(--error-color);
+}
+
+
+/* Focus */
+
+.rf-autocomplete> label{
+    top: -14px;
+    font-size:calc(var(--label-size) * 1em) ;
+
+}
+
+.rf-autocomplete.rf-bordered > label{
+    
+    top: -8px;
+    font-size:calc(var(--label-size) * 1em) ;
+    background: #fff
+
+}
+.rf-autocomplete.active > input:focus ~ .rf-line {
+	transform: scaleX(1);
+	visibility: visible;
+}
+.rf-autocomplete.rf-bordered > input:focus {
+
+    border: 2px solid var(--focus-color);    
+
+    
+}
+
+
+/* RTL */
+.rf-autocomplete.rf-rtl > input{
+    text-align: right ;
+    direction: rtl
+}
+.rf-autocomplete.rf-rtl >.rf-icon {
+    right: unset;
+    left: 0
+}
+.rf-autocomplete.rf-rtl > label {
+  left: unset ;
+   right: 0 ;
+}
+.rf-autocomplete.rf-rtl .rf-message {
+    text-align: right;
+    direction: rtl;
+    float: right;
+
+}
+.rf-autocomplete.rf-rtl .rf-options-item ,
+.rf-autocomplete.rf-rtl .rf-options-search > input {
+    text-align: right;
+    direction: rtl
+    
+}
+.rf-autocomplete.rf-rtl.rf-has-icon > .rf-input-icon {
+    left: unset;
+    right: 10px;
+}
+.rf-autocomplete.rf-rtl.rf-has-icon > .rf-input-icon svg {
+    width: 25px;
+    color: var(--text-color)
+}
+.rf-autocomplete.rf-rtl.rf-has-icon > label {
+   right: 31px
+}
+.rf-autocomplete.rf-rtl.rf-has-icon > input{
+    padding-right: 40px
+}
+
+.rf-autocomplete.rf-rtl.rf-has-icon .rf-option-icon {
+    left: unset;
+    right: 16px;
+}
+.rf-autocomplete.rf-rtl.rf-has-icon .rf-options-item  {
+    padding-left: 24x;
+   padding-right: 50px
+}

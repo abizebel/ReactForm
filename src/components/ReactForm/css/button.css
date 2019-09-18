@@ -1,0 +1,131 @@
+/************************
+* Button
+*************************/
+.r-button {
+	border: 0;
+	font-family: inherit;
+	background: none;
+	display: inline-block;
+	margin-right: 8px;
+}
+
+.r-button {
+	position: relative;
+	overflow: hidden;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	cursor: pointer;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+	background: var(--focus-color);
+	color: #fff;
+	border-radius: 2px;
+	text-transform: uppercase;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	height: 36px;
+	line-height: 36px;
+	padding: 0 16px;
+	font-size: calc(var(--text-size) * 1em)
+}
+
+.r-button.r-simple {
+	border: none !important;
+}
+
+.r-button.r-gradient {
+	background: linear-gradient(40deg, var(--focus-color), var(--gradient-color))!important;
+}
+
+.r-button.r-flat {
+	background: none;
+	color: var(--text-color);
+	border: 1px solid var(--label-color);
+	box-shadow: unset !important;
+}
+
+.r-button.r-rounded {
+	border-radius: 30px
+}
+
+.r-button .r-button-text:hover {
+	opacity: .9;
+	-webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+	transition: ease 0.2s all;
+}
+
+.r-button.r-samll {
+	height: 30px;
+	line-height: 32px;
+	padding: 0 12px;
+	font-size: calc(var(--text-size) * .9em)
+}
+
+.r-button.r-normal {
+	height: 36px;
+	line-height: 38px;
+	padding: 0 16px;
+	font-size: calc(var(--text-size) * .9em)
+}
+
+.r-button.r-big {
+	height: 46px;
+	line-height: 46px;
+	padding: 2px 22px;
+	font-size: calc(var(--text-size) * .9em)
+}
+
+@keyframes ripple {
+	0% {
+		width: 0;
+		height: 0;
+		opacity: 0.5;
+	}
+	100% {
+		width: 250px;
+		height: 250px;
+		opacity: 0;
+	}
+}
+
+.r-ripple:before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	background-color: currentColor;
+	visibility: hidden;
+	z-index: 2;
+}
+
+.r-ripple:not(:active):before {
+	animation: ripple 2s cubic-bezier(0, 0, 0.2, 1);
+	transition: visibility 2s step-end;
+}
+
+.r-ripple:active:before {
+	visibility: visible;
+}
+
+
+/* Rtl */
+
+.r-button.r-rtl {
+	text-align: right;
+	margin-right: unset;
+	margin-left: 8px;
+}
+
+
+/* Disabled */
+
+.r-button .r-button-text.r-disabled,
+.r-button .r-button-text.r-disabled:hover {
+	opacity: .3;
+	cursor: not-allowed
+}
