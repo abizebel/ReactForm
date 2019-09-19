@@ -1,10 +1,12 @@
 /************************
 * CHECKBOX
 *************************/
-
 .r-checkbox {
+	margin-right: 16px;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
+	line-height: 24px;
+  display: inline-block;
 	font-size: calc(var(--text-size) * 1em);
 	cursor: pointer;
 	color: var(--text-color);
@@ -12,10 +14,13 @@
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
+  overflow: hidden
 }
 .r-checkbox > label {
 	cursor: pointer;
-	color: var(--text-color)
+	color: var(--text-color);
+	
+		
 }
 .r-checkbox input[type=checkbox] {
 	display: none;
@@ -24,26 +29,16 @@
 	padding: 0 15px
 }
 
-/* Sizes */
-.r-checkbox.r-lg .r-checkbox-fake .check {
-	width: 18px;
-	height: 18px;
-}
-.r-checkbox.r-lg .r-checkbox-fake .check:before {
-	left: -1px;
-	top: -1px
-}
-.r-checkbox.r-lg .r-checkbox-fake:before {
-	left: 9px;
-	top: 9px;
-}
+/* Fake Checkbox */
 .r-checkbox .r-checkbox-fake {
 	float: left;
 	position: relative;
+	overflow: hidden
 }
 .r-checkbox.r-xs .r-checkbox-fake .check {
 	width: 13px;
 	height: 13px;
+
 }
 
 .r-checkbox.r-xs .r-checkbox-fake .check:before {
@@ -51,15 +46,8 @@
 	top: -3px
 }
 .r-checkbox.r-xs .r-checkbox-fake:before {
-	left: 9px;
-	top: 9px;
-}
-
-
-/* Fake Checkbox */
-.r-checkbox .r-checkbox-fake {
-	float: left;
-	position: relative;
+	left: 6px;
+	top: 6px;
 }
 
 /* Circle Effect */
@@ -81,6 +69,7 @@
 .r-checkbox .r-checkbox-fake .check {
 	position: relative;
 	display: block;
+	
 	width: 16px;
 	height: 16px;
 	border: 2px solid;
@@ -150,11 +139,25 @@
 	color: var(--focus-color);
 }
 
+/* Sizes */
+.r-checkbox.r-lg .r-checkbox-fake .check {
+	width: 20px;
+	height: 20px;
+}
+.r-checkbox.r-lg .r-checkbox-fake .check:before {
+	left: 0;
+	top: 0
+}
+.r-checkbox.r-lg .r-checkbox-fake:before {
+	left: 9px;
+	top: 8px;
+}
+
 
 /* No Spaces */
 .r-checkbox.r-nospace{
-	margin-top: unset;
-	margin-bottom: unset;
+	margin: unset;
+	display: unset;
 }
 .r-checkbox.r-nospace > label{
 		display:unset;
