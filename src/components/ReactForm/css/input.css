@@ -18,7 +18,6 @@ input:-webkit-autofill:active  {
     margin-bottom: calc(var(--space-around) * 1rem) ;
 }
 
-
 /* Input */
 .rf-input > input,
 .rf-input > textarea {

@@ -9,52 +9,129 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/scripts.js"></script>
 
+    <style>
+        table {
+        border-collapse: collapse;
+        }
+
+        table, th, td {
+        border: 1px solid black;
+        }
+    </style>
+
 </head>
 <body>
 
     <div style="width:400px;padding:40px;border:1px solid #ddd; margin:50px;float: left; box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);">
         <h2 style="padding-top:30px;text-align: center">LTR</h2>
    
-        <div class="rf-checkbox">
+        <div class="r-checkbox r-nospace r-lg">
             <label>
                 <input type="checkbox">
-                <span class="checkbox-material">    
+                <span class="r-checkbox-fake">    
                     <span class="check"></span>
                 </span> 
-                <span class="checkbox-text">I Agree</span>
+                <span class="r-checkbox-text">I Agree</span>
             </label>
         </div>  
-        <div class="rf-checkbox rf-disabled">
+
+        
+        <div class="r-checkbox r-nospace">
             <label>
-                <input type="checkbox" disabled>
-                <span class="checkbox-material">    
+                <input type="checkbox">
+                <span class="r-checkbox-fake">    
                     <span class="check"></span>
                 </span> 
-                <span class="checkbox-text">I Agree</span>
+                <span class="r-checkbox-text">I Agree</span>
+            </label>
+        </div>  
+
+        <div class="r-checkbox r-nospace r-xs">
+            <label>
+                <input type="checkbox">
+                <span class="r-checkbox-fake">    
+                    <span class="check"></span>
+                </span> 
+                <span class="r-checkbox-text">I Agree</span>
+            </label>
+        </div>  
+        <div class="r-checkbox r-nospace r-xs r-disabled">
+            <label>
+                <input type="checkbox" disabled>
+                <span class="r-checkbox-fake">    
+                    <span class="check"></span>
+                </span> 
+                <span class="r-checkbox-text">I Agree</span>
             </label>
         </div>
+        <h2 style="padding-top:30px;text-align: center">Use in other Places</h2>
+        <table>
+                <tr>
+                    <td>
+                        <div class="r-checkbox r-nospace r-xs">
+                            <label>
+                                <input type="checkbox">
+                                <span class="r-checkbox-fake">    
+                                    <span class="check"></span>
+                                </span> 
+                            </label>
+                        </div>  
+                    </td>
+                    <td>Name</td>
+                    <td>Family</td>
+                </tr>
+            <tr>
+                <td>
+                    <div class="r-checkbox r-nospace r-xs">
+                        <label>
+                            <input type="checkbox">
+                            <span class="r-checkbox-fake">    
+                                <span class="check"></span>
+                            </span> 
+                        </label>
+                    </div>  
+                </td>
+                <td>Abbas</td>
+                <td>Mohammad</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="r-checkbox r-nospace r-xs">
+                        <label>
+                            <input type="checkbox">
+                            <span class="r-checkbox-fake">    
+                                <span class="check"></span>
+                            </span> 
+                        </label>
+                    </div>  
+                </td>
+                <td>Hosseini</td>
+                <td>Feiz</td>
+            </tr>
+        </table>
+
 
    
     </div>
     <div style="width:400px;padding:40px;border:1px solid #ddd; margin:50px;float: left; box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);">
             <h2 style="padding-top:30px;text-align: center">RTL</h2>
       
-            <div class="rf-checkbox rf-rtl">
+            <div class="r-checkbox r-rtl">
                 <label>
                     <input type="checkbox">
-                    <span class="checkbox-material">    
+                    <span class="r-checkbox-fake">    
                         <span class="check"></span>
                     </span> 
-                    <span class="checkbox-text">موافقم</span>
+                    <span class="r-checkbox-text">موافقم</span>
                 </label>
             </div>  
-            <div class="rf-checkbox  rf-rtl rf-disabled">
+            <div class="r-checkbox  r-rtl r-disabled">
                 <label>
                     <input type="checkbox" disabled>
-                    <span class="checkbox-material">    
+                    <span class="r-checkbox-fake">    
                         <span class="check"></span>
                     </span> 
-                    <span class="checkbox-text">موافقم</span>
+                    <span class="r-checkbox-text">موافقم</span>
                 </label>
             </div>
     

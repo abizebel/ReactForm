@@ -2,35 +2,32 @@
 * Button
 *************************/
 .r-button {
-	border: 0;
-	font-family: inherit;
-	background: none;
-	display: inline-block;
-	margin-right: 8px;
-}
-
-.r-button {
-	position: relative;
-	overflow: hidden;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
+	border: 0;
+	outline: 0;
+	background: none;
+	font-family: inherit;
+	display: inline-block;
+	margin-right: 8px;
+	border-radius: 3px;
+	position: relative;
+	overflow: hidden;
 	cursor: pointer;
 	color: var(--text-color);
-	border-radius: 2px;
 	text-transform: uppercase;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
-	padding: 0 16px;
 	font-size: calc(var(--text-size) * 1em);
-	
-	transition: ease 0.2s all;
+	padding: 8px 20px;
+	transition: ease 0.3s all;
 }
 
 .r-button:hover {
 	opacity: .9;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-	transition: ease 0.2s all;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 2px 1px -2px rgba(0,0,0,0.12), 0 1px 4px 0 rgba(0,0,0,0.2);
+	transition: ease 0.3s all;
 }
 /* Colors */
 .r-button.r-success {
@@ -66,14 +63,18 @@
 .r-button.r-info.r-gradient {
 	background: linear-gradient(40deg, var(--info-color), var(--info-gradient-color))!important;
 }
-
+/* Shapes */
 .r-button.r-rounded {
 	border-radius: 30px
+}
+.r-button.r-bordered {
+	background: none;
+	border: 1px solid var(--label-color)
 }
 
 /* Sizes */
 .r-button.r-xs {
-	padding: 8px 24px;
+	padding:6px 12px;
 	font-size: calc(var(--text-size) * .9em)
 }
 
