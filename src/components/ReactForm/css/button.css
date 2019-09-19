@@ -15,80 +15,74 @@
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	cursor: pointer;
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-	background: var(--focus-color);
-	color: #fff;
+	color: var(--text-color);
 	border-radius: 2px;
 	text-transform: uppercase;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
-	height: 36px;
-	line-height: 36px;
 	padding: 0 16px;
-	font-size: calc(var(--text-size) * 1em)
+	font-size: calc(var(--text-size) * 1em);
+	
+	transition: ease 0.2s all;
 }
 
-.r-button.r-simple {
-	border: none !important;
+.r-button:hover {
+	opacity: .9;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+	transition: ease 0.2s all;
+}
+/* Colors */
+.r-button.r-success {
+	background: var(--success-color);
+	color: #fff
+}
+.r-button.r-info {
+	background: var(--info-color);
+	color: #fff
+}
+.r-button.r-danger {
+	background: var(--danger-color);
+	color: #fff
+}
+.r-button.r-warning {
+	background: var(--warning-color);
+	color: #fff
+}
+.r-button.r-default {
+  background: var(--default-color);
 }
 
-.r-button.r-gradient {
-	background: linear-gradient(40deg, var(--focus-color), var(--gradient-color))!important;
+/* Gradient Colors */
+.r-button.r-success.r-gradient {
+	background: linear-gradient(40deg, var(--success-color), var(--success-gradient-color))!important;
 }
-
-.r-button.r-flat {
-	background: none;
-	color: var(--text-color);
-	border: 1px solid var(--label-color);
-	box-shadow: unset !important;
+.r-button.r-danger.r-gradient {
+	background: linear-gradient(40deg, var(--danger-color), var(--danger-gradient-color))!important;
+}
+.r-button.r-warning.r-gradient {
+	background: linear-gradient(40deg, var(--warning-color), var(--warning-gradient-color))!important;
+}
+.r-button.r-info.r-gradient {
+	background: linear-gradient(40deg, var(--info-color), var(--info-gradient-color))!important;
 }
 
 .r-button.r-rounded {
 	border-radius: 30px
 }
 
-.r-button .r-button-text:hover {
-	opacity: .9;
-	-webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
-	transition: ease 0.2s all;
-}
-
-.r-button.r-samll {
-	height: 30px;
-	line-height: 32px;
-	padding: 0 12px;
+/* Sizes */
+.r-button.r-xs {
+	padding: 8px 24px;
 	font-size: calc(var(--text-size) * .9em)
 }
 
-.r-button.r-normal {
-	height: 36px;
-	line-height: 38px;
-	padding: 0 16px;
+.r-button.r-lg {
+	padding: 14px 32px;
 	font-size: calc(var(--text-size) * .9em)
 }
 
-.r-button.r-big {
-	height: 46px;
-	line-height: 46px;
-	padding: 2px 22px;
-	font-size: calc(var(--text-size) * .9em)
-}
-
-@keyframes ripple {
-	0% {
-		width: 0;
-		height: 0;
-		opacity: 0.5;
-	}
-	100% {
-		width: 250px;
-		height: 250px;
-		opacity: 0;
-	}
-}
-
+/* Effect */
 .r-ripple:before {
 	content: '';
 	position: absolute;
@@ -102,19 +96,27 @@
 	visibility: hidden;
 	z-index: 2;
 }
-
 .r-ripple:not(:active):before {
 	animation: ripple 2s cubic-bezier(0, 0, 0.2, 1);
 	transition: visibility 2s step-end;
 }
-
 .r-ripple:active:before {
 	visibility: visible;
 }
-
+@keyframes ripple {
+	0% {
+		width: 0;
+		height: 0;
+		opacity: 0.5;
+	}
+	100% {
+		width: 250px;
+		height: 250px;
+		opacity: 0;
+	}
+}
 
 /* Rtl */
-
 .r-button.r-rtl {
 	text-align: right;
 	margin-right: unset;
@@ -123,7 +125,6 @@
 
 
 /* Disabled */
-
 .r-button .r-button-text.r-disabled,
 .r-button .r-button-text.r-disabled:hover {
 	opacity: .3;

@@ -32,12 +32,28 @@ body {
     --text-color : #333;
     --tag-size : .7;
   
+
+    --space-around : 2; 
+
+    /* Colors */ 
+    --danger-color : #F44336;
+    --success-color : #4CAF50;
+    --warning-color : #FF9800;
+    --info-color : #145AF9;
+    --default-color : #f4f4f4;
+    --danger-gradient-color : #d50000;
+    --success-gradient-color : #388E3C;
+    --warning-gradient-color : #FF5722;
+     --info-gradient-color : #0e4d96;
+    
+    
+     --error-color : #F44336;
+
     --disabled-color : #ddd;
     --focus-color : #145AF9;
-    --gradient-color : #0a3d79;;
-    --space-around : 2; 
-    --error-color : #F44336;
-    --success-color : #4CAF50;
+    --gradient-color : #0a3d79;
+    
+     /* Tag */
     --tag-bg-color : #e4e4e4;
     --tag-text-color : rgba(0,0,0,0.6);
      
