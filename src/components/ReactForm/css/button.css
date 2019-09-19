@@ -19,8 +19,8 @@
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
-	font-size: calc(var(--text-size) * 1em);
-	padding: 8px 20px;
+	font-size: calc(var(--text-size) * .9em);
+	padding: 8px 16px;
 	transition: ease 0.3s all;
 }
 
@@ -71,16 +71,21 @@
 	background: none;
 	border: 1px solid var(--label-color)
 }
+/* NoSpace */
+.r-button.r-nospace {
+	margin: 0
+}
 
 /* Sizes */
 .r-button.r-xs {
-	padding:6px 12px;
-	font-size: calc(var(--text-size) * .9em)
+	padding:4px 8px;
+	font-size: calc(var(--text-size) * .8em);
+
 }
 
 .r-button.r-lg {
-	padding: 14px 32px;
-	font-size: calc(var(--text-size) * .9em)
+	padding: 14px 28px;
+	font-size: calc(var(--text-size) * 1em)
 }
 
 /* Effect */
