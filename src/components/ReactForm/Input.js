@@ -23,16 +23,16 @@ class Input extends Component {
         const {rtl, outline, label, disabled, error, multiline, success, icon} = this.props;
         const {value} = this.state;
         const filledClass = value.length > 0 ? ' filled' :''; 
-        const rtlClass = rtl ? ' rf-rtl' :''; 
-        const outlineClass = outline ? ' rf-bordered' :''; 
-        const disabledClass = disabled ? ' rf-disabled' :''; 
-        const errorClass = error.length > 0 ? ' rf-error' :''; 
-        const sucessClass = success ? ' rf-success' :''; 
-        const iconClass = icon !==null ? ' rf-has-icon' :''; 
+        const rtlClass = rtl ? ' r-rtl' :''; 
+        const outlineClass = outline ? ' r-bordered' :''; 
+        const disabledClass = disabled ? ' r-disabled' :''; 
+        const errorClass = error.length > 0 ? ' r-error' :''; 
+        const sucessClass = success ? ' r-success' :''; 
+        const iconClass = icon !==null ? ' r-has-icon' :''; 
         const inputIcon = createIcon(icon);
 
         return (
-            <div className={`rf-input${filledClass}${rtlClass}${outlineClass}${disabledClass}${errorClass}${sucessClass}${iconClass}`} >  
+            <div className={`r-input${filledClass}${rtlClass}${outlineClass}${disabledClass}${errorClass}${sucessClass}${iconClass}`} >  
                 
                 {   multiline ? 
                     <textarea 
@@ -50,22 +50,22 @@ class Input extends Component {
                 }
                 
                 <label>{label}</label>
-                <span className="rf-line"></span>
+                <span className="r-line"></span>
 
                 {   icon !==null &&
-                    <span className="rf-input-icon">{inputIcon}</span>
+                    <span className="r-input-icon">{inputIcon}</span>
                 }
                 
                  
                 {error.length > 0 &&
                     <Fragment>
-                        <span className="rf-icon">{icons.error}</span>  
-                        <span className="rf-message">{error}</span> 
+                        <span className="r-icon">{icons.error}</span>  
+                        <span className="r-message">{error}</span> 
                     </Fragment>     
                 }
 
                 {success > 0 &&
-                    <span className="rf-icon">{icons.success}</span>  
+                    <span className="r-icon">{icons.success}</span>  
                 }
                 
                 

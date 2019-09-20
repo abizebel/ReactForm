@@ -88,4 +88,5 @@
 change={this.changeCheckbox.bind(this)}
 rtl={true}
 disabled={true}
+size = {'xs' || 'lg'}
 />

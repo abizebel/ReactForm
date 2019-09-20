@@ -16,27 +16,70 @@ class CheckboxContainer extends Component {
             <Checkbox 
                 label={'I Agree'}
                 change={this.changeCheckbox.bind(this)}
+                size={'lg'}
             />
-             <Checkbox 
+            <Checkbox 
                 label={'I Agree'}
                 change={this.changeCheckbox.bind(this)}
                 disabled={true}
+                size={'lg'}
+            /><br />
+            <Checkbox 
+                label={'I Agree'}
+                change={this.changeCheckbox.bind(this)}
             />
+            <Checkbox 
+                label={'I Agree'}
+                disabled={true}
+                change={this.changeCheckbox.bind(this)}
+            /><br />
+            <Checkbox 
+                label={'I Agree'}
+                change={this.changeCheckbox.bind(this)}
+                size={'xs'}
+            />
+            <Checkbox 
+                label={'I Agree'}
+                change={this.changeCheckbox.bind(this)}
+                disabled={true}
+                size={'xs'}
+            /><br />
+ 
 
         </div>
-        <div className="page-content-box" >
+        <div className="page-content-box" style={{textAlign:'right',direction:'rtl'}}>
           <div className="page-content-title">RTL Checkbox  & Disabled</div>
           <Checkbox 
                 label={'موافقم'}
-                rtl={true}
                 change={this.changeCheckbox.bind(this)}
+                size={'lg'}
             />
-             <Checkbox 
+            <Checkbox 
                 label={'موافقم'}
-                rtl={true}
                 change={this.changeCheckbox.bind(this)}
                 disabled={true}
+                size={'lg'}
+            /><br />
+            <Checkbox 
+                label={'موافقم'}
+                change={this.changeCheckbox.bind(this)}
             />
+            <Checkbox 
+                label={'موافقم'}
+                disabled={true}
+                change={this.changeCheckbox.bind(this)}
+            /><br />
+            <Checkbox 
+                label={'موافقم'}
+                change={this.changeCheckbox.bind(this)}
+                size={'xs'}
+            />
+            <Checkbox 
+                label={'موافقم'}
+                change={this.changeCheckbox.bind(this)}
+                disabled={true}
+                size={'xs'}
+            /><br />
 
         </div>
     

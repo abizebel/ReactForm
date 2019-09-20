@@ -12,15 +12,15 @@ input:-webkit-autofill:active  {
 
 
 
-.rf-input {
+.r-input {
     position: relative;
     margin-top:  calc(var(--space-around) * 1rem) ;
     margin-bottom: calc(var(--space-around) * 1rem) ;
 }
 
 /* Input */
-.rf-input > input,
-.rf-input > textarea {
+.r-input > input,
+.r-input > textarea {
     background-color: #fff;
     color:var(--text-color);
     font-size:calc(var(--text-size) * 1em); 
@@ -36,7 +36,7 @@ input:-webkit-autofill:active  {
     font-family: inherit;
 
 }
-.rf-input > textarea {
+.r-input > textarea {
     height:  3.5rem ;
      min-height:  3.5rem ;
     padding: 5px 10px 0 10px;
@@ -45,7 +45,7 @@ input:-webkit-autofill:active  {
 
 
 /* Label */
-.rf-input > label {
+.r-input > label {
     position:absolute;
     top: 13px;
     left: 0;
@@ -65,74 +65,74 @@ input:-webkit-autofill:active  {
 
 
 /* input icon */
-.rf-input.rf-has-icon > input,
-.rf-input.rf-has-icon > textarea{
+.r-input.r-has-icon > input,
+.r-input.r-has-icon > textarea{
     padding-left: unset;
     padding-left: 40px ;
 }
-.rf-input.rf-has-icon > .rf-input-icon {
+.r-input.r-has-icon > .r-input-icon {
     position: absolute;
     top: .7rem;
     left: 10px;
 
    
 }
-.rf-input.rf-has-icon > .rf-input-icon sapn{
+.r-input.r-has-icon > .r-input-icon sapn{
   font-size: 22px
 }
-.rf-input.rf-has-icon > .rf-input-icon svg {
+.r-input.r-has-icon > .r-input-icon svg {
     width: 25px;
     color: var(--text-color) !important;
 }
-.rf-input.rf-has-icon > label {
+.r-input.r-has-icon > label {
    left: 30px
 }
 
 
 /* Disabled */
-.rf-input.rf-disabled > input,
-.rf-input.rf-disabled > textarea {
+.r-input.r-disabled > input,
+.r-input.r-disabled > textarea {
     border-bottom: 1px dashed var(--disabled-color) !important;
 }
-.rf-input.rf-has-icon.rf-disabled > .rf-input-icon ,
-.rf-input.rf-disabled > .rf-icon {
+.r-input.r-has-icon.r-disabled > .r-input-icon ,
+.r-input.r-disabled > .r-icon {
     opacity: .3
 }
 
-.rf-input.rf-bordered.rf-disabled > input {
+.r-input.r-bordered.r-disabled > input {
     border: 1px dashed var(--disabled-color) !important;
 }
-.rf-input.rf-disabled > input ,
-.rf-input.rf-disabled > textarea {
+.r-input.r-disabled > input ,
+.r-input.r-disabled > textarea {
     color: var(--label-color);
     cursor: not-allowed
 }
 
 
 /* Bordered */
-.rf-input.rf-bordered > input,
-.rf-input.rf-bordered > textarea {
+.r-input.r-bordered > input,
+.r-input.r-bordered > textarea {
     border: 1px solid var(--label-color);
     border-radius: 4px;
     /*! padding-left: 16px; */
 }
-.rf-input.rf-bordered > label {
+.r-input.r-bordered > label {
     margin-left: 8px;
 }
 
 /* Messagea */
-.rf-input > .rf-message {
+.r-input > .r-message {
     font-size: .8em;
     display: none
 }
 
 
 /* Line */
-.rf-input.rf-bordered > .rf-line {
+.r-input.r-bordered > .r-line {
     display: none
 }
-.rf-input >input ~ .rf-line,
-.rf-input >textarea ~ .rf-line {
+.r-input >input ~ .r-line,
+.r-input >textarea ~ .r-line {
     position: absolute;
 	top: 3rem;
 	left: 0;
@@ -149,128 +149,128 @@ input:-webkit-autofill:active  {
 	
 }
 
-.rf-input > textarea ~ .rf-line {
+.r-input > textarea ~ .r-line {
   top: 3.5rem;
 } 
 
 /* Icon */
-.rf-input > .rf-icon {
+.r-input > .r-icon {
     display: none;
     position: absolute;
     top: .8rem;
     right: 10px;
     
 }
-.rf-input > .rf-icon svg {
+.r-input > .r-icon svg {
   width: 20px !important;
 }
 /* Error & Success */
-.rf-input.rf-error > .rf-message{
+.r-input.r-error > .r-message{
     display: block;
     padding: 0 10px;
     color : var(--error-color);
     font-size: calc(var(--label-size) * 1em)
 }
-.rf-input.rf-success > .rf-message{
+.r-input.r-success > .r-message{
     display: block;
     padding: 0 10px;
     color : var(--success-color);
     font-size: calc(var(--label-size) * 1em)
 }
-.rf-input.rf-error > .rf-icon ,
-.rf-input.rf-success > .rf-icon{
+.r-input.r-error > .r-icon ,
+.r-input.r-success > .r-icon{
     display: block
 }
-.rf-input.rf-error > .rf-icon  svg {
+.r-input.r-error > .r-icon  svg {
      fill : var(--error-color) !important;
      width: 20px;
 }
-.rf-input.rf-success > .rf-icon  svg {
+.r-input.r-success > .r-icon  svg {
      fill : var(--success-color) !important;
      width: 20px;
     
 }
 /* Focus */
-.rf-input > input:focus ~ label,
-.rf-input > textarea:focus ~ label,
-.rf-input.filled > label{
+.r-input > input:focus ~ label,
+.r-input > textarea:focus ~ label,
+.r-input.filled > label{
     top: -14px;
     color: var(--label-color);
     font-size: calc(var(--label-size) * 1em);
 }
-.rf-input.rf-error > input:focus ~ label,
-.rf-input.rf-error > textarea:focus ~ label,
-.rf-input.rf-error.filled > label{
+.r-input.r-error > input:focus ~ label,
+.r-input.r-error > textarea:focus ~ label,
+.r-input.r-error.filled > label{
     color : var(--error-color);
 }
 
-.rf-input.rf-bordered > input:focus ~ label,
-.rf-input.rf-bordered > textarea:focus ~ label,
-.rf-input.rf-bordered.filled > label{
+.r-input.r-bordered > input:focus ~ label,
+.r-input.r-bordered > textarea:focus ~ label,
+.r-input.r-bordered.filled > label{
     top: -8px;
      color: var(--label-color);
      font-size: calc(var(--label-size) * 1em);
     background: #fff
 
 }
-.rf-input.rf-error.rf-bordered > input:focus ~ label,
-.rf-input.rf-error.rf-bordered > textarea:focus ~ label,
-.rf-input.rf-error.rf-bordered.filled > label{
+.r-input.r-error.r-bordered > input:focus ~ label,
+.r-input.r-error.r-bordered > textarea:focus ~ label,
+.r-input.r-error.r-bordered.filled > label{
     color : var(--error-color);
 }
-.rf-input.rf-bordered > input:focus,
-.rf-input.rf-bordered > textarea:focus{
+.r-input.r-bordered > input:focus,
+.r-input.r-bordered > textarea:focus{
     border: 2px solid var(--focus-color);  
     transition: 200ms ease all;
     -webkit-transition: 200ms ease all;
     -moz-transition: 200ms ease all;
     -ms-transition: 200ms ease all;
 }
-.rf-input.rf-bordered > input,
-.rf-input.rf-bordered > textarea {
+.r-input.r-bordered > input,
+.r-input.r-bordered > textarea {
     padding-right: 16px;
 }
-.rf-input.rf-bordered > label {
+.r-input.r-bordered > label {
     margin-right: 8px;
 }
-.rf-input >	input:focus ~ .rf-line,
-.rf-input >	textarea:focus ~ .rf-line{
+.r-input >	input:focus ~ .r-line,
+.r-input >	textarea:focus ~ .r-line{
 	transform: scaleX(1);
 	visibility: visible;
 }
 /* RTL */
-.rf-input.rf-rtl > input,
-.rf-input.rf-rtl > textarea{
+.r-input.r-rtl > input,
+.r-input.r-rtl > textarea{
     text-align: right ;
     direction: rtl
 }
-.rf-input.rf-rtl >.rf-icon {
+.r-input.r-rtl >.r-icon {
     right: unset;
     left: 10px;
 }
-.rf-input.rf-rtl > label {
+.r-input.r-rtl > label {
   left: unset ;
     right: 0 ;
 }
 
-.rf-input.rf-rtl.rf-has-icon > .rf-input-icon {
+.r-input.r-rtl.r-has-icon > .r-input-icon {
     left: unset;
     right: 10px;
 }
-.rf-input.rf-rtl.rf-has-icon > .rf-input-icon svg {
+.r-input.r-rtl.r-has-icon > .r-input-icon svg {
     width: 25px;
     color: var(--text-color)
 }
-.rf-input.rf-rtl.rf-has-icon > label {
+.r-input.r-rtl.r-has-icon > label {
    right: 30px
 }
-.rf-input.rf-rtl.rf-has-icon > input,
-.rf-input.rf-rtl.rf-has-icon > textarea{
+.r-input.r-rtl.r-has-icon > input,
+.r-input.r-rtl.r-has-icon > textarea{
     padding-right: 40px
 }
 
-.rf-input.rf-rtl.rf-error > .rf-message,
-.rf-input.rf-rtl.rf-success > .rf-message{
+.r-input.r-rtl.r-error > .r-message,
+.r-input.r-rtl.r-success > .r-message{
     text-align: right;
     direction:rtl;
 }

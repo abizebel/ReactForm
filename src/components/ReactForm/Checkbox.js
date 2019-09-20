@@ -14,18 +14,20 @@ class Checkbox extends Component {
     }
     render (){
 
-        const {disabled, rtl, label} = this.props;
-        const rtlClass = rtl ? ' rf-rtl' : '';
-        const disabledClass = disabled ? ' rf-disabled' :''; 
+        const {disabled, rtl, label, size} = this.props;
+        const rtlClass = rtl ? ' r-rtl' : '';
+        const disabledClass = disabled ? ' r-disabled' :''; 
+        debugger
+        const sizeClass = size === 'xs' ? ' r-xs' : size === 'lg'? ' r-lg' : '';
 
         return (
-            <div className={`rf-checkbox${rtlClass}${disabledClass}`}>
+            <div className={`r-checkbox${rtlClass}${disabledClass}${sizeClass}`}>
                 <label>
                     <input disabled={disabled} ref={this.inputDom} onChange={this.handleChange.bind(this)} type="checkbox" />
-                    <span className="checkbox-material">    
+                    <span className="r-checkbox-fake">    
                         <span className="check"></span>
                     </span> 
-                    <span className="checkbox-text">{label}</span>
+                    <span className="r-checkbox-text">{label}</span>
                 </label>
             </div>
         )

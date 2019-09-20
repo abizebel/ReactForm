@@ -10,7 +10,7 @@ class Select extends Component {
         this.state = {
             open : false,
             selectedValue : this.props.defaultValue,
-            values : this.props.values,
+            values : [...this.props.values],
         }
     }
 
