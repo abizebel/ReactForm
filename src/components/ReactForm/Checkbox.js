@@ -17,7 +17,6 @@ class Checkbox extends Component {
         const {disabled, rtl, label, size} = this.props;
         const rtlClass = rtl ? ' r-rtl' : '';
         const disabledClass = disabled ? ' r-disabled' :''; 
-        debugger
         const sizeClass = size === 'xs' ? ' r-xs' : size === 'lg'? ' r-lg' : '';
 
         return (

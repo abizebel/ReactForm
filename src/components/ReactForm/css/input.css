@@ -91,7 +91,6 @@ input:-webkit-autofill:active  {
 
 /* Icon */
 .r-input > .r-icon {
-    display: none;
     position: absolute;
     top: .8rem;
     right: 0;
@@ -116,10 +115,7 @@ input:-webkit-autofill:active  {
 .r-input.r-success > .r-icon{
     display: block
 }
-.r-input.r-error > .r-icon  svg {
-     fill : var(--error-color) !important;
-     width: 20px;
-}
+
 .r-input.r-success > .r-icon  svg {
      fill : var(--success-color) !important;
      width: 20px;
@@ -131,6 +127,7 @@ input:-webkit-autofill:active  {
     position: absolute;
     width: 24px;
     height: 24px;
+    overflow: hidden;
     top: .7rem;
     left: 0 ; 
 }
@@ -242,10 +239,7 @@ input:-webkit-autofill:active  {
 .r-input.r-bordered > input:focus,
 .r-input.r-bordered > textarea:focus{
     border: 2px solid var(--focus-color);  
-    transition: 200ms ease all;
-    -webkit-transition: 200ms ease all;
-    -moz-transition: 200ms ease all;
-    -ms-transition: 200ms ease all;
+
 }
 
 .r-input >	input:focus ~ .r-line,

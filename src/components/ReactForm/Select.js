@@ -16,7 +16,7 @@ class Select extends Component {
 
     componentDidMount(){
         $(document).click((e) => {
-            var len = $(e.target).closest('.rf-select').length
+            var len = $(e.target).closest('.r-select').length
             if(len === 0 && this.state.open === true){
                this.setState({open : false})
             }
@@ -27,7 +27,7 @@ class Select extends Component {
         const {disabled} = this.props;
         if (disabled) return;
         
-        const len = $(e.target).closest('.rf-options').length;
+        const len = $(e.target).closest('.r-options').length;
         if (len === 0) {
             this.setState((prevState) => {
                 return { open : !prevState.open}
@@ -54,9 +54,9 @@ class Select extends Component {
         const options = values.map((o, i) => {
             const selectedClass = (o[mapping.value] == selectedValue) ? ' selected' : '';
             return (
-                <div key={i} className={`rf-options-item${selectedClass}`} onClick={this.select.bind(this,o)}>
+                <div key={i} className={`r-options-item${selectedClass}`} onClick={this.select.bind(this,o)}>
                     {mapping.icon && 
-                        <span className="rf-option-icon">
+                        <span className="r-option-icon">
                             {createIcon(getValueByProp(o, mapping.icon))}
                         </span> 
                     }
@@ -66,7 +66,7 @@ class Select extends Component {
             )
         })
 
-        return <div className="rf-options">{search && this.renderSearch()}{options}</div>
+        return <div className="r-options">{search && this.renderSearch()}{options}</div>
     }
 
     search (e){
@@ -91,7 +91,7 @@ class Select extends Component {
         const searchLableText = searchLabel ? searchLabel : (rtl ? 'جستجو ...' : 'Search ...')
 
         return (
-            <div className="rf-options-search">
+            <div className="r-options-search">
                 <input onChange={this.search.bind(this)} placeholder={searchLableText} type="text" />
             </div>
         )
@@ -102,29 +102,28 @@ class Select extends Component {
         const {open, selectedValue} = this.state;
 
         const activeClass = open ? ' active' : '';
-        const hasIconClass =  mapping.icon ? ' rf-has-icon' : '';
-        const rtlClass = rtl ? ' rf-rtl' : '';
-        const outlineClass = outline ? ' rf-bordered' :''; 
-        const disabledClass = disabled ? ' rf-disabled' :''; 
+        const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
+        const rtlClass = rtl ? ' r-rtl' : '';
+        const outlineClass = outline ? ' r-bordered' :''; 
+        const disabledClass = disabled ? ' r-disabled' :''; 
         const selectedItem = getValueById(values, selectedValue, mapping.value);
         const inputValue = `${showKey ? selectedItem[mapping.value]:''}   ${selectedItem[mapping.text]}`
 
         return (
-            <div onClick={this.open.bind(this)} className={`rf-select${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div onClick={this.open.bind(this)} className={`r-select r-input filled${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
             <input 
                 disabled={disabled} 
                 type="text" 
-                className="filled" 
                 onChange={()=>{}} 
-                value={inputValue} 
+                value={inputValue.trim()} 
                 
              />
             <label>{label}</label>
-            <span className="rf-line"></span>
+            <span className="r-line"></span>
             {mapping.icon &&
-                <span className="rf-input-icon">{getValueByProp(selectedItem, mapping.icon)}</span>
+                <span className="r-input-icon">{getValueByProp(selectedItem, mapping.icon)}</span>
             }
-            <span className="rf-icon">{icons.down}</span>
+            <span className="r-icon">{icons.down}</span>
             {this.open && this.renderOptions()}
 
         </div>
