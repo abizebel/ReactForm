@@ -1,7 +1,7 @@
 
-/************************
+/**********************************************
 * INPUT
-*************************/
+***********************************************/
 /* Change the white to any color ;) */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
@@ -29,15 +29,16 @@ input:-webkit-autofill:active  {
     border-radius: 0;
     outline: none;
     height:  3rem ;
-    line-height: 1rem;
     box-sizing: border-box;
     width: 100%;
     font-family: inherit;
 
 }
 .r-input > textarea {
+    height:  3.5rem ;
+    min-height:  3.5rem ;
     padding: 5px 10px 0 10px;
-     resize: none;
+    resize: none;
 }
 
 
@@ -60,77 +61,6 @@ input:-webkit-autofill:active  {
 }
 
 
-/* input icon */
-.r-input.r-has-icon > input,
-.r-input.r-has-icon > textarea{
-    padding-left: unset;
-    padding-left: 32px ;
-}
-.r-input.r-has-icon > .r-input-icon {
-    position: absolute;
-    top: .7rem;
-    left: 0;
-
-   
-}
-.r-input.r-has-icon > .r-input-icon sapn{
-  font-size: 22px
-}
-.r-input.r-has-icon > .r-input-icon svg {
-    width: 25px;
-    color: var(--text-color) !important;
-}
-.r-input.r-has-icon > label {
-   left: 32px
-}
-.r-input.r-has-icon.r-bordered > label {
-   left: 24px
-}
-/* Bordered */
-.r-input.r-bordered > input,
-.r-input.r-bordered > textarea {
-    border: 1px solid var(--label-color);
-    border-radius: 4px;
-     padding-left: 16px;
-}
-.r-input.r-bordered.r-has-icon > input,
-.r-input.r-bordered.r-has-icon > textarea {
-    padding-right: 32px ;
-}
-.r-input.r-bordered > label {
-    margin-left: 16px;
-}
-
-.r-input.r-bordered.r-has-icon > .r-input-icon {
-    left: 8px
-}
-
-/* Disabled */
-.r-input.r-disabled > input,
-.r-input.r-disabled > textarea {
-    border-bottom: 1px dashed var(--disabled-color) !important;
-}
-.r-input.r-has-icon.r-disabled > .r-input-icon ,
-.r-input.r-disabled > .r-icon {
-    opacity: .3
-}
-
-.r-input.r-bordered.r-disabled > input {
-    border: 1px dashed var(--disabled-color) !important;
-}
-.r-input.r-disabled > input ,
-.r-input.r-disabled > textarea {
-    color: var(--label-color);
-    cursor: not-allowed
-}
-
-
-
-/* Messagea */
-.r-input > .r-message {
-    font-size: .8em;
-    display: none
-}
 
 
 /* Line */
@@ -164,7 +94,7 @@ input:-webkit-autofill:active  {
     display: none;
     position: absolute;
     top: .8rem;
-    right: 10px;
+    right: 0;
     
 }
 .r-input > .r-icon svg {
@@ -173,7 +103,6 @@ input:-webkit-autofill:active  {
 /* Error & Success */
 .r-input.r-error > .r-message{
     display: block;
-    padding: 0 10px;
     color : var(--error-color);
     font-size: calc(var(--label-size) * 1em)
 }
@@ -196,6 +125,92 @@ input:-webkit-autofill:active  {
      width: 20px;
     
 }
+
+/* Has icon */
+.r-input.r-has-icon > .r-input-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: .7rem;
+    left: 0 ; 
+}
+.r-input.r-has-icon > .r-input-icon sapn{
+  font-size: 22px
+}
+.r-input.r-has-icon > .r-input-icon svg {
+    width: 25px;
+    color: var(--text-color) !important;
+}
+.r-input.r-has-icon > input,
+.r-input.r-has-icon > textarea{
+    padding-left: unset;
+    padding-left: 32px ;
+}
+.r-input.r-has-icon > label {
+   left: 32px
+}
+
+
+/* Bordered */
+.r-input.r-bordered > .r-icon {
+    position: absolute;
+    top: .8rem;
+    right: 8px ;
+    
+}
+.r-input.r-bordered > input,
+.r-input.r-bordered > textarea {
+    border: 1px solid var(--label-color);
+    border-radius: 4px;
+    padding-left: 16px;
+}
+.r-input.r-bordered > label {
+    left: 16px
+}
+
+/* Has icon & Bordered */
+.r-input.r-bordered.r-has-icon > .r-input-icon {
+    left: 8px
+}
+.r-input.r-bordered.r-has-icon > input,
+.r-input.r-bordered.r-has-icon > textarea{
+    padding-left: unset;
+    padding-left: 40px ;
+}
+.r-input.r-bordered.r-has-icon > label {
+   left: 40px
+}
+
+
+
+/* Disabled */
+.r-input.r-disabled > input,
+.r-input.r-disabled > textarea {
+    border-bottom: 1px dashed var(--disabled-color) !important;
+}
+.r-input.r-has-icon.r-disabled > .r-input-icon ,
+.r-input.r-disabled > .r-icon {
+    opacity: .3
+}
+
+.r-input.r-bordered.r-disabled > input {
+    border: 1px dashed var(--disabled-color) !important;
+}
+.r-input.r-disabled > input ,
+.r-input.r-disabled > textarea {
+    color: var(--label-color);
+    cursor: not-allowed
+}
+
+
+
+/* Messagea */
+.r-input > .r-message {
+    font-size: .8em;
+    display: none
+}
+
+
 /* Focus */
 .r-input > input:focus ~ label,
 .r-input > textarea:focus ~ label,
@@ -232,53 +247,84 @@ input:-webkit-autofill:active  {
     -moz-transition: 200ms ease all;
     -ms-transition: 200ms ease all;
 }
-.r-input.r-bordered > input,
-.r-input.r-bordered > textarea {
-    padding-right: 16px;
-}
-.r-input.r-bordered > label {
-    margin-right: 8px;
-}
+
 .r-input >	input:focus ~ .r-line,
 .r-input >	textarea:focus ~ .r-line{
 	transform: scaleX(1);
 	visibility: visible;
 }
-/* RTL */
-.r-input.r-rtl > input,
-.r-input.r-rtl > textarea{
-    text-align: right ;
-    direction: rtl
-}
-.r-input.r-rtl >.r-icon {
-    right: unset;
-    left: 10px;
-}
-.r-input.r-rtl > label {
-  left: unset ;
-    right: 0 ;
-}
 
-.r-input.r-rtl.r-has-icon > .r-input-icon {
-    left: unset;
-    right: 10px;
-}
-.r-input.r-rtl.r-has-icon > .r-input-icon svg {
-    width: 25px;
-    color: var(--text-color)
-}
-.r-input.r-rtl.r-has-icon > label {
-   right: 30px
-}
-.r-input.r-rtl.r-has-icon > input,
-.r-input.r-rtl.r-has-icon > textarea{
-    padding-right: 40px
-}
-
+/**********************************************
+* RTL INPUT
+***********************************************/
 .r-input.r-rtl.r-error > .r-message,
 .r-input.r-rtl.r-success > .r-message{
     text-align: right;
     direction:rtl;
+}
+
+.r-input.r-rtl > input,
+.r-input.r-rtl > textarea{
+    text-align: right ;
+    direction: rtl;
+}
+
+.r-input.r-rtl > .r-icon {
+    right:unset;
+    left: 0;
+    
+}
+.r-input.r-rtl > label {
+    left: unset;
+    right: 0
+}
+
+/* Has icon */
+.r-input.r-rtl.r-has-icon > .r-input-icon {
+    left: unset;
+    right: 0 ; 
+}
+.r-input.r-rtl.r-has-icon > input,
+.r-input.r-rtl.r-has-icon > textarea{
+    padding-left: unset;
+    padding-right: 32px ;
+}
+.r-input.r-rtl.r-has-icon > label {
+    left: unset;
+   right: 32px
+}
+
+
+/* Bordered */
+.r-input.r-rtl.r-bordered > .r-icon {
+    right:unset;
+    left: 8px ;
+    
+}
+.r-input.r-rtl.r-bordered > input,
+.r-input.r-rtl.r-bordered > textarea {
+    padding-left: unset;
+    padding-right: 16px ;
+}
+.r-input.r-rtl.r-bordered > label {
+    left: unset;
+    right: 16px
+}
+
+/* Has icon & Bordered */
+.r-input.r-rtl.r-bordered.r-has-icon > .r-input-icon {
+    
+    left: unset;
+    right: 8px
+}
+.r-input.r-rtl.r-bordered.r-has-icon > input,
+.r-input.r-rtl.r-bordered.r-has-icon > textarea{
+    padding-right: unset;
+    padding-right: 40px ;
+}
+.r-input.r-rtl.r-bordered.r-has-icon > label {
+    left: unset;
+   right: 40px
 }
 
 
