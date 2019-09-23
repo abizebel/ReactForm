@@ -52,7 +52,7 @@ class Select extends Component {
         const {values , selectedValue } = this.state;
         
         const options = values.map((o, i) => {
-            const selectedClass = (o[mapping.value] == selectedValue) ? ' selected' : '';
+            const selectedClass = (o[mapping.value] === selectedValue) ? ' selected' : '';
             return (
                 <div key={i} className={`r-options-item${selectedClass}`} onClick={this.select.bind(this,o)}>
                     {mapping.icon && 

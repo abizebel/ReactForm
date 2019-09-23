@@ -25,5 +25,5 @@ export function getValueByProp(obj, field) {
 
 
 export function getValueById (arr, id, mappingName){
-    return arr.filter(item => item[mappingName] == id)[0]
+    return arr.filter(item => String(item[mappingName]) === String(id))[0]
 }

@@ -1,5 +1,4 @@
 import React, {Component, createRef} from 'react';
-import $ from 'jquery';
 
 class Checkbox extends Component {
     constructor(props){

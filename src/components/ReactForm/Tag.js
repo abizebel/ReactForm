@@ -125,7 +125,7 @@ class Tag extends Component {
     ////////////////////// CHANGE //////////////////////
 
     isExist (){
-        const {values} = this.state;
+        //const {values} = this.state;
     }
 
     addTag (tag){
