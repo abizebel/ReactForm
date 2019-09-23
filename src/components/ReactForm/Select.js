@@ -91,7 +91,7 @@ class Select extends Component {
 
         return (
 
-             < <div className="r-options">{search && this.renderSearch()}{options}</div>
+             <div className="r-options">{search && this.renderSearch()}{options}</div>
         )
         
         
