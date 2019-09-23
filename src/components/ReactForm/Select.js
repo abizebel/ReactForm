@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import {getValueByProp, createIcon, getValueById} from './functions';
 import icons from './icons';
 import './ReactForm.css';
@@ -10,10 +11,26 @@ class Select extends Component {
         this.state = {
             open : false,
             selectedValue : this.props.defaultValue,
-            values : [...this.props.values],
+            values : this.createList(),
         }
     }
 
+    /**
+     * Create list for select options
+     */
+    createList (){
+        const {nullable, values, mapping} = this.props;
+        let listValues = values.slice();
+        
+        //If nullable add a fake object 
+        if (nullable) {
+            listValues.unshift({
+                [mapping.text] : 'No Selected',
+                [mapping.value] : -1
+            })
+        }
+        return listValues
+    }
     componentDidMount(){
         $(document).click((e) => {
             var len = $(e.target).closest('.r-select').length
@@ -35,16 +52,22 @@ class Select extends Component {
         }
     }
 
+    /**
+     * 
+     * @param {Object} selectedItem 
+     * @description Select a item that user clicked on it 
+     */
     select (selectedItem){
         const {change, mapping} = this.props;
 
         this.setState({selectedValue:selectedItem[mapping.value]})
         this.setState({open:false});
 
-        change({
-            text : selectedItem[mapping.text],
-            value : selectedItem[mapping.value],
-        })
+        let text = selectedItem[mapping.text];
+        let value = selectedItem[mapping.value];
+        let changedItem = selectedItem[mapping.value] === -1 ? null : {text , value }
+
+        change(changedItem)
     }
 
     renderOptions (){
@@ -66,7 +89,13 @@ class Select extends Component {
             )
         })
 
-        return <div className="r-options">{search && this.renderSearch()}{options}</div>
+        return (
+
+             < <div className="r-options">{search && this.renderSearch()}{options}</div>
+        )
+        
+        
+      
     }
 
     search (e){
@@ -98,8 +127,8 @@ class Select extends Component {
     }
 
     render (){
-        const {values, label, mapping, rtl, disabled, outline, showKey} = this.props;
-        const {open, selectedValue} = this.state;
+        const { label, mapping, rtl, disabled, outline, showKey} = this.props;
+        const {open, values,  selectedValue} = this.state;
 
         const activeClass = open ? ' active' : '';
         const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
@@ -110,7 +139,7 @@ class Select extends Component {
         const inputValue = `${showKey ? selectedItem[mapping.value]:''}   ${selectedItem[mapping.text]}`
 
         return (
-            <div onClick={this.open.bind(this)} className={`r-select r-input filled${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div onClick={this.open.bind(this)} className={`r-select r-noselect r-input filled${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
             <input 
                 disabled={disabled} 
                 type="text" 
@@ -135,6 +164,7 @@ Select.defaultProps = {
     rtl : false,
     outline : false,
     disabled : false,
+    nullable : false,
 }
 
 export default Select

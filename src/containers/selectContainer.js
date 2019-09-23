@@ -18,6 +18,7 @@ class SelectContainer extends Component {
           <Select   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
             defaultValue ={33}
+            nullable={true}
             values ={
               [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
               {id:'22',name:'feiz', info:{icon:sampleIcon}},
@@ -27,7 +28,7 @@ class SelectContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-          <Select   change={this.changeSelect.bind(this)}
+          {/* <Select   change={this.changeSelect.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
             defaultValue ={33}
@@ -344,7 +345,7 @@ class SelectContainer extends Component {
               {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
             ]}
             mapping = {{text : 'name', value : 'id'}}
-          />
+          /> */}
 
         </div>
 
