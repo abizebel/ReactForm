@@ -78,22 +78,3 @@ body {
   overflow: hidden;
 }
 
-.r-select-animation-enter {
-    opacity: 0.01;
-  }
-  
-  .r-select-animation-enter.r-select-animation-enter-active {
-    opacity: 1;
-    transition: opacity 500ms ease-in;
-  }
-  
-  .r-select-animation-leave {
-    opacity: 1;
-  }
-  
-  .r-select-animation-leave.r-select-animation-leave-active {
-    opacity: 0.01;
-    transition: opacity 300ms ease-in;
-  }
-
-

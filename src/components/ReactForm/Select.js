@@ -14,6 +14,15 @@ class Select extends Component {
             values : this.createList(),
         }
     }
+    componentDidMount(){
+        $(document).click((e) => {
+            var len = $(e.target).closest('.r-select').length
+            if(len === 0 && this.state.open === true){
+               this.setState({open : false})
+            }
+        })
+    }
+
 
     /**
      * Create list for select options
@@ -31,14 +40,7 @@ class Select extends Component {
         }
         return listValues
     }
-    componentDidMount(){
-        $(document).click((e) => {
-            var len = $(e.target).closest('.r-select').length
-            if(len === 0 && this.state.open === true){
-               this.setState({open : false})
-            }
-        })
-    }
+
 
     open (e){
         const {disabled} = this.props;
