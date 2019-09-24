@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {getValueByProp, createIcon} from './functions';
+import {getValueByProp, createIcon, createUID} from './functions';
 import icons from './icons';
 import './ReactForm.css';
 import $ from 'jquery';
@@ -12,12 +12,29 @@ class Select extends Component {
             open : false,
             selectedItem : this.getSelectedItem (this.props.defaultValue),
             listValues : this.createList (this.props.values),
+            uid : createUID(),
         }
     }
+
     componentDidMount(){
+        const {uid} = this.state;
+
         $(document).click((e) => {
-            var len = $(e.target).closest('.r-select').length
-            if(len === 0 && this.state.open === true){
+            let selectElement = $(e.target).closest('.r-select');
+
+            /**
+             * When one dropdown is opened close another
+             */
+
+            if (selectElement.attr('data-id') !== uid) {
+                this.setState({open : false})
+            }
+
+            /**
+             * If select was open and clicked outside of it close it
+             * length == 0 means that user clicked outside of select
+             */
+            if(selectElement.length === 0 && this.state.open === true){
                this.setState({open : false})
             }
         })
@@ -38,7 +55,8 @@ class Select extends Component {
                 [mapping.value] : -1
             })
         }
-        return listValues
+
+        return listValues;
     }
 
     /**
@@ -65,13 +83,15 @@ class Select extends Component {
      */
     open (e){
         const {disabled} = this.props;
+
         if (disabled) return;
         
         const len = $(e.target).closest('.r-options').length;
+        
         if (len === 0) {
             this.setState((prevState) => {
                 return { open : !prevState.open}
-            })
+            });
         }
     }
 
@@ -190,7 +210,7 @@ class Select extends Component {
 
     render (){
         const { label, mapping, rtl, disabled, outline, showKey} = this.props;
-        const {open, selectedItem} = this.state;
+        const {open, selectedItem, uid} = this.state;
 
         const activeClass = open ? ' active' : '';
         const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
@@ -200,7 +220,7 @@ class Select extends Component {
         const inputValue = this.getItemText(selectedItem);
         
         return (
-            <div onClick={this.open.bind(this)} className={`r-select r-noselect r-input filled${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div data-id={uid} onClick={this.open.bind(this)} className={`r-select r-noselect r-input filled${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
                 <input 
                     disabled={disabled} 
                     type="text" 

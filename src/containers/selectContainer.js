@@ -11,8 +11,6 @@ class SelectContainer extends Component {
     return (
       <Fragment>
         
-
-        
         <div className="page-content-box" >
           <div className="page-content-title">Select</div>
           <Select   change={this.changeSelect.bind(this)}       
