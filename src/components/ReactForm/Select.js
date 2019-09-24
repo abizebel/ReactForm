@@ -8,10 +8,13 @@ import $ from 'jquery';
 class Select extends Component {
     constructor(props) {
         super(props);
+
+        this.values =  this.createList (this.props.values);
+
         this.state = {
             open : false,
             selectedItem : this.getSelectedItem (this.props.defaultValue),
-            listValues : this.createList (this.props.values),
+            listValues :  this.values,
             uid : createUID(),
         }
     }
@@ -67,7 +70,7 @@ class Select extends Component {
     getSelectedItem (id){
         const {values, mapping} = this.props;
 
-        const selectedItem = values.filter(o => {
+        const selectedItem = this.values.filter(o => {
             return String(o[mapping.value]) ===  String(id)
         })[0];
 
@@ -162,12 +165,12 @@ class Select extends Component {
 
         //Reset list if input hasnt value
         if(e.target.value.length === 0) {
-            this.setState({listValues :this.createList(values)})
+            this.setState({listValues :this.values})
         }
 
         //Search
         const target = e.target.value.toLowerCase();
-        const foundValues = values.filter(o => {
+        const foundValues = this.values.filter(o => {
             return o[mapping.text].toLowerCase().indexOf(target)!== -1
         });
 
