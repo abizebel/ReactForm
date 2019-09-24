@@ -18,10 +18,11 @@
  * Select Component
  ************************************************************/
 <Select 
+    //Basic
     change={this.changeSelect.bind(this)}    
-    label={'Last Name'}//lable of Select
-    //icon can be <svg></svg> or 'mdi mdi-home'
-    values ={
+    label={'Last Name'}
+   
+    values ={ //icon can be <svg></svg> or 'mdi mdi-home'
         [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
         {id:'22',name:'feiz', info:{icon:sampleIcon}},
         {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
@@ -29,11 +30,12 @@
         {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
     ]}
     mapping = {{text : 'name', value : 'id'}} //dataset for managing server model diffrences
-    defaultValue ={33}
-    nullable={true}//user cant select no item
-    showKey ={true} //show key on select list
-    outline={true} //outlined input
-    disabled={true} //disable select
+    defaultValue ={33} // is id of selected value
+    //Boolean items
+    nullable={true} // user cant select no item
+    showKey ={true} // show key on select list
+    outline={true}  // outlined input
+    disabled={true} // disable select
     search = {true} // active search tool in select list
     //Translations
     searchLabel = {'search your item'}
@@ -52,7 +54,7 @@
     outline = {true}
     rtl = {true}
     disabled={true}
-    defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+    defaultValue ={'abbas'}
     values ={
     [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
     {id:'22',name:'feiz', info:{icon:sampleIcon}},
@@ -61,6 +63,7 @@
     {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
     ]}
     mapping = {{text : 'name', value : 'id'}}
+    notFoundMessage = {'Not Found'}
 />
 
 

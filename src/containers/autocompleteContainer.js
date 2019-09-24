@@ -16,7 +16,7 @@ class AutocomplteContainer extends Component {
           <div className="page-content-title">Autocomplete</div>
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ='abbas'
             values ={
               [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
               {id:'22',name:'feiz', info:{icon:sampleIcon}},
@@ -26,7 +26,7 @@ class AutocomplteContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-          <Autocomplete change={this.changeAutocomplete.bind(this)}
+          {/* <Autocomplete change={this.changeAutocomplete.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
             defaultValue ={{value : 'حسینی' ,icon : sampleIcon}}
@@ -202,7 +202,7 @@ class AutocomplteContainer extends Component {
               {id:'44',name:'رنجبر', info:{icon:sampleIcon}}
             ]}
             mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
-          />
+          /> */}
 
         </div>
     

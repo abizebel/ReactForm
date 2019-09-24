@@ -130,8 +130,8 @@ class Select extends Component {
 
         //If options list is empty show "Not Found"
         if (listValues.length === 0) {
-            const searchLableText = notFoundMessage ? notFoundMessage : (rtl ? 'یافت نشد' : 'Not Found');
-            options = (<div className="r-options-item">{searchLableText}</div>)
+            const notFoundText = notFoundMessage ? notFoundMessage : (rtl ? 'یافت نشد' : 'Not Found');
+            options = (<div className="r-options-item">{notFoundText}</div>)
         }
         else {
             options = listValues.map((o, i) => {
