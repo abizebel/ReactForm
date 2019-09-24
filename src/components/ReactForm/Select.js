@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {getValueByProp, createIcon, getValueById} from './functions';
+import {getValueByProp, createIcon} from './functions';
 import icons from './icons';
 import './ReactForm.css';
 import $ from 'jquery';
@@ -10,8 +10,8 @@ class Select extends Component {
         super(props);
         this.state = {
             open : false,
-            selectedValue : this.props.defaultValue,
-            values : this.createList(),
+            selectedItem : this.getSelectedItem (this.props.defaultValue),
+            listValues : this.createList (this.props.values),
         }
     }
     componentDidMount(){
@@ -27,8 +27,8 @@ class Select extends Component {
     /**
      * Create list for select options
      */
-    createList (){
-        const {nullable, values, mapping} = this.props;
+    createList (values){
+        const {nullable, mapping} = this.props;
         let listValues = values.slice();
         
         //If nullable add a fake object 
@@ -41,7 +41,28 @@ class Select extends Component {
         return listValues
     }
 
+    /**
+     * 
+     * @param {Number || String} id 
+     * @description Find selected value by id
+     */
+    getSelectedItem (id){
+        const {values, mapping} = this.props;
 
+        const selectedItem = values.filter(o => {
+            return String(o[mapping.value]) ===  String(id)
+        })[0];
+
+        return selectedItem;
+    }
+    
+  
+
+    /**
+     * Open popup
+     * 
+     * @param {Event} e 
+     */
     open (e){
         const {disabled} = this.props;
         if (disabled) return;
@@ -62,61 +83,76 @@ class Select extends Component {
     select (selectedItem){
         const {change, mapping} = this.props;
 
-        this.setState({selectedValue:selectedItem[mapping.value]})
+        this.setState({selectedItem})
         this.setState({open:false});
 
         let text = selectedItem[mapping.text];
         let value = selectedItem[mapping.value];
+        //If selected "Not selected item" send null as change
         let changedItem = selectedItem[mapping.value] === -1 ? null : {text , value }
 
         change(changedItem)
     }
 
+    /**
+     * Render select options
+     */
     renderOptions (){
         const {mapping, search ,showKey} = this.props;
-        const {values , selectedValue } = this.state;
+        const {listValues , selectedItem } = this.state;
+        let options;
+
+        if (listValues.length === 0) {
+            options = (<div className="r-options-item">Not Found</div>)
+        }
+        else {
+            options = listValues.map((o, i) => {
+                const selectedClass = (o[mapping.value] === selectedItem[mapping.value]) ? ' selected' : '';
+                return (
+                    <div key={i} className={`r-options-item${selectedClass}`} onClick={this.select.bind(this,o)}>
+                        {mapping.icon && 
+                            <span className="r-option-icon">
+                                {createIcon(getValueByProp(o, mapping.icon))}
+                            </span> 
+                        }
+                        {showKey && `${getValueByProp(o, mapping.value)} - ` }
+                        {getValueByProp(o, mapping.text)}
+                    </div>
+                )
+            })
+        }
         
-        const options = values.map((o, i) => {
-            const selectedClass = (o[mapping.value] === selectedValue) ? ' selected' : '';
-            return (
-                <div key={i} className={`r-options-item${selectedClass}`} onClick={this.select.bind(this,o)}>
-                    {mapping.icon && 
-                        <span className="r-option-icon">
-                            {createIcon(getValueByProp(o, mapping.icon))}
-                        </span> 
-                    }
-                    {showKey && `${getValueByProp(o, mapping.value)} - ` }
-                    {getValueByProp(o, mapping.text)}
-                </div>
-            )
-        })
-
         return (
-
              <div className="r-options">{search && this.renderSearch()}{options}</div>
         )
         
-        
-      
     }
 
+    /**
+     * Search in select options
+     * 
+     * @param {Event} e 
+     */
     search (e){
         const {values, mapping} = this.props;
 
         //Reset list if input hasnt value
         if(e.target.value.length === 0) {
-            this.setState({values})
+            this.setState({listValues : this.createList(values)})
         }
 
         //Search
         const target = e.target.value.toLowerCase();
         const foundValues = values.filter(o => {
             return o[mapping.text].toLowerCase().indexOf(target)!== -1
-        })
-        
-        this.setState({values : foundValues})
+        });
+
+        this.setState({listValues : this.createList(foundValues)})
     }
 
+    /**
+     * Render options search  
+     */
     renderSearch (){
         const {searchLabel, rtl} = this.props;
         const searchLableText = searchLabel ? searchLabel : (rtl ? 'جستجو ...' : 'Search ...')
@@ -128,18 +164,28 @@ class Select extends Component {
         )
     }
 
+    /**
+     * Get input value 
+     */
+    getInputValue (){
+        const {  mapping, showKey} = this.props;
+        const {selectedItem} = this.state;
+ 
+        const inputValue = `${showKey ? selectedItem[mapping.value]:''}   ${selectedItem[mapping.text]}` || ''
+        return inputValue
+    }
+
     render (){
         const { label, mapping, rtl, disabled, outline, showKey} = this.props;
-        const {open, values,  selectedValue} = this.state;
+        const {open, selectedItem} = this.state;
 
         const activeClass = open ? ' active' : '';
         const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
         const rtlClass = rtl ? ' r-rtl' : '';
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 
-        const selectedItem = getValueById(values, selectedValue, mapping.value);
-        const inputValue = `${showKey ? selectedItem[mapping.value]:''}   ${selectedItem[mapping.text]}`
-
+        const inputValue = this.getInputValue();
+        
         return (
             <div onClick={this.open.bind(this)} className={`r-select r-noselect r-input filled${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
             <input 

@@ -102,19 +102,19 @@
 }
 
 .r-checkbox input[type=checkbox]:not(:checked)+.r-checkbox-fake:before {
-	animation: rippleOff 700ms forwards ease-out;
+	animation: rippleOff 900ms forwards ease-out;
 }
 
 .r-checkbox input[type=checkbox]:checked+.r-checkbox-fake:before {
-	animation: rippleOn 700ms forwards ease-out;
+	animation: rippleOn 900ms forwards ease-out;
 }
 
 .r-checkbox input[type=checkbox]:not(:checked)+.r-checkbox-fake .check:after {
-	animation: rippleOff 700ms forwards ease-out;
+	animation: rippleOff 900ms forwards ease-out;
 }
 
 .r-checkbox input[type=checkbox]:checked+.r-checkbox-fake .check:after {
-	animation: rippleOn 700ms forwards ease-out;
+	animation: rippleOn 900ms forwards ease-out;
 }
 
 .r-checkbox input[type=checkbox][disabled]:not(:checked)~.r-checkbox-fake .check:before,

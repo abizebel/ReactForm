@@ -19,6 +19,8 @@ class SelectContainer extends Component {
             label={'Last Name'}
             defaultValue ={33}
             nullable={true}
+            search = {true}
+            searchLabel = {'Search ... '}
             values ={
               [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
               {id:'22',name:'feiz', info:{icon:sampleIcon}},
@@ -44,7 +46,7 @@ class SelectContainer extends Component {
 
         </div>
 
-        <div className="page-content-box" >
+        {/* <div className="page-content-box" >
           <div className="page-content-title">Outlined Select</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
@@ -345,9 +347,9 @@ class SelectContainer extends Component {
               {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
             ]}
             mapping = {{text : 'name', value : 'id'}}
-          />
+          /> 
 
-        </div>
+        </div>*/}
 
      
       </Fragment>
