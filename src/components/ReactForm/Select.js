@@ -46,7 +46,7 @@ class Select extends Component {
      */
     createList (values){
         const {nullable, mapping} = this.props;
-        let listValues = values.slice();
+        let listValues = [...values];
         
         //If nullable add a fake object 
         if (nullable) {
@@ -121,13 +121,14 @@ class Select extends Component {
      * Render select options
      */
     renderOptions (){
-        const {mapping, search ,showKey} = this.props;
+        const {mapping, search ,notFoundMessage, rtl} = this.props;
         const {listValues , selectedItem } = this.state;
         let options;
 
         //If options list is empty show "Not Found"
         if (listValues.length === 0) {
-            options = (<div className="r-options-item">Not Found</div>)
+            const searchLableText = notFoundMessage ? notFoundMessage : (rtl ? 'یافت نشد' : 'Not Found');
+            options = (<div className="r-options-item">{searchLableText}</div>)
         }
         else {
             options = listValues.map((o, i) => {
@@ -161,7 +162,7 @@ class Select extends Component {
 
         //Reset list if input hasnt value
         if(e.target.value.length === 0) {
-            this.setState({listValues : this.createList(values)})
+            this.setState({listValues :this.createList(values)})
         }
 
         //Search
@@ -170,7 +171,7 @@ class Select extends Component {
             return o[mapping.text].toLowerCase().indexOf(target)!== -1
         });
 
-        this.setState({listValues : this.createList(foundValues)})
+        this.setState({listValues : foundValues})
     }
 
     /**

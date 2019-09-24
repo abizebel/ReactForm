@@ -20,6 +20,7 @@
 <Select 
     change={this.changeSelect.bind(this)}    
     label={'Last Name'}//lable of Select
+    //icon can be <svg></svg> or 'mdi mdi-home'
     values ={
         [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
         {id:'22',name:'feiz', info:{icon:sampleIcon}},
@@ -34,7 +35,9 @@
     outline={true} //outlined input
     disabled={true} //disable select
     search = {true} // active search tool in select list
+    //Translations
     searchLabel = {'search your item'}
+    notFoundMessage = {'Not Found'}
 
 />
 
