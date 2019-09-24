@@ -21,7 +21,6 @@
     //Basic
     change={this.changeSelect.bind(this)}    
     label={'Last Name'}
-   
     values ={ //icon can be <svg></svg> or 'mdi mdi-home'
         [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
         {id:'22',name:'feiz', info:{icon:sampleIcon}},
@@ -37,7 +36,7 @@
     outline={true}  // outlined input
     disabled={true} // disable select
     search = {true} // active search tool in select list
-    //Translations
+    //Translate
     searchLabel = {'search your item'}
     notFoundMessage = {'Not Found'}
     notSelectedText = {'Not Selected'}
@@ -50,11 +49,9 @@
  * AUTOCOMPLETE
  ************************************************************/
 <Autocomplete 
+    //Basic
     change={this.changeAutocomplete.bind(this)}
     label={'Last Name'}
-    outline = {true}
-    rtl = {true}
-    disabled={true}
     defaultValue ={'abbas'}
     values ={
     [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
@@ -64,6 +61,11 @@
     {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
     ]}
     mapping = {{text : 'name', value : 'id'}}
+    //Boolean items
+    outline = {true}
+    rtl = {true}
+    disabled={true}
+    //Translate
     notFoundMessage = {'Not Found'}
 />
 

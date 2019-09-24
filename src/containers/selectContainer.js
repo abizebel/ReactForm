@@ -29,7 +29,7 @@ class SelectContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-          {/* <Select   change={this.changeSelect.bind(this)}
+          <Select   change={this.changeSelect.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
             defaultValue ={33}
@@ -348,7 +348,7 @@ class SelectContainer extends Component {
               {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
             ]}
             mapping = {{text : 'name', value : 'id'}}
-          />  */}
+          /> 
 
         </div>
 
