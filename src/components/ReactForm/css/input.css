@@ -156,6 +156,7 @@ input:-webkit-autofill:active  {
 .r-input.r-has-icon > .r-input-icon svg {
     width: 25px;
     color: var(--text-color) !important;
+    fill:  var(--text-color) ;
 }
 .r-input.r-has-icon > input,
 .r-input.r-has-icon > textarea{

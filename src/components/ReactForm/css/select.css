@@ -33,6 +33,7 @@
      color: var(--text-color);
      cursor: pointer;
      font-size: .9em;
+     
  }
  .r-option-icon {
      position: absolute;
@@ -61,12 +62,14 @@
 }
 .r-has-icon .r-option-icon span {
     position: relative;
-    top: -3px
+    top: -3px;
+    color: var(--text-color) 
 }
  
  .r-has-icon .r-option-icon > svg {
      width: 24px;
      height: 24px;
+     fill: var(--text-color) 
  }
  .r-has-icon .r-options-item  {
     padding-left: 40px
