@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {getValueByProp, createIcon, createUID} from './functions';
 import './ReactForm.css';
 import $ from 'jquery';
+import icons from './icons';
 
 class Autcomplete extends Component {
     constructor(props) {
@@ -64,7 +65,7 @@ class Autcomplete extends Component {
         let options;
 
         //If options list is empty show "Not Found"
-        if (values.length === 0) {
+        if (listValues.length === 0) {
             const notFoundText = notFoundMessage ? notFoundMessage : (rtl ? 'یافت نشد' : 'Not Found');
             options = (<div className="r-options-item">{notFoundText}</div>)
         }
@@ -192,6 +193,9 @@ class Autcomplete extends Component {
             {mapping.icon && selectedItem !==null &&
                 <span className="r-input-icon">{createIcon(getValueByProp(selectedItem, mapping.icon))}</span>
             }
+
+            <span className="r-icon">{icons.down}</span>
+
             {this.open && this.renderOptions()}
 
         </div>
