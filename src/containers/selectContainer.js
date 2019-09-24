@@ -18,6 +18,7 @@ class SelectContainer extends Component {
           <Select   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
             defaultValue ={33}
+            showKey ={true}
             nullable={true}
             search = {true}
             searchLabel = {'Search ... '}
@@ -46,7 +47,7 @@ class SelectContainer extends Component {
 
         </div>
 
-        {/* <div className="page-content-box" >
+        <div className="page-content-box" >
           <div className="page-content-title">Outlined Select</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
@@ -349,7 +350,7 @@ class SelectContainer extends Component {
             mapping = {{text : 'name', value : 'id'}}
           /> 
 
-        </div>*/}
+        </div>
 
      
       </Fragment>

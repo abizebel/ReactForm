@@ -29,6 +29,7 @@
     ]}
     mapping = {{text : 'name', value : 'id'}} //dataset for managing server model diffrences
     defaultValue ={33}
+    nullable={true}//user cant select no item
     showKey ={true} //show key on select list
     outline={true} //outlined input
     disabled={true} //disable select

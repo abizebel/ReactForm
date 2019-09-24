@@ -86,10 +86,13 @@ class Select extends Component {
         this.setState({selectedItem})
         this.setState({open:false});
 
-        let text = selectedItem[mapping.text];
-        let value = selectedItem[mapping.value];
-        //If selected "Not selected item" send null as change
-        let changedItem = selectedItem[mapping.value] === -1 ? null : {text , value }
+        const text = selectedItem[mapping.text];
+        const value = selectedItem[mapping.value];
+        /**
+         * If user had selected no item send Null otherwise send selected object
+         * Null item is {text : 'No Selected', value : -1}
+         */
+        let changedItem = value === -1 ? null : {text , value }
 
         change(changedItem)
     }
@@ -102,6 +105,7 @@ class Select extends Component {
         const {listValues , selectedItem } = this.state;
         let options;
 
+        //If options list is empty show "Not Found"
         if (listValues.length === 0) {
             options = (<div className="r-options-item">Not Found</div>)
         }
@@ -115,8 +119,7 @@ class Select extends Component {
                                 {createIcon(getValueByProp(o, mapping.icon))}
                             </span> 
                         }
-                        {showKey && `${getValueByProp(o, mapping.value)} - ` }
-                        {getValueByProp(o, mapping.text)}
+                        {this.getItemText(o, '-')}
                     </div>
                 )
             })
@@ -166,13 +169,23 @@ class Select extends Component {
 
     /**
      * Get input value 
+     * 
+     * @param {String} seperator is between key and text
      */
-    getInputValue (){
-        const {  mapping, showKey} = this.props;
-        const {selectedItem} = this.state;
- 
-        const inputValue = `${showKey ? selectedItem[mapping.value]:''}   ${selectedItem[mapping.text]}` || ''
-        return inputValue
+    getItemText (item, seperator = ""){
+        const {mapping, showKey, nullable} = this.props;
+
+        const text = item[mapping.text];
+        const value = item[mapping.value];
+
+        /**
+         * Null item should not show key
+         * Null item is {text : 'No Selected', value : -1}
+         */
+        const key = (showKey && value !== -1) ? `${value} ${seperator}`  : '' ;
+        const inputValue = `${key} ${text}`;
+
+        return inputValue;
     }
 
     render (){
@@ -184,26 +197,23 @@ class Select extends Component {
         const rtlClass = rtl ? ' r-rtl' : '';
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 
-        const inputValue = this.getInputValue();
+        const inputValue = this.getItemText(selectedItem);
         
         return (
             <div onClick={this.open.bind(this)} className={`r-select r-noselect r-input filled${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
-            <input 
-                disabled={disabled} 
-                type="text" 
-                onChange={()=>{}} 
-                value={inputValue.trim()} 
-                
-             />
-            <label>{label}</label>
-            <span className="r-line"></span>
-            {mapping.icon &&
-                <span className="r-input-icon">{getValueByProp(selectedItem, mapping.icon)}</span>
-            }
-            <span className="r-icon">{icons.down}</span>
-            {this.open && this.renderOptions()}
+                <input 
+                    disabled={disabled} 
+                    type="text" 
+                    onChange={()=>{}} 
+                    value={inputValue.trim()}   
+                />
+                <label>{label}</label>
+                <span className="r-line"></span>
+                {mapping.icon && <span className="r-input-icon">{getValueByProp(selectedItem, mapping.icon)}</span>}
+                <span className="r-icon">{icons.down}</span>
+                {this.open && this.renderOptions()}
 
-        </div>
+            </div>
         )
     }
 }
