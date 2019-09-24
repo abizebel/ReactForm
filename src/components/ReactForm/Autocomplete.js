@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import {getValueByProp, createIcon, createUID} from './functions';
 import './ReactForm.css';
 import $ from 'jquery';
@@ -9,6 +9,7 @@ class Autcomplete extends Component {
         super(props);
 
         this.values =  [...this.props.values];
+        this.inputDom = createRef();
 
         this.state = {
             open : false,
@@ -162,6 +163,15 @@ class Autcomplete extends Component {
         return inputValue;
     }
     
+    /**
+     * Clean search area
+     */
+    clean (){
+        this.setState({searchValue : ''})
+        $(this.inputDom.current).focus()
+    }   
+
+
     render (){
         const {label, mapping, rtl, disabled, outline, defaultValue} = this.props;
         const {open, searchValue, selectedItem, uid} = this.state;
@@ -171,6 +181,7 @@ class Autcomplete extends Component {
         const rtlClass = rtl ? ' r-rtl' : '';
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 
+        const showClean = searchValue.length !== 0 ? true : false 
         // const inputValue = this.getItemText(selectedItem);
         // const renderIcon = mapping.icon ? createIcon(getValueByProp(selectedItem, mapping.icon)) : '';
         
@@ -178,6 +189,7 @@ class Autcomplete extends Component {
         return (
             <div data-id={uid} className={`r-autocomplete r-input filled${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
             <input 
+                ref={this.inputDom}
                 disabled={disabled} 
                 type="text" 
                 className="filled" 
@@ -194,7 +206,7 @@ class Autcomplete extends Component {
                 <span className="r-input-icon">{createIcon(getValueByProp(selectedItem, mapping.icon))}</span>
             }
 
-            <span className="r-icon">{icons.down}</span>
+            {showClean && <span className="r-icon" onClick={this.clean.bind(this)}>{icons.close}</span>}
 
             {this.open && this.renderOptions()}
 

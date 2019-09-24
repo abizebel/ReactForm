@@ -5,11 +5,5 @@
  
 /* Animated arrow */
 .r-autocomplete .r-icon {
-    transition: .2s ease-in-out all;    
+    cursor: pointer;
 }
-.r-autocomplete.active > .r-icon {
-    transition: .3s ease all;
-    transition: .3s ease-in-out all;
-    transform: rotate(180deg);
-    top: 5px
-} 
