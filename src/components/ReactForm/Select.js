@@ -22,7 +22,7 @@ class Select extends Component {
         $(document).click((e) => {
             let selectElement = $(e.target).closest('.r-select');
 
-            /**
+            /* *
              * When one dropdown is opened close another
              */
 
@@ -87,7 +87,7 @@ class Select extends Component {
         if (disabled) return;
         
         const len = $(e.target).closest('.r-options').length;
-        
+
         if (len === 0) {
             this.setState((prevState) => {
                 return { open : !prevState.open}
@@ -211,13 +211,13 @@ class Select extends Component {
     render (){
         const { label, mapping, rtl, disabled, outline, showKey} = this.props;
         const {open, selectedItem, uid} = this.state;
-
         const activeClass = open ? ' active' : '';
         const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
         const rtlClass = rtl ? ' r-rtl' : '';
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 
         const inputValue = this.getItemText(selectedItem);
+        const renderIcon = mapping.icon ? createIcon(getValueByProp(selectedItem, mapping.icon)) : '';
         
         return (
             <div data-id={uid} onClick={this.open.bind(this)} className={`r-select r-noselect r-input filled${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
@@ -229,10 +229,9 @@ class Select extends Component {
                 />
                 <label>{label}</label>
                 <span className="r-line"></span>
-                {mapping.icon && <span className="r-input-icon">{getValueByProp(selectedItem, mapping.icon)}</span>}
+                {mapping.icon && <span className="r-input-icon">{renderIcon}</span>}
                 <span className="r-icon">{icons.down}</span>
                 {this.open && this.renderOptions()}
-
             </div>
         )
     }

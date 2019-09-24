@@ -106,9 +106,9 @@ input:-webkit-autofill:active  {
 .r-input > .r-icon {
     position: absolute;
     top: .8rem;
-    right: 0;
-    
+    right: 0;  
 }
+
 .r-input > .r-icon svg {
   width: 20px !important;
 }
@@ -140,9 +140,15 @@ input:-webkit-autofill:active  {
     position: absolute;
     width: 24px;
     height: 24px;
+    font-size: 25px;
     overflow: hidden;
     top: .7rem;
     left: 0 ; 
+}
+
+.r-input.r-has-icon > .r-input-icon span {
+    position: relative;
+    top: -3px
 }
 .r-input.r-has-icon > .r-input-icon sapn{
   font-size: 22px

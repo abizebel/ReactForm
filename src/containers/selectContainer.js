@@ -81,6 +81,7 @@ class SelectContainer extends Component {
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             showKey ={true}
+            
             defaultValue ={33}
             values ={
               [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
@@ -221,9 +222,10 @@ class SelectContainer extends Component {
             label={'Last Name'}
             defaultValue ={33}
             search = {true}
+            nullable={true}
             searchLabel = {'search your item'}
             values ={
-              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              [{id:'11',name:'Hosseini' , info:{icon:'mdi mdi-account'}},
               {id:'22',name:'feiz', info:{icon:sampleIcon}},
               {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
               {id:'44',name:'khosravi', info:{icon:sampleIcon}},
