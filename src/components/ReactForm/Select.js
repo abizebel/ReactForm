@@ -48,13 +48,15 @@ class Select extends Component {
      * Create list for select options
      */
     createList (values){
-        const {nullable, mapping} = this.props;
+        const {nullable, mapping,notSelectedText, rtl} = this.props;
         let listValues = [...values];
         
         //If nullable add a fake object 
         if (nullable) {
+            const notSelected = notSelectedText ? notSelectedText : (rtl ? 'انتخاب شده' : 'No Selected');
+
             listValues.unshift({
-                [mapping.text] : 'No Selected',
+                [mapping.text] : notSelected,
                 [mapping.value] : -1
             })
         }
@@ -135,7 +137,7 @@ class Select extends Component {
         }
         else {
             options = listValues.map((o, i) => {
-                const selectedClass = (o[mapping.value] === selectedItem[mapping.value]) ? ' selected' : '';
+                const selectedClass = (selectedItem && o[mapping.value] === selectedItem[mapping.value]) ? ' selected' : '';
                 return (
                     <div key={i} className={`r-options-item${selectedClass}`} onClick={this.select.bind(this,o)}>
                         {mapping.icon && 
@@ -197,8 +199,12 @@ class Select extends Component {
      * @param {String} seperator is between key and text
      */
     getItemText (item, seperator = ""){
-        const {mapping, showKey, nullable} = this.props;
+        const {mapping, showKey, notSelectedText, rtl} = this.props;
 
+        if (!item) {
+            const notSelected = notSelectedText ? notSelectedText : (rtl ? 'انتخاب شده' : 'No Selected');
+            return notSelected;
+        }
         const text = item[mapping.text];
         const value = item[mapping.value];
 
@@ -207,9 +213,9 @@ class Select extends Component {
          * Null item is {text : 'No Selected', value : -1}
          */
         const key = (showKey && value !== -1) ? `${value} ${seperator}`  : '' ;
-        const inputValue = `${key} ${text}`;
+        const itemText = `${key} ${text}`;
 
-        return inputValue;
+        return itemText;
     }
 
     render (){
@@ -246,6 +252,7 @@ Select.defaultProps = {
     outline : false,
     disabled : false,
     nullable : false,
+    
 }
 
 export default Select

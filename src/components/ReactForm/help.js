@@ -40,6 +40,7 @@
     //Translations
     searchLabel = {'search your item'}
     notFoundMessage = {'Not Found'}
+    notSelectedText = {'Not Selected'}
 
 />
 
