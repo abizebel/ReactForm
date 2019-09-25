@@ -83,7 +83,7 @@ input:-webkit-autofill:active  {
 .r-input >input ~ .r-line,
 .r-input >textarea ~ .r-line {
     position: absolute;
-	top: 3rem;
+	top: 100%;
 	left: 0;
 	margin: 0;
 	padding: 0;
@@ -99,7 +99,7 @@ input:-webkit-autofill:active  {
 }
 
 .r-input > textarea ~ .r-line {
-  top: 3.5rem;
+  top: 100%;
 } 
 
 /* Icon */
@@ -340,5 +340,4 @@ input:-webkit-autofill:active  {
     left: unset;
    right: 40px
 }
-
 
