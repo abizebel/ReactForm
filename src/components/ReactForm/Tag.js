@@ -32,7 +32,7 @@ class Tag extends Component {
 
     componentDidMount(){
         $(document).click((e) => {
-            var len = $(e.target).closest('.rf-autocomplete').length
+            var len = $(e.target).closest('.r-autocomplete').length
             if(len === 0 && this.state.open === true){
                this.setState({open : false})
             }
@@ -45,14 +45,14 @@ class Tag extends Component {
         var options;
 
         if (usedTags.length === 0) {
-            options = (<div className="rf-options-item">Not Found</div>)
+            options = (<div className="r-options-item">Not Found</div>)
         }
         else {
             options = usedTags.map((o, i) => {
                 return (
-                    <div key={i} className="rf-options-item" onClick={this.select.bind(this,o)}>
+                    <div key={i} className="r-options-item" onClick={this.select.bind(this,o)}>
                         {mapping.icon && 
-                            <span className="rf-option-icon" onClick={this.removeTag.bind(this)}>
+                            <span className="r-option-icon" onClick={this.removeTag.bind(this)}>
                                 {createIcon(getValueByProp(o, mapping.icon))}
                             </span> 
                         }
@@ -62,7 +62,7 @@ class Tag extends Component {
             })
         }
         
-        return <div className="rf-options">{options}</div>
+        return <div className="r-options">{options}</div>
     }
 
 
@@ -72,13 +72,13 @@ class Tag extends Component {
 
             const tags = values.map((o, i) =>{
                 return (
-                    <li key={i} className="rf-tag-list-item" >{o[mapping.text]}
-                        <span className="rf-tag-icon" onClick={this.removeTag.bind(this, i)}>{icons.close}</span>
+                    <li key={i} className="r-chips-item" >{o[mapping.text]}
+                        <span className="r-tag-icon" onClick={this.removeTag.bind(this, i)}>{icons.close}</span>
                     </li>
                 )
             });
 
-            return (<ul className="rf-tag-list">{tags}</ul>)
+            return (<ul className="r-chips">{tags}</ul>)
     }
 
     select (item){
@@ -90,7 +90,7 @@ class Tag extends Component {
         change(this.state.values)
     }
     open (e){        
-        const len = $(e.target).closest('.rf-options').length;
+        const len = $(e.target).closest('.r-options').length;
         if (len === 0) {
             this.setState({open : true})
         }
@@ -189,15 +189,15 @@ class Tag extends Component {
         const {rtl, outline, label, disabled, mapping} = this.props;
         const {searchValue, open} = this.state;
         const filledClass = searchValue.length > 0 ? ' filled' :''; 
-        const rtlClass = rtl ? ' rf-rtl' :''; 
-        const outlineClass = outline ? ' rf-bordered' :''; 
-        const disabledClass = disabled ? ' rf-disabled' :''; 
+        const rtlClass = rtl ? ' r-rtl' :''; 
+        const outlineClass = outline ? ' r-bordered' :''; 
+        const disabledClass = disabled ? ' r-disabled' :''; 
         const activeClass = open ? ' active' : '';
-        const hasIconClass =  mapping.icon ? ' rf-has-icon' : '';
+        const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
         
 
         return (
-            <div className={`rf-tag${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`}  >
+            <div className={`r-tag r-input${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`}  >
                 {this.renderTags()}
                 <input 
                     disabled={disabled}
@@ -206,7 +206,7 @@ class Tag extends Component {
                     onKeyUp={this.enter.bind(this)}
                 />
                 <label>{label}</label>
-                <span className="rf-line"></span>
+                <span className="r-line"></span>
                 {this.open && this.renderOptions()}
             </div>
         )

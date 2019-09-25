@@ -61,7 +61,6 @@ input:-webkit-autofill:active  {
     top: 13px;
     left: 0;
     height: 16px;
-    bottom: 0;
     cursor: text;
     font-size: calc(var(--text-size) * 1em);
     color: var(--text-color);

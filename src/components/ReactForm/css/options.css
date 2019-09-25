@@ -13,7 +13,7 @@
 	background: #fff;
 	z-index: 3;
 	left: 0;
-	top: calc(100% + 4px)
+	top: calc(100% + 3px)
 }
 
 .active .r-options {

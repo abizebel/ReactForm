@@ -6,8 +6,18 @@
 	margin-bottom: 2rem;
 	position: relative
 }
+.r-tag.r  .r-options {
+}
+
+.r-tag > input:focus ~ label,
+.r-tag.filled > label {
+	top: unset !important;;
+	bottom: 100% !important;
+
+}
 .r-tag > label {
-	top: 4.3rem
+	top: unset;
+	bottom: 16px
 }
 
 /* Bordered */
