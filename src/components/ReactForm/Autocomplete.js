@@ -55,7 +55,7 @@ class Autcomplete extends Component {
      */
     getSelectedItem (id){
         const {values, mapping} = this.props;
-        
+
         const selectedItem = values.filter(o => {
             return String(o[mapping.value]) ===  String(id)
         })[0];
@@ -224,6 +224,7 @@ class Autcomplete extends Component {
         const {open, searchValue, selectedItem, uid} = this.state;
 
         const activeClass = open ? ' active' : '';
+        const filledClass = searchValue.length > 0  ? ' filled' :''; 
         const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
         const rtlClass = rtl ? ' r-rtl' : '';
         const outlineClass = outline ? ' r-bordered' :''; 
@@ -234,7 +235,7 @@ class Autcomplete extends Component {
         
         
         return (
-            <div data-id={uid} className={`r-autocomplete r-input filled${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div data-id={uid} className={`r-autocomplete r-input ${filledClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
             <input 
                 ref={this.inputDom}
                 disabled={disabled} 
