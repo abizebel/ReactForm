@@ -53,7 +53,8 @@
     change={this.changeAutocomplete.bind(this)}
     label={'Last Name'}
     defaultValue ={'abbas'}
-    values ={
+    api={'api/autocomplete'} //get search tag result from server
+    values ={//if not exist api use this as tag list
     [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
     {id:'22',name:'feiz', info:{icon:sampleIcon}},
     {id:'33',name:'mohammadi', info:{icon:sampleIcon}},

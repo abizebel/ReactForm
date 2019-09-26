@@ -4,6 +4,11 @@ import './ReactForm.css';
 import $ from 'jquery';
 import icons from './icons';
 
+///////////// DELETE /////////////
+const sampleIcon = <svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>;
+///////////// DELETE /////////////
+
+
 class Autcomplete extends Component {
     constructor(props) {
         super(props);
@@ -61,7 +66,7 @@ class Autcomplete extends Component {
      * Render select options
      */
     renderOptions (){
-        const {values, mapping, search ,notFoundMessage, rtl} = this.props;
+        const {mapping ,notFoundMessage, rtl} = this.props;
         const { listValues } = this.state;
         let options;
 
@@ -118,14 +123,50 @@ class Autcomplete extends Component {
         }
     }
 
+
+    ////////////////////// CHANGE //////////////////////
+    /**
+     * Get searching tag results from server
+     * 
+     * @param {String} str 
+     */
+    getTagFromServer (str){
+        const {rtl} = this.props
+        var ltrList = [
+            {id:'0110',name:'Hosseini' , info:{icon:sampleIcon}},
+            {id:'0220',name:'feiz', info:{icon:sampleIcon}},
+            {id:'0330',name:'mohammadi', info:{icon:sampleIcon}},
+            {id:'0440',name:'khosravi', info:{icon:sampleIcon}},
+            {id:'0440',name:'ranjbar', info:{icon:sampleIcon}}
+        ];
+        var rtlList = [
+            {id:'0110',name:'حسینی' , info:{icon:sampleIcon}},
+            {id:'0220',name:'فیض', info:{icon:sampleIcon}},
+            {id:'0330',name:'محمدی', info:{icon:sampleIcon}},
+            {id:'0440',name:'خسروی', info:{icon:sampleIcon}},
+            {id:'0440',name:'رنجبر', info:{icon:sampleIcon}}
+         ];
+        const list = rtl ? rtlList :ltrList;
+        const target = str.toLowerCase();
+
+        const foundValues = list.filter(o => {
+            return o.name.toLowerCase().indexOf(target)!== -1
+        })
+        return foundValues;
+    }
+    ////////////////////// CHANGE //////////////////////
+
+
+
     /**
      * Search in autocomplete options
      * 
      * @param {Event} e 
      */
-    search (e){
-        const {values, mapping, disabled, change} = this.props;
-        if (disabled) return;
+    async search (e){
+        const { mapping , change, api} = this.props;
+        const target = e.target.value.toLowerCase();
+        let foundValues ;
 
        // handle change
        this.setState({searchValue : e.target.value});
@@ -137,11 +178,16 @@ class Autcomplete extends Component {
             return;
         }
 
-        //Search
-        const target = e.target.value.toLowerCase();
-        const foundValues = values.filter(o => {
-            return o[mapping.text].toLowerCase().indexOf(target)!== -1
-        })
+        //Remote search
+        if(api){
+            foundValues = await this.getTagFromServer(target);
+        }
+        //local search
+        else { 
+            foundValues = this.values.filter(o => {
+                return o[mapping.text].toLowerCase().indexOf(target)!== -1
+            });
+        }
 
         this.setState({listValues : foundValues});
 
@@ -219,6 +265,7 @@ Autcomplete.defaultProps = {
     rtl : false,
     outline : false,
     disabled : false,
+    values : [],
 }
 
 export default Autcomplete

@@ -70,7 +70,7 @@ class Select extends Component {
      * @description Find selected value by id
      */
     getSelectedItem (id){
-        const {values, mapping} = this.props;
+        const {mapping} = this.props;
 
         const selectedItem = this.values.filter(o => {
             return String(o[mapping.value]) ===  String(id)
@@ -219,7 +219,7 @@ class Select extends Component {
     }
 
     render (){
-        const { label, mapping, rtl, disabled, outline, showKey} = this.props;
+        const { label, mapping, rtl, disabled, outline} = this.props;
         const {open, selectedItem, uid} = this.state;
         const activeClass = open ? ' active' : '';
         const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
