@@ -55,6 +55,7 @@ class Autcomplete extends Component {
      */
     getSelectedItem (id){
         const {values, mapping} = this.props;
+        
         const selectedItem = values.filter(o => {
             return String(o[mapping.value]) ===  String(id)
         })[0];

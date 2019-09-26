@@ -197,17 +197,16 @@ class Tag extends Component {
      * @param {Object} tag 
      */
     addTag (tag){
-        const { disabled} = this.props;
-
         if (this.isExist(tag)) return ;
-        if (disabled) return ;
 
         this.setState((prevState) =>{
             prevState.tags.push(tag);
             return {
                 tags : prevState.tags
             }
-        })
+        });
+        
+        this.setState({searchValue : ''})
     }
     
     /**
@@ -295,6 +294,7 @@ class Tag extends Component {
             <div data-id={uid} className={`r-tag r-input${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`} >
                 {this.renderTags()}
                 <input 
+                    value={searchValue}
                     disabled={disabled}
                     ref={this.inputDom} type="text" 
                     onChange={this.search.bind(this)} 
