@@ -15,7 +15,9 @@ class AutocomplteContainer extends Component {
           <div className="page-content-title">Tag</div>
           <Tag change={this.changeTag.bind(this)}
             label={'Last Name'}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
+            api={'api/getTag'} //get search tag result from server
+
             values ={
               [{id:'11',name:'Hosseini' },
               {id:'22',name:'feiz'},
@@ -28,7 +30,7 @@ class AutocomplteContainer extends Component {
           <Tag change={this.changeTag.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
               [{id:'11',name:'حسینی' },
               {id:'22',name:'فیض'},
@@ -47,7 +49,7 @@ class AutocomplteContainer extends Component {
           <Tag change={this.changeTag.bind(this)}
             outline = {true}
             label={'Last Name'}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
               [{id:'11',name:'Hosseini' },
               {id:'22',name:'feiz'},
@@ -62,7 +64,7 @@ class AutocomplteContainer extends Component {
             outline = {true}
 
             label={'نام خانوادگی'}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
               [{id:'11',name:'حسینی' },
               {id:'22',name:'فیض'},
@@ -80,7 +82,7 @@ class AutocomplteContainer extends Component {
           <Tag change={this.changeTag.bind(this)}
             label={'Last Name'}
             disabled={true}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
               [{id:'11',name:'Hosseini' },
               {id:'22',name:'feiz'},
@@ -95,7 +97,7 @@ class AutocomplteContainer extends Component {
             disabled={true}
 
             label={'نام خانوادگی'}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
               [{id:'11',name:'حسینی' },
               {id:'22',name:'فیض'},
@@ -116,7 +118,7 @@ class AutocomplteContainer extends Component {
             label={'Last Name'}
             disabled={true}
 
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
               [{id:'11',name:'Hosseini' },
               {id:'22',name:'feiz'},
@@ -132,7 +134,7 @@ class AutocomplteContainer extends Component {
             disabled={true}
 
             label={'نام خانوادگی'}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
               [{id:'11',name:'حسینی' },
               {id:'22',name:'فیض'},

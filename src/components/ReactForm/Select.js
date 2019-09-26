@@ -163,7 +163,7 @@ class Select extends Component {
      * @param {Event} e 
      */
     search (e){
-        const {values, mapping} = this.props;
+        const {mapping} = this.props;
 
         //Reset list if input hasnt value
         if(e.target.value.length === 0) {

@@ -76,15 +76,16 @@
 <Tag 
     change={this.changeTag.bind(this)}
     label={'Last Name'}
-    defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
-    values ={
-        [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
-        {id:'22',name:'feiz', info:{icon:sampleIcon}},
-        {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
-        {id:'44',name:'khosravi', info:{icon:sampleIcon}},
-        {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+    defaultValue ={[{name : 'ahmadi'},{name : 'rahimi'}]}
+    api={'api/getTag'} //get search tag result from server
+    values ={//if not exist api use this as tag list
+        [{id:'11',name:'Hosseini' },
+        {id:'22',name:'feiz'},
+        {id:'33',name:'mohammadi'},
+        {id:'44',name:'khosravi'},
+        {id:'44',name:'ranjbar'}
     ]}
-    mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+    mapping = {{text : 'name', value : 'id',}}
     //Boolean items
     rtl={true}
     disabled={true}

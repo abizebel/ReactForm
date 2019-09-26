@@ -13,11 +13,13 @@ class Tag extends Component {
     constructor(props){
         super(props);
 
+        this.values = [...this.props.values];
+
         this.state = {
             open : false,
             searchValue :  '',
-            tags : this.values || [], // tags
-            listValues : [], //search list
+            tags : [...this.props.defaultValue] || [], // tags
+            listValues :  this.values, //search list
             selectedItem : null,
             uid : createUID(),
 
@@ -247,21 +249,32 @@ class Tag extends Component {
      * @param {Evenet} e 
      */
     async search (e){
-        const {disabled} = this.props;
-        if (disabled) return;
+        const {api, mapping} = this.props;
+        const target = e.target.value.toLowerCase();
+        let foundValues ;
 
-        //handlechange
+        //handle change
         this.handleChange(e);
 
-       //Close 
+       //Close if search value is empty
         if(e.target.value.length === 0) {
             this.setState({open : false})
             return;
         }
-
+        
         //Remote search
-        const tagList = await this.getTagFromServer(e.target.value);
-        this.setState({listValues : tagList});
+        if(api){
+            foundValues = await this.getTagFromServer(target);
+        }
+        //local search
+        else { 
+            foundValues = this.values.filter(o => {
+                return o[mapping.text].toLowerCase().indexOf(target)!== -1
+            });
+        }
+        
+        //Update tag list
+        this.setState({listValues : foundValues});
 
         //Open
         this.open(e)
@@ -299,6 +312,7 @@ Tag.defaultProps = {
     rtl : false,
     outline : false,
     disabled : false,
+    values : [],
 }
 
 export default Tag;
