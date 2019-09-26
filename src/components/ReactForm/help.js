@@ -76,9 +76,6 @@
 <Tag 
     change={this.changeTag.bind(this)}
     label={'Last Name'}
-    rtl={true}
-    disabled={true}
-    outline = {true}
     defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
     values ={
         [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
@@ -88,6 +85,13 @@
         {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
     ]}
     mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+    //Boolean items
+    rtl={true}
+    disabled={true}
+    outline = {true}
+    //Translate
+    notFoundMessage = {'Not Found'}
+
 />
 
 /************************************************************

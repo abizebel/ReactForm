@@ -23,7 +23,7 @@ class AutocomplteContainer extends Component {
               {id:'44',name:'khosravi'},
               {id:'44',name:'ranjbar'}
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
           <Tag change={this.changeTag.bind(this)}
             rtl={true}
@@ -37,7 +37,7 @@ class AutocomplteContainer extends Component {
               {id:'44',name:'رنجبر'},
               {id:'55',name:'جعفری'}
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
 
 
@@ -55,7 +55,7 @@ class AutocomplteContainer extends Component {
               {id:'44',name:'khosravi'},
               {id:'44',name:'ranjbar'}
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
           <Tag change={this.changeTag.bind(this)}
             rtl={true}
@@ -72,7 +72,7 @@ class AutocomplteContainer extends Component {
               {id:'55',name:'جعفری'}
 
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
         </div>
           <div className="page-content-box" >
@@ -88,7 +88,7 @@ class AutocomplteContainer extends Component {
               {id:'44',name:'khosravi'},
               {id:'44',name:'ranjbar'}
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
           <Tag change={this.changeTag.bind(this)}
             rtl={true}
@@ -104,7 +104,7 @@ class AutocomplteContainer extends Component {
               {id:'44',name:'رنجبر'},
               {id:'55',name:'جعفری'}
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
 
 
@@ -124,7 +124,7 @@ class AutocomplteContainer extends Component {
               {id:'44',name:'khosravi'},
               {id:'44',name:'ranjbar'}
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
           <Tag change={this.changeTag.bind(this)}
             rtl={true}
@@ -142,7 +142,7 @@ class AutocomplteContainer extends Component {
               {id:'55',name:'جعفری'}
 
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
 
 

@@ -1,5 +1,5 @@
 import React, {Component, createRef} from 'react';
-import {getValueByProp, createIcon} from './functions';
+import {getValueByProp, createIcon,createUID} from './functions';
 import icons from './icons';
 import './ReactForm.css';
 import $ from 'jquery';
@@ -12,12 +12,15 @@ const sampleIcon = <svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 
 class Tag extends Component {
     constructor(props){
         super(props);
+
         this.state = {
             open : false,
             searchValue :  '',
-            values : this.props.values || [],//tags
-            usedTags : [],
-            selectedItem : null
+            tags : this.values || [], // tags
+            listValues : [], //search list
+            selectedItem : null,
+            uid : createUID(),
+
         }
         this.inputDom = createRef()
     }
@@ -31,24 +34,43 @@ class Tag extends Component {
 
 
     componentDidMount(){
+        const {uid} = this.state;
+
         $(document).click((e) => {
-            var len = $(e.target).closest('.r-autocomplete').length
-            if(len === 0 && this.state.open === true){
-               this.setState({open : false})
+            let selectElement = $(e.target).closest('.r-autocomplete');
+
+            /* *
+             * When one dropdown is opened close another
+             */
+            if (selectElement.attr('data-id') !== uid) {
+                this.setState({open : false});
+            }
+
+            /**
+             * If select was open and clicked outside of it close it
+             * length == 0 means that user clicked outside of select
+             */
+            if(selectElement.length === 0 && this.state.open === true){
+               this.setState({open : false});
             }
         })
     }
 
+    /**
+     * Render tag list for selection
+     */
     renderOptions (){
         const {mapping} = this.props;
-        const {usedTags} = this.state;
+        const {listValues} = this.state;
         var options;
 
-        if (usedTags.length === 0) {
+        if (listValues.length === 0) {
             options = (<div className="r-options-item">Not Found</div>)
         }
+
+
         else {
-            options = usedTags.map((o, i) => {
+            options = listValues.map((o, i) => {
                 return (
                     <div key={i} className="r-options-item" onClick={this.select.bind(this,o)}>
                         {mapping.icon && 
@@ -65,12 +87,14 @@ class Tag extends Component {
         return <div className="r-options">{options}</div>
     }
 
-
+    /**
+     * Render tag list
+     */
     renderTags (){
-        const {values} = this.state;
+        const {tags} = this.state;
         const {mapping} = this.props;
 
-            const tags = values.map((o, i) =>{
+            const tagEls = tags.map((o, i) =>{
                 return (
                     <li key={i} className="r-chips-item" >{o[mapping.text]}
                         <span className="r-tag-icon" onClick={this.removeTag.bind(this, i)}>{icons.close}</span>
@@ -78,17 +102,28 @@ class Tag extends Component {
                 )
             });
 
-            return (<ul className="r-chips">{tags}</ul>)
+            return (<ul className="r-chips">{tagEls}</ul>)
     }
 
+    /**
+     * Select and and tag to tag list1
+     * 
+     * @param {Object} item 
+     */
     select (item){
         const {change} = this.props;
 
         this.setState({selectedItem:item})
         this.addTag(item)
         this.setState({open:false})
-        change(this.state.values)
+        change(this.state.tags)
     }
+
+    /**
+     * Open tag list
+     * 
+     * @param {Event} e 
+     */
     open (e){        
         const len = $(e.target).closest('.r-options').length;
         if (len === 0) {
@@ -96,8 +131,20 @@ class Tag extends Component {
         }
     }
 
+    /**
+     * Close tag list
+     */
+    close (){
+        this.setState({open : false})
+    }
+
 
     ////////////////////// CHANGE //////////////////////
+    /**
+     * Get searching tag results from server
+     * 
+     * @param {String} str 
+     */
     getTagFromServer (str){
         const {rtl} = this.props
         var ltrList = [
@@ -124,10 +171,29 @@ class Tag extends Component {
     }
     ////////////////////// CHANGE //////////////////////
 
-    isExist (){
-        //const {values} = this.state;
+    /**
+     * Preventing add duplicate tag to tag list
+     * 
+     * @param {Object} tag
+     * @returns {Boolean}
+     */
+    isExist (tag){
+        const {mapping} = this.props;
+        const {tags} = this.state;
+
+        for (var i=0 ; i< tags.length ; i++) {
+            if(tag[mapping.text] === tags[i][mapping.text]) {
+                return true;
+            }
+        }
+        return false;
     }
 
+    /**
+     * Add tag to the tag list
+     * 
+     * @param {Object} tag 
+     */
     addTag (tag){
         const { disabled} = this.props;
 
@@ -135,36 +201,52 @@ class Tag extends Component {
         if (disabled) return ;
 
         this.setState((prevState) =>{
-            prevState.values.push(tag)
+            prevState.tags.push(tag);
             return {
-                values : prevState.values
+                tags : prevState.tags
             }
         })
     }
     
+    /**
+     * Remove tag from tag list
+     * 
+     * @param {Number} index 
+     */
     removeTag (index){
         const {change,disabled} = this.props;
 
         if (disabled) return ;
 
-        let {values} = this.state
-        values.splice(index, 1 )
-        this.setState({values})
-        change(values)
+        let {tags} = this.state
+        tags.splice(index, 1 )
+        this.setState({tags})
+        change(tags)
 
     }
 
+    /**
+     * Press enter ky on keyboard
+     * 
+     * @param {Event} e 
+     */
     enter (e){
         const {mapping, change} = this.props;
+
         if (e.keyCode === 13) {
-            this.addTag( {[mapping.text] : this.inputDom.current.value});
+            this.addTag({[mapping.text] : this.inputDom.current.value});
             this.setState({open:false});
-            change(this.state.values);
+            change(this.state.tags);
         }
        
     }
 
-    search (e){
+    /**
+     * Search for a tag
+     * 
+     * @param {Evenet} e 
+     */
+    async search (e){
         const {disabled} = this.props;
         if (disabled) return;
 
@@ -178,8 +260,8 @@ class Tag extends Component {
         }
 
         //Remote search
-        const tagList = this.getTagFromServer(e.target.value);
-        this.setState({usedTags : tagList});
+        const tagList = await this.getTagFromServer(e.target.value);
+        this.setState({listValues : tagList});
 
         //Open
         this.open(e)
@@ -187,8 +269,8 @@ class Tag extends Component {
 
     render (){
         const {rtl, outline, label, disabled, mapping} = this.props;
-        const {searchValue, open} = this.state;
-        const filledClass = searchValue.length > 0 ? ' filled' :''; 
+        const {searchValue, open, tags, uid} = this.state;
+        const filledClass = (searchValue.length > 0 || tags.length >0) ? ' filled' :''; 
         const rtlClass = rtl ? ' r-rtl' :''; 
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 
@@ -197,7 +279,7 @@ class Tag extends Component {
         
 
         return (
-            <div className={`r-tag r-input${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`}  >
+            <div data-id={uid} className={`r-tag r-input${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`} >
                 {this.renderTags()}
                 <input 
                     disabled={disabled}
@@ -219,4 +301,4 @@ Tag.defaultProps = {
     disabled : false,
 }
 
-export default Tag
+export default Tag;
