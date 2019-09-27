@@ -5,7 +5,9 @@
 .r-select {
     cursor: pointer;  
 }
-
+.r-select > input {
+    padding-right: 28px
+}
 /* Animated arrow */
 .r-select .r-icon {
     transition: .2s ease-in-out all;    
@@ -16,3 +18,11 @@
     transform: rotate(180deg);
     top: 5px
 } 
+
+
+/* RTL */
+
+.r-select.r-rtl > input {
+    padding-right: unset;
+    padding-left: 28px;
+}
