@@ -31,6 +31,7 @@
     mapping = {{text : 'name', value : 'id'}} //dataset for managing server model diffrences
     defaultValue ={33} // is id of selected value
     //Boolean items
+    multi={true} // multi selecting => defaultValue should be array [33,22]
     nullable={true} // user cant select no item
     showKey ={true} // show key on select list
     outline={true}  // outlined input
@@ -102,7 +103,10 @@
 
 <Checkbox 
 change={this.changeCheckbox.bind(this)}
+defaultValue={}
 rtl={true}
 disabled={true}
 size = {'xs' || 'lg'}
+justViewMode={true}//when true handle checkbox just with defaultValue hanle change not work
+nospace={true} //When use it into other componenet remove spaces
 />

@@ -1,19 +1,22 @@
 import React, {Component} from 'react';
-
+import $ from 'jquery';
+import Checkbox from './Checkbox';
 import {getValueByProp, createIcon, createUID} from './functions';
 import icons from './icons';
 import './ReactForm.css';
-import $ from 'jquery';
 
 class Select extends Component {
     constructor(props) {
         super(props);
 
-        this.values =  this.createList (this.props.values);
-
+        const {values , defaultValue} = this.props;
+        this.values =  this.createList (values);
+        //Our method always get array and when user send "String" should be convert to array
+        const selectedIds = typeof defaultValue === 'Number' ?  [defaultValue] : defaultValue;
+        
         this.state = {
             open : false,
-            selectedItem : this.getSelectedItem (this.props.defaultValue),
+            selectedItems : this.getSelectedItems (selectedIds),
             listValues :  this.values,
             uid : createUID(),
         }
@@ -50,6 +53,11 @@ class Select extends Component {
     createList (values){
         const {nullable, mapping,notSelectedText, rtl} = this.props;
         let listValues = [...values];
+
+        //Add flag to all items
+          listValues.forEach(o =>{
+            o.selected = false
+        })
         
         //If nullable add a fake object 
         if (nullable) {
@@ -57,29 +65,30 @@ class Select extends Component {
 
             listValues.unshift({
                 [mapping.text] : notSelected,
-                [mapping.value] : -1
+                [mapping.value] : -99,
             })
         }
+
+
 
         return listValues;
     }
 
     /**
      * 
-     * @param {Number || String} id 
-     * @description Find selected value by id
+     * @param {Number} id 
+     * @description Find selected value by id for single select
      */
-    getSelectedItem (id){
+    getSelectedItems (id){
         const {mapping} = this.props;
 
-        const selectedItem = this.values.filter(o => {
-            return String(o[mapping.value]) ===  String(id)
-        })[0];
+        const selectedItems = this.values.filter(o => {
+            return Number(o[mapping.value]) === id
+        });
 
-        return selectedItem;
+        return selectedItems;
     }
     
-  
 
     /**
      * Open popup
@@ -101,33 +110,121 @@ class Select extends Component {
     }
 
     /**
+     * Preventing add duplicate item to selected list
      * 
-     * @param {Object} selectedItem 
+     * @param {Object} item
+     * @returns {Boolean}
+     */
+    isExist (item){
+        const {mapping} = this.props;
+        const {selectedItems} = this.state;
+
+        for (var i=0 ; i< selectedItems.length ; i++) {
+            if(selectedItems[i][mapping.value] === item[mapping.value]) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Find item index in selected list
+     * 
+     * @param {Object} item
+     * @returns {Boolean}
+     */
+    findItemIndex (item){
+        const {mapping} = this.props;
+        const {selectedItems} = this.state;
+
+        for (var i=0 ; i< selectedItems.length ; i++) {
+            if(selectedItems[i][mapping.value] === item[mapping.value]) {
+                return i;
+            }
+        }
+
+    }
+
+    toggleSelect (item){
+        const {change} = this.props;
+        
+        this.setState(prevState => {
+            
+            if(this.isExist(item)) {
+                const itemIndex = this.findItemIndex(item);
+                prevState.selectedItems.splice(itemIndex, 1 )
+            }
+            else {
+                prevState.selectedItems.push(item);
+            }
+            
+            return {
+                selectedItems : prevState.selectedItems
+            }
+        });
+
+        change(this.state.selectedItems)
+    }
+
+
+    toggleOptions (index){
+        this.setState(prevState => {
+
+            prevState.listValues[index].selected = !prevState.listValues[index].selected;
+            return {
+                listValues : prevState.listValues
+            }
+        })
+    }
+
+    deselectOptions (){
+        this.setState(prevState => {
+            prevState.listValues.forEach(o => (o.selected = false))
+            return {
+                listValues : prevState.listValues
+            }
+        })
+    }
+    /**
+     * 
+     * @param {Object} item 
      * @description Select a item that user clicked on it 
      */
-    select (selectedItem){
-        const {change, mapping} = this.props;
+    select (item, index){
+        const {change, mapping, multi} = this.props;
 
-        this.setState({selectedItem})
-        this.setState({open:false});
-
-        const text = selectedItem[mapping.text];
-        const value = selectedItem[mapping.value];
         /**
-         * If user had selected no item send Null otherwise send selected object
-         * Null item is {text : 'No Selected', value : -1}
+         * If user had selected "no item" send Null otherwise send selected object
+         * Null item is {text : 'No Selected', value : -99}
          */
-        let changedItem = value === -1 ? null : {text , value }
-
-        change(changedItem)
+        if (item[mapping.value] === -99) {
+            this.deselectOptions()
+            this.setState({selectedItems : []});
+            this.setState({open:false});
+            change(null);
+            return;
+        }
+        
+        if (multi){
+            this.toggleOptions(index);
+            this.toggleSelect(item) ;
+        }
+        else {
+            this.setState({selectedItems : [item]})
+            this.setState({open:false});
+            change(item);
+            
+        }
+ 
     }
 
     /**
      * Render select options
      */
     renderOptions (){
-        const {mapping, search ,notFoundMessage, rtl} = this.props;
-        const {listValues , selectedItem } = this.state;
+        const {mapping, search ,notFoundMessage, rtl, multi} = this.props;
+        const {listValues , selectedItems } = this.state;
         let options;
 
         //If options list is empty show "Not Found"
@@ -137,13 +234,22 @@ class Select extends Component {
         }
         else {
             options = listValues.map((o, i) => {
-                const selectedClass = (selectedItem && o[mapping.value] === selectedItem[mapping.value]) ? ' selected' : '';
+                const selectedClass = (selectedItems && o[mapping.value] === selectedItems[mapping.value]) ? ' selected' : '';
                 return (
-                    <div key={i} className={`r-options-item${selectedClass}`} onClick={this.select.bind(this,o)}>
+                    <div key={i} className={`r-options-item${selectedClass}`} onClick={this.select.bind(this,o,i)}>
                         {mapping.icon && 
                             <span className="r-option-icon">
                                 {createIcon(getValueByProp(o, mapping.icon))}
                             </span> 
+                        }
+                        {multi && o.selected !== undefined &&
+                            <Checkbox 
+                                justViewMode={true} 
+                                size={'xs'} 
+                                nospace={true} 
+                                rtl={rtl} 
+                                defaultValue={o.selected}
+                            />
                         }
                         {this.getItemText(o, '-')}
                     </div>
@@ -194,40 +300,72 @@ class Select extends Component {
     }
 
     /**
-     * Get input value 
+     * Get list item value
      * 
+     * @param {Object} item 
      * @param {String} seperator is between key and text
+     * @returns {String}
      */
     getItemText (item, seperator = ""){
         const {mapping, showKey, notSelectedText, rtl} = this.props;
 
-        if (!item) {
-            const notSelected = notSelectedText ? notSelectedText : (rtl ? 'انتخاب شده' : 'No Selected');
-            return notSelected;
-        }
         const text = item[mapping.text];
         const value = item[mapping.value];
 
         /**
          * Null item should not show key
-         * Null item is {text : 'No Selected', value : -1}
+         * Null item is {text : 'No Selected', value : -99}
          */
-        const key = (showKey && value !== -1) ? `${value} ${seperator}`  : '' ;
+        const key = (showKey && value !== -99) ? `${value} ${seperator}`  : '' ;
         const itemText = `${key} ${text}`;
 
         return itemText;
     }
 
+     /**
+     * Get input value when single selecting
+     * 
+     * @param {Array} item 
+     * @param {String} seperator is between key and text
+     * @returns {String}
+     */
+    getInputText (){
+        const {mapping, showKey, notSelectedText, rtl} = this.props;
+        const {selectedItems} = this.state
+        let inputText = '';
+
+        if (!selectedItems || selectedItems.length === 0) {
+            const notSelected = notSelectedText ? notSelectedText : (rtl ? 'انتخاب شده' : 'No Selected');
+            return notSelected;
+        }
+
+        selectedItems.forEach(o =>{
+            const text = o[mapping.text];
+            const value = o[mapping.value];
+            /**
+             * Null item should not show key
+             * Null item is {text : 'No Selected', value : -99}
+             */
+            const key = (showKey && value !== -99) ? `${value}`  : '' ;
+            inputText += `${key} ${text}`;
+
+        })
+        
+        return inputText
+    }
+
+
+
     render (){
-        const { label, mapping, rtl, disabled, outline} = this.props;
-        const {open, selectedItem, uid} = this.state;
+        const { label, mapping, rtl, disabled, outline, multi} = this.props;
+        const {open, selectedItems, uid} = this.state;
         const activeClass = open ? ' active' : '';
         const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
         const rtlClass = rtl ? ' r-rtl' : '';
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 
-        const inputValue = this.getItemText(selectedItem);
-        const renderIcon = mapping.icon ? createIcon(getValueByProp(selectedItem, mapping.icon)) : '';
+        const inputValue = this.getInputText();
+        const renderIcon = mapping.icon ? createIcon(getValueByProp(selectedItems, mapping.icon)) : '';
         
         return (
             <div data-id={uid} onClick={this.open.bind(this)} className={`r-select r-noselect r-input filled${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
@@ -252,6 +390,7 @@ Select.defaultProps = {
     outline : false,
     disabled : false,
     nullable : false,
+    multi : false,
     
 }
 

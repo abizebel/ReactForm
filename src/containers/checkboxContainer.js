@@ -14,6 +14,7 @@ class CheckboxContainer extends Component {
         <div className="page-content-box" >
           <div className="page-content-title">Checkbox & Disabled</div>
             <Checkbox 
+                defaultValue={true}
                 label={'I Agree'}
                 change={this.changeCheckbox.bind(this)}
                 size={'lg'}
