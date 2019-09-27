@@ -6,8 +6,15 @@
     cursor: pointer;  
 }
 .r-select > input {
-    padding-right: 28px
+    padding-right: 28px;
 }
+/* Multi Select Checkbox*/
+.r-select  .r-checkbox.r-nospace .r-checkbox-fake {
+    margin-top: 3px;
+	padding-right: 16px
+
+}
+
 /* Animated arrow */
 .r-select .r-icon {
     transition: .2s ease-in-out all;    
@@ -25,4 +32,9 @@
 .r-select.r-rtl > input {
     padding-right: unset;
     padding-left: 28px;
+}
+/* Multi Select Checkbox*/
+.r-select.r-rtl .r-checkbox.r-nospace .r-checkbox-fake {
+    padding: 0;
+	margin-left:16px !important;
 }

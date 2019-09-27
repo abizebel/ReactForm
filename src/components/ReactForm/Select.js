@@ -243,20 +243,23 @@ class Select extends Component {
                 const selectedClass = (selectedItems && o[mapping.value] === selectedItems[mapping.value]) ? ' selected' : '';
                 return (
                     <div key={i} className={`r-options-item${selectedClass}`} onClick={this.select.bind(this,o,i)}>
-                        {mapping.icon && 
-                            <span className="r-option-icon">
-                                {createIcon(getValueByProp(o, mapping.icon))}
-                            </span> 
-                        }
+                      
                         {multi && o[mapping.value] !==-99 &&
                             <Checkbox 
+                                size={'xs'}
                                 justViewMode={true} 
-                                size={'xs'} 
                                 nospace={true} 
                                 rtl={rtl} 
                                 defaultValue={o.selected}
                             />
                         }
+
+                        {mapping.icon && 
+                            <span className="r-option-icon">
+                                {createIcon(getValueByProp(o, mapping.icon))}
+                            </span> 
+                        }
+
                         {this.getItemText(o, '-')}
                     </div>
                 )
@@ -348,17 +351,17 @@ class Select extends Component {
             return notSelected;
         }
 
-        const seperator = multi && selectedItems.length >1 ? ' , ' : '';
-        selectedItems.forEach(o =>{
+        selectedItems.forEach((o,i) =>{
             const text = o[mapping.text];
             const value = o[mapping.value];
+            const seperator = multi && selectedItems.length >1 && i>0 ? ' , ' : '';
 
             /**
              * Null item should not show key
              * Null item is {text : 'No Selected', value : -99}
              */
             const key = (showKey && value !== -99) ? `${value}`  : '' ;
-            inputText += `${key} ${text}${seperator}`;
+            inputText += `${seperator}${key} ${text}`;
 
         })
         
