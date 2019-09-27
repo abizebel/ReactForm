@@ -10,13 +10,13 @@ class Select extends Component {
         super(props);
 
         const {values , defaultValue} = this.props;
-        this.values =  this.createList (values);
         //Our method always get array and when user send "String" should be convert to array
-        const selectedIds = typeof defaultValue === 'Number' ?  [defaultValue] : defaultValue;
+        this.selectedIds = typeof defaultValue === 'number' ?  [defaultValue] : defaultValue;
+        this.values =  this.createList (values);
         
         this.state = {
             open : false,
-            selectedItems : this.getSelectedItems (selectedIds),
+            selectedItems : this.getSelectedItems (this.selectedIds),
             listValues :  this.values,
             uid : createUID(),
         }
@@ -46,18 +46,25 @@ class Select extends Component {
         })
     }
 
+    addSelectedProp (values){
+        const {mapping, multi} = this.props;
+
+        values.forEach(o =>{
+            o.selected = false;
+            if(multi && this.selectedIds.indexOf(Number(o[mapping.value])) !==-1){
+                o.selected = true
+            }
+        });
+    }
 
     /**
      * Create list for select options
      */
     createList (values){
-        const {nullable, mapping,notSelectedText, rtl} = this.props;
+        const {nullable, mapping,notSelectedText, rtl,multi} = this.props;
         let listValues = [...values];
-
-        //Add flag to all items
-          listValues.forEach(o =>{
-            o.selected = false
-        })
+        
+        this.addSelectedProp(listValues)
         
         //If nullable add a fake object 
         if (nullable) {
@@ -68,8 +75,6 @@ class Select extends Component {
                 [mapping.value] : -99,
             })
         }
-
-
 
         return listValues;
     }
@@ -83,7 +88,8 @@ class Select extends Component {
         const {mapping} = this.props;
 
         const selectedItems = this.values.filter(o => {
-            return Number(o[mapping.value]) === id
+            return id.indexOf(Number(o[mapping.value])) !== -1
+
         });
 
         return selectedItems;
@@ -242,7 +248,7 @@ class Select extends Component {
                                 {createIcon(getValueByProp(o, mapping.icon))}
                             </span> 
                         }
-                        {multi && o.selected !== undefined &&
+                        {multi && o[mapping.value] !==-99 &&
                             <Checkbox 
                                 justViewMode={true} 
                                 size={'xs'} 
@@ -258,7 +264,10 @@ class Select extends Component {
         }
         
         return (
-             <div className="r-options">{search && this.renderSearch()}{options}</div>
+            <div className="r-options">
+                {search && this.renderSearch()}
+                <div className="r-options-items">{options}</div>
+            </div>
         )
         
     }
@@ -330,7 +339,7 @@ class Select extends Component {
      * @returns {String}
      */
     getInputText (){
-        const {mapping, showKey, notSelectedText, rtl} = this.props;
+        const {mapping, showKey, notSelectedText, rtl, multi} = this.props;
         const {selectedItems} = this.state
         let inputText = '';
 
@@ -339,15 +348,17 @@ class Select extends Component {
             return notSelected;
         }
 
+        const seperator = multi && selectedItems.length >1 ? ' , ' : '';
         selectedItems.forEach(o =>{
             const text = o[mapping.text];
             const value = o[mapping.value];
+
             /**
              * Null item should not show key
              * Null item is {text : 'No Selected', value : -99}
              */
             const key = (showKey && value !== -99) ? `${value}`  : '' ;
-            inputText += `${key} ${text}`;
+            inputText += `${key} ${text}${seperator}`;
 
         })
         

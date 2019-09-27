@@ -92,7 +92,9 @@ class Autcomplete extends Component {
         }
         
         return (
-             <div className="r-options">{options}</div>
+            <div className="r-options">
+                <div className="r-options-items">{options}</div>
+            </div>
         )
         
     }

@@ -5,8 +5,7 @@
 .r-select {
     cursor: pointer;  
 }
-.r-select  .r-options {
-}
+
 /* Animated arrow */
 .r-select .r-icon {
     transition: .2s ease-in-out all;    

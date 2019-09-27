@@ -15,7 +15,10 @@
 	left: 0;
 	top: calc(100% + 3px)
 }
-
+.r-options-items {
+	max-height: 300px;
+	overflow-y: auto
+}
 .active .r-options {
 	display: block
 }

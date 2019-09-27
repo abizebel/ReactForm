@@ -15,7 +15,7 @@ class SelectContainer extends Component {
           <div className="page-content-title">Select</div>
           <Select   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
-            defaultValue ={33}
+            defaultValue ={11}
             multi={true}
             showKey ={true}
             nullable={true}
@@ -26,7 +26,10 @@ class SelectContainer extends Component {
               {id:'22',name:'feiz', info:{icon:sampleIcon}},
               {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
               {id:'44',name:'khosravi', info:{icon:sampleIcon}},
-              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}},
+              {id:'66',name:'aghapour', info:{icon:sampleIcon}},
+              {id:'77',name:'mardanian', info:{icon:sampleIcon}},
+              {id:'88',name:'babaei', info:{icon:sampleIcon}}
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />

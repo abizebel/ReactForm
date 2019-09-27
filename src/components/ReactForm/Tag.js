@@ -86,7 +86,12 @@ class Tag extends Component {
             })
         }
         
-        return <div className="r-options">{options}</div>
+        return (
+            <div className="r-options">
+                <div className="r-options-items">{options}</div>
+            </div>
+        )
+      
     }
 
     /**

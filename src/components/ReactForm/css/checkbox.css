@@ -158,11 +158,14 @@
 .r-checkbox.r-nospace{
 	margin: unset;
 	display: unset;
+	padding: 8px
 }
 .r-checkbox.r-nospace > label{
 		display:unset;
 }
-
+.r-checkbox.r-nospace .r-checkbox-text {
+	padding: 0
+}
 /* Rtl */
 
 .r-checkbox.r-rtl {
