@@ -1,5 +1,5 @@
 import React, {Component, createRef} from 'react';
-import {getValueByProp, createIcon} from './functions';
+import {getValueByProp, createIcon, createUID} from './functions';
 import './ReactForm.css';
 import $ from 'jquery';
 import icons from './icons';
@@ -21,9 +21,32 @@ class Autcomplete extends Component {
             searchValue : this.props.defaultValue || '',
             listValues : this.values,
             selectedItem : null,
+            uid : createUID(),
         }
     }
 
+    componentDidMount(){
+        const {uid} = this.state;
+
+        $(document).click((e) => {
+            let selectElement = $(e.target).closest('.r-autocomplete');
+
+            /* *
+             * When one dropdown is opened close another
+             */
+            if (selectElement.attr('data-id') !== uid) {
+                this.setState({open : false});
+            }
+
+            /**
+             * If select was open and clicked outside of it close it
+             * length == 0 means that user clicked outside of select
+             */
+            if(selectElement.length === 0 && this.state.open === true){
+               this.setState({open : false});
+            }
+        })
+    }
 
     /**
      * 
@@ -97,19 +120,10 @@ class Autcomplete extends Component {
      * @param {Event} e 
      */
     open (e){        
-        this.setState({open : true})
-    }
-
-    /**
-     * Close autocomplete
-     * 
-     * @param {Event} e 
-     */
-    close (e){        
-        setTimeout(()=>{
-            this.setState({open : false})
-        },100)
-        
+        const len = $(e.target).closest('.r-options').length;
+        if (len === 0) {
+            this.setState({open : true})
+        }
     }
 
 
@@ -150,8 +164,7 @@ class Autcomplete extends Component {
     /**
      * Search in autocomplete options
      * 
-     * @param {Event} e             uid : createUID(),
-
+     * @param {Event} e 
      */
     async search (e){
         const { mapping , change, api} = this.props;
@@ -172,8 +185,7 @@ class Autcomplete extends Component {
         if(api){
             foundValues = await this.getTagFromServer(target);
         }
-        //local search            uid : createUID(),
-
+        //local search
         else { 
             foundValues = this.values.filter(o => {
                 return o[mapping.text].toLowerCase().indexOf(target)!== -1
@@ -211,7 +223,7 @@ class Autcomplete extends Component {
 
     render (){
         const {label, mapping, rtl, disabled, outline, defaultValue} = this.props;
-        const {open, searchValue, selectedItem} = this.state;
+        const {open, searchValue, selectedItem, uid} = this.state;
 
         const activeClass = open ? ' active' : '';
         const filledClass = searchValue.length > 0  ? ' filled' :''; 
@@ -225,9 +237,8 @@ class Autcomplete extends Component {
         
         
         return (
-            <div className={`r-autocomplete r-input ${filledClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div data-id={uid} className={`r-autocomplete r-input ${filledClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
             <input 
-                onBlur={this.close.bind(this)}
                 ref={this.inputDom}
                 disabled={disabled} 
                 type="text" 

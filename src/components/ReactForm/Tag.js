@@ -1,7 +1,8 @@
 import React, {Component, createRef} from 'react';
-import {getValueByProp, createIcon} from './functions';
+import {getValueByProp, createIcon,createUID} from './functions';
 import icons from './icons';
 import './ReactForm.css';
+import $ from 'jquery';
 
 ///////////// DELETE /////////////
 const sampleIcon = <svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>;
@@ -20,6 +21,7 @@ class Tag extends Component {
             tags : [...this.props.defaultValue] || [], // tags
             listValues :  this.values, //search list
             selectedItem : null,
+            uid : createUID(),
 
         }
         this.inputDom = createRef()
@@ -33,6 +35,28 @@ class Tag extends Component {
     }
 
 
+    componentDidMount(){
+        const {uid} = this.state;
+
+        $(document).click((e) => {
+            let selectElement = $(e.target).closest('.r-autocomplete');
+
+            /* *
+             * When one dropdown is opened close another
+             */
+            if (selectElement.attr('data-id') !== uid) {
+                this.setState({open : false});
+            }
+
+            /**
+             * If select was open and clicked outside of it close it
+             * length == 0 means that user clicked outside of select
+             */
+            if(selectElement.length === 0 && this.state.open === true){
+               this.setState({open : false});
+            }
+        })
+    }
 
     /**
      * Render tag list for selection
@@ -108,17 +132,17 @@ class Tag extends Component {
      * @param {Event} e 
      */
     open (e){        
-        this.setState({open : true})
-        
+        const len = $(e.target).closest('.r-options').length;
+        if (len === 0) {
+            this.setState({open : true})
+        }
     }
 
     /**
      * Close tag list
      */
     close (){
-        setTimeout(()=>{
-            this.setState({open : false})
-        },100)  
+        this.setState({open : false})
     }
 
 
@@ -158,7 +182,7 @@ class Tag extends Component {
      * Preventing add duplicate tag to tag list
      * 
      * @param {Object} tag
-     * @returns {Boolean}createUID
+     * @returns {Boolean}
      */
     isExist (tag){
         const {mapping} = this.props;
@@ -262,7 +286,7 @@ class Tag extends Component {
 
     render (){
         const {rtl, outline, label, disabled, mapping} = this.props;
-        const {searchValue, open, tags} = this.state;
+        const {searchValue, open, tags, uid} = this.state;
         const filledClass = (searchValue.length > 0 || tags.length >0) ? ' filled' :''; 
         const rtlClass = rtl ? ' r-rtl' :''; 
         const outlineClass = outline ? ' r-bordered' :''; 
@@ -272,10 +296,9 @@ class Tag extends Component {
         
 
         return (
-            <div className={`r-tag r-input${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`} >
+            <div data-id={uid} className={`r-tag r-input${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`} >
                 {this.renderTags()}
                 <input 
-                    onBlur={this.close.bind(this)}
                     value={searchValue}
                     disabled={disabled}
                     ref={this.inputDom} type="text" 
