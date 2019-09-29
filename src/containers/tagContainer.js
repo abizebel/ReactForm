@@ -15,29 +15,31 @@ class AutocomplteContainer extends Component {
           <div className="page-content-title">Tag</div>
           <Tag change={this.changeTag.bind(this)}
             label={'Last Name'}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
+            api={'api/getTag'} //get search tag result from server
+
             values ={
-              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
-              {id:'22',name:'feiz', info:{icon:sampleIcon}},
-              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
-              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
-              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+              [{id:'11',name:'Hosseini' },
+              {id:'22',name:'feiz'},
+              {id:'33',name:'mohammadi'},
+              {id:'44',name:'khosravi'},
+              {id:'44',name:'ranjbar'}
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
           <Tag change={this.changeTag.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
-              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
-              {id:'22',name:'فیض', info:{icon:sampleIcon}},
-              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
-              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
-              {id:'44',name:'رنجبر', info:{icon:sampleIcon}},
-              {id:'55',name:'جعفری', info:{icon:sampleIcon}}
+              [{id:'11',name:'حسینی' },
+              {id:'22',name:'فیض'},
+              {id:'33',name:'محمدی'},
+              {id:'44',name:'خسروی'},
+              {id:'44',name:'رنجبر'},
+              {id:'55',name:'جعفری'}
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
 
 
@@ -47,32 +49,32 @@ class AutocomplteContainer extends Component {
           <Tag change={this.changeTag.bind(this)}
             outline = {true}
             label={'Last Name'}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
-              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
-              {id:'22',name:'feiz', info:{icon:sampleIcon}},
-              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
-              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
-              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+              [{id:'11',name:'Hosseini' },
+              {id:'22',name:'feiz'},
+              {id:'33',name:'mohammadi'},
+              {id:'44',name:'khosravi'},
+              {id:'44',name:'ranjbar'}
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
           <Tag change={this.changeTag.bind(this)}
             rtl={true}
             outline = {true}
 
             label={'نام خانوادگی'}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
-              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
-              {id:'22',name:'فیض', info:{icon:sampleIcon}},
-              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
-              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
-              {id:'44',name:'رنجبر', info:{icon:sampleIcon}},
-              {id:'55',name:'جعفری', info:{icon:sampleIcon}}
+              [{id:'11',name:'حسینی' },
+              {id:'22',name:'فیض'},
+              {id:'33',name:'محمدی'},
+              {id:'44',name:'خسروی'},
+              {id:'44',name:'رنجبر'},
+              {id:'55',name:'جعفری'}
 
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
         </div>
           <div className="page-content-box" >
@@ -80,31 +82,31 @@ class AutocomplteContainer extends Component {
           <Tag change={this.changeTag.bind(this)}
             label={'Last Name'}
             disabled={true}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
-              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
-              {id:'22',name:'feiz', info:{icon:sampleIcon}},
-              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
-              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
-              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+              [{id:'11',name:'Hosseini' },
+              {id:'22',name:'feiz'},
+              {id:'33',name:'mohammadi'},
+              {id:'44',name:'khosravi'},
+              {id:'44',name:'ranjbar'}
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
           <Tag change={this.changeTag.bind(this)}
             rtl={true}
             disabled={true}
 
             label={'نام خانوادگی'}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
-              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
-              {id:'22',name:'فیض', info:{icon:sampleIcon}},
-              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
-              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
-              {id:'44',name:'رنجبر', info:{icon:sampleIcon}},
-              {id:'55',name:'جعفری', info:{icon:sampleIcon}}
+              [{id:'11',name:'حسینی' },
+              {id:'22',name:'فیض'},
+              {id:'33',name:'محمدی'},
+              {id:'44',name:'خسروی'},
+              {id:'44',name:'رنجبر'},
+              {id:'55',name:'جعفری'}
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
 
 
@@ -116,15 +118,15 @@ class AutocomplteContainer extends Component {
             label={'Last Name'}
             disabled={true}
 
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
-              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
-              {id:'22',name:'feiz', info:{icon:sampleIcon}},
-              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
-              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
-              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+              [{id:'11',name:'Hosseini' },
+              {id:'22',name:'feiz'},
+              {id:'33',name:'mohammadi'},
+              {id:'44',name:'khosravi'},
+              {id:'44',name:'ranjbar'}
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
           <Tag change={this.changeTag.bind(this)}
             rtl={true}
@@ -132,17 +134,17 @@ class AutocomplteContainer extends Component {
             disabled={true}
 
             label={'نام خانوادگی'}
-            defaultValue ={{value : 'Hosseini' ,icon : sampleIcon}}
+            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             values ={
-              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
-              {id:'22',name:'فیض', info:{icon:sampleIcon}},
-              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
-              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
-              {id:'44',name:'رنجبر', info:{icon:sampleIcon}},
-              {id:'55',name:'جعفری', info:{icon:sampleIcon}}
+              [{id:'11',name:'حسینی' },
+              {id:'22',name:'فیض'},
+              {id:'33',name:'محمدی'},
+              {id:'44',name:'خسروی'},
+              {id:'44',name:'رنجبر'},
+              {id:'55',name:'جعفری'}
 
             ]}
-            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+            mapping = {{text : 'name', value : 'id'}}
           />
 
 

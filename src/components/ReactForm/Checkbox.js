@@ -4,24 +4,44 @@ class Checkbox extends Component {
     constructor(props){
         super(props);
         this.inputDom = createRef();
+
+        this.state = {
+            checked : this.props.defaultValue || false
+        }
     }
 
     handleChange (e){
-        const {change} = this.props;
-            
+        const {change, justViewMode, defaultValue} = this.props;
+
+        if(justViewMode) return;
+
+        this.setState(prevState => {
+            return {
+                checked : !prevState.checked
+            }
+        })   
+
         change(e.target.checked)
     }
     render (){
-
-        const {disabled, rtl, label, size} = this.props;
+        const {disabled, rtl, label, size, nospace, justViewMode,defaultValue} = this.props;
+        const {checked} = this.state;
         const rtlClass = rtl ? ' r-rtl' : '';
         const disabledClass = disabled ? ' r-disabled' :''; 
         const sizeClass = size === 'xs' ? ' r-xs' : size === 'lg'? ' r-lg' : '';
+        const noSpaceClass = nospace ? ' r-nospace' : '';
+        const checkboxValue = justViewMode ? defaultValue : checked;
+        const checkboxDisabledMode = justViewMode?  justViewMode : disabled;
 
         return (
-            <div className={`r-checkbox${rtlClass}${disabledClass}${sizeClass}`}>
+            <div className={`r-checkbox${rtlClass}${noSpaceClass}${disabledClass}${sizeClass}`}>
                 <label>
-                    <input disabled={disabled} ref={this.inputDom} onChange={this.handleChange.bind(this)} type="checkbox" />
+                    <input 
+                        disabled={checkboxDisabledMode} 
+                        ref={this.inputDom} 
+                        onChange={this.handleChange.bind(this)} type="checkbox"
+                        checked={checkboxValue}
+                    />
                     <span className="r-checkbox-fake">    
                         <span className="check"></span>
                     </span> 
@@ -36,6 +56,8 @@ class Checkbox extends Component {
 Checkbox.defaultProps = {
     rtl : false,
     disabled : false,
+    nospace : false,
+    justViewMode : false,
 }
 
 export default Checkbox
