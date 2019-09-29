@@ -34,8 +34,9 @@ body {
     --text-color : #333;
     --tag-size : .8;
   
-
+    /* Spaces */
     --space-around : 2; 
+
     /* Colors */ 
     --danger-color : #F44336;
     --success-color : #4CAF50;
@@ -45,16 +46,18 @@ body {
     --danger-gradient-color : #d50000;
     --success-gradient-color : #388E3C;
     --warning-gradient-color : #FF5722;
-     --info-gradient-color : #0e4d96;
-    
-    
-     --error-color : #F44336;
-
+    --info-gradient-color : #0e4d96;
     --disabled-color : #ddd;
     --focus-color : #145AF9;
     --gradient-color : #0a3d79;
     
-     /* Tag */
+
+
+    /* Input */
+    --normal-input-height : 2;
+    --outlined-input-height:3.2;
+
+    /* Tag */
     --tag-bg-color : #e4e4e4;
     --tag-text-color : rgba(0,0,0,0.6);
      

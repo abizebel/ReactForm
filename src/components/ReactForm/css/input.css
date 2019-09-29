@@ -41,7 +41,7 @@ input:-webkit-autofill:active  {
     border-bottom: 1px solid var(--label-color);
     border-radius: 0;
     outline: none;
-    height: 2rem ;
+    height: calc(var(--normal-input-height) * 1rem) ;
     box-sizing: border-box;
     width: 100%;
     font-family: inherit;
@@ -117,7 +117,7 @@ input:-webkit-autofill:active  {
 .r-input.r-error > .r-message{
     position: absolute;
     top: 0;
-    color : var(--error-color);
+    color : var(--danger-color);
     font-size: calc(var(--label-size) * 1em)
 }
 .r-input.r-success > .r-icon  svg {
@@ -125,7 +125,7 @@ input:-webkit-autofill:active  {
     
 }
 .r-input.r-error > .r-icon  svg {
-    fill : var(--error-color) !important;    
+    fill : var(--danger-color) !important;    
 }
 
 /* Has icon */
@@ -164,7 +164,7 @@ input:-webkit-autofill:active  {
 /* Bordered */
 .r-input.r-bordered > input,
 .r-input.r-bordered > textarea {
-    height:3.2rem
+    height: calc(var(--outlined-input-height) * 1rem) ;
 }
 .r-input.r-bordered > .r-icon {
     position: absolute;
@@ -237,7 +237,7 @@ input:-webkit-autofill:active  {
 .r-input.r-error > input:focus ~ label,
 .r-input.r-error > textarea:focus ~ label,
 .r-input.r-error.filled > label{
-    color : var(--error-color);
+    color : var(--danger-color);
 }
 
 .r-input.r-bordered > input:focus ~ label,
@@ -252,7 +252,7 @@ input:-webkit-autofill:active  {
 .r-input.r-error.r-bordered > input:focus ~ label,
 .r-input.r-error.r-bordered > textarea:focus ~ label,
 .r-input.r-error.r-bordered.filled > label{
-    color : var(--error-color);
+    color : var(--danger-color);
 }
 .r-input.r-bordered > input:focus,
 .r-input.r-bordered > textarea:focus{
