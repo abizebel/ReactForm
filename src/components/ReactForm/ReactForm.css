@@ -54,8 +54,8 @@ body {
 
 
     /* Input */
-    --normal-input-height : 2;
-    --outlined-input-height:3.2;
+    --input-height:1;
+    /*Its better never changes this any thing is not working good*/
 
     /* Tag */
     --tag-bg-color : #e4e4e4;

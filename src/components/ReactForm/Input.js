@@ -1,15 +1,22 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component, Fragment, createRef} from 'react';
 import {createIcon} from './functions';
 import icons from './icons';
 import './ReactForm.css';
+import $ from 'jquery';
 
 class Input extends Component {
     constructor (props) {
         super(props);
+        this.textareaDom = createRef();
+
         this.state = {
             value : this.props.value || ''
-
         }
+    }
+
+
+    componentDidMount(){
+        this.textareaHeight = $(this.textareaDom.current).height();
     }
 
     handleChange (e){
@@ -17,6 +24,21 @@ class Input extends Component {
 
         this.setState({value : e.target.value});
         change(e.target.value)
+    }
+
+    /**
+     * Autoresize textarea when typing
+     * 
+     * @param {Event} e 
+     */
+    autoResize = e =>{
+        const {outline} = this.props;
+
+        $(e.target).css('height', 'auto');
+        let minuxValue =outline ? 5 : 10;
+        $(e.target).height( e.target.scrollHeight - minuxValue)
+
+
     }
 
     render (){
@@ -36,6 +58,8 @@ class Input extends Component {
                 
                 {   multiline ? 
                     <textarea 
+                        ref={this.textareaDom}
+                        onKeyUp={this.autoResize}
                         type="text" 
                         value={value}
                         onChange={this.handleChange.bind(this)}
