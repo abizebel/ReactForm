@@ -1,5 +1,5 @@
 import React, {Component, createRef} from 'react';
-import {getValueByProp, createIcon,createUID} from './functions';
+import {getValueByProp, createIcon} from './functions';
 import icons from './icons';
 import './ReactForm.css';
 import $ from 'jquery';
@@ -21,7 +21,6 @@ class Tag extends Component {
             tags : [...this.props.defaultValue] || [], // tags
             listValues :  this.values, //search list
             selectedItem : null,
-            uid : createUID(),
 
         }
         this.inputDom = createRef()
@@ -32,30 +31,6 @@ class Tag extends Component {
         if (disabled) return ;
 
         this.setState({searchValue : e.target.value});
-    }
-
-
-    componentDidMount(){
-        const {uid} = this.state;
-
-        $(document).click((e) => {
-            let selectElement = $(e.target).closest('.r-autocomplete');
-
-            /* *
-             * When one dropdown is opened close another
-             */
-            if (selectElement.attr('data-id') !== uid) {
-                this.setState({open : false});
-            }
-
-            /**
-             * If select was open and clicked outside of it close it
-             * length == 0 means that user clicked outside of select
-             */
-            if(selectElement.length === 0 && this.state.open === true){
-               this.setState({open : false});
-            }
-        })
     }
 
     /**
@@ -142,7 +117,9 @@ class Tag extends Component {
      * Close tag list
      */
     close (){
-        this.setState({open : false})
+        setTimeout(()=>{
+            this.setState({open : false})
+        },100)
     }
 
 
@@ -286,7 +263,7 @@ class Tag extends Component {
 
     render (){
         const {rtl, outline, label, disabled, mapping} = this.props;
-        const {searchValue, open, tags, uid} = this.state;
+        const {searchValue, open, tags} = this.state;
         const filledClass = (searchValue.length > 0 || tags.length >0) ? ' filled' :''; 
         const rtlClass = rtl ? ' r-rtl' :''; 
         const outlineClass = outline ? ' r-bordered' :''; 
@@ -296,9 +273,10 @@ class Tag extends Component {
         
 
         return (
-            <div data-id={uid} className={`r-tag r-input${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`} >
+            <div className={`r-tag r-input${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`} >
                 {this.renderTags()}
                 <input 
+                    onBlur={this.close.bind(this)}
                     value={searchValue}
                     disabled={disabled}
                     ref={this.inputDom} type="text" 

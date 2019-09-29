@@ -1,5 +1,5 @@
 import React, {Component, createRef} from 'react';
-import {getValueByProp, createIcon, createUID} from './functions';
+import {getValueByProp, createIcon} from './functions';
 import './ReactForm.css';
 import $ from 'jquery';
 import icons from './icons';
@@ -21,31 +21,7 @@ class Autcomplete extends Component {
             searchValue : this.props.defaultValue || '',
             listValues : this.values,
             selectedItem : null,
-            uid : createUID(),
         }
-    }
-
-    componentDidMount(){
-        const {uid} = this.state;
-
-        $(document).click((e) => {
-            let selectElement = $(e.target).closest('.r-autocomplete');
-
-            /* *
-             * When one dropdown is opened close another
-             */
-            if (selectElement.attr('data-id') !== uid) {
-                this.setState({open : false});
-            }
-
-            /**
-             * If select was open and clicked outside of it close it
-             * length == 0 means that user clicked outside of select
-             */
-            if(selectElement.length === 0 && this.state.open === true){
-               this.setState({open : false});
-            }
-        })
     }
 
     /**
@@ -124,6 +100,17 @@ class Autcomplete extends Component {
         if (len === 0) {
             this.setState({open : true})
         }
+    }
+
+    /**
+     * Close autocomplete
+     * 
+     * @param {Event} e 
+     */
+    close (e){ 
+        setTimeout(()=>{
+            this.setState({open : true})
+        },100)       
     }
 
 
@@ -239,6 +226,7 @@ class Autcomplete extends Component {
         return (
             <div data-id={uid} className={`r-autocomplete r-input ${filledClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
             <input 
+                onBlur={this.close.bind(this)}
                 ref={this.inputDom}
                 disabled={disabled} 
                 type="text" 

@@ -61,7 +61,7 @@ class Select extends Component {
      * Create list for select options
      */
     createList (values){
-        const {nullable, mapping,notSelectedText, rtl,multi} = this.props;
+        const {nullable, mapping,notSelectedText, rtl} = this.props;
         let listValues = [...values];
         
         this.addSelectedProp(listValues)
@@ -226,7 +226,7 @@ class Select extends Component {
     }
 
     /**
-     * Render select options
+     * Render select optionsmulti
      */
     renderOptions (){
         const {mapping, search ,notFoundMessage, rtl, multi} = this.props;
@@ -319,7 +319,7 @@ class Select extends Component {
      * @returns {String}
      */
     getItemText (item, seperator = ""){
-        const {mapping, showKey, notSelectedText, rtl} = this.props;
+        const {mapping, showKey} = this.props;
 
         const text = item[mapping.text];
         const value = item[mapping.value];
@@ -371,7 +371,7 @@ class Select extends Component {
 
 
     render (){
-        const { label, mapping, rtl, disabled, outline, multi} = this.props;
+        const { label, mapping, rtl, disabled, outline} = this.props;
         const {open, selectedItems, uid} = this.state;
         const activeClass = open ? ' active' : '';
         const hasIconClass =  mapping.icon ? ' r-has-icon' : '';

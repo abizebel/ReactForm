@@ -11,7 +11,7 @@ class Checkbox extends Component {
     }
 
     handleChange (e){
-        const {change, justViewMode, defaultValue} = this.props;
+        const {change, justViewMode} = this.props;
 
         if(justViewMode) return;
 
