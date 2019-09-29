@@ -41,24 +41,26 @@ input:-webkit-autofill:active  {
     border-bottom: 1px solid var(--label-color);
     border-radius: 0;
     outline: none;
-    height:  3rem ;
+    height: 2rem ;
     box-sizing: border-box;
     width: 100%;
     font-family: inherit;
 
 }
+/*
 .r-input > textarea {
     height:  3.5rem ;
     min-height:  3.5rem ;
+    line-height: 1.1rem;
     padding: 10px 0;
     resize: none;
 }
-
+*/
 
 /* Label */
 .r-input > label {
     position:absolute;
-    top: 13px;
+    top:2px;
     left: 0;
     height: 16px;
     cursor: text;
@@ -104,7 +106,7 @@ input:-webkit-autofill:active  {
 /* Icon */
 .r-input > .r-icon {
     position: absolute;
-    top: .8rem;
+    top: calc(50% - 12px);
     right: 0;  
 }
 
@@ -113,25 +115,17 @@ input:-webkit-autofill:active  {
 }
 /* Error & Success */
 .r-input.r-error > .r-message{
-    display: block;
+    position: absolute;
+    top: 0;
     color : var(--error-color);
     font-size: calc(var(--label-size) * 1em)
 }
-.r-input.r-success > .r-message{
-    display: block;
-    padding: 0 10px;
-    color : var(--success-color);
-    font-size: calc(var(--label-size) * 1em)
-}
-.r-input.r-error > .r-icon ,
-.r-input.r-success > .r-icon{
-    display: block
-}
-
 .r-input.r-success > .r-icon  svg {
-     fill : var(--success-color) !important;
-     width: 20px;
+    fill : var(--success-color) !important;
     
+}
+.r-input.r-error > .r-icon  svg {
+    fill : var(--error-color) !important;    
 }
 
 /* Has icon */
@@ -141,7 +135,7 @@ input:-webkit-autofill:active  {
     height: 24px;
     font-size: 25px;
     overflow: hidden;
-    top: .7rem;
+    top: calc(50% - 16px);
     left: 0 ; 
 }
 
@@ -168,9 +162,13 @@ input:-webkit-autofill:active  {
 
 
 /* Bordered */
+.r-input.r-bordered > input,
+.r-input.r-bordered > textarea {
+    height:3.2rem
+}
 .r-input.r-bordered > .r-icon {
     position: absolute;
-    top: .8rem;
+    top: calc(50% - 10px);
     right: 8px ;
     
 }
@@ -181,7 +179,8 @@ input:-webkit-autofill:active  {
     padding-left: 16px;
 }
 .r-input.r-bordered > label {
-    left: 16px
+    left: 16px;
+    top: calc(50% - 12px) 
 }
 
 /* Has icon & Bordered */
@@ -231,7 +230,7 @@ input:-webkit-autofill:active  {
 .r-input > input:focus ~ label,
 .r-input > textarea:focus ~ label,
 .r-input.filled > label{
-    top: -14px;
+    top: -18px;
     color: var(--label-color);
     font-size: calc(var(--label-size) * 1em);
 }
