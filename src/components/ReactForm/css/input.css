@@ -168,7 +168,7 @@ input:-webkit-autofill:active  {
 }
 .r-input.r-bordered > textarea {
     padding-top: 10px;
-    height: calc(var(--input-height) * 4rem) ;
+    height: calc(var(--input-height) * 4.2rem) ;
 }
 .r-input.r-bordered > .r-icon {
     position: absolute;

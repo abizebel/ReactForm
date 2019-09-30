@@ -46,10 +46,7 @@ class Input extends Component {
     autoResize = e =>{
         const offset = $(e.target).offsetHeight - $(e.target).clientHeight;
         const scrollHeight = $(e.target).scrollHeight
-        $(e.target).css({
-            height: 'auto',
-            height:scrollHeight + offset
-        })
+        $(e.target).css('height' ,'auto').height(scrollHeight + offset)
     }
 
     render (){
