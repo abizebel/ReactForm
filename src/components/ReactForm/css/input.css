@@ -41,21 +41,23 @@ input:-webkit-autofill:active  {
     border-bottom: 1px solid var(--label-color);
     border-radius: 0;
     outline: none;
-    height: calc(var(--normal-input-height) * 1rem) ;
+    height: calc(var(--input-height) * 1.9rem) ;
     box-sizing: border-box;
     width: 100%;
     font-family: inherit;
 
 }
-/*
+
+/* textarea */
 .r-input > textarea {
-    height:  3.5rem ;
-    min-height:  3.5rem ;
-    line-height: 1.1rem;
-    padding: 10px 0;
+    height: calc(var(--input-height) * 3.3rem) ;
+    overflow: hidden;
     resize: none;
+    white-space: pre-wrap
+    
 }
-*/
+
+
 
 /* Label */
 .r-input > label {
@@ -98,10 +100,9 @@ input:-webkit-autofill:active  {
 	visibility: hidden;
 	
 }
-
-.r-input > textarea ~ .r-line {
-  top: 100%;
-} 
+.r-input >textarea ~ .r-line {
+    top: calc(100% - 8px)
+}
 
 /* Icon */
 .r-input > .r-icon {
@@ -162,9 +163,13 @@ input:-webkit-autofill:active  {
 
 
 /* Bordered */
-.r-input.r-bordered > input,
+.r-input.r-bordered > input {
+    padding-top: .1rem;/*Fix input is not exactly in center*/
+    height: calc(var(--input-height) * 3rem) ;
+}
 .r-input.r-bordered > textarea {
-    height: calc(var(--outlined-input-height) * 1rem) ;
+    padding-top: 10px;
+    height: calc(var(--input-height) * 4rem) ;
 }
 .r-input.r-bordered > .r-icon {
     position: absolute;
@@ -180,7 +185,7 @@ input:-webkit-autofill:active  {
 }
 .r-input.r-bordered > label {
     left: 16px;
-    top: calc(50% - 12px) 
+    top: calc(50% - 10px) 
 }
 
 /* Has icon & Bordered */

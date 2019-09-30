@@ -203,10 +203,13 @@ class Autcomplete extends Component {
      * Clean search area
      */
     clean (){
+        const {disabled} = this.props;
+        if (disabled) return;
+
         this.setState({searchValue : ''})
         $(this.inputDom.current).focus()
     }   
-
+    
 
     render (){
         const {label, mapping, rtl, disabled, outline, defaultValue} = this.props;

@@ -1,15 +1,34 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component, Fragment, createRef} from 'react';
 import {createIcon} from './functions';
 import icons from './icons';
 import './ReactForm.css';
+import $ from 'jquery';
+
+
+
+
 
 class Input extends Component {
     constructor (props) {
         super(props);
+        this.textareaDom = createRef();
+
         this.state = {
             value : this.props.value || ''
-
         }
+    }
+
+
+    componentDidMount(){
+        $.each($('textarea[data-autoresize]'), function() {
+            var offset = this.offsetHeight - this.clientHeight;
+           
+            var resizeTextarea = function(el) {
+                $(el).css('height', 'auto').css('height', el.scrollHeight + offset);
+            };
+            $(this).on('keyup input', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
+          });
+        this.textareaHeight = $(this.textareaDom.current).height();
     }
 
     handleChange (e){
@@ -17,6 +36,20 @@ class Input extends Component {
 
         this.setState({value : e.target.value});
         change(e.target.value)
+    }
+
+    /**
+     * Autoresize textarea when typing
+     * 
+     * @param {Event} e 
+     */
+    autoResize = e =>{
+        const offset = $(e.target).offsetHeight - $(e.target).clientHeight;
+        const scrollHeight = $(e.target).scrollHeight
+        $(e.target).css({
+            height: 'auto',
+            height:scrollHeight + offset
+        })
     }
 
     render (){
@@ -36,6 +69,9 @@ class Input extends Component {
                 
                 {   multiline ? 
                     <textarea 
+                        data-autoresize
+                        ref={this.textareaDom}
+                        onKeyDown={this.autoResize}
                         type="text" 
                         value={value}
                         onChange={this.handleChange.bind(this)}
