@@ -113,12 +113,20 @@ input:-webkit-autofill:active  {
 .r-input > .r-icon svg {
   width: 20px !important;
 }
+
+/* Message */
+.r-input > .r-message {
+    font-size: calc(var(--label-size) * 1em);
+    position: absolute;
+    bottom:-20px;
+    left: 0;
+    width: 100%
+}
+
+
 /* Error & Success */
 .r-input.r-error > .r-message{
-    position: absolute;
-    top: 0;
     color : var(--danger-color);
-    font-size: calc(var(--label-size) * 1em)
 }
 .r-input.r-success > .r-icon  svg {
     fill : var(--success-color) !important;
@@ -168,7 +176,7 @@ input:-webkit-autofill:active  {
 }
 .r-input.r-bordered > textarea {
     padding-top: 10px;
-    height: calc(var(--input-height) * 4.2rem) ;
+    height: calc(var(--input-height) * 4rem) ;
 }
 .r-input.r-bordered > .r-icon {
     position: absolute;
@@ -222,12 +230,6 @@ input:-webkit-autofill:active  {
 }
 
 
-
-/* Messagea */
-.r-input > .r-message {
-    font-size: .8em;
-    display: none
-}
 
 
 /* Focus */
