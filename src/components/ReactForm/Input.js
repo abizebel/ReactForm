@@ -6,18 +6,16 @@ import $ from 'jquery';
 
 
 
-
-
 class Input extends Component {
     constructor (props) {
         super(props);
         this.textareaDom = createRef();
 
         this.state = {
-            value : this.props.value || ''
+            value : this.props.value || '',
+            isValid : true
         }
     }
-
 
     componentDidMount(){
         $.each($('textarea[data-autoresize]'), function() {
@@ -28,14 +26,18 @@ class Input extends Component {
             };
             $(this).on('keyup input', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
           });
-        this.textareaHeight = $(this.textareaDom.current).height();
     }
 
     handleChange (e){
-        const {change} = this.props;
+        const {change, required} = this.props;
+        let value = e.target.value;
 
-        this.setState({value : e.target.value});
-        change(e.target.value)
+        if (required ){
+            this.setState({isValid : value.trim() !== ''});
+        }
+
+        this.setState({value});
+        change(value)
     }
 
     /**
@@ -50,16 +52,18 @@ class Input extends Component {
     }
 
     render (){
-        const {rtl, outline, label, disabled, error, multiline, success, icon} = this.props;
-        const {value} = this.state;
+        const {rtl, outline, label, disabled, error, multiline, success, icon, required, requiredMessage} = this.props;
+        const {value, isValid} = this.state;
         const filledClass = value.length > 0 ? ' filled' :''; 
-        const rtlClass = rtl ? ' r-rtl' :''; 
+        const rtlClass = rtl ? ' r-rtl' : ''; 
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 
-        const errorClass = error.length > 0 ? ' r-error' :''; 
-        const sucessClass = success ? ' r-success' :''; 
-        const iconClass = icon !==null ? ' r-has-icon' :''; 
+        const errorClass = !isValid ? ' r-error' :''; 
+        const sucessClass = isValid ? ' r-success' :''; 
+        const iconClass = icon !== null ? ' r-has-icon' :''; 
         const inputIcon = createIcon(icon);
+        const errorMessage = requiredMessage;
+
 
         return (
             <div className={`r-input${filledClass}${rtlClass}${outlineClass}${disabledClass}${errorClass}${sucessClass}${iconClass}`} >  
@@ -68,12 +72,12 @@ class Input extends Component {
                     <textarea 
                         data-autoresize
                         ref={this.textareaDom}
-                        onKeyDown={this.autoResize}
+                        //onKeyDown={this.autoResize}
                         type="text" 
                         value={value}
                         onChange={this.handleChange.bind(this)}
                         disabled = {disabled}
-                    > </textarea>:
+                    ></textarea>:
                     <input 
                         type="text" 
                         value={value}
@@ -85,19 +89,18 @@ class Input extends Component {
                 <label>{label}</label>
                 <span className="r-line"></span>
 
-                {   icon !==null &&
+                {   icon !== null &&
                     <span className="r-input-icon">{inputIcon}</span>
                 }
-                
                  
-                {error.length > 0 &&
+                {   !isValid && required &&
                     <Fragment>
                         <span className="r-icon">{icons.error}</span>  
-                        <span className="r-message">{error}</span> 
+                        <span className="r-message">{errorMessage}</span> 
                     </Fragment>     
                 }
 
-                {success > 0 &&
+                {   isValid && required &&
                     <span className="r-icon">{icons.success}</span>  
                 }
                 
@@ -116,7 +119,8 @@ Input.defaultProps = {
     error : '',
     multiline: false,
     success : false,
-    icon : null
+    icon : null,
+    required : false,
 }
 
 export default Input

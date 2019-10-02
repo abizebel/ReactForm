@@ -15,7 +15,9 @@ class InputContainer extends Component {
           <div className="page-content-title">Input</div>
           <Input 
             label={'Last Name'}
-            value={''} 
+            value={'asdsadadasdsadasdadasdasdadadasdadadadasdasdadasdasdasdassdadadasd'} 
+            required={true}
+            requiredMessage={'this field is required'}
             change={this.changeInput.bind(this)} />
           <Input 
              label={'نام خانوادگی'}

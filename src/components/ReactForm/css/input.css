@@ -90,7 +90,7 @@ input:-webkit-autofill:active  {
 	margin: 0;
 	padding: 0;
 	width: 100%;
-	height: 2px;
+	height:1px;
 	border: none;
 	background:var( --focus-color);
 	will-change: transform, visibility;
@@ -233,6 +233,10 @@ input:-webkit-autofill:active  {
 
 
 /* Focus */
+.r-input > input:focus ,
+.r-input > textarea:focus {
+    border-color: var(--focus-color)
+}
 .r-input > input:focus ~ label,
 .r-input > textarea:focus ~ label,
 .r-input.filled > label{
@@ -270,6 +274,14 @@ input:-webkit-autofill:active  {
 .r-input >	textarea:focus ~ .r-line{
 	transform: scaleX(1);
 	visibility: visible;
+}
+.r-input.r-error >	input:focus ~ .r-line,
+.r-input.r-error >	textarea:focus ~ .r-line{
+	background: var(--danger-color) 
+}
+.r-input.r-error > input,
+.r-input.r-error > textarea{
+	border-color: var(--danger-color) 
 }
 
 /**********************************************
