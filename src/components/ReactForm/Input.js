@@ -22,9 +22,7 @@ class Input extends Component {
 
     componentDidMount(){
         $.each($('textarea[data-autoresize]'), function() {
-            debugger
             var offset = this.offsetHeight - this.clientHeight;
-           
             var resizeTextarea = function(el) {
                 $(el).css('height', 'auto').css('height', el.scrollHeight + offset);
             };
