@@ -369,6 +369,5 @@ input:-webkit-autofill:active  {
 .r-input.r-rtl.r-error > textarea ,
 .r-input.r-rtl.r-success > input,
 .r-input.r-rtl.r-success > textarea {
-    padding-right: unset;
     padding-left: 24px
 }

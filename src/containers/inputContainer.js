@@ -17,10 +17,6 @@ class InputContainer extends Component {
           <Input 
             label={'Last Name'}
             value={'asdsadadasdsadasdadasdasdadadasdadadadasdasdadasdasdasdassdadadasd'} 
-            serverError={{status : true,  message : 'this has a error'}}
-            regex = {{pattern :  /^\d+$/, message : 'should be number'}}
-            required={true}
-            requiredMessage={'this field is required'}
             change={this.changeInput.bind(this)} />
           <Input 
              label={'نام خانوادگی'}

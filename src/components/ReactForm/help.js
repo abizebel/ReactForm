@@ -7,7 +7,10 @@
     change={this.changeInput.bind(this)} //change method of input
     icon={'icon icon-home'} //user svg or icon string
     //Error handling
-    error={{status : true,  message : 'this has a error'}}
+    serverError={{status : true,  message : 'this has a error'}}
+    regex = {{pattern :  /^\d+$/, message : 'should be number'}}
+    required={'this field is required'}
+    //Booleans
     disabled={true} //disable input
     outline={true} //outlined input
     rtl={true} //rtl support

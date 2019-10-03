@@ -52,7 +52,7 @@ class Input extends Component {
      * 
      */
     validate (value = ''){
-        const {serverError, required, regex,  requiredMessage} = this.props;
+        const {serverError, required, regex} = this.props;
 
         let hasError = false;
         let errorMessage = '';
@@ -63,7 +63,7 @@ class Input extends Component {
         }
         else if(!serverError && required && value.trim() === ''){
             hasError = true;
-            errorMessage = requiredMessage;
+            errorMessage = required;
         }
         else if (!serverError && regex) {
             hasError = !regex.pattern.test(value);
@@ -86,16 +86,19 @@ class Input extends Component {
     }
 
     render (){
-        const {rtl, outline, label, disabled, multiline, icon} = this.props;
+        const {rtl, outline, label, disabled, multiline, icon, required, serverError, regex} = this.props;
         const {value, hasError, errorMessage} = this.state;
         const filledClass = value.length > 0 ? ' filled' :''; 
         const rtlClass = rtl ? ' r-rtl' : ''; 
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 
-        const errorClass =  hasError ? ' r-error' :''; 
-        const sucessClass = !hasError ? ' r-success' :''; 
         const iconClass = icon !== null ? ' r-has-icon' :''; 
         const inputIcon = createIcon(icon);
+        const validationMode = required || serverError || regex ? true : false;
+        const errorClass =  validationMode && hasError ? ' r-error' :''; 
+        const sucessClass = validationMode && !hasError ? ' r-success' :''; 
+        debugger
+      
 
 
         return (
@@ -126,14 +129,14 @@ class Input extends Component {
                     <span className="r-input-icon">{inputIcon}</span>
                 }
                  
-                {   hasError &&
+                {   validationMode && hasError &&
                     <Fragment>
                         <span className="r-icon">{icons.error}</span>  
                         <span className="r-message">{errorMessage}</span> 
                     </Fragment>     
                 }
 
-                {   !hasError &&
+                {   validationMode && !hasError &&
                     <span className="r-icon">{icons.success}</span>  
                 }
                 
@@ -151,7 +154,6 @@ Input.defaultProps = {
     disabled : false,
     multiline: false,
     icon : null,
-    required : false,
 }
 
 export default Input
