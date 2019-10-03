@@ -136,6 +136,13 @@ input:-webkit-autofill:active  {
     fill : var(--danger-color) !important;    
 }
 
+.r-input.r-error > input,
+.r-input.r-error > textarea ,
+.r-input.r-success > input,
+.r-input.r-success > textarea {
+    padding-right: 24px
+}
+
 /* Has icon */
 .r-input.r-has-icon > .r-input-icon {
     position: absolute;
@@ -357,3 +364,11 @@ input:-webkit-autofill:active  {
    right: 40px
 }
 
+
+.r-input.r-rtl.r-error > input,
+.r-input.r-rtl.r-error > textarea ,
+.r-input.r-rtl.r-success > input,
+.r-input.r-rtl.r-success > textarea {
+    padding-right: unset;
+    padding-left: 24px
+}

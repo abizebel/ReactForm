@@ -1,5 +1,6 @@
 import React, {Component,Fragment} from 'react';
 import {Input} from '../components/ReactForm';
+const testValue = false;
 
 class InputContainer extends Component {
 
@@ -16,6 +17,8 @@ class InputContainer extends Component {
           <Input 
             label={'Last Name'}
             value={'asdsadadasdsadasdadasdasdadadasdadadadasdasdadasdasdasdassdadadasd'} 
+            serverError={{status : true,  message : 'this has a error'}}
+            regex = {{pattern :  /^\d+$/, message : 'should be number'}}
             required={true}
             requiredMessage={'this field is required'}
             change={this.changeInput.bind(this)} />

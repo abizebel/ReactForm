@@ -5,7 +5,6 @@ import './ReactForm.css';
 import $ from 'jquery';
 
 
-
 class Input extends Component {
     constructor (props) {
         super(props);
@@ -13,8 +12,12 @@ class Input extends Component {
 
         this.state = {
             value : this.props.value || '',
-            isValid : true
+            hasError : this.validate(this.props.value).hasError,
+            errorMessage : this.validate(this.props.value).errorMessage
         }
+
+        
+ 
     }
 
     componentDidMount(){
@@ -28,16 +31,47 @@ class Input extends Component {
           });
     }
 
+    /**
+     * Handle input changes
+     * 
+     * @param {Event} e 
+     */
     handleChange (e){
-        const {change, required} = this.props;
+        const {change, validations} = this.props;
         let value = e.target.value;
 
-        if (required ){
-            this.setState({isValid : value.trim() !== ''});
-        }
-
         this.setState({value});
+
+        this.validate(value)
+
         change(value)
+    }
+
+    /**
+     * Check if input has error or not depends on our configs
+     * 
+     */
+    validate (value = ''){
+        const {serverError, required, regex,  requiredMessage} = this.props;
+
+        let hasError = false;
+        let errorMessage = '';
+       
+        if(serverError && serverError.status) {
+            hasError = true;
+            errorMessage = serverError.message;
+        }
+        else if(!serverError && required && value.trim() === ''){
+            hasError = true;
+            errorMessage = requiredMessage;
+        }
+        else if (!serverError && regex) {
+            hasError = !regex.pattern.test(value);
+            errorMessage = regex.message;     
+        }
+ 
+        this.setState({hasError, errorMessage});
+        return {hasError, errorMessage}
     }
 
     /**
@@ -52,17 +86,16 @@ class Input extends Component {
     }
 
     render (){
-        const {rtl, outline, label, disabled, error, multiline, success, icon, required, requiredMessage} = this.props;
-        const {value, isValid} = this.state;
+        const {rtl, outline, label, disabled, multiline, icon} = this.props;
+        const {value, hasError, errorMessage} = this.state;
         const filledClass = value.length > 0 ? ' filled' :''; 
         const rtlClass = rtl ? ' r-rtl' : ''; 
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 
-        const errorClass = !isValid ? ' r-error' :''; 
-        const sucessClass = isValid ? ' r-success' :''; 
+        const errorClass =  hasError ? ' r-error' :''; 
+        const sucessClass = !hasError ? ' r-success' :''; 
         const iconClass = icon !== null ? ' r-has-icon' :''; 
         const inputIcon = createIcon(icon);
-        const errorMessage = requiredMessage;
 
 
         return (
@@ -93,14 +126,14 @@ class Input extends Component {
                     <span className="r-input-icon">{inputIcon}</span>
                 }
                  
-                {   !isValid && required &&
+                {   hasError &&
                     <Fragment>
                         <span className="r-icon">{icons.error}</span>  
                         <span className="r-message">{errorMessage}</span> 
                     </Fragment>     
                 }
 
-                {   isValid && required &&
+                {   !hasError &&
                     <span className="r-icon">{icons.success}</span>  
                 }
                 
@@ -116,9 +149,7 @@ Input.defaultProps = {
     rtl : false,
     outline : false,
     disabled : false,
-    error : '',
     multiline: false,
-    success : false,
     icon : null,
     required : false,
 }

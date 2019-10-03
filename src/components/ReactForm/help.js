@@ -6,8 +6,8 @@
     value={'Hosseini'} //value of input
     change={this.changeInput.bind(this)} //change method of input
     icon={'icon icon-home'} //user svg or icon string
-    error={'this filed has a error'} //string - never use success and error together
-    success={true} //never use success and error together
+    //Error handling
+    error={{status : true,  message : 'this has a error'}}
     disabled={true} //disable input
     outline={true} //outlined input
     rtl={true} //rtl support
