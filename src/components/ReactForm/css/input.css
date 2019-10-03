@@ -136,11 +136,17 @@ input:-webkit-autofill:active  {
     fill : var(--danger-color) !important;    
 }
 
-.r-input.r-error > input,
-.r-input.r-error > textarea ,
-.r-input.r-success > input,
-.r-input.r-success > textarea {
+.r-input.r-error:not('r-rtl') > input,
+.r-input.r-errorr:not('r-rtl') > textarea ,
+.r-input.r-successr:not('r-rtl') > input,
+.r-input.r-successr:not('r-rtl') > textarea {
     padding-right: 24px
+}
+.r-input.r-bordered.r-error > input,
+.r-input.r-bordered.r-error > textarea,
+.r-input.r-bordered.r-success > input,
+.r-input.r-bordered.r-success > textarea{
+    padding-right: 32px
 }
 
 /* Has icon */
@@ -195,7 +201,7 @@ input:-webkit-autofill:active  {
 .r-input.r-bordered > textarea {
     border: 1px solid var(--label-color);
     border-radius: 4px;
-    padding-left: 16px;
+    padding: 16px;
 }
 .r-input.r-bordered > label {
     left: 16px;
@@ -370,4 +376,10 @@ input:-webkit-autofill:active  {
 .r-input.r-rtl.r-success > input,
 .r-input.r-rtl.r-success > textarea {
     padding-left: 24px
+}
+.r-input.r-rtl.r-bordered.r-error > input,
+.r-input.r-rtl.r-bordered.r-error > textarea,
+.r-input.r-rtl.r-bordered.r-success > input,
+.r-input.r-rtl.r-bordered.r-success > textarea{
+    padding-left: 32px
 }

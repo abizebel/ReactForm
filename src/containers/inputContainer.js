@@ -16,7 +16,7 @@ class InputContainer extends Component {
           <div className="page-content-title">Input</div>
           <Input 
             label={'Last Name'}
-            value={'asdsadadasdsadasdadasdasdadadasdadadadasdasdadasdasdasdassdadadasd'} 
+            value={''} 
             change={this.changeInput.bind(this)} />
           <Input 
              label={'نام خانوادگی'}
@@ -36,6 +36,107 @@ class InputContainer extends Component {
             label={'نام خانوادگی'}
             rtl={true} 
             outline ={true}
+            value={''} 
+            change={this.changeInput.bind(this)} 
+          />
+        </div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Input with Iocn</div>
+          <Input 
+            label={'Last Name'}
+            value={'Hosseini'} 
+            
+            icon={sampleIcon}
+            change={this.changeInput.bind(this)} />
+          <Input 
+            label={'نام خانوادگی'}
+            icon={sampleIcon}
+            rtl={true} 
+            value={'حسینی'} 
+            change={this.changeInput.bind(this)} 
+          />
+        </div>
+        <div className="page-content-box" >
+        <div className="page-content-title">Outlined Input with Iocn</div>
+          <Input 
+            label={'Last Name'}
+            value={'Hosseini'} 
+            outline={true}
+            icon={sampleIcon}
+            change={this.changeInput.bind(this)} />
+          <Input 
+            label={'نام خانوادگی'}
+           icon={sampleIcon}
+            rtl={true} 
+            outline={true}
+
+            value={'حسینی'} 
+            change={this.changeInput.bind(this)} 
+          />
+          
+        </div>
+  
+        <div className="page-content-box" >
+          <div className="page-content-title">Required Input</div>
+          <Input 
+            label={'Last Name'}
+            value={''} 
+            required={'This filed is required'}
+            change={this.changeInput.bind(this)} />
+          <Input 
+             label={'نام خانوادگی'}
+            rtl={true} 
+            required={'پر کردن این فیلد الزامیست'}
+
+            value={''} 
+            change={this.changeInput.bind(this)} 
+          />
+        </div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Outlined Required Input</div>
+          <Input 
+            label={'Last Name'}
+            value={''} 
+            outline={true}
+            required={'This filed is required'}
+            change={this.changeInput.bind(this)} />
+          <Input 
+             label={'نام خانوادگی'}
+            rtl={true} 
+            required={'پر کردن این فیلد الزامیست'}
+            outline={true}
+            value={''} 
+            change={this.changeInput.bind(this)} 
+          />
+        </div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Regex Validation Input (EX : numbers)</div>
+          <Input 
+            label={'Phone Number'}
+            value={''} 
+            regex = {{pattern :  /^\d+$/, message : 'Should be a number'}}
+            change={this.changeInput.bind(this)} />
+          <Input 
+            regex = {{pattern :  /^\d+$/, message : 'لطفا عدد وارد کنید'}}
+            label={'شماره تلفن'}
+            rtl={true} 
+            value={''} 
+            change={this.changeInput.bind(this)} 
+          />
+        </div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Outlined Regex Validation Input (EX : numbers)</div>
+          <Input 
+            label={'Phone Number'}
+            value={''} 
+            outline={true}
+            regex = {{pattern :  /^\d+$/, message : 'Should be a number'}}
+            change={this.changeInput.bind(this)} />
+          <Input 
+            regex = {{pattern :  /^\d+$/, message : 'لطفا عدد وارد کنید'}}
+            label={'شماره تلفن'}
+            rtl={true} 
+            outline={true}
             value={''} 
             change={this.changeInput.bind(this)} 
           />
@@ -72,70 +173,7 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Input with Success Icon</div>
-          <Input 
-           label={'Last Name'}
-            value={'Hosseini'} 
-            success = {true}
-            change={this.changeInput.bind(this)} />
-          <Input 
-            label={'نام خانوادگی'}
-            rtl={true} 
-            value={'حسینی'} 
-            success = {true}
-            change={this.changeInput.bind(this)} 
-          />
-        </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Outlined Input with Success Icon</div>
-          <Input 
-           label={'Last Name'}
-            value={'Hosseini'} 
-            outline={true}
-            success = {true}
-            change={this.changeInput.bind(this)} />
-          <Input 
-            label={'نام خانوادگی'}
-            rtl={true} 
-            outline={true}
-            value={'حسینی'} 
-            success = {true}
-            change={this.changeInput.bind(this)} 
-          />
-        </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Input with Erros</div>
-          <Input 
-           label={'Last Name'}
-            value={'Hosseini'} 
-            error = {'This field is required'}
-            change={this.changeInput.bind(this)} />
-          <Input 
-            label={'نام خانوادگی'}
-            rtl={true} 
-            value={'حسینی'} 
-            error = {'ورود این فیلد الزامیست'}
-            change={this.changeInput.bind(this)} 
-          />
-        </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Outlined Input with Erros</div>
-          <Input 
-           label={'Last Name'}
-            value={'Hosseini'} 
-            outline= {true}
-            error = {'This field is required'}
-            change={this.changeInput.bind(this)} />
-          <Input 
-            label={'نام خانوادگی'}
-            rtl={true} 
-            outline= {true}
-            value={'حسینی'} 
-            error = {'ورود این فیلد الزامیست'}
-            change={this.changeInput.bind(this)} 
-          />
-        </div>
+        
         <div className="page-content-box" >
           <div className="page-content-title">Textarea</div>
           <Input 
@@ -168,41 +206,7 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Input with Iocn</div>
-          <Input 
-            label={'Last Name'}
-            value={'Hosseini'} 
-            icon={sampleIcon}
-            change={this.changeInput.bind(this)} />
-          <Input 
-            label={'نام خانوادگی'}
-            icon={sampleIcon}
-            rtl={true} 
-            value={'حسینی'} 
-            change={this.changeInput.bind(this)} 
-          />
-        </div>
-        <div className="page-content-box" >
-        <div className="page-content-title">Outlined Input with Iocn</div>
-          <Input 
-            label={'Last Name'}
-            value={'Hosseini'} 
-            outline={true}
-            icon={sampleIcon}
-            change={this.changeInput.bind(this)} />
-          <Input 
-            label={'نام خانوادگی'}
-           icon={sampleIcon}
-            rtl={true} 
-            outline={true}
 
-            value={'حسینی'} 
-            change={this.changeInput.bind(this)} 
-          />
-          
-        </div>
-  
       </Fragment>
       
     );

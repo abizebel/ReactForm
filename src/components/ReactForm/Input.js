@@ -97,9 +97,6 @@ class Input extends Component {
         const validationMode = required || serverError || regex ? true : false;
         const errorClass =  validationMode && hasError ? ' r-error' :''; 
         const sucessClass = validationMode && !hasError ? ' r-success' :''; 
-        debugger
-      
-
 
         return (
             <div className={`r-input${filledClass}${rtlClass}${outlineClass}${disabledClass}${errorClass}${sucessClass}${iconClass}`} >  
