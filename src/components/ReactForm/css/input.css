@@ -146,7 +146,7 @@ input:-webkit-autofill:active  {
 .r-input.r-bordered.r-error > textarea,
 .r-input.r-bordered.r-success > input,
 .r-input.r-bordered.r-success > textarea{
-    padding-right: 32px
+    padding-right: 40px;
 }
 
 /* Has icon */
@@ -194,7 +194,7 @@ input:-webkit-autofill:active  {
 .r-input.r-bordered > .r-icon {
     position: absolute;
     top: calc(50% - 10px);
-    right: 8px ;
+    right: 16px;
     
 }
 .r-input.r-bordered > input,
@@ -341,7 +341,7 @@ input:-webkit-autofill:active  {
 /* Bordered */
 .r-input.r-rtl.r-bordered > .r-icon {
     right:unset;
-    left: 8px ;
+    left: 16px;
     
 }
 .r-input.r-rtl.r-bordered > input,
@@ -381,5 +381,5 @@ input:-webkit-autofill:active  {
 .r-input.r-rtl.r-bordered.r-error > textarea,
 .r-input.r-rtl.r-bordered.r-success > input,
 .r-input.r-rtl.r-bordered.r-success > textarea{
-    padding-left: 32px
+    padding-left: 40px;
 }

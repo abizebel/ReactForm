@@ -22,6 +22,7 @@ class Input extends Component {
 
     componentDidMount(){
         $.each($('textarea[data-autoresize]'), function() {
+            debugger
             var offset = this.offsetHeight - this.clientHeight;
            
             var resizeTextarea = function(el) {
@@ -74,17 +75,6 @@ class Input extends Component {
         return {hasError, errorMessage}
     }
 
-    /**
-     * Autoresize textarea when typing
-     * 
-     * @param {Event} e 
-     */
-    autoResize = e =>{
-        const offset = $(e.target).offsetHeight - $(e.target).clientHeight;
-        const scrollHeight = $(e.target).scrollHeight
-        $(e.target).css('height' ,'auto').height(scrollHeight + offset)
-    }
-
     render (){
         const {rtl, outline, label, disabled, multiline, icon, required, serverError, regex} = this.props;
         const {value, hasError, errorMessage} = this.state;
@@ -97,6 +87,8 @@ class Input extends Component {
         const validationMode = required || serverError || regex ? true : false;
         const errorClass =  validationMode && hasError ? ' r-error' :''; 
         const sucessClass = validationMode && !hasError ? ' r-success' :''; 
+      
+
 
         return (
             <div className={`r-input${filledClass}${rtlClass}${outlineClass}${disabledClass}${errorClass}${sucessClass}${iconClass}`} >  
@@ -105,7 +97,6 @@ class Input extends Component {
                     <textarea 
                         data-autoresize
                         ref={this.textareaDom}
-                        //onKeyDown={this.autoResize}
                         type="text" 
                         value={value}
                         onChange={this.handleChange.bind(this)}
