@@ -74,7 +74,7 @@ class AutocomplteContainer extends Component {
 
 
         <div className="page-content-box" >
-          <div className="page-content-title">Autocomplete</div>
+          <div className="page-content-title">Required Autocomplete</div>
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             required={'This filed is required'}
@@ -103,7 +103,7 @@ class AutocomplteContainer extends Component {
 
         </div>
         <div className="page-content-box" >
-          <div className="page-content-title">Outlined Autocomplete</div>
+          <div className="page-content-title">Required Outlined Autocomplete</div>
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             outline = {true}

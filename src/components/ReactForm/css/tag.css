@@ -56,6 +56,11 @@
 	color: var(--label-color)
 }
 
+/* Error */
+
+.r-tag.r-error.r-bordered {
+	border-color: var(--danger-color)
+}
 /* Focus */
 .r-tag.r-bordered input:focus {
 	border: 0;
