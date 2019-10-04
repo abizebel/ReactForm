@@ -25,7 +25,7 @@
    border-radius: 16px;
     margin-bottom: 5px;
    background-color:var(--tag-bg-color);
-   margin-right: 1px;
+   margin-right: 5px;
    font-size: calc(var(--tag-size) * 1em);
 
 }
