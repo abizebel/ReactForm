@@ -99,6 +99,93 @@ class SelectContainer extends Component {
 
         </div>
         <div className="page-content-box" >
+          <div className="page-content-title">Required Multi Select</div>
+          <Select   change={this.changeSelect.bind(this)}       
+            label={'Last Name'}
+            required={'This filed is required'}
+            multi={true}
+            nullable={true}
+            search = {true}
+            searchLabel = {'Search ... '}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}},
+              {id:'66',name:'aghapour', info:{icon:sampleIcon}},
+              {id:'77',name:'mardanian', info:{icon:sampleIcon}},
+              {id:'88',name:'babaei', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+          <Select   change={this.changeSelect.bind(this)}       
+            label={'نام خانوادگی'}            
+            required={'پر کردن این فیلد الزامیست'}
+            multi={true}
+            rtl={true}
+            nullable={true}
+            search = {true}
+            searchLabel = {'جستجو ...'}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+
+        </div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Required Multi Select</div>
+          <Select   change={this.changeSelect.bind(this)}       
+            label={'Last Name'}
+            required={'This filed is required'}
+            multi={true}
+            nullable={true}
+            search = {true}
+            outline={true}
+
+            searchLabel = {'Search ... '}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}},
+              {id:'66',name:'aghapour', info:{icon:sampleIcon}},
+              {id:'77',name:'mardanian', info:{icon:sampleIcon}},
+              {id:'88',name:'babaei', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+          <Select   change={this.changeSelect.bind(this)}       
+            label={'نام خانوادگی'}            
+            required={'پر کردن این فیلد الزامیست'}
+            multi={true}
+            rtl={true}
+            outline={true}
+            nullable={true}
+            search = {true}
+            searchLabel = {'جستجو ...'}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+
+        </div>
+        <div className="page-content-box" >
           <div className="page-content-title"> Select</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
@@ -147,6 +234,74 @@ class SelectContainer extends Component {
             outline={true}
             label={'نام خانوادگی'}
             defaultValue ={33}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+
+        <div className="page-content-box" >
+          <div className="page-content-title">Required Select</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            required={'This field is required'}
+            nullable={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            label={'نام خانوادگی'}
+            required={'پر کردن این فیلد الزامیست'}
+            nullable={true}
+
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Required Select</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            required={'This field is required'}
+            outline={true}
+            nullable={true}
+
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            label={'نام خانوادگی'}
+            required={'پر کردن این فیلد الزامیست'}
+            outline={true}
+            nullable={true}
+
             values ={
               [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
               {id:'22',name:'فیض', info:{icon:sampleIcon}},

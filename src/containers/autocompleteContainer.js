@@ -16,8 +16,6 @@ class AutocomplteContainer extends Component {
           <div className="page-content-title">Autocomplete</div>
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
-            defaultValue ='abbas'
-
             values ={
               [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
               {id:'22',name:'feiz', info:{icon:sampleIcon}},
@@ -75,6 +73,68 @@ class AutocomplteContainer extends Component {
         </div>
 
 
+        <div className="page-content-box" >
+          <div className="page-content-title">Autocomplete</div>
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
+            label={'Last Name'}
+            required={'This filed is required'}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
+            rtl={true}
+            label={'نام خانوادگی'}
+            required={'پر کردن این فیلد الزامیست'}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Outlined Autocomplete</div>
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
+            label={'Last Name'}
+            outline = {true}
+            required={'This filed is required'}
+
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Autocomplete change={this.changeAutocomplete.bind(this)}
+            rtl={true}
+            outline = {true}
+            label={'نام خانوادگی'}
+            required={'پر کردن این فیلد الزامیست'}
+
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'44',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
 
       
 

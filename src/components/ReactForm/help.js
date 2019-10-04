@@ -33,6 +33,9 @@
     ]}
     mapping = {{text : 'name', value : 'id'}} //dataset for managing server model diffrences
     defaultValue ={33} // is id of selected value
+    //Error handling
+    serverError={{status : true,  message : 'this has a error'}}
+    required={'This field is required'}
     //Boolean items
     multi={true} // multi selecting => defaultValue should be array [33,22]
     nullable={true} // user cant select no item
@@ -66,6 +69,9 @@
     {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
     ]}
     mapping = {{text : 'name', value : 'id'}}
+    //Error handling
+    serverError={{status : true,  message : 'this has a error'}}
+    required={'This field is required'}
     //Boolean items
     outline = {true}
     rtl = {true}
@@ -91,6 +97,9 @@
         {id:'44',name:'ranjbar'}
     ]}
     mapping = {{text : 'name', value : 'id',}}
+    //Error handling
+    serverError={{status : true,  message : 'this has a error'}}
+    required={'This field is required'}
     //Boolean items
     rtl={true}
     disabled={true}

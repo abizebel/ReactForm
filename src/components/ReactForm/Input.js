@@ -15,8 +15,6 @@ class Input extends Component {
             hasError : this.validate(this.props.value).hasError,
             errorMessage : this.validate(this.props.value).errorMessage
         }
-
-        
  
     }
 
@@ -27,7 +25,7 @@ class Input extends Component {
                 $(el).css('height', 'auto').css('height', el.scrollHeight + offset);
             };
             $(this).on('keyup input', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
-          });
+        });
     }
 
     /**
@@ -52,9 +50,12 @@ class Input extends Component {
      */
     validate (value = ''){
         const {serverError, required, regex} = this.props;
-
         let hasError = false;
         let errorMessage = '';
+
+        if(!this.isValidationMode()) return {hasError,errorMessage} ;
+
+ 
        
         if(serverError && serverError.status) {
             hasError = true;
@@ -73,6 +74,16 @@ class Input extends Component {
         return {hasError, errorMessage}
     }
 
+    /**
+     * Detect validation mode
+     */
+    isValidationMode (){
+        const {required, serverError, regex} = this.props;
+
+        const validationMode = required || serverError || regex ? true : false;
+        return validationMode;
+    }
+
     render (){
         const {rtl, outline, label, disabled, multiline, icon, required, serverError, regex} = this.props;
         const {value, hasError, errorMessage} = this.state;
@@ -82,7 +93,7 @@ class Input extends Component {
         const disabledClass = disabled ? ' r-disabled' :''; 
         const iconClass = icon !== null ? ' r-has-icon' :''; 
         const inputIcon = createIcon(icon);
-        const validationMode = required || serverError || regex ? true : false;
+        const validationMode = this.isValidationMode ();
         const errorClass =  validationMode && hasError ? ' r-error' :''; 
         const sucessClass = validationMode && !hasError ? ' r-success' :''; 
       

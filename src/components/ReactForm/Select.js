@@ -11,15 +11,20 @@ class Select extends Component {
 
         const {values , defaultValue} = this.props;
         //Our method always get array and when user send "String" should be convert to array
-        this.selectedIds = typeof defaultValue === 'number' ?  [defaultValue] : defaultValue;
+        this.selectedIds = (typeof defaultValue === 'number' ?  [defaultValue] : defaultValue) || [];
         this.values =  this.createList (values);
+        const selectedItems =  this.getSelectedItems (this.selectedIds)
         
         this.state = {
             open : false,
-            selectedItems : this.getSelectedItems (this.selectedIds),
+            selectedItems :selectedItems,
             listValues :  this.values,
+            hasError : this.validate(selectedItems).hasError,
+            errorMessage : this.validate(selectedItems).errorMessage,
             uid : createUID(),
+            
         }
+        
     }
 
     componentDidMount(){
@@ -46,6 +51,45 @@ class Select extends Component {
         })
     }
 
+    /**
+     * Detect validation mode
+     */
+    isValidationMode (){
+        const {required, serverError} = this.props;
+
+        const validationMode =required || serverError ? true : false;
+        return validationMode;
+    }
+
+    /**
+     * Check if select has error or not depends on our configs
+     * 
+     */
+    validate (selectedItems = []){
+        const {serverError, required} = this.props;
+        let hasError = false;
+        let errorMessage = '';
+
+        if(!this.isValidationMode()) return {hasError,errorMessage} ;
+       
+        if(serverError && serverError.status) {
+            hasError = true;
+            errorMessage = serverError.message;
+        }
+        else if(!serverError && required && selectedItems.length === 0){
+            hasError = true;
+            errorMessage = required;
+        }
+ 
+        this.setState({hasError, errorMessage});
+        return {hasError, errorMessage}
+    }
+
+    /**
+     * Add Selected property to values that listed as options
+     * 
+     * @param {Array} values 
+     */
     addSelectedProp (values){
         const {mapping, multi} = this.props;
 
@@ -68,7 +112,7 @@ class Select extends Component {
         
         //If nullable add a fake object 
         if (nullable) {
-            const notSelected = notSelectedText ? notSelectedText : (rtl ? 'انتخاب شده' : 'No Selected');
+            const notSelected = notSelectedText ? notSelectedText : (rtl ? 'انتخاب نشده' : 'No Selected');
 
             listValues.unshift({
                 [mapping.text] : notSelected,
@@ -152,6 +196,11 @@ class Select extends Component {
 
     }
 
+    /**
+     * Toggle select in multiselect mode 
+     * 
+     * @param {Object} item 
+     */
     toggleSelect (item){
         const {change} = this.props;
         
@@ -165,15 +214,21 @@ class Select extends Component {
                 prevState.selectedItems.push(item);
             }
             
+            this.validate(prevState.selectedItems)
+            change(prevState.selectedItems)
+
             return {
                 selectedItems : prevState.selectedItems
             }
         });
-
-        change(this.state.selectedItems)
+        
     }
 
-
+    /**
+     * Toggle options iwth index
+     * 
+     * @param {Number} index 
+     */
     toggleOptions (index){
         this.setState(prevState => {
 
@@ -184,6 +239,9 @@ class Select extends Component {
         })
     }
 
+    /**
+     * Deselect all options
+     */
     deselectOptions (){
         this.setState(prevState => {
             prevState.listValues.forEach(o => (o.selected = false))
@@ -192,6 +250,7 @@ class Select extends Component {
             }
         })
     }
+
     /**
      * 
      * @param {Object} item 
@@ -208,6 +267,7 @@ class Select extends Component {
             this.deselectOptions()
             this.setState({selectedItems : []});
             this.setState({open:false});
+            this.validate([]);
             change(null);
             return;
         }
@@ -218,9 +278,10 @@ class Select extends Component {
         }
         else {
             this.setState({selectedItems : [item]})
+            this.validate([item])
             this.setState({open:false});
             change(item);
-            
+     
         }
  
     }
@@ -347,7 +408,7 @@ class Select extends Component {
         let inputText = '';
 
         if (!selectedItems || selectedItems.length === 0) {
-            const notSelected = notSelectedText ? notSelectedText : (rtl ? 'انتخاب شده' : 'No Selected');
+            const notSelected = notSelectedText ? notSelectedText : (rtl ? 'انتخاب نشده' : 'No Selected');
             return notSelected;
         }
 
@@ -371,7 +432,9 @@ class Select extends Component {
 
 
     render (){
-        const { label, mapping, rtl, disabled, outline} = this.props;
+        const { label, mapping, rtl, disabled, outline, required, serverError} = this.props;
+        const {errorMessage, hasError} = this.state;
+
         const {open, selectedItems, uid} = this.state;
         const activeClass = open ? ' active' : '';
         const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
@@ -380,9 +443,12 @@ class Select extends Component {
         const disabledClass = disabled ? ' r-disabled' :''; 
         const inputValue = this.getInputText();
         const renderIcon = mapping.icon ? createIcon(getValueByProp(selectedItems, mapping.icon)) : '';
+        const validationMode = this.isValidationMode();
+        const errorClass =  validationMode && hasError ? ' r-error' :''; 
+      
         
         return (
-            <div data-id={uid} onClick={this.open.bind(this)} className={`r-select r-noselect r-input filled${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div data-id={uid} onClick={this.open.bind(this)} className={`r-select r-noselect r-input filled${errorClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
                 <input 
                     disabled={disabled} 
                     type="text" 
@@ -393,6 +459,11 @@ class Select extends Component {
                 <span className="r-line"></span>
                 {mapping.icon && <span className="r-input-icon">{renderIcon}</span>}
                 <span className="r-icon">{icons.down}</span>
+                             
+                {   hasError &&
+                    <span className="r-message">{errorMessage}</span> 
+      
+                }
                 {this.open && this.renderOptions()}
             </div>
         )

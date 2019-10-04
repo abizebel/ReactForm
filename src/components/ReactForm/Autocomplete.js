@@ -15,13 +15,50 @@ class Autcomplete extends Component {
 
         this.values =  [...this.props.values];
         this.inputDom = createRef();
+        const defaultValue = this.props.defaultValue || '';
 
         this.state = {
             open : false,
-            searchValue : this.props.defaultValue || '',
+            searchValue : defaultValue,
             listValues : this.values,
             selectedItem : null,
+            hasError : this.validate(defaultValue).hasError,
+            errorMessage : this.validate(defaultValue).errorMessage
         }
+    }
+
+    /**
+     * Detect validation mode
+     */
+    isValidationMode (){
+        const {required, serverError} = this.props;
+
+        const validationMode =required || serverError ? true : false;
+        return validationMode;
+    }
+
+    /**
+     * Check if select has error or not depends on our configs
+     * 
+     */
+    validate (value){
+        const {serverError, required} = this.props;
+        let hasError = false;
+        let errorMessage = '';
+
+        if(!this.isValidationMode()) return {hasError,errorMessage} ;
+       
+        if(serverError && serverError.status) {
+            hasError = true;
+            errorMessage = serverError.message;
+        }
+        else if(!serverError && required && value.trim() === ''){
+            hasError = true;
+            errorMessage = required;
+        }
+ 
+        this.setState({hasError, errorMessage});
+        return {hasError, errorMessage}
     }
 
     /**
@@ -87,6 +124,7 @@ class Autcomplete extends Component {
         this.setState({selectedItem:item})
         this.setState({open:false});
 
+        this.validate(item[mapping.text]);
         change(item[mapping.text])
     }
 
@@ -160,6 +198,7 @@ class Autcomplete extends Component {
 
        // handle change
        this.setState({searchValue : e.target.value});
+       this.validate(target)
        change(e.target.value);
 
        //Close 
@@ -213,7 +252,7 @@ class Autcomplete extends Component {
 
     render (){
         const {label, mapping, rtl, disabled, outline, defaultValue} = this.props;
-        const {open, searchValue, selectedItem, uid} = this.state;
+        const {open, searchValue, selectedItem,errorMessage, hasError} = this.state;
 
         const activeClass = open ? ' active' : '';
         const filledClass = searchValue.length > 0  ? ' filled' :''; 
@@ -222,12 +261,12 @@ class Autcomplete extends Component {
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 
         const showClean = searchValue.length !== 0 ? true : false 
-        // const inputValue = this.getItemText(selectedItem);
-        // const renderIcon = mapping.icon ? createIcon(getValueByProp(selectedItem, mapping.icon)) : '';
-        
+        const validationMode = this.isValidationMode ();
+        const errorClass =  validationMode && hasError ? ' r-error' :''; 
+      
         
         return (
-            <div data-id={uid} className={`r-autocomplete r-input ${filledClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div className={`r-autocomplete r-input ${errorClass}${filledClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
             <input 
                 onBlur={this.close.bind(this)}
                 ref={this.inputDom}
@@ -239,7 +278,11 @@ class Autcomplete extends Component {
             />
             <label>{label}</label>
             <span className="r-line"></span>
-            
+
+            {   hasError &&
+                <span className="r-message">{errorMessage}</span> 
+      
+            }
             {mapping.icon && defaultValue.icon && selectedItem ===null &&
                 <span className="r-input-icon">{createIcon(defaultValue.icon)}</span>
             }

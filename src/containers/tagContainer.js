@@ -14,9 +14,8 @@ class AutocomplteContainer extends Component {
           <div className="page-content-title">Tag</div>
           <Tag change={this.changeTag.bind(this)}
             label={'Last Name'}
-            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             api={'api/getTag'} //get search tag result from server
-
+            required={'asdasdasd'}
             values ={
               [{id:'11',name:'Hosseini' },
               {id:'22',name:'feiz'},
@@ -26,7 +25,7 @@ class AutocomplteContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-          <Tag change={this.changeTag.bind(this)}
+          {/* <Tag change={this.changeTag.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
             defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
@@ -144,7 +143,7 @@ class AutocomplteContainer extends Component {
 
             ]}
             mapping = {{text : 'name', value : 'id'}}
-          />
+          /> */}
 
 
         </div>

@@ -14,15 +14,20 @@ class Tag extends Component {
         super(props);
 
         this.values = [...this.props.values];
+        const defaultValues = this.props.defaultValue || [];
+        const selectedTags = [...defaultValues] || [];
 
         this.state = {
             open : false,
             searchValue :  '',
-            tags : [...this.props.defaultValue] || [], // tags
+            tags : selectedTags, // tags
             listValues :  this.values, //search list
             selectedItem : null,
+            hasError : this.validate(selectedTags).hasError,
+            errorMessage : this.validate(selectedTags).errorMessage,
 
         }
+
         this.inputDom = createRef()
     }
 
@@ -32,6 +37,41 @@ class Tag extends Component {
 
         this.setState({searchValue : e.target.value});
     }
+
+    /**
+     * Detect validation mode
+     */
+    isValidationMode (){
+        const {required, serverError} = this.props;
+
+        const validationMode =required || serverError ? true : false;
+        return validationMode;
+    }
+
+    /**
+     * Check if select has error or not depends on our configs
+     * 
+     */
+    validate (selectedTags = []){
+        const {serverError, required} = this.props;
+        let hasError = false;
+        let errorMessage = '';
+
+        if(!this.isValidationMode()) return {hasError,errorMessage} ;
+       
+        if(serverError && serverError.status) {
+            hasError = true;
+            errorMessage = serverError.message;
+        }
+        else if(!serverError && required && selectedTags.length === 0){
+            hasError = true;
+            errorMessage = required;
+        }
+ 
+        this.setState({hasError, errorMessage});
+        return {hasError, errorMessage}
+    }
+
 
     /**
      * Render tag list for selection
@@ -93,12 +133,9 @@ class Tag extends Component {
      * @param {Object} item 
      */
     select (item){
-        const {change} = this.props;
-
         this.setState({selectedItem:item})
         this.addTag(item)
         this.setState({open:false})
-        change(this.state.tags)
     }
 
     /**
@@ -179,10 +216,15 @@ class Tag extends Component {
      * @param {Object} tag 
      */
     addTag (tag){
+        const {change} = this.props;
+
         if (this.isExist(tag)) return ;
 
         this.setState((prevState) =>{
             prevState.tags.push(tag);
+            this.validate(prevState.tags)
+            change(prevState.tags);
+
             return {
                 tags : prevState.tags
             }
@@ -204,6 +246,7 @@ class Tag extends Component {
         let {tags} = this.state
         tags.splice(index, 1 )
         this.setState({tags})
+        this.validate(tags)
         change(tags)
 
     }
@@ -214,12 +257,15 @@ class Tag extends Component {
      * @param {Event} e 
      */
     enter (e){
-        const {mapping, change} = this.props;
+        const {mapping} = this.props;
 
         if (e.keyCode === 13) {
-            this.addTag({[mapping.text] : this.inputDom.current.value});
+            const value = this.inputDom.current.value;
+            if (value.trim() === '') return;
+
+            this.addTag({[mapping.text] : value});
             this.setState({open:false});
-            change(this.state.tags);
+
         }
        
     }
@@ -263,17 +309,19 @@ class Tag extends Component {
 
     render (){
         const {rtl, outline, label, disabled, mapping} = this.props;
-        const {searchValue, open, tags} = this.state;
+        const {searchValue, open, tags, hasError, errorMessage} = this.state;
         const filledClass = (searchValue.length > 0 || tags.length >0) ? ' filled' :''; 
         const rtlClass = rtl ? ' r-rtl' :''; 
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 
         const activeClass = open ? ' active' : '';
         const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
-        
+        const validationMode = this.isValidationMode();
+        const errorClass =  validationMode && hasError ? ' r-error' :''; 
+      
 
         return (
-            <div className={`r-tag r-input${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`} >
+            <div className={`r-tag r-input${errorClass}${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`} >
                 {this.renderTags()}
                 <input 
                     onBlur={this.close.bind(this)}
@@ -285,6 +333,10 @@ class Tag extends Component {
                 />
                 <label>{label}</label>
                 <span className="r-line"></span>
+                {   hasError &&
+                    <span className="r-message">{errorMessage}</span> 
+      
+                }
                 {this.open && this.renderOptions()}
             </div>
         )
