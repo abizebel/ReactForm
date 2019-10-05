@@ -184,7 +184,7 @@ input:-webkit-autofill:active  {
 
 /* Bordered */
 .r-input.r-bordered > input {
-    padding-top: .1rem;/*Fix input is not exactly in center*/
+    padding-top: .3rem;/*Fix input is not exactly in center*/
     height: calc(var(--input-height) * 3rem) ;
 }
 .r-input.r-bordered > textarea {
