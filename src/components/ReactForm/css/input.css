@@ -201,7 +201,8 @@ input:-webkit-autofill:active  {
 .r-input.r-bordered > textarea {
     border: 1px solid var(--label-color);
     border-radius: 4px;
-    padding: 16px;
+    padding-right: 16px;
+    padding-left: 16px;
 }
 .r-input.r-bordered > label {
     left: 16px;
