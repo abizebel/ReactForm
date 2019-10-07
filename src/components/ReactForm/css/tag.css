@@ -2,8 +2,8 @@
 * TAG
 *************************/
 .r-tag {
-	margin-top: 2rem;
-	margin-bottom: 2rem;
+    margin-top:  calc(var(--space-around) * 1rem) ;
+    margin-bottom: calc(var(--space-around) * 1rem) ;
 	position: relative
 }
 .r-tag.r  .r-options {

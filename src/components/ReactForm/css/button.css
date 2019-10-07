@@ -24,10 +24,29 @@
 	transition: ease 0.3s all;
 }
 
+/* Icon & Svg */
+.r-button span {
+
+	font-size: 18px;
+
+}
+
+/* No Space */
+.r-button.r-button.r-nospace {
+	margin: 0;
+}
+
+/* Hover */
 .r-button:hover {
 	opacity: .9;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 2px 1px -2px rgba(0,0,0,0.12), 0 1px 4px 0 rgba(0,0,0,0.2);
 	transition: ease 0.3s all;
+}
+.r-button.r-success:hover ,
+.r-button.r-warning:hover ,
+.r-button.r-danger:hover ,
+.r-button.r-info:hover {
+	  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 2px 1px -2px rgba(0,0,0,0.12), 0 1px 4px 0 rgba(0,0,0,0.2);
+
 }
 /* Colors */
 .r-button.r-success {
@@ -80,11 +99,11 @@
 .r-button.r-xs {
 	padding:4px 8px;
 	font-size: calc(var(--text-size) * .8em);
-
 }
 
 .r-button.r-lg {
 	padding: 14px 28px;
+
 	font-size: calc(var(--text-size) * 1em)
 }
 
@@ -129,7 +148,11 @@
 	margin-left: 8px;
 }
 
-
+/* Focus */
+.r-button::-moz-focus-inner {
+	border: 0;
+}
+  
 /* Disabled */
 .r-button .r-button-text.r-disabled,
 .r-button .r-button-text.r-disabled:hover {
