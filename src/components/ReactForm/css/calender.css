@@ -1,0 +1,6 @@
+.r-calender {
+  border:1px solid var(--label-color)
+}
+.r-calender-header {
+  display: flex
+}
