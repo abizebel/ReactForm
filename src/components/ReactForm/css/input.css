@@ -11,8 +11,8 @@ input:-webkit-autofill:active  {
 }
 
 
-
 .r-input {
+    direction: ltr;
     position: relative;
     margin-top:  calc(var(--space-around) * 1rem) ;
     margin-bottom: calc(var(--space-around) * 1rem) ;
