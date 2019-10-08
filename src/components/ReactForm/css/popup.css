@@ -72,11 +72,11 @@
   line-height: 48px;
 }
 .r-popup-sidebar li:hover{
-  background: #ccc
+  background: #eee
 }
 .r-popup-sidebar li:hover svg,
 .r-popup-sidebar li:hover span,
-..r-popup-sidebar li.active svg,
+.r-popup-sidebar li.active svg,
 .r-popup-sidebar li.active span{
   color:  var(--focus-color);
   fill: var(--focus-color)
@@ -105,6 +105,9 @@
 }
 .r-popup-header{
   flex-direction: row-reverse
+}
+.r-popup-buttons {
+  flex-direction: row
 }
 .r-popup-body{
   direction:rtl
