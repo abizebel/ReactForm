@@ -15,8 +15,8 @@ class SelectContainer extends Component {
           <div className="page-content-title">Multi Select</div>
           <Select   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
-            defaultValue ={[11,22,33]}
-            multi={true}
+            defaultValue ={[11]}
+           // multi={true}
             nullable={true}
             search = {true}
             searchLabel = {'Search ... '}
@@ -30,10 +30,10 @@ class SelectContainer extends Component {
               {id:'77',name:'mardanian', info:{icon:sampleIcon}},
               {id:'88',name:'babaei', info:{icon:sampleIcon}}
             ]}
-            mapping = {{text : 'name', value : 'id'}}
+            mapping = {{text : 'name', value : 'id', icon : 'info.icon'}}
           />
 
-          <Select   change={this.changeSelect.bind(this)}       
+          {/* <Select   change={this.changeSelect.bind(this)}       
             label={'نام خانوادگی'}            
             defaultValue ={[11,22,33]}
             multi={true}
@@ -585,7 +585,7 @@ class SelectContainer extends Component {
               {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
             ]}
             mapping = {{text : 'name', value : 'id'}}
-          /> 
+          />  */}
 
         </div>
 

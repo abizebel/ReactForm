@@ -18,13 +18,12 @@ class Select extends Component {
         this.state = {
             open : false,
             selectedItems :selectedItems,
-            listValues :  this.values,
+            listValues : this.values,
             hasError : this.validate(selectedItems).hasError,
             errorMessage : this.validate(selectedItems).errorMessage,
             uid : createUID(),
             
         }
-        
     }
 
     componentDidMount(){
@@ -315,7 +314,7 @@ class Select extends Component {
                             />
                         }
 
-                        {mapping.icon && 
+                        {mapping.icon && !multi &&
                             <span className="r-option-icon">
                                 {createIcon(getValueByProp(o, mapping.icon))}
                             </span> 
@@ -432,12 +431,12 @@ class Select extends Component {
 
 
     render (){
-        const { label, mapping, rtl, disabled, outline, required, serverError} = this.props;
+        const { label, mapping, rtl, disabled, outline, multi} = this.props;
         const {errorMessage, hasError} = this.state;
 
         const {open, selectedItems, uid} = this.state;
         const activeClass = open ? ' active' : '';
-        const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
+        const hasIconClass =  mapping.icon &&  !multi  ? ' r-has-icon' : '';
         const rtlClass = rtl ? ' r-rtl' : '';
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 

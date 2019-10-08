@@ -9,6 +9,7 @@ export function createUID (){
 }
 
 export function createIcon (icon){
+    debugger
     if(icon === null) return ;
     if (icon.type === 'svg'){
         return icon;
@@ -18,7 +19,9 @@ export function createIcon (icon){
     }
 }
 
-export function getValueByProp(obj, field) {
+export function getValueByProp(arr, field) {
+    
+    const obj =Array.isArray(arr) ? arr[0] : arr;
     if (field === undefined) {  console.log('field is wrong'); debugger; return false; }
     if (Array.isArray(field)) { field = field[obj.level]; }
     if (field === undefined) {  console.log('field is wrong'); debugger; return false; }
