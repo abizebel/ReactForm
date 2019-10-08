@@ -4,6 +4,10 @@
 .r-button {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
+vertical-align: middle;
+	padding: 0 16px;
+	height: 36px;
+  line-height: 36px;
 	border: 0;
 	outline: 0;
 	background: none;
@@ -20,21 +24,26 @@
 	-moz-user-select: none;
 	user-select: none;
 	font-size: calc(var(--text-size) * .9em);
-	padding: 8px 16px;
+
 	transition: ease 0.3s all;
 }
 
 /* Icon & Svg */
-.r-button span {
+.r-button > span,
+.r-button > svg{
+	color: var(--text-color);
+	fill: var(--text-color);
+	font-size:18px;
+  display: inline-block;
+	line-height: 18px;
+	vertical-align: text-top;
+	width: 18px;
+	height: 18px;
 
-	font-size: 18px;
+
 
 }
 
-/* No Space */
-.r-button.r-button.r-nospace {
-	margin: 0;
-}
 
 /* Hover */
 .r-button:hover {
@@ -68,6 +77,11 @@
 .r-button.r-default {
   background: var(--default-color);
 }
+.r-button.r-warning span,
+.r-button.r-info span,
+.r-button.r-danger  span{
+	color: #fff
+}
 
 /* Gradient Colors */
 .r-button.r-success.r-gradient {
@@ -97,14 +111,18 @@
 
 /* Sizes */
 .r-button.r-xs {
-	padding:4px 8px;
+	padding: 0 12px;
+	height: 32px;
+  line-height:32px;
 	font-size: calc(var(--text-size) * .8em);
 }
 
 .r-button.r-lg {
-	padding: 14px 28px;
+	height: 44px;
+  line-height: 44px;
+		padding: 0 20px;
 
-	font-size: calc(var(--text-size) * 1em)
+
 }
 
 /* Effect */
