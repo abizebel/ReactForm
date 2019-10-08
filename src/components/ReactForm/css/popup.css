@@ -34,7 +34,7 @@
   margin: 0;
   flex-direction: row-reverse;
   display: flex;
-  padding:12px 16px;
+  padding:12px 8px;
 
 } 
 .r-popup-buttons > li {
@@ -46,6 +46,8 @@
 
 .r-popup-body {
   display: flex;
+  flex-direction: row;
+  direction: ltr;
   /* How to scroll fit content with flex */
   flex-grow: 1;
   /* for Firefox */
@@ -103,12 +105,12 @@
 .r-popup.r-rtl {
   left: 0
 }
-.r-popup-header{
+.r-popup.r-rtl .r-popup-header{
   flex-direction: row-reverse
 }
-.r-popup-buttons {
+.r-popup.r-rtl .r-popup-buttons {
   flex-direction: row
 }
-.r-popup-body{
-  direction:rtl
+.r-popup.r-rtl .r-popup-body{
+  direction: rtl
 }
