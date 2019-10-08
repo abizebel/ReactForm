@@ -42,13 +42,11 @@
   margin-left: 8px
  
 }
-.r-popup-footer {
-  
-}
+
 
 .r-popup-body {
   display: flex;
-
+  /* How to scroll fit content with flex */
   flex-grow: 1;
   /* for Firefox */
   min-height: 0;
@@ -94,16 +92,20 @@
 
 }
 
-
 /* Content */
 .r-popup-content {
   padding:0 32px;
   width: 100%;
   overflow-y: auto;
-  flex-grow: 1;
-  /* for Firefox */
-  min-height: 0;
-  
-
 }
 
+/* Rtl */
+.r-popup.r-rtl {
+  left: 0
+}
+.r-popup-header{
+  flex-direction: row-reverse
+}
+.r-popup-body{
+  direction:rtl
+}
