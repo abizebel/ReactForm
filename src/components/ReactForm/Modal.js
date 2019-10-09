@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {createIcon} from './functions';
 
 
@@ -17,7 +17,7 @@ class Modal extends Component {
             )
         });
 
-        return  (<ul className="r-popup-sidebar">{sidebarItems}</ul>)
+        return  (<ul className="r-modal-sidebar">{sidebarItems}</ul>)
     }
 
     /**
@@ -43,29 +43,32 @@ class Modal extends Component {
         if(!isOpen) return null;
 
         return (
-            <div className={`r-popup${rtlClass}`} style={{width}}>
-                <div className="r-popup-header">
-                    <div className="r-popup-title">{label}</div> 
-                    <ul className="r-popup-buttons">
-                        <li>
-                            <button onClick={onClose} type="button" className="r-button r-ripple r-xs r-defualt r-nospace"> 
-                                <span className="mdi mdi-close"></span>
-                            </button>
-                        </li>
-                        {this.renderButtons()}
-                    </ul>
-                </div>
+            <Fragment>
+                <div className="r-mode-lbackdrop"></div>
+                <div className={`r-modal${rtlClass}`} style={{width}}>
+                    <div className="r-modal-header">
+                        <div className="r-modal-title">{label}</div> 
+                        <ul className="r-modal-buttons">
+                            <li>
+                                <button onClick={onClose} type="button" className="r-button r-ripple r-xs r-defualt r-nospace"> 
+                                    <span className="mdi mdi-close"></span>
+                                </button>
+                            </li>
+                            {this.renderButtons()}
+                        </ul>
+                    </div>
 
-                <div className="r-popup-body">
-                    
-                    {sidebar && this.renderSidebar()}
+                    <div className="r-modal-body">
+                        
+                        {sidebar && this.renderSidebar()}
 
-                    <div className="r-popup-content">
-                        {this.props.children}
+                        <div className="r-modal-content">
+                            {this.props.children}
+                        </div>
                     </div>
                 </div>
-            </div>
-                
+
+            </Fragment>      
         )
     }
 }
