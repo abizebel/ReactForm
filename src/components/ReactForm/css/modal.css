@@ -35,13 +35,13 @@
   transform: translateX(-100px);
   transition: all 0.5s ease;
 }
--right-appear-active {
+.slide-right-appear-active {
   opacity: 1;
   transform: translateX(0px);
 }
 
 
-.r-mode-lbackdrop {
+.r-mode-backdrop {
   position: fixed;
   top: 0;
   left: 0;

@@ -47,11 +47,9 @@ class Modal extends Component {
         return (
             <Fragment>
                 <ReactCSSTransitionGroup 
-                transitionName="fade"
-                transitionLeave={true}
-                onTransitionEnd={true}
+                transitionName="fade" 
                 transitionAppear={true}>
-                    <div className="r-mode-lbackdrop"></div>
+                    <div className="r-mode-backdrop"></div>
                 </ReactCSSTransitionGroup>
                
                 <ReactCSSTransitionGroup 

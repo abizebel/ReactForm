@@ -16,7 +16,7 @@ class SelectContainer extends Component {
           <Select   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
             defaultValue ={[11]}
-           // multi={true}
+            multi={true}
             nullable={true}
             search = {true}
             searchLabel = {'Search ... '}

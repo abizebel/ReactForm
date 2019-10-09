@@ -455,7 +455,7 @@ class Select extends Component {
                 />
                 <label>{label}</label>
                 <span className="r-line"></span>
-                {mapping.icon && <span className="r-input-icon">{renderIcon}</span>}
+                {!multi && mapping.icon && <span className="r-input-icon">{renderIcon}</span>}
                 <span className="r-icon">{icons.down}</span>
                              
                 {   hasError &&
