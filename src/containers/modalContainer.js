@@ -8,7 +8,7 @@ class AutocomplteContainer extends Component {
       super(props);
       this.state = {
           open1 : false,
-          open2 : true
+          open2 : false
       }
   }
 

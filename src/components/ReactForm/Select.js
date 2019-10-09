@@ -300,9 +300,8 @@ class Select extends Component {
         }
         else {
             options = listValues.map((o, i) => {
-                const selectedClass = (selectedItems && o[mapping.value] === selectedItems[mapping.value]) ? ' selected' : '';
                 return (
-                    <div key={i} className={`r-options-item${selectedClass}`} onClick={this.select.bind(this,o,i)}>
+                    <div key={i} className={`r-options-item`} onClick={this.select.bind(this,o,i)}>
                       
                         {multi && o[mapping.value] !==-99 &&
                             <Checkbox 

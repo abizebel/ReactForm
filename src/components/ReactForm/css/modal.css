@@ -1,6 +1,46 @@
 /************************
 * modal
 *************************/   
+
+
+
+.fade-appear {
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.fade-appear-active {
+  opacity: 1;
+}
+.fade-appear-end {
+  opacity: 1;
+}
+.fade-appear-end {
+  opacity: 0;
+}
+
+.slide-left-appear {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.5s ease;
+  
+}
+.slide-left-appear-active {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.slide-right-appear {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 0.5s ease;
+}
+-right-appear-active {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+
 .r-mode-lbackdrop {
   position: fixed;
   top: 0;
@@ -9,6 +49,7 @@
   width: 100vw;
   height: 100vh;
   background: rgba(0,0,0,.6);
+  transition: all .5 ease
 }
 
 .r-modal {

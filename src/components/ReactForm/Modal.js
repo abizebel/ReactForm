@@ -1,4 +1,6 @@
 import React, {Component, Fragment} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 import {createIcon} from './functions';
 
 
@@ -44,30 +46,41 @@ class Modal extends Component {
 
         return (
             <Fragment>
-                <div className="r-mode-lbackdrop"></div>
-                <div className={`r-modal${rtlClass}`} style={{width}}>
-                    <div className="r-modal-header">
-                        <div className="r-modal-title">{label}</div> 
-                        <ul className="r-modal-buttons">
-                            <li>
-                                <button onClick={onClose} type="button" className="r-button r-ripple r-xs r-defualt r-nospace"> 
-                                    <span className="mdi mdi-close"></span>
-                                </button>
-                            </li>
-                            {this.renderButtons()}
-                        </ul>
-                    </div>
+                <ReactCSSTransitionGroup 
+                transitionName="fade"
+                transitionLeave={true}
+                onTransitionEnd={true}
+                transitionAppear={true}>
+                    <div className="r-mode-lbackdrop"></div>
+                </ReactCSSTransitionGroup>
+               
+                <ReactCSSTransitionGroup 
+                transitionName={`slide-${rtl?'right':'left'}`} 
+                transitionAppear={true}>
+                    <div className={`r-modal${rtlClass}`} style={{width}}>
+                        <div className="r-modal-header">
+                            <div className="r-modal-title">{label}</div> 
+                            <ul className="r-modal-buttons">
+                                <li>
+                                    <button onClick={onClose} type="button" className="r-button r-ripple r-xs r-defualt r-nospace"> 
+                                        <span className="mdi mdi-close"></span>
+                                    </button>
+                                </li>
+                                {this.renderButtons()}
+                            </ul>
+                        </div>
 
-                    <div className="r-modal-body">
-                        
-                        {sidebar && this.renderSidebar()}
+                        <div className="r-modal-body">
+                            
+                            {sidebar && this.renderSidebar()}
 
-                        <div className="r-modal-content">
-                            {this.props.children}
+                            <div className="r-modal-content">
+                                {this.props.children}
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                </ReactCSSTransitionGroup>
+                
             </Fragment>      
         )
     }

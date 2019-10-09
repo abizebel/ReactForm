@@ -19,11 +19,8 @@ export function createIcon (icon){
 }
 
 export function getValueByProp(arr, field) {
-    
-    const obj =Array.isArray(arr) ? arr[0] : arr;
-    if (field === undefined) {  console.log('field is wrong'); debugger; return false; }
+    let obj =!Array.isArray(arr) || arr.length === 0 ? arr: arr[0] ;
     if (Array.isArray(field)) { field = field[obj.level]; }
-    if (field === undefined) {  console.log('field is wrong'); debugger; return false; }
     field = field.split('.');
     var value = obj[field[0]];
     for (var i = 1; i < field.length; i++) {
