@@ -31,7 +31,7 @@ class AutocomplteContainer extends Component {
         <div className="page-content-box" >
             <div className="page-content-title">Modal</div>
 
-            <button type="button" onClick={()=>{this.setState({open1 : true})}}>Open ltr Modal</button>
+            <button type="button"  className="r-button r-ripple r-lg r-info r-gradient" onClick={()=>{this.setState({open1 : true})}}>Open ltr Modal</button>
             
             <Modal 
                 width = {500}
@@ -40,6 +40,7 @@ class AutocomplteContainer extends Component {
                 onClose = {() => { this.setState({open1 : false}) }}
                 buttons = {[
                     {text : 'save', icon : 'mdi mdi-home', callback:()=>{}},
+                    
                 ]}
 
             > 
@@ -90,7 +91,7 @@ class AutocomplteContainer extends Component {
         <div className="page-content-box" >
             <div className="page-content-title">RTL Modal</div>
 
-            <button type="button" onClick={()=>{this.setState({open2 : true})}}>Open ltr Modal</button>
+            <button type="button" className="r-button r-ripple r-lg r-info r-gradient" onClick={()=>{this.setState({open2 : true})}}>Open RTL Modal</button>
             
             <Modal 
                 rtl={true}
