@@ -4,7 +4,8 @@
 .r-button {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
-vertical-align: middle;
+	
+  vertical-align: middle;
 	padding: 0 16px;
 	height: 36px;
   line-height: 36px;
@@ -57,6 +58,24 @@ vertical-align: middle;
 	  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 2px 1px -2px rgba(0,0,0,0.12), 0 1px 4px 0 rgba(0,0,0,0.2);
 
 }
+
+
+/* Sizes */
+.r-button.r-xs {
+	padding: 0 12px;
+	height: 32px;
+  line-height:32px;
+	font-size: calc(var(--text-size) * .8em);
+}
+
+.r-button.r-lg {
+	height: 44px;
+  line-height: 44px;
+		padding: 0 20px;
+
+
+}
+
 /* Colors */
 .r-button.r-success {
 	background: var(--success-color);
@@ -107,22 +126,6 @@ vertical-align: middle;
 /* NoSpace */
 .r-button.r-nospace {
 	margin: 0
-}
-
-/* Sizes */
-.r-button.r-xs {
-	padding: 0 12px;
-	height: 32px;
-  line-height:32px;
-	font-size: calc(var(--text-size) * .8em);
-}
-
-.r-button.r-lg {
-	height: 44px;
-  line-height: 44px;
-		padding: 0 20px;
-
-
 }
 
 /* Effect */

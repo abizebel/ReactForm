@@ -3,10 +3,6 @@ import {createIcon} from './functions';
 
 
 class Modal extends Component {
-    constructor(props){
-        super(props)
-    }
-
     /**
      * Render modal sidebar
      */
@@ -42,12 +38,12 @@ class Modal extends Component {
     }
 
     render (){
-        const {label, sidebar, onClose, isOpen, rtl} = this.props;
+        const {label, sidebar, onClose, isOpen, rtl, width} = this.props;
         const rtlClass = rtl ? ' r-rtl' : '';
         if(!isOpen) return null;
 
         return (
-            <div className={`r-popup${rtlClass}`}>
+            <div className={`r-popup${rtlClass}`} style={{width}}>
                 <div className="r-popup-header">
                     <div className="r-popup-title">{label}</div> 
                     <ul className="r-popup-buttons">

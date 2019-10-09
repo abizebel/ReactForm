@@ -4,7 +4,7 @@
 .r-chips{
     padding: 0;
     margin: 0;
-    padding: 20px 0px 0 0px;
+    padding: calc(var(--input-height) * .8rem) 0px 0 0px;
     -webkit-user-select: none; /* Safari 3.1+ */
     -moz-user-select: none; /* Firefox 2+ */ /* IE 10+ */
     user-select: none; /* Standard syntax */  
@@ -42,7 +42,7 @@
 }
 /* Bordered */
 .r-bordered .r-chips {
-    padding: 20px 16px 0 16px;
+    padding: calc(var(--input-height) * .4rem) 16px 0 16px;
 }
 /* Disabled */
 .r-disabled .r-chips-item > img {

@@ -34,7 +34,7 @@ class Input extends Component {
      * @param {Event} e 
      */
     handleChange (e){
-        const {change, validations} = this.props;
+        const {change} = this.props;
         let value = e.target.value;
 
         this.setState({value});
@@ -85,7 +85,7 @@ class Input extends Component {
     }
 
     render (){
-        const {rtl, outline, label, disabled, multiline, icon, required, serverError, regex} = this.props;
+        const {rtl, outline, label, disabled, multiline, icon} = this.props;
         const {value, hasError, errorMessage} = this.state;
         const filledClass = value.length > 0 ? ' filled' :''; 
         const rtlClass = rtl ? ' r-rtl' : ''; 

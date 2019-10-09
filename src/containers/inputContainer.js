@@ -1,6 +1,5 @@
 import React, {Component,Fragment} from 'react';
 import {Input} from '../components/ReactForm';
-const testValue = false;
 
 class InputContainer extends Component {
 

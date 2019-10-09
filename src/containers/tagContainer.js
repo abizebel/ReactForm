@@ -85,7 +85,6 @@ class AutocomplteContainer extends Component {
             required={'This filed is required'}
 
             api={'api/getTag'} //get search tag result from server
-            required={'asdasdasd'}
             values ={
               [{id:'11',name:'Hosseini' },
               {id:'22',name:'feiz'},
