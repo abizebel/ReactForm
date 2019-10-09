@@ -99,7 +99,7 @@ class AutocomplteContainer extends Component {
                 label={'Login Form'}
                 onClose = {() => { this.setState({open2 : false}) }}
                 buttons = {[
-                    {text : 'save', icon : 'mdi mdi-home', callback:()=>{}},
+                    {text : 'ذخیره', icon : 'mdi mdi-home', callback:()=>{}},
                 ]}
 
             > 

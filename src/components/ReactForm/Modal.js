@@ -26,13 +26,14 @@ class Modal extends Component {
      * Render buttons
      */
     renderButtons (){
-        const {buttons} = this.props;
+        const {buttons, rtl} = this.props;
         return buttons.map((o, i) => {
             return (
                 <li key={i} onClick={o.callback}>
                     <button type="button" className="r-button r-ripple r-xs r-defualt r-nospace"> 
-                        {o.icon && createIcon(o.icon)}
-                        {o.text && o.text}
+                        {!rtl && o.icon && createIcon(o.icon)}
+                        &nbsp;{o.text && o.text}&nbsp;
+                        {rtl && o.icon && createIcon(o.icon)}
                     </button>
                 </li>
             )
