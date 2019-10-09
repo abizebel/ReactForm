@@ -105,6 +105,7 @@ class AutocomplteContainer extends Component {
             > 
             
                 <Select  
+                    rtl={true}
                     change={this.changeSelect.bind(this)}
                     label={'نوع کاربر'}
                     defaultValue={11}
@@ -132,7 +133,7 @@ class AutocomplteContainer extends Component {
                 <Tag 
                     rtl={true}
                     change={this.changeTag.bind(this)}
-                    label={'Contributers'}
+                    label={'مشارکت کنندگان'}
                     defaultValue ={[{name: 'احمدی'},{name: 'رحیمی'}]}
                     values ={
                     [{id:'11',name:'حسینی' },
