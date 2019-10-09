@@ -3,6 +3,8 @@ import Select from './Select';
 import Autocomplete from './Autocomplete';
 import Tag from './Tag';
 import Checkbox from './Checkbox';
+import Modal from './Modal';
+
 
 // without default
 export {
@@ -10,5 +12,6 @@ export {
     Select,
     Autocomplete,
     Tag,
-    Checkbox
+    Checkbox,
+    Modal
 }

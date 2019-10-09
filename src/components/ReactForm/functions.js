@@ -9,7 +9,6 @@ export function createUID (){
 }
 
 export function createIcon (icon){
-    debugger
     if(icon === null) return ;
     if (icon.type === 'svg'){
         return icon;
