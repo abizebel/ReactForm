@@ -3,7 +3,6 @@
 ************************/
 
 .r-options {
-	    direction: ltr;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
@@ -89,22 +88,22 @@
 
 /* RTL */
 
-.r-input.r-rtl .r-options {
+.r-rtl>.r-options {
 	text-align: right;
 	direction: rtl
 }
 
-.r-input.r-rtl .r-options-item {
+.r-rtl .r-options-item {
 	padding-left: unset;
 	padding-right: 16px;
 }
 
-.r-input.r-rtl.r-has-icon .r-option-icon {
+.r-rtl.r-has-icon .r-option-icon {
 	left: unset;
 	right: 8px;
 }
 
-.r-input.r-rtl.r-has-icon .r-options-item {
+.r-rtl.r-has-icon .r-options-item {
 	padding-left: unset;
 	padding-right: 40px
 }
