@@ -16,6 +16,13 @@ body.r-popup-open {
   transition: all .7 ease
 }
 
+@media screen and (max-width:768px) {
+  .r-modal {
+    width: 100% !important;
+  }
+}
+
+
 .r-modal {
  position: fixed;
   right: 0;
