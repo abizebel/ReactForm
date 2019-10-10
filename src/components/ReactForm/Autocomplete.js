@@ -134,10 +134,7 @@ class Autcomplete extends Component {
      * @param {Event} e 
      */
     open (e){        
-        const len = $(e.target).closest('.r-options').length;
-        if (len === 0) {
-            this.setState({open : true})
-        }
+        this.setState({open : true})
     }
 
     /**

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 import Checkbox from './Checkbox';
 import {getValueByProp, createIcon, createUID} from './functions';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 import icons from './icons';
 import './ReactForm.css';
 
@@ -22,6 +24,7 @@ class Select extends Component {
             hasError : this.validate(selectedItems).hasError,
             errorMessage : this.validate(selectedItems).errorMessage,
             uid : createUID(),
+            searchValue : ''
             
         }
     }
@@ -146,16 +149,12 @@ class Select extends Component {
      */
     open (e){
         const {disabled} = this.props;
-
+        
         if (disabled) return;
         
-        const len = $(e.target).closest('.r-options').length;
-
-        if (len === 0) {
-            this.setState((prevState) => {
-                return { open : !prevState.open}
-            });
-        }
+        this.setState((prevState) => {
+            return { open : !prevState.open}
+        });
     }
 
     /**
@@ -341,14 +340,18 @@ class Select extends Component {
      */
     search (e){
         const {mapping} = this.props;
+        const value = e.target.value;
+
+        //Store search value in state
+        this.setState({searchValue : value})
 
         //Reset list if input hasnt value
-        if(e.target.value.length === 0) {
+        if(value.length === 0) {
             this.setState({listValues :this.values})
         }
 
         //Search
-        const target = e.target.value.toLowerCase();
+        const target = value.toLowerCase();
         const foundValues = this.values.filter(o => {
             return o[mapping.text].toLowerCase().indexOf(target)!== -1
         });
@@ -361,11 +364,12 @@ class Select extends Component {
      */
     renderSearch (){
         const {searchLabel, rtl} = this.props;
+        const {searchValue} = this.state;
         const searchLableText = searchLabel ? searchLabel : (rtl ? 'جستجو ...' : 'Search ...')
 
         return (
             <div className="r-options-search">
-                <input onChange={this.search.bind(this)} placeholder={searchLableText} type="text" />
+                <input value={searchValue} onChange={this.search.bind(this)} placeholder={searchLableText} type="text" />
             </div>
         )
     }
@@ -431,9 +435,8 @@ class Select extends Component {
 
     render (){
         const { label, mapping, rtl, disabled, outline, multi} = this.props;
-        const {errorMessage, hasError} = this.state;
+        const {errorMessage, hasError,open, selectedItems, uid} = this.state;
 
-        const {open, selectedItems, uid} = this.state;
         const activeClass = open ? ' active' : '';
         const hasIconClass =  mapping.icon &&  !multi  ? ' r-has-icon' : '';
         const rtlClass = rtl ? ' r-rtl' : '';
@@ -446,8 +449,9 @@ class Select extends Component {
       
         
         return (
-            <div data-id={uid} onClick={this.open.bind(this)} className={`r-select r-noselect r-input filled${errorClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div data-id={uid} className={`r-select r-noselect r-input filled${errorClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
                 <input 
+                    onClick={this.open.bind(this)}
                     disabled={disabled} 
                     type="text" 
                     onChange={()=>{}} 
@@ -460,9 +464,13 @@ class Select extends Component {
                              
                 {   hasError &&
                     <span className="r-message">{errorMessage}</span> 
-      
                 }
-                {this.open && this.renderOptions()}
+                {/* <ReactCSSTransitionGroup 
+                transitionName="fade" 
+                transitionAppear={true}> */}
+                    {open && this.renderOptions()}
+                {/* </ReactCSSTransitionGroup> */}
+              
             </div>
         )
     }
