@@ -45,10 +45,16 @@ class Modal extends Component {
     render (){
         const {label, sidebar, onClose, isOpen, rtl, width} = this.props;
         const rtlClass = rtl ? ' r-rtl' : '';
-        // if(!isOpen) {
 
-        //     return null;
-        // };
+        //Disbale body scroll when popup is open
+        if (isOpen) {
+            if(!$('body').hasClass('r-popup-open')) {
+                debugger
+                $('body').addClass('r-popup-open')
+            }
+        }
+
+        console.log(isOpen)
         return (
             <Fragment>
                 <ReactCSSTransitionGroup 
@@ -66,7 +72,7 @@ class Modal extends Component {
                             <div className="r-modal-title">{label}</div> 
                             <ul className="r-modal-buttons">
                                 <li>
-                                    <button onClick={onClose} type="button" className="r-button r-ripple r-xs r-defualt r-nospace"> 
+                                    <button onClick={() => {onClose(); $('body').removeClass('r-popup-open')}} type="button" className="r-button r-ripple r-xs r-defualt r-nospace"> 
                                         <span className="mdi mdi-close"></span>
                                     </button>
                                 </li>
