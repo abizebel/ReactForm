@@ -1,10 +1,11 @@
 import React, {Component, Fragment} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
+import $ from 'jquery';
 import {createIcon} from './functions';
 
 
 class Modal extends Component {
+
     /**
      * Render modal sidebar
      */
@@ -40,22 +41,26 @@ class Modal extends Component {
         })
     }
 
+
     render (){
         const {label, sidebar, onClose, isOpen, rtl, width} = this.props;
         const rtlClass = rtl ? ' r-rtl' : '';
-        if(!isOpen) return null;
+        // if(!isOpen) {
 
+        //     return null;
+        // };
         return (
             <Fragment>
                 <ReactCSSTransitionGroup 
                 transitionName="fade" 
                 transitionAppear={true}>
-                    <div className="r-mode-backdrop"></div>
+                   {isOpen && <div className="r-modal-backdrop"></div>} 
                 </ReactCSSTransitionGroup>
                
                 <ReactCSSTransitionGroup 
                 transitionName={`slide-${rtl?'right':'left'}`} 
                 transitionAppear={true}>
+                    {isOpen && 
                     <div className={`r-modal${rtlClass}`} style={{width}}>
                         <div className="r-modal-header">
                             <div className="r-modal-title">{label}</div> 
@@ -78,6 +83,7 @@ class Modal extends Component {
                             </div>
                         </div>
                     </div>
+                    }
                 </ReactCSSTransitionGroup>
                 
             </Fragment>      

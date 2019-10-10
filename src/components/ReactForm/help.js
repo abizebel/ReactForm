@@ -127,22 +127,25 @@ nospace={true} //When use it into other componenet remove spaces
 * MODAL
 ************************************************************/
 <Modal 
-                width = {500}
-                isOpen = {this.state.open1}
-                label={'Login Form'}
-                onClose = {() => { this.setState({open1 : false}) }}
-                buttons = {[
-                    {text : 'save', icon : 'mdi mdi-home', callback:()=>{}},
-                    
-                ]}
-                sidebar = {[
-                    {icon : 'mdi mdi-account-group', callback : ()=>{alert()}},
-                    {icon : 'mdi mdi-airplane-takeoff', callback : ()=>{alert()}},
-                    {icon : 'mdi mdi-clipboard-pulse-outline', callback : ()=>{alert()}},
-                    {icon : 'mdi mdi-coffee-outline', callback : ()=>{alert()}},
-                    {icon : 'mdi mdi-image-filter', callback : ()=>{alert()}},
-                    {icon : 'mdi mdi-laptop', callback : ()=>{alert()}}
+    width = {500}
+    rtl={true}
+    isOpen = {this.state.open1}
+    label={'Login Form'}
+    onClose = {() => { this.setState({open1 : false}) }}
+    buttons = {[
+        {text : 'save', icon : 'mdi mdi-home', callback:()=>{}},
+        
+    ]}
+    sidebar = {[
+        {icon : 'mdi mdi-account-group', callback : ()=>{alert()}},
+        {icon : 'mdi mdi-airplane-takeoff', callback : ()=>{alert()}},
+        {icon : 'mdi mdi-clipboard-pulse-outline', callback : ()=>{alert()}},
+        {icon : 'mdi mdi-coffee-outline', callback : ()=>{alert()}},
+        {icon : 'mdi mdi-image-filter', callback : ()=>{alert()}},
+        {icon : 'mdi mdi-laptop', callback : ()=>{alert()}}
 
-                ]}
+    ]}
 
-            > 
+> 
+ANY THING COMES HERE
+</Modal>

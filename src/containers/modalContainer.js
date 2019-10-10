@@ -169,7 +169,7 @@ class AutocomplteContainer extends Component {
                 label={'فرم ورود'}
                 onClose = {() => { this.setState({open3 : false}) }}
                 buttons = {[
-                    {text : 'ذخیره', icon : 'mdi mdi-content-save', callback:()=>{}},
+                    { icon : 'mdi mdi-content-save', callback:()=>{}},
                 ]}
 
             > 

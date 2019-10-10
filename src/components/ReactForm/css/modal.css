@@ -1,41 +1,11 @@
 /************************
 * modal
 *************************/   
-
-
-
-.fade-appear {
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
+/* Fix boday scrolling when popup is open */
+body.r-popup-open {
+  overflow-y: hidden;
 }
-
-.fade-appear-active {
-  opacity: 1;
-}
-
-.slide-left-appear {
-  opacity: 0;
-  transform: translateX(100px);
-  transition: all 0.5s ease;
-  
-}
-.slide-left-appear-active {
-  opacity: 1;
-  transform: translateX(0px);
-}
-
-.slide-right-appear {
-  opacity: 0;
-  transform: translateX(-100px);
-  transition: all 0.5s ease;
-}
-.slide-right-appear-active {
-  opacity: 1;
-  transform: translateX(0px);
-}
-
-
-.r-mode-backdrop {
+.r-modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
