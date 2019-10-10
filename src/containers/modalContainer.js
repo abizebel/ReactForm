@@ -29,7 +29,6 @@ class AutocomplteContainer extends Component {
       <Fragment>
 
 
-
         <div className="page-content-box" >
             <div className="page-content-title">Modal</div>
 
