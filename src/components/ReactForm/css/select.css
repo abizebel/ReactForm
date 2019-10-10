@@ -26,11 +26,13 @@
 /* Animated arrow */
 .r-select .r-icon {
     transition: .2s ease-in-out all;    
+     bottom:5px
 }
 .r-select.active > .r-icon {
-    transition: .3s ease all;
-    transition: .3s ease-in-out all;
+    transition: .4s ease all;
+    transition: .4s ease-in-out all;
     transform: rotate(180deg);
+   
 } 
 
 

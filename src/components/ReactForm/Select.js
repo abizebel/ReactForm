@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Checkbox from './Checkbox';
 import {getValueByProp, createIcon, createUID} from './functions';
 import icons from './icons';

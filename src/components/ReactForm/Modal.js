@@ -31,8 +31,8 @@ class Modal extends Component {
             return (
                 <li key={i} onClick={o.callback}>
                     <button type="button" className="r-button r-ripple r-xs r-defualt r-nospace"> 
-                        {!rtl && o.icon && createIcon(o.icon)}
-                        &nbsp;{o.text && o.text}&nbsp;
+                        {!rtl && o.icon && createIcon(o.icon) }
+                        {o.text && o.text}
                         {rtl && o.icon && createIcon(o.icon)}
                     </button>
                 </li>

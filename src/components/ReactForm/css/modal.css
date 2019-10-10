@@ -12,12 +12,6 @@
 .fade-appear-active {
   opacity: 1;
 }
-.fade-appear-end {
-  opacity: 1;
-}
-.fade-appear-end {
-  opacity: 0;
-}
 
 .slide-left-appear {
   opacity: 0;
