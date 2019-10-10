@@ -91,13 +91,13 @@ class AutocomplteContainer extends Component {
         <div className="page-content-box" >
             <div className="page-content-title">Modal with Sidebar</div>
 
-            <button type="button"  className="r-button r-ripple r-lg r-info r-gradient" onClick={()=>{this.setState({open1 : true})}}>Open ltr Modal</button>
+            <button type="button"  className="r-button r-ripple r-lg r-info r-gradient" onClick={()=>{this.setState({open2 : true})}}>Open ltr Modal</button>
             
             <Modal 
                 width = {500}
-                isOpen = {this.state.open1}
+                isOpen = {this.state.open2}
                 label={'Login Form'}
-                onClose = {() => { this.setState({open1 : false}) }}
+                onClose = {() => { this.setState({open2 : false}) }}
                 buttons = {[
                     { icon : 'mdi mdi-content-save', callback:()=>{}},
                     
@@ -223,14 +223,14 @@ class AutocomplteContainer extends Component {
         <div className="page-content-box" >
             <div className="page-content-title">RTL Modal with Sidebar</div>
 
-            <button type="button" className="r-button r-ripple r-lg r-info r-gradient" onClick={()=>{this.setState({open3 : true})}}>Open RTL Modal</button>
+            <button type="button" className="r-button r-ripple r-lg r-info r-gradient" onClick={()=>{this.setState({open4 : true})}}>Open RTL Modal</button>
             
             <Modal 
                 rtl={true}
                 width = {500}
-                isOpen = {this.state.open3}
+                isOpen = {this.state.open4}
                 label={'فرم ورود'}
-                onClose = {() => { this.setState({open3 : false}) }}
+                onClose = {() => { this.setState({open4 : false}) }}
                 buttons = {[
                     { icon : 'mdi mdi-content-save', callback:()=>{}},
                 ]}
