@@ -28,11 +28,15 @@ body {
   
 }
 
+.rtl .page-header {
+
+  flex-direction: row-reverse;
+
+}
 .page-header {
   position: relative;
   display:flex;
   justify-content: space-between;
-  flex-direction: row-reverse;
   overflow: hidden;
   width:100%;
   background:#fff;
