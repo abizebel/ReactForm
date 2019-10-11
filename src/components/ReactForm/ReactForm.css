@@ -10,6 +10,7 @@
 @import url('./css/modal.css');
 @import url('./css/login.css');
 @import url('./css/animation.css');
+@import url('./css/toggle.css');
 
 
 @font-face {
@@ -51,6 +52,7 @@ body {
     --info-gradient-color : #0e4d96;
     --disabled-color : #ddd;
     --focus-color : #145AF9;
+    --light-focus-color : #145af973;;
     --gradient-color : #0a3d79;
     
 

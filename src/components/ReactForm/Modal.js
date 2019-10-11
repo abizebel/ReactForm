@@ -49,7 +49,6 @@ class Modal extends Component {
         //Disbale body scroll when popup is open
         if (isOpen) {
             if(!$('body').hasClass('r-popup-open')) {
-                debugger
                 $('body').addClass('r-popup-open')
             }
         }
