@@ -5,6 +5,7 @@ import Tag from './Tag';
 import Checkbox from './Checkbox';
 import Modal from './Modal';
 import Toggle from './Toggle';
+import Tabs from './Tabs';
 
 
 // without default
@@ -15,5 +16,6 @@ export {
     Tag,
     Checkbox,
     Modal,
-    Toggle
+    Toggle,
+    Tabs
 }
