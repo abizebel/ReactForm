@@ -4,6 +4,7 @@ import Autocomplete from './Autocomplete';
 import Tag from './Tag';
 import Checkbox from './Checkbox';
 import Modal from './Modal';
+import Toggle from './Toggle';
 
 
 // without default
@@ -13,5 +14,6 @@ export {
     Autocomplete,
     Tag,
     Checkbox,
-    Modal
+    Modal,
+    Toggle
 }

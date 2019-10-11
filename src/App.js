@@ -7,6 +7,7 @@ import SelectContainer from './containers/selectContainer'
 import AutocompleteContainer from './containers/autocompleteContainer'
 import TagContainer from './containers/tagContainer'
 import ModalContainer from './containers/modalContainer'
+import ToggleContainer from './containers/toggleContainer';
 
 
 
@@ -26,6 +27,7 @@ class App extends Component {
               <li><Link to="/autocomplete/">Autocomplete</Link> </li>
               <li><Link to="/tag/">Tag</Link> </li>
               <li><Link to="/modal/">Modal</Link> </li>
+              <li><Link to="/toggle/">Toggle</Link> </li>
             </ul>
            
         </div>
@@ -40,6 +42,7 @@ class App extends Component {
           <Route path="/autocomplete/" component={AutocompleteContainer} />
           <Route path="/tag/" component={TagContainer} />
           <Route path="/modal/" component={ModalContainer} />
+          <Route path="/toggle/" component={ToggleContainer} />
         </div>
     </Router>
       
