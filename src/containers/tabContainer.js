@@ -33,6 +33,20 @@ class TabContainer extends Component {
                 
             
         </div>
+        <div className="page-content-box" >
+            <div className="page-content-title">Toggle</div>
+            <Tabs
+                rtl={true}
+                items = {[
+                    {label : 'One', icon : '', template: tmp1},
+                    {label : 'two', icon : '', template:tmp2 },
+                    {label : 'three', icon : '', template:tmp3 },
+                ]}
+            />
+                
+            
+        </div>
+         
          
       </Fragment>
       

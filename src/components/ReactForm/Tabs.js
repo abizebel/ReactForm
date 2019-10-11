@@ -51,8 +51,10 @@ class Tabs extends Component {
     }
 
     render (){
+        const {rtl} = this.props;
+        const rtlClass = rtl ? ' r-rtl' : '';
         return(
-            <div class="r-tab">
+            <div class={`r-tab${rtlClass}`}>
                 {this.renderTabList()}
                 <div class="r-tab-content">
                     {this.renderContent()}
@@ -62,6 +64,8 @@ class Tabs extends Component {
     }
 }
 
-
+Tabs.defeaultProps = {
+    rtl : false
+}
 
 export default Tabs;

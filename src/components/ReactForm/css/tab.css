@@ -22,3 +22,6 @@
     justify-content: flex-start;
     flex-direction: row-reverse;
 }
+.r-tab.r-rtl .r-tab-content {
+    direction: rtl;
+}
