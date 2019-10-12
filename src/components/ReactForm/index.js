@@ -6,6 +6,7 @@ import Checkbox from './Checkbox';
 import Modal from './Modal';
 import Toggle from './Toggle';
 import Tabs from './Tabs';
+import Calendar from './Calendar';
 
 
 // without default
@@ -17,5 +18,6 @@ export {
     Checkbox,
     Modal,
     Toggle,
-    Tabs
+    Tabs,
+    Calendar
 }

@@ -9,6 +9,7 @@ import TagContainer from './containers/tagContainer'
 import ModalContainer from './containers/modalContainer'
 import ToggleContainer from './containers/toggleContainer';
 import TabContainer from './containers/tabContainer';
+import CalendarContainer from './containers/calendarContainer';
 
 
 class App extends Component {
@@ -28,6 +29,7 @@ class App extends Component {
               <li><Link to="/modal/">Modal</Link> </li>
               <li><Link to="/toggle/">Toggle</Link> </li>
               <li><Link to="/tab/">Tab</Link> </li>
+              <li><Link to="/calendar/">Calendar</Link> </li>
             </ul>
            
         </div>
@@ -43,6 +45,7 @@ class App extends Component {
           <Route path="/modal/" component={ModalContainer} />
           <Route path="/toggle/" component={ToggleContainer} />
           <Route path="/tab/" component={TabContainer} />
+          <Route path="/calendar/" component={CalendarContainer} />
         </div>
     </Router>
       
