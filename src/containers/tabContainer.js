@@ -22,7 +22,7 @@ class TabContainer extends Component {
       <Fragment>
 
         <div className="page-content-box" >
-            <div className="page-content-title">Toggle</div>
+            <div className="page-content-title">Tab</div>
             <Tabs
                 items = {[
                     {label : 'One', icon : '', template: tmp1},
@@ -34,7 +34,7 @@ class TabContainer extends Component {
             
         </div>
         <div className="page-content-box" >
-            <div className="page-content-title">Toggle</div>
+            <div className="page-content-title">RTL Tab</div>
             <Tabs
                 rtl={true}
                 items = {[

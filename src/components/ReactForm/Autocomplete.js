@@ -145,7 +145,7 @@ class Autcomplete extends Component {
     close (e){ 
         setTimeout(()=>{
             this.setState({open : false})
-        },100)       
+        },500)       
     }
 
 

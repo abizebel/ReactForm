@@ -449,9 +449,9 @@ class Select extends Component {
       
         
         return (
-            <div data-id={uid} className={`r-select r-noselect r-input filled${errorClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div  onClick={this.open.bind(this)} data-id={uid} className={`r-select r-noselect r-input filled${errorClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
                 <input 
-                    onClick={this.open.bind(this)}
+                   
                     disabled={disabled} 
                     type="text" 
                     onChange={()=>{}} 

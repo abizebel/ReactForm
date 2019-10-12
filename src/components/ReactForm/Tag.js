@@ -153,7 +153,7 @@ class Tag extends Component {
     close (){
         setTimeout(()=>{
             this.setState({open : false})
-        },100)
+        },500)
     }
 
 
@@ -214,7 +214,6 @@ class Tag extends Component {
      */
     addTag (tag){
         const {change} = this.props;
-
         if (this.isExist(tag)) return ;
 
         this.setState((prevState) =>{

@@ -29,7 +29,7 @@ class AutocomplteContainer extends Component {
           <Tag change={this.changeTag.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
-            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
+            defaultValue ={[{name: 'احمدی'},{name: 'رحیمی'}]}
             values ={
               [{id:'11',name:'حسینی' },
               {id:'22',name:'فیض'},
@@ -63,7 +63,7 @@ class AutocomplteContainer extends Component {
             outline = {true}
 
             label={'نام خانوادگی'}
-            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
+            defaultValue ={[{name: 'احمدی'},{name: 'رحیمی'}]}
             values ={
               [{id:'11',name:'حسینی' },
               {id:'22',name:'فیض'},
@@ -169,7 +169,7 @@ class AutocomplteContainer extends Component {
             disabled={true}
 
             label={'نام خانوادگی'}
-            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
+            defaultValue ={[{name: 'احمدی'},{name: 'رحیمی'}]}
             values ={
               [{id:'11',name:'حسینی' },
               {id:'22',name:'فیض'},
@@ -206,7 +206,7 @@ class AutocomplteContainer extends Component {
             disabled={true}
 
             label={'نام خانوادگی'}
-            defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
+            defaultValue ={[{name: 'احمدی'},{name: 'رحیمی'}]}
             values ={
               [{id:'11',name:'حسینی' },
               {id:'22',name:'فیض'},
