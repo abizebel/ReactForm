@@ -2,31 +2,26 @@
 * Button
 *************************/
 .r-button {
-    margin-top:  calc(var(--space-around) * 1rem) ;
-    margin-bottom: calc(var(--space-around) * 1rem) ;
+  margin-top:  calc(var(--space-around) * .5rem) ;
+  margin-bottom: calc(var(--space-around) * .5rem) ;
 	text-decoration: none;
-  vertical-align: middle;
-	padding: 0 16px;
-	height: 36px;
-  line-height: 36px;
+	padding: 8px 16px;
 	border: 0;
 	outline: 0;
 	background: none;
-	font-family: inherit;
-	display: inline-block;
 	margin-right: 8px;
 	border-radius: 3px;
 	position: relative;
 	overflow: hidden;
 	cursor: pointer;
 	color: var(--text-color);
-	text-transform: uppercase;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	user-select: none;
-	font-size: calc(var(--text-size) * .9em);
 
-	transition: ease 0.3s all;
+	font-size: calc(var(--text-size) * .9em);
+	transition: ease 0.3s all;	
+  display: inline-block;
+	font-family: inherit;
+	
+
 }
 
 /* Icon & Svg */
@@ -34,16 +29,24 @@
 .r-button > svg{
 	color: var(--text-color);
 	fill: var(--text-color);
-	font-size:18px;
-  display: inline-block;
-	line-height: 18px;
-	vertical-align: text-top;
-	width: 18px;
-	height: 18px;
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+	display: inline-block;
+
+  vertical-align: text-bottom;
+	line-height: 14px;
 
 
 
 }
+
+/* Fix svg extra size */
+.r-button > svg {
+	position: relative;
+	top: -2px
+}
+
 
 
 /* Hover */
@@ -62,16 +65,12 @@
 
 /* Sizes */
 .r-button.r-xs {
-	padding: 0 12px;
-	height: 32px;
-  line-height:32px;
-	font-size: calc(var(--text-size) * .8em);
+	padding: 4px 8px;
 }
 
 .r-button.r-lg {
-	height: 44px;
-  line-height: 44px;
-		padding: 0 20px;
+	padding: 10px 20px;
+
 
 
 }
@@ -168,6 +167,7 @@
 	margin-right: unset;
 	margin-left: 8px;
 }
+
 
 /* Focus */
 .r-button::-moz-focus-inner {

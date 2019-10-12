@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import {Input, Modal, Select, Tag} from '../components/ReactForm';
+import {Input, Modal, Select, Tag, Checkbox} from '../components/ReactForm';
 
 
 class AutocomplteContainer extends Component {
@@ -14,7 +14,9 @@ class AutocomplteContainer extends Component {
       }
   }
 
+  changeCheckbox (val){
 
+  }
   changeTag (val){
     console.log(val)
    }
@@ -83,7 +85,10 @@ class AutocomplteContainer extends Component {
                     ]}
                     mapping = {{text : 'name', value : 'id'}}
                 />
-      
+                <Checkbox 
+                    label={'I Agree'}
+                    change={this.changeCheckbox.bind(this)}
+                />
             </Modal >
     
         </div>
@@ -151,6 +156,7 @@ class AutocomplteContainer extends Component {
                     ]}
                     mapping = {{text : 'name', value : 'id'}}
                 />
+                
       
             </Modal >
     
