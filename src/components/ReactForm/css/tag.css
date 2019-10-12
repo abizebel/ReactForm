@@ -17,7 +17,8 @@
   }
   .r-tag > label {
 	  top: unset;
-	  bottom:calc(40% - 12px)
+	  bottom:calc(50% - calc(var(--input-height) * .8rem) + 4px)
+
   }
   
   /* Bordered */
