@@ -17,7 +17,7 @@
   }
   .r-tag > label {
 	  top: unset;
-	  bottom:8px
+	  bottom:calc(40% - 12px)
   }
   
   /* Bordered */

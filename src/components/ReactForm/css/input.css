@@ -61,7 +61,8 @@ input:-webkit-autofill:active  {
 /* Label */
 .r-input > label {
     position:absolute;
-    top:2px;
+    top:calc(50% - 12px);
+
     left: 0;
     height: 16px;
     cursor: text;
