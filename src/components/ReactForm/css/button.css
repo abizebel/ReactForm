@@ -15,6 +15,7 @@
 	overflow: hidden;
 	cursor: pointer;
 	color: var(--text-color);
+	fill: var(--text-color);
 
 	font-size: calc(var(--text-size) * .9em);
 	transition: ease 0.3s all;	
@@ -27,8 +28,8 @@
 /* Icon & Svg */
 .r-button > span,
 .r-button > svg{
-	color: var(--text-color);
-	fill: var(--text-color);
+	color: currentColor;
+	fill: currentColor;
   font-size: 18px;
   height: 18px;
   width: 18px;
@@ -78,19 +79,23 @@
 /* Colors */
 .r-button.r-success {
 	background: var(--success-color);
-	color: #fff
+	color: #fff;
+	fill: #fff;
 }
 .r-button.r-info {
 	background: var(--info-color);
-	color: #fff
+	color: #fff;
+	fill: #fff;
 }
 .r-button.r-danger {
 	background: var(--danger-color);
-	color: #fff
+	color: #fff;
+	fill: #fff;
 }
 .r-button.r-warning {
 	background: var(--warning-color);
-	color: #fff
+	color: #fff;
+	fill: #fff;
 }
 .r-button.r-default {
   background: var(--default-color);
