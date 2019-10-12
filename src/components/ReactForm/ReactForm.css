@@ -53,6 +53,7 @@ body {
     --info-gradient-color : #0e4d96;
     --disabled-color : #ddd;
     --focus-color : #145AF9;
+    --border-color :rgba(0, 0, 0, 0.12) ;
     --light-focus-color : #145af973;;
     --gradient-color : #0a3d79;
     

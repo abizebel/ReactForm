@@ -1,6 +1,94 @@
 .r-calender {
-  border:1px solid var(--label-color)
+  width: 246px;
+  border:1px solid var(--border-color);
+  padding: 24px
 }
+
+/* Header */
 .r-calender-header {
-  display: flex
+  display: flex;
+  justify-content: space-between;
+  margin-bottom:4px
+}
+.r-calender-header .r-changer svg {
+  width: 26px;
+  height: 26px;
+  fill: var(--label-color);
+  cursor: pointer;
+  padding: 0 5px
+}
+.r-calender-header .r-changer svg:hover {
+    fill: var(--text-color);
+}
+.r-calender-header .r-title {
+    color: var(--label-color);
+  font-size: 14px
+}
+
+/* Content */
+.r-calender-content table {
+   border-spacing: 0;
+   width: 100%;
+   text-align:center;
+}
+
+/* Weeks */
+
+.r-calender-week {
+   width: 30px;
+   height: 30px;
+   line-height: 30px;
+   font-size: 13px;
+}
+/* Months & Years */
+.r-calender-month,
+.r-calender-year{
+   width: 40px;
+   height: 40px;
+   line-height: 40px;
+
+   cursor: default;
+   display: inline-block;
+   font-size: 13px;
+   overflow: hidden;
+   text-align: center;
+   vertical-align: middle;
+  transition: all .5s ease-out
+}
+
+.r-calender-month:hover,
+.r-calender-year:hover{
+   background: #eee;
+   border-radius: 50%;
+  transition: all .5s ease
+
+}
+
+/* Days */
+.r-calender-days td{
+}
+.r-calender-day{
+   width: 30px;
+   height: 30px;
+   line-height: 30px;
+
+   cursor: default;
+   display: inline-block;
+   font-size: 13px;
+   overflow: hidden;
+   text-align: center;
+   vertical-align: middle;
+  transition: all .5s ease-out
+}
+.r-calender-today,
+.r-calender-day:hover{
+   background: #eee;
+   border-radius: 50%;
+  transition: all .5s ease
+
+}
+
+/* Footer */
+.r-calender-footer {
+  margin-top: 16px
 }

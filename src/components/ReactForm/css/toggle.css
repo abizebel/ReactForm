@@ -2,8 +2,8 @@
 * TOGGLE
 ************************/
 .r-toggle {
-	margin-bottom: 1rem;
-	margin-top: 1rem;
+    margin-top:  calc(var(--space-around) * 1rem) ;
+    margin-bottom: calc(var(--space-around) * 1rem) ;
 }
 .r-toggle >input{
 	display: none

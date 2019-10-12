@@ -3,8 +3,8 @@
 *************************/
 .r-checkbox {
 	margin-right: 16px;
-	margin-top: 1rem;
-	margin-bottom: 1rem;
+    margin-top:  calc(var(--space-around) * 1rem) ;
+    margin-bottom: calc(var(--space-around) * 1rem) ;
 	line-height: 24px;
   display: inline-block;
 	font-size: calc(var(--text-size) * 1em);
