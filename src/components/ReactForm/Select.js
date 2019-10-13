@@ -157,6 +157,22 @@ class Select extends Component {
         });
     }
 
+
+    /**
+     * Open popup
+     * 
+     * @param {Event} e 
+     */
+    toggle (e){
+        const {disabled} = this.props;
+        
+        if (disabled) return;
+
+        this.setState((prevState) => {
+            return { open : !prevState.open}
+        });
+    }
+
     /**
      * Preventing add duplicate item to selected list
      * 
@@ -449,9 +465,9 @@ class Select extends Component {
       
         
         return (
-            <div  onClick={this.open.bind(this)} data-id={uid} className={`r-select r-noselect r-input filled${errorClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div data-id={uid} className={`r-select r-noselect r-input filled${errorClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
                 <input 
-                   
+                    onClick={this.toggle.bind(this)}
                     disabled={disabled} 
                     type="text" 
                     onChange={()=>{}} 
@@ -460,7 +476,7 @@ class Select extends Component {
                 <label>{label}</label>
                 <span className="r-line"></span>
                 {!multi && mapping.icon && <span className="r-input-icon">{renderIcon}</span>}
-                <span className="r-icon">{icons.down}</span>
+                <span onClick={this.open.bind(this)} className="r-icon">{icons.down}</span>
                              
                 {   hasError &&
                     <span className="r-message">{errorMessage}</span> 
