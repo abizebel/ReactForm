@@ -39,7 +39,7 @@
 	padding-left: 16px;
 	color: var(--text-color);
 	cursor: pointer;
-	font-size: .9em;
+	font-size: calc(var(--text-size) * 1em);
 }
 
 .r-option-icon {
@@ -90,7 +90,7 @@
 	outline: 0;
 	border-bottom: 1px solid #ccc;
 	padding: 12px 16px;
-	font-size: calc(var(--text-size * 1em));
+	font-size: calc(var(--text-size) * 1em);
 	color: var(--text-color);
 	font-family: inherit;
 }
@@ -98,22 +98,22 @@
 
 /* RTL */
 
-.r-rtl>.r-options {
+.r-input.r-rtl>.r-options {
 	text-align: right;
 	direction: rtl
 }
 
-.r-rtl .r-options-item {
+.r-input.r-rtl .r-options-item {
 	padding-left: unset;
 	padding-right: 16px;
 }
 
-.r-rtl.r-has-icon .r-option-icon {
+.r-input.r-rtl.r-has-icon .r-option-icon {
 	left: unset;
 	right: 8px;
 }
 
-.r-rtl.r-has-icon .r-options-item {
+.r-input.r-rtl.r-has-icon .r-options-item {
 	padding-left: unset;
 	padding-right: 40px
 }

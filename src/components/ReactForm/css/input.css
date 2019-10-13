@@ -52,7 +52,7 @@ input:-webkit-autofill:active  {
 .r-input > textarea {
     height: calc(var(--input-height) * 3.3rem) ;
     overflow: hidden;
-    resize: none;
+    resize: none !important;
     
 }
 

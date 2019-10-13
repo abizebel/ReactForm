@@ -9,7 +9,6 @@ class Input extends Component {
     constructor (props) {
         super(props);
         this.textareaDom = createRef();
-
         this.state = {
             value : this.props.value || '',
             hasError : this.validate(this.props.value).hasError,
@@ -87,7 +86,7 @@ class Input extends Component {
     render (){
         const {rtl, outline, label, disabled, multiline, icon} = this.props;
         const {value, hasError, errorMessage} = this.state;
-        const filledClass = value.length > 0 ? ' filled' :''; 
+        const filledClass = value.length > 0 || disabled ? ' filled' :''; 
         const rtlClass = rtl ? ' r-rtl' : ''; 
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 

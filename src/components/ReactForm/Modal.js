@@ -58,6 +58,7 @@ class Modal extends Component {
             <Fragment>
                 <ReactCSSTransitionGroup 
                 transitionName="fade" 
+
                 transitionAppear={true}>
                    {isOpen && <div className="r-modal-backdrop"></div>} 
                 </ReactCSSTransitionGroup>

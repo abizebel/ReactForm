@@ -21,7 +21,7 @@ class Tag extends Component {
             open : false,
             searchValue :  '',
             tags : selectedTags, // tags
-            listValues :  this.values, //search list
+            listValues :  this.values || [], //search list
             selectedItem : null,
             hasError : this.validate(selectedTags).hasError,
             errorMessage : this.validate(selectedTags).errorMessage,
@@ -163,29 +163,12 @@ class Tag extends Component {
      * 
      * @param {String} str 
      */
-    getTagFromServer (str){
-        const {rtl} = this.props
-        var ltrList = [
-            {id:'0110',name:'Hosseini' , info:{icon:sampleIcon}},
-            {id:'0220',name:'feiz', info:{icon:sampleIcon}},
-            {id:'0330',name:'mohammadi', info:{icon:sampleIcon}},
-            {id:'0440',name:'khosravi', info:{icon:sampleIcon}},
-            {id:'0440',name:'ranjbar', info:{icon:sampleIcon}}
-        ];
-        var rtlList = [
-            {id:'0110',name:'حسینی' , info:{icon:sampleIcon}},
-            {id:'0220',name:'فیض', info:{icon:sampleIcon}},
-            {id:'0330',name:'محمدی', info:{icon:sampleIcon}},
-            {id:'0440',name:'خسروی', info:{icon:sampleIcon}},
-            {id:'0440',name:'رنجبر', info:{icon:sampleIcon}}
-         ];
-        const list = rtl ? rtlList :ltrList;
-        const target = str.toLowerCase();
-
-        const foundValues = list.filter(o => {
-            return o.name.toLowerCase().indexOf(target)!== -1
-        })
-        return foundValues;
+    async getTagFromServer (str){
+        const {rtl, api} = this.props;
+        const list = await api({Query :str});
+        
+      
+        return list.Data
     }
     ////////////////////// CHANGE //////////////////////
 
