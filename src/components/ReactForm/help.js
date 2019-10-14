@@ -88,14 +88,19 @@
     change={this.changeTag.bind(this)}
     label={'Last Name'}
     defaultValue ={[{name : 'ahmadi'},{name : 'rahimi'}]}
-    api={'api/getTag'} //get search tag result from server
-    values ={//if not exist api use this as tag list
+    //remote tag search
+    api={async (str) =>{
+        const list = await loadApi({Query :str});
+        return list.Data
+    }}
+    values ={//if not exist api use this as tag list 
         [{id:'11',name:'Hosseini' },
         {id:'22',name:'feiz'},
         {id:'33',name:'mohammadi'},
         {id:'44',name:'khosravi'},
         {id:'44',name:'ranjbar'}
     ]}
+    //use it for show tag list come from server as [values={}]
     mapping = {{text : 'name', value : 'id',}}
     //Error handling
     serverError={{status : true,  message : 'this has a error'}}

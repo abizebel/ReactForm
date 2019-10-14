@@ -4,11 +4,6 @@ import icons from './icons';
 import './ReactForm.css';
 import $ from 'jquery';
 
-///////////// DELETE /////////////
-const sampleIcon = <svg viewBox="0 0 24 24"><path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>;
-///////////// DELETE /////////////
-
-
 class Tag extends Component {
     constructor(props){
         super(props);
@@ -116,15 +111,15 @@ class Tag extends Component {
         const {tags} = this.state;
         const {mapping} = this.props;
 
-            const tagEls = tags.map((o, i) =>{
-                return (
-                    <li key={i} className="r-chips-item" >{o[mapping.text]}
-                        <span className="r-tag-icon" onClick={this.removeTag.bind(this, i)}>{icons.close}</span>
-                    </li>
-                )
-            });
+        const tagEls = tags.map((o, i) =>{
+            return (
+                <li key={i} className="r-chips-item" >{o[mapping.text]}
+                    <span className="r-tag-icon" onClick={this.removeTag.bind(this, i)}>{icons.close}</span>
+                </li>
+            )
+        });
 
-            return (<ul className="r-chips">{tagEls}</ul>)
+        return (<ul className="r-chips">{tagEls}</ul>)
     }
 
     /**
@@ -157,20 +152,15 @@ class Tag extends Component {
     }
 
 
-    ////////////////////// CHANGE //////////////////////
     /**
      * Get searching tag results from server
      * 
      * @param {String} str 
      */
     async getTagFromServer (str){
-        const {rtl, api} = this.props;
-        const list = await api({Query :str});
-        
-      
-        return list.Data
+        const {api} = this.props;
+        return await api(str);
     }
-    ////////////////////// CHANGE //////////////////////
 
     /**
      * Preventing add duplicate tag to tag list

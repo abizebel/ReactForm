@@ -39,7 +39,7 @@ body {
     --tag-size : .8;
   
     /* Spaces */
-    --space-around : 2.5; 
+    --space-around : 1; 
 
     /* Colors */ 
     --danger-color : #F44336;
