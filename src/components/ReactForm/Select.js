@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 import Checkbox from './Checkbox';
 import {getValueByProp, createIcon, createUID} from './functions';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+// import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import icons from './icons';
 import './ReactForm.css';
@@ -126,7 +126,8 @@ class Select extends Component {
     }
 
     /**
-     * 
+     * import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
      * @param {Number} id 
      * @description Find selected value by id for single select
      */
@@ -180,6 +181,7 @@ class Select extends Component {
      * @returns {Boolean}
      */
     isExist (item){
+
         const {mapping} = this.props;
         const {selectedItems} = this.state;
 
@@ -305,7 +307,7 @@ class Select extends Component {
      */
     renderOptions (){
         const {mapping, search ,notFoundMessage, rtl, multi} = this.props;
-        const {listValues , selectedItems } = this.state;
+        const {listValues  } = this.state;
         let options;
 
         //If options list is empty show "Not Found"

@@ -2,7 +2,6 @@ import React, {Component, createRef} from 'react';
 import {getValueByProp, createIcon} from './functions';
 import icons from './icons';
 import './ReactForm.css';
-import $ from 'jquery';
 
 class Tag extends Component {
     constructor(props){
