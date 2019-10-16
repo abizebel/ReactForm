@@ -119,7 +119,6 @@ class Input extends Component {
                 }
                 
                 <label>{label}</label>
-                <span className="r-line"></span>
 
                 {   icon !== null &&
                     <span className="r-input-icon">{inputIcon}</span>

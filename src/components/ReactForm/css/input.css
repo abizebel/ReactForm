@@ -45,12 +45,21 @@ input:-webkit-autofill:active  {
     box-sizing: border-box;
     width: 100%;
     font-family: inherit;
+	display: block;
+	width: 100%;
+	border: 0;
+	padding: 10px 5px;
+    background: white no-repeat;
+	background-image: linear-gradient(to bottom, var(--focus-color),var(--focus-color)), linear-gradient(to bottom, silver, silver);
+	background-size: 0 2px, 100% 1px;
+	background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
 
 }
 
 /* textarea */
 .r-input > textarea {
-    overflow: hidden;
+    -webkit-margin-bottom : -10px;
     resize: none !important;
      height: calc(var(--input-height) * 2.6rem) ;
     
@@ -248,7 +257,8 @@ input:-webkit-autofill:active  {
 /* Focus */
 .r-input > input:focus ,
 .r-input > textarea:focus {
-    border-color: var(--focus-color)
+    	background-size: 100% 2px, 100% 1px;
+
 }
 .r-input > input:focus ~ label,
 .r-input > textarea:focus ~ label,
