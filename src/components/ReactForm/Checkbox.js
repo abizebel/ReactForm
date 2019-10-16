@@ -4,10 +4,18 @@ class Checkbox extends Component {
     constructor(props){
         super(props);
         this.inputDom = createRef();
-
         this.state = {
-            checked : this.props.defaultValue || false
+            checked : this.props.defaultValue || false,
         }
+    }
+
+    static getDerivedStateFromProps(props,state){
+        if(props.defaultValue !== state.checked){
+            return {
+                checked:props.defaultValue
+            }
+        }
+        return null;
     }
 
     handleChange (e){
