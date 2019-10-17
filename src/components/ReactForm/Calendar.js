@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import moment from 'moment-jalali';
 
-const latinToPersianMap = ['۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '۰'];
-const latinNumbers = [/1/g, /2/g, /3/g, /4/g, /5/g, /6/g, /7/g, /8/g, /9/g, /0/g];
-const dayOfWeekNames = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
-const dayOfWeekNamesJalali = ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج']
+const latinNumbers = ['۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '۰'];
+const persianNumbers = [/1/g, /2/g, /3/g, /4/g, /5/g, /6/g, /7/g, /8/g, /9/g, /0/g];
+const weekNames = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
+const jalaliWeekNames = ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج']
 
 class Calendar extends Component {
 
@@ -70,7 +70,7 @@ class Calendar extends Component {
        
         const days = dayList.map((day,i) => {
             const disabled = day.isBefore(this.state.moment, 'month') || day.isAfter(this.state.moment, 'month') ;
-            return ( <div class={`r-calender-day ${disabled ? 'r-disabled' : ''}`}>{day.format(`D`)}</div>)
+            return ( <div key={i} class={`r-calender-day ${disabled ? 'r-disabled' : ''}`}>{day.format(`D`)}</div>)
         });
 
         return (<div class="r-calender-days">{days}</div>)
@@ -80,13 +80,19 @@ class Calendar extends Component {
      * Render weeks
      */
     renderWeeks () {
+        const {jalali} = this.props;
+        const resultWeekNames = jalali ? jalaliWeekNames :weekNames;
 
+        const weeks = resultWeekNames.map((name, i) => {
+            return (
+                <div key={i} class="r-calender-week">{name}</div>          
+            )
+        })
+        return (<div class="r-calender-weeks">{weeks}</div>)
     }
 
 
-
-
-    
+ 
     render (){
         
         return (
@@ -103,20 +109,11 @@ class Calendar extends Component {
                 </div>
             </div>
             <div class="r-calender-content">
-                    <div class="r-calender-weeks">
-                        <div class="r-calender-week">Su</div>
-                        <div class="r-calender-week">Mo</div>
-                        <div class="r-calender-week">Tu</div>
-                        <div class="r-calender-week">We</div>
-                        <div class="r-calender-week">Th</div>
-                        <div class="r-calender-week">Fr</div>
-                        <div class="r-calender-week">Sa</div>
-                    </div>
-                    {this.renderDays()}
-
+                {this.renderWeeks()}
+                {this.renderDays()}
             </div>
             <div class="r-calender-footer">
-                    <button type="button" class="r-button r-ripple r-nospace"> Today </button>
+                <button type="button" class="r-button r-ripple r-nospace"> Today </button>
             </div>
         </div>
         )
@@ -124,6 +121,6 @@ class Calendar extends Component {
 }
 
 Calendar.defaultProps = {
-    rtl : false,
+    jalali : false,
 }
 export default Calendar

@@ -118,7 +118,7 @@ export class Calendar extends Component{
       this.days = days;
       this.lastRenderedMonth = month;
     }
-    debugger
+
     return (
       <div>
         {children}
