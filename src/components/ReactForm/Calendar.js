@@ -1,91 +1,118 @@
 import React, {Component} from 'react';
+import moment from 'moment-jalali';
+
+const latinToPersianMap = ['۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '۰'];
+const latinNumbers = [/1/g, /2/g, /3/g, /4/g, /5/g, /6/g, /7/g, /8/g, /9/g, /0/g];
+const dayOfWeekNames = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
+const dayOfWeekNamesJalali = ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج']
 
 class Calendar extends Component {
 
+
+    constructor(props){
+        super(props);
+        this.state = {
+            moment : moment()
+        }
+    }
+
+    /**
+     * Get days of a month that should be shown on a month page
+     *
+     * @param month A moment object
+     * @returns {Array}
+     */
+    getDaysOfMonth(month) {
+        const days = [];
+    
+        const current = month.clone().startOf('jMonth');
+        const end = month.clone().endOf('jMonth');
+    
+        // Set start to the first day of week in the last month
+        current.subtract((current.day() + 1) % 7, 'days');
+    
+        // Set end to the last day of week in the next month
+        end.add(6 - (end.day() + 1) % 7, 'days');
+    
+        while (current.isBefore(end)) {
+        days.push(current.clone());
+        current.add(1, 'days');
+        }
+    
+        return days;
+    }
+    
+
+    nextMonth(){
+        this.setState({
+            moment: this.state.moment.clone().add(1, `Month`  )
+        });
+    }
+    preMonth(){
+        this.setState({
+            moment: this.state.moment.clone().subtract(1, `Month`  )
+        });
+    }
+    nextYear(){
+
+    }
+    preYear(){
+
+    }
+
+
+    /**
+     * Render days 
+     *  
+     */
+    renderDays (month){
+        const dayList = this.getDaysOfMonth(this.state.moment);
+       
+        const days = dayList.map((day,i) => {
+            const disabled = day.isBefore(this.state.moment, 'month') || day.isAfter(this.state.moment, 'month') ;
+            return ( <div class={`r-calender-day ${disabled ? 'r-disabled' : ''}`}>{day.format(`D`)}</div>)
+        });
+
+        return (<div class="r-calender-days">{days}</div>)
+    }
+
     render (){
+        
         return (
             <div class="r-calender">
-                <div class="r-calender-header">
-                    <div class="r-title">February 2015</div>
-                    <div class="r-changer">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-                        </svg>
-                        <svg viewBox="0 0 24 24">
-                            <path d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="r-calender-content">
-                    <table>
-                        <thead class="r-calender-weeks">
-                            <tr>
-                                <th><span class="r-calender-week">Su</span></th>
-                                <th><span class="r-calender-week">Mo</span></th>
-                                <th><span class="r-calender-week">Tu</span></th>
-                                <th><span class="r-calender-week">We</span></th>
-                                <th><span class="r-calender-week">Th</span></th>
-                                <th><span class="r-calender-week">Fr</span></th>
-                                <th><span class="r-calender-week">Sa</span></th>
-                            </tr>
-                        </thead>
-                        <tbody class="r-calender-days">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><span class="r-calender-day">1</span></td>
-                                <td><span class="r-calender-day r-calender-today">2</span></td>
-                                <td><span class="r-calender-day">3</span></td>
-                                <td><span class="r-calender-day">4</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="r-calender-day">5</span></td>
-                                <td><span class="r-calender-day">6</span></td>
-                                <td><span class="r-calender-day">7</span></td>
-                                <td><span class="r-calender-day">8</span></td>
-                                <td><span class="r-calender-day">9</span></td>
-                                <td><span class="r-calender-day">10</span></td>
-                                <td><span class="r-calender-day">11</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="r-calender-day">12</span></td>
-                                <td><span class="r-calender-day">13</span></td>
-                                <td><span class="r-calender-day">14</span></td>
-                                <td><span class="r-calender-day">15</span></td>
-                                <td><span class="r-calender-day">16</span></td>
-                                <td><span class="r-calender-day">17</span></td>
-                                <td><span class="r-calender-day">18</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="r-calender-day">19</span></td>
-                                <td><span class="r-calender-day">20</span></td>
-                                <td><span class="r-calender-day">21</span></td>
-                                <td><span class="r-calender-day">22</span></td>
-                                <td><span class="r-calender-day">23</span></td>
-                                <td><span class="r-calender-day">24</span></td>
-                                <td><span class="r-calender-day">25</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="r-calender-day">26</span></td>
-                                <td><span class="r-calender-day">27</span></td>
-                                <td><span class="r-calender-day">28</span></td>
-                                <td><span class="r-calender-day">29</span></td>
-                                <td><span class="r-calender-day">30</span></td>
-                                <td><span class="r-calender-day">31</span></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                        
-                    </table>
-                </div>
-                <div class="r-calender-footer">
-                        <button type="button" class="r-button r-ripple r-nospace"> Today </button>
+            <div class="r-calender-header">
+                <div class="r-title">{this.state.moment.format(`MMMM  YYYY`)}</div>
+                <div class="r-changer">
+                    <svg viewBox="0 0 24 24" onClick={this.nextMonth.bind(this)}>
+                        <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                    </svg>
+                    <svg viewBox="0 0 24 24" onClick={this.preMonth.bind(this)}>
+                        <path d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
+                    </svg>
                 </div>
             </div>
+            <div class="r-calender-content">
+                    <div class="r-calender-weeks">
+                        <div class="r-calender-week">Su</div>
+                        <div class="r-calender-week">Mo</div>
+                        <div class="r-calender-week">Tu</div>
+                        <div class="r-calender-week">We</div>
+                        <div class="r-calender-week">Th</div>
+                        <div class="r-calender-week">Fr</div>
+                        <div class="r-calender-week">Sa</div>
+                    </div>
+                    {this.renderDays()}
+
+            </div>
+            <div class="r-calender-footer">
+                    <button type="button" class="r-button r-ripple r-nospace"> Today </button>
+            </div>
+        </div>
         )
     }
 }
 
-
+Calendar.defaultProps = {
+    rtl : false,
+}
 export default Calendar

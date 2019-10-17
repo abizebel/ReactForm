@@ -1,7 +1,11 @@
 .r-calender {
   width: 246px;
   border:1px solid var(--border-color);
-  padding: 24px
+  padding: 24px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
 }
 
 /* Header */
@@ -26,25 +30,24 @@
 }
 
 /* Content */
-.r-calender-content table {
-   border-spacing: 0;
-   width: 100%;
-   text-align:center;
-}
+
+
+
 
 /* Weeks */
-
 .r-calender-week {
-   width: 30px;
-   height: 30px;
+   width: 35px;
+   width: 35px;
    line-height: 30px;
    font-size: 13px;
+   display: inline-block;
+  text-align: center
 }
 /* Months & Years */
 .r-calender-month,
 .r-calender-year{
-   width: 40px;
-   height: 40px;
+   width: 35px;
+   width: 35px;
    line-height: 40px;
 
    cursor: default;
@@ -65,13 +68,12 @@
 }
 
 /* Days */
-.r-calender-days td{
+.r-calender-days {
 }
 .r-calender-day{
-   width: 30px;
-   height: 30px;
-   line-height: 30px;
-
+   width: 35px;
+   height: 35px;
+   line-height: 35px;
    cursor: default;
    display: inline-block;
    font-size: 13px;
@@ -87,7 +89,10 @@
   transition: all .5s ease
 
 }
-
+.r-calender-day.r-disabled {
+  color: #bbb;
+  pointer-events: none;
+}
 /* Footer */
 .r-calender-footer {
   margin-top: 16px

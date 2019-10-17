@@ -3,13 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.6",
     "jquery": "^3.4.1",
+    "moment-jalali": "^0.3.9",
     "react": "^16.9.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.9.0",
     "react-native-svg-uri": "^1.2.3",
+    "react-onclickoutside": "^6.9.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1"
+    "react-scripts": "3.1.1",
+    "react-tether": "^2.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

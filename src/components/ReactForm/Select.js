@@ -25,7 +25,6 @@ class Select extends Component {
             errorMessage : this.validate(selectedItems).errorMessage,
             uid : createUID(),
             searchValue : ''
-            
         }
     }
 

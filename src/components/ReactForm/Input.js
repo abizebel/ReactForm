@@ -17,6 +17,15 @@ class Input extends Component {
  
     }
 
+    static getDerivedStateFromProps(props, state){
+        if(props.value !== state.value){
+            return {
+                value:props.value
+            }
+        }
+        return null;
+    }
+
     componentDidMount(){
         $.each($('textarea[data-autoresize]'), function() {
             var offset = this.offsetHeight - this.clientHeight;
@@ -25,6 +34,8 @@ class Input extends Component {
             };
             $(this).on('keyup input', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
         });
+
+        
     }
 
     /**
@@ -86,7 +97,7 @@ class Input extends Component {
     render (){
         const {rtl, outline, label, disabled, multiline, icon} = this.props;
         const {value, hasError, errorMessage} = this.state;
-        const filledClass = value.length > 0 || disabled ? ' filled' :''; 
+        const filledClass = String(value).length > 0 || disabled ? ' filled' :''; 
         const rtlClass = rtl ? ' r-rtl' : ''; 
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 
