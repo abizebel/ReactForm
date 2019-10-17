@@ -48,10 +48,9 @@ input:-webkit-autofill:active  {
 	display: block;
 	width: 100%;
 	border: 0;
-	padding: 10px 5px;
     background: white no-repeat;
 	background-image: linear-gradient(to bottom, var(--focus-color),var(--focus-color)), linear-gradient(to bottom, silver, silver);
-	background-size: 0 2px, 100% 1px;
+	background-size: 0 1px, 100% 1px;
 	background-position: 50% 100%, 50% 100%;
     transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
 
@@ -118,10 +117,12 @@ input:-webkit-autofill:active  {
     position: absolute;
     top: calc(50% - 12px);
     right: 0;  
+    width: 24px;
+    height: 24px;;
 }
 
 .r-input > .r-icon svg {
-  width: 20px !important;
+  width: 24px !important;
 }
 
 /* Message */
@@ -195,6 +196,8 @@ input:-webkit-autofill:active  {
 /* Bordered */
 .r-input.r-bordered > input,
 .r-input.r-bordered > textarea{
+    background-image: none;
+
     padding-top: .3rem;/*Fix input is not exactly in center*/
     height: calc(var(--input-height) * 3rem) ;
 }
@@ -202,7 +205,7 @@ input:-webkit-autofill:active  {
 .r-input.r-bordered > .r-icon {
     position: absolute;
     top: calc(50% - 10px);
-    right: 16px;
+    right: 8px;
     
 }
 .r-input.r-bordered > input,
@@ -258,7 +261,7 @@ input:-webkit-autofill:active  {
 /* Focus */
 .r-input > input:focus ,
 .r-input > textarea:focus {
-    	background-size: 100% 2px, 100% 1px;
+    	background-size: 100% 1px, 100% 1px;
 
 }
 .r-input > input:focus ~ label,
@@ -290,7 +293,7 @@ input:-webkit-autofill:active  {
 }
 .r-input.r-bordered > input:focus,
 .r-input.r-bordered > textarea:focus{
-    border: 1px solid var(--focus-color);  
+    border: 2px solid var(--focus-color);  
 
 }
 
@@ -352,7 +355,7 @@ input:-webkit-autofill:active  {
 /* Bordered */
 .r-input.r-rtl.r-bordered > .r-icon {
     right:unset;
-    left: 16px;
+    left: 8px;
     
 }
 .r-input.r-rtl.r-bordered > input,
