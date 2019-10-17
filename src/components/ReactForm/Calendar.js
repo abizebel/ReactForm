@@ -76,6 +76,17 @@ class Calendar extends Component {
         return (<div class="r-calender-days">{days}</div>)
     }
 
+    /**
+     * Render weeks
+     */
+    renderWeeks () {
+
+    }
+
+
+
+
+    
     render (){
         
         return (

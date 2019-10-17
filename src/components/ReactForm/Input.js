@@ -17,14 +17,7 @@ class Input extends Component {
  
     }
 
-    static getDerivedStateFromProps(props, state){
-        if(props.value !== state.value){
-            return {
-                value:props.value
-            }
-        }
-        return null;
-    }
+
 
     componentDidMount(){
         $.each($('textarea[data-autoresize]'), function() {
@@ -46,7 +39,7 @@ class Input extends Component {
     handleChange (e){
         const {change} = this.props;
         let value = e.target.value;
-
+        
         this.setState({value});
 
         this.validate(value)
