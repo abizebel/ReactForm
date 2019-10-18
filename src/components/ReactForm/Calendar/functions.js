@@ -33,7 +33,6 @@ export function getDaysOfMonth(month, isGregorian) {
 
 
 
-
 function prepareNumber(input) {
   let string;
   if (typeof input === 'number') {
@@ -60,3 +59,20 @@ function latinToPersian(string) {
 export function persianNumber(input) {
   return latinToPersian(prepareNumber(input));
 }
+
+export function checkToday(compare) {
+  const today = new Date();
+  const todayString =
+    String(today.getFullYear()) +
+    addZero(String(today.getMonth() + 1)) +
+    addZero(String(today.getDate()));
+
+  return compare === todayString;
+}
+
+export function addZero(val) {
+  val = Number(val);
+  if (val < 10) return `0${val}`;
+  return val;
+}
+

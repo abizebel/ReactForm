@@ -6,14 +6,13 @@ class MonthsHeader extends Component {
     static contextType = CalendarContext;
 
     render () {
-        
-        const { nextYear, prevYear, year, jalali} = this.context;
+        const { nextYear, prevYear, year, jalali, changeMode} = this.context;
         const jalaliYear = persianNumber(year.format('jYYYY')) ;
         const georgianYear = year.format('YYYY');
         
         return (
             <div class="r-calendar-header">
-                <div class="r-title"> { jalali ? jalaliYear : georgianYear } </div>
+                <div class="r-title" > { jalali ? jalaliYear : georgianYear } </div>
                 <div class="r-changer">
                     <svg viewBox="0 0 24 24" onClick={nextYear}>
                         <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getDaysOfMonth, persianNumber } from './functions';
+import {getDaysOfMonth, persianNumber, checkToday } from './functions';
 import calendarContext from './CalendarContext';
 
 
@@ -13,11 +13,14 @@ class Days extends Component {
     renderDays (){
         const {month, jalali} = this.context;
         const dayList = getDaysOfMonth(month,true);
-       
+        
+
         return dayList.map((day,i) => {
             const disabled = day.isBefore(month, 'month') || day.isAfter(month, 'month') ;
+            const disabledClass = disabled ? 'r-disabled' : ''
+            const todayClass = checkToday(day.format('YYYYMMDD')) ? 'r-today' : ''
             return ( 
-                <div key={i} class={`r-calendar-item ${disabled ? 'r-disabled' : ''}`}>
+                <div key={i} class={`r-calendar-item ${disabledClass} ${todayClass}`}>
                     <span> {jalali ? persianNumber(day.format('jD')) : day.format('D')} </span>
                 </div>
             )

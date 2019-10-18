@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {getDaysOfMonth, persianNumber } from './functions';
 import calendarContext from './CalendarContext';
+import moment from 'moment-jalaali';
 
 
 // List of months
@@ -38,18 +38,31 @@ const jalaliMonths = [
 class Days extends Component {
     static contextType = calendarContext;
 
-
-    renderMonths (){
-        const {month, jalali} = this.context;
-        const yearFormat = jalali ? 'jYYYY' : 'YYYY';
-        const monthYearFormat = jalali ? 'jM-YYYY' : 'M-jYYYY';
-        const months = jalali ? jalaliMonths : georgianMonths;
+    selectMonth (monthNumber){
+        const {setMonth, setMode, jalali, year} = this.context;
+        const yearFormat =  jalali ? 'jMM/jYYYY/jDD' : 'MM/YYYY/DD' ;
+        const key = `${monthNumber}-${year.format(yearFormat)}`;
+        setMonth (moment(key, yearFormat));
+        setMode('days');
+    }
     
-       
-        return months.map((month,i) => {
+    renderMonths (){
+        const {jalali,year, month} = this.context;
+        const months = jalali ? jalaliMonths : georgianMonths;
+        const yearFormat = jalali ?  'jYYYY' : 'YYYY' ;
+        const monthYearFormat = jalali ? 'jM-jYYYY' : 'M-YYYY' ;
+
+     
+        return months.map((monthItem,i) => {
+            const buttonFingerprint = `${i + 1}-${year.format(yearFormat)}`;
+            const selectedMonthFingerprint = month.format(monthYearFormat);
+            const currentClass = selectedMonthFingerprint === buttonFingerprint ? 'r-currentMonth' : '';
+    
             return ( 
-                <div key={i} class={`r-calendar-item r-month`}>
-                    <span>{month}</span>
+                <div key={i} 
+                    onClick={this.selectMonth.bind(this,i+1)} 
+                    class={`r-calendar-item r-month ${currentClass}`}>
+                        <span>{monthItem}</span>
                 </div>
             )
         });

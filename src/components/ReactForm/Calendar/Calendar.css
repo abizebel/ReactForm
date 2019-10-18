@@ -41,6 +41,7 @@
 }
 
 .r-calendar-item{
+  color: var(--text-color);
   display: inline-block;
   width: 36px;
   height: 36px;
@@ -52,9 +53,9 @@
   transition: all .5s ease-out;
 }
 .r-calendar-item > span{
-   width:28px;
-   height:28px;
-   line-height: 28px;
+   width:30px;
+   height:30px;
+   line-height: 30px;
   display: block;
 
 }
@@ -64,10 +65,17 @@
   transition: all .5s ease;
 
 }
+/* Disabled */
 .r-calendar-item.r-disabled {
-  color: #bbb;
+  color: #ddd;
   pointer-events: none;
 }
+/* Today */
+.r-calendar-item.r-today span{
+  color: #fff;
+  background: var(--focus-color);
+  border-radius: 50%
+} 
 
 /* Week */
 .r-calendar-item.r-week {
@@ -89,4 +97,10 @@
 /* Footer */
 .r-calendar-footer {
   margin-top: 16px
+}
+
+
+/* RTL */
+.r-calendar.r-rtl {
+  direction: rtl
 }

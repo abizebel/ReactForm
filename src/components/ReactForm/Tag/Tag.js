@@ -2,6 +2,8 @@ import React, {Component, createRef} from 'react';
 import {getValueByProp, createIcon} from '../functions';
 import icons from '../icons';
 import '../ReactForm.css';
+import '../Chips/Chips.css';
+
 import './Tag.css';
 
 class Tag extends Component {
@@ -20,7 +22,6 @@ class Tag extends Component {
             selectedItem : null,
             hasError : this.validate(selectedTags).hasError,
             errorMessage : this.validate(selectedTags).errorMessage,
-
         }
 
         this.inputDom = createRef()
@@ -79,7 +80,6 @@ class Tag extends Component {
         if (listValues.length === 0) {
             options = (<div className="r-options-item">Not Found</div>)
         }
-
 
         else {
             options = listValues.map((o, i) => {

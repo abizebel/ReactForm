@@ -11,13 +11,12 @@ class CalendarContainer extends Component {
       <Fragment>
 
         <div className="page-content-box" >
-            <div className="page-content-title">Calendar</div>
-            <Calendar
-                
-            />
-
-        
-     
+            <div className="page-content-title">Georgian Calendar</div>
+            <Calendar />
+        </div>
+        <div className="page-content-box" >
+            <div className="page-content-title">Jalali (Persian) Calendar</div>
+            <Calendar jalali={true} />
         </div>
          
       </Fragment>
