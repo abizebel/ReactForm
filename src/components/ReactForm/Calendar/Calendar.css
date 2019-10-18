@@ -14,11 +14,10 @@
   margin-bottom:4px
 }
 .r-calendar-header .r-changer svg {
-  width: 26px;
-  height: 26px;
+
   fill: var(--label-color);
   cursor: pointer;
-  padding: 0 5px
+ 
 }
 .r-calendar-header .r-changer svg:hover {
     fill: var(--text-color);
@@ -70,8 +69,9 @@
   color: #ddd;
   pointer-events: none;
 }
-/* Today */
-.r-calendar-item.r-today span{
+/* Today && Current Month */
+.r-calendar-item.r-today span,
+.r-calendar-item.r-currentMonth span{
   color: #fff;
   background: var(--focus-color);
   border-radius: 50%
@@ -79,8 +79,8 @@
 
 /* Week */
 .r-calendar-item.r-week {
-  pointer-events: none
-}
+  pointer-events: none;
+  font-weight: bold}
 /* Month */
 .r-calendar-item.r-month {
   width: 64px;

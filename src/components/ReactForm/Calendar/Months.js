@@ -54,9 +54,9 @@ class Days extends Component {
 
      
         return months.map((monthItem,i) => {
-            const buttonFingerprint = `${i + 1}-${year.format(yearFormat)}`;
-            const selectedMonthFingerprint = month.format(monthYearFormat);
-            const currentClass = selectedMonthFingerprint === buttonFingerprint ? 'r-currentMonth' : '';
+            const monthItemStr = `${i + 1}-${year.format(yearFormat)}`;
+            const currentMonthStr = month.format(monthYearFormat);
+            const currentClass = monthItemStr === currentMonthStr ? 'r-currentMonth' : '';
     
             return ( 
                 <div key={i} 

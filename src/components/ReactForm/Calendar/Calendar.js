@@ -84,7 +84,7 @@ class Calendar extends Component {
                         <Fragment> <MonthsHeader /> <Months /> </Fragment>
                     }
                     <div class="r-calendar-footer">
-                        <button onClick={this.setToday} type="button" class="r-button r-ripple r-nospace"> Today </button>
+                        <button onClick={this.setToday} type="button" class="r-button r-ripple r-nospace"> {jalali ? 'امروز' : 'today'} </button>
                     </div>
                 </div>
             </CalendarContext.Provider>
