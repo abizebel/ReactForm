@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-
+import '../ReactForm.css';
+import './Tabs.css';
 
 class Tabs extends Component {
     constructor(props) {

@@ -31,29 +31,26 @@
 /* Content */
 
 .r-calendar-content {
-
+ 
 }
 
-.r-calendar-item.r-week {
-  pointer-events: none
+.r-calendar-item.r-month {
+  width: 64px;
+  height: 64px;
+  line-height: 40px;
 }
-
 
 .r-calendar-item{
   display: inline-block;
   width: 36px;
   height: 36px;
+  line-height: 36px;
   text-align: center;
-  
-   line-height: 36px;
-   cursor: default;
-   font-size: 13px;
-   vertical-align: middle;
+  cursor: default;
+  font-size: 13px;
+  vertical-align: middle;
   transition: all .5s ease-out;
-  
-  
 }
-
 .r-calendar-item > span{
    width:28px;
    height:28px;
@@ -72,6 +69,21 @@
   pointer-events: none;
 }
 
+/* Week */
+.r-calendar-item.r-week {
+  pointer-events: none
+}
+/* Month */
+.r-calendar-item.r-month {
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+}
+.r-calendar-item.r-month span {
+  width: 60px;
+  height: 60px;
+  line-height:60px;
+}
 
 
 /* Footer */

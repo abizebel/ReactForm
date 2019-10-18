@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
-import {createUID} from './functions'
+import {createUID} from '../functions'
+import '../ReactForm.css';
+import './Toggle.css';
+
+
+
 class Toggle extends Component{
     constructor (props) {
         super(props);

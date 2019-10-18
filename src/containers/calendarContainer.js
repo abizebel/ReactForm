@@ -1,6 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import { Calendar  as Orginal} from '../components/ReactForm';
-import Calendar from '../components/datepicker/DatePicker'
+import { Calendar } from '../components/ReactForm';
 
 class CalendarContainer extends Component {
 
@@ -13,11 +12,11 @@ class CalendarContainer extends Component {
 
         <div className="page-content-box" >
             <div className="page-content-title">Calendar</div>
-            <Orginal
+            <Calendar
                 
             />
 
-            <Calendar />
+        
      
         </div>
          

@@ -1,7 +1,8 @@
 import React, {Component, createRef} from 'react';
-import {getValueByProp, createIcon} from './functions';
-import icons from './icons';
-import './ReactForm.css';
+import {getValueByProp, createIcon} from '../functions';
+import icons from '../icons';
+import '../ReactForm.css';
+import './Tag.css';
 
 class Tag extends Component {
     constructor(props){

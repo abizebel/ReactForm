@@ -1,4 +1,7 @@
 import React, {Component, createRef} from 'react';
+import '../ReactForm.css';
+import './Checkbox.css';
+
 
 class Checkbox extends Component {
     constructor(props){

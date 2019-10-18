@@ -1,8 +1,9 @@
 import React, {Component, Fragment, createRef} from 'react';
-import {createIcon} from './functions';
-import icons from './icons';
-import './ReactForm.css';
+import {createIcon} from '../functions';
+import icons from '../icons';
 import $ from 'jquery';
+import '../ReactForm.css';
+import './Input.css';
 
 
 class Input extends Component {

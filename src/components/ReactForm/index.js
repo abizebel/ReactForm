@@ -1,12 +1,12 @@
-import Input from './Input';
-import Select from './Select';
-import Autocomplete from './Autocomplete';
-import Tag from './Tag';
-import Checkbox from './Checkbox';
-import Modal from './Modal';
-import Toggle from './Toggle';
-import Tabs from './Tabs';
-import Calendar from './Calendar';
+import Input from './Input/Input';
+import Select from './Select/Select';
+import Autocomplete from './Autocomplete/Autocomplete';
+import Tag from './Tag/Tag';
+import Checkbox from './Checkbox/Checkbox';
+import Modal from './Modal/Modal';
+import Toggle from './Toggle/Toggle';
+import Tabs from './Tabs/Tabs';
+import Calendar from './Calendar/Calendar';
 
 
 // without default

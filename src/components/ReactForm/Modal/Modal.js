@@ -1,8 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import $ from 'jquery';
-import {createIcon} from './functions';
-
+import {createIcon} from '../functions';
+import '../ReactForm.css';
+import './Modal.css';
+import '../Button/Button.css';
 
 class Modal extends Component {
 

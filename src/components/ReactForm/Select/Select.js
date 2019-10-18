@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-import Checkbox from './Checkbox';
-import {getValueByProp, createIcon, createUID} from './functions';
+import Checkbox from '../Checkbox/Checkbox';
+import {getValueByProp, createIcon, createUID} from '../functions';
 // import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import icons from './icons';
-import './ReactForm.css';
+import icons from '../icons';
+import '../ReactForm.css';
+import '../Options/Options.css';
+
+import './Select.css';
 
 class Select extends Component {
     constructor(props) {
