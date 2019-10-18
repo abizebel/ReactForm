@@ -13,10 +13,10 @@ class Days extends Component {
     renderDays (){
         const {month, jalali} = this.context;
         const dayList = getDaysOfMonth(month,jalali);
-        
+        const monthFormat = jalali ? 'jMM' : 'MM';
 
         return dayList.map((day,i) => {
-            const disabled = day.isBefore(month, 'month') || day.isAfter(month, 'month') ;
+            const disabled = day.format(monthFormat) !== month.format(monthFormat);
             const disabledClass = disabled ? 'r-disabled' : ''
             const todayClass = checkToday(day.format('YYYYMMDD')) ? 'r-today' : ''
             return ( 
