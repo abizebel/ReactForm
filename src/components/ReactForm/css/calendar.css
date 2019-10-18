@@ -1,99 +1,80 @@
-.r-calender {
-  width: 246px;
+.r-calendar {
+  width: 256px;
   border:1px solid var(--border-color);
   padding: 24px;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none; 
 }
 
 /* Header */
-.r-calender-header {
+.r-calendar-header {
   display: flex;
   justify-content: space-between;
   margin-bottom:4px
 }
-.r-calender-header .r-changer svg {
+.r-calendar-header .r-changer svg {
   width: 26px;
   height: 26px;
   fill: var(--label-color);
   cursor: pointer;
   padding: 0 5px
 }
-.r-calender-header .r-changer svg:hover {
+.r-calendar-header .r-changer svg:hover {
     fill: var(--text-color);
 }
-.r-calender-header .r-title {
-    color: var(--label-color);
+.r-calendar-header .r-title {
+  color: var(--label-color);
   font-size: 14px
 }
 
 /* Content */
 
+.r-calendar-content {
 
-
-
-/* Weeks */
-.r-calender-week {
-   width: 35px;
-   width: 35px;
-   line-height: 30px;
-   font-size: 13px;
-   display: inline-block;
-  text-align: center
 }
-/* Months & Years */
-.r-calender-month,
-.r-calender-year{
-   width: 35px;
-   width: 35px;
-   line-height: 40px;
 
+.r-calendar-item.r-week {
+  pointer-events: none
+}
+
+
+.r-calendar-item{
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  
+   line-height: 36px;
    cursor: default;
-   display: inline-block;
    font-size: 13px;
-   overflow: hidden;
-   text-align: center;
    vertical-align: middle;
-  transition: all .5s ease-out
+  transition: all .5s ease-out;
+  
+  
 }
 
-.r-calender-month:hover,
-.r-calender-year:hover{
+.r-calendar-item > span{
+   width:28px;
+   height:28px;
+   line-height: 28px;
+  display: block;
+
+}
+.r-calendar-item:hover span{
    background: #eee;
    border-radius: 50%;
-  transition: all .5s ease
+  transition: all .5s ease;
 
 }
-
-/* Days */
-.r-calender-days {
-}
-.r-calender-day{
-   width: 35px;
-   height: 35px;
-   line-height: 35px;
-   cursor: default;
-   display: inline-block;
-   font-size: 13px;
-   overflow: hidden;
-   text-align: center;
-   vertical-align: middle;
-  transition: all .5s ease-out
-}
-.r-calender-today,
-.r-calender-day:hover{
-   background: #eee;
-   border-radius: 50%;
-  transition: all .5s ease
-
-}
-.r-calender-day.r-disabled {
+.r-calendar-item.r-disabled {
   color: #bbb;
   pointer-events: none;
 }
+
+
+
 /* Footer */
-.r-calender-footer {
+.r-calendar-footer {
   margin-top: 16px
 }
