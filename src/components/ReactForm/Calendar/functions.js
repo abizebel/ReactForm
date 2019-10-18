@@ -2,17 +2,12 @@ const latinToPersianMap = ['۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹',
 const latinNumbers = [/1/g, /2/g, /3/g, /4/g, /5/g, /6/g, /7/g, /8/g, /9/g, /0/g];
 
 
-/**
- * Get days of a month that should be shown on a month page
- *
- * @param month A moment object
- * @returns {Array}
- */
-export function getDaysOfMonth(month, isGregorian) {
+
+export function getDaysOfMonth(month, isJalali) {
     const days = [];
     
-    const monthFormat = isGregorian ? 'Month' : 'jMonth';
-    const dayOffset = isGregorian ? 0 : 1;
+    const monthFormat = isJalali ? 'jMonth' : 'Month';
+    const dayOffset = isJalali ? 1: 0;
     
     const current = month.clone().startOf(monthFormat);
     const end = month.clone().endOf(monthFormat);

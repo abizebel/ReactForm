@@ -3,7 +3,7 @@ import {getDaysOfMonth, persianNumber, checkToday } from './functions';
 import calendarContext from './CalendarContext';
 
 
-const weekNames = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
+const weekNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 const jalaliWeekNames = ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'];
 
 class Days extends Component {
@@ -12,7 +12,7 @@ class Days extends Component {
 
     renderDays (){
         const {month, jalali} = this.context;
-        const dayList = getDaysOfMonth(month,true);
+        const dayList = getDaysOfMonth(month,jalali);
         
 
         return dayList.map((day,i) => {
