@@ -79,13 +79,16 @@ class Calendar extends Component {
         return (
             <CalendarContext.Provider value ={this.getContextValue()}>
                 <div class={`r-calendar ${rtlClass}`}>
+
                     {   mode === 'days' ?
                         <Fragment> <DaysHeader   /> <Days   /> </Fragment> :
                         <Fragment> <MonthsHeader /> <Months /> </Fragment>
                     }
+
                     <div class="r-calendar-footer">
                         <button onClick={this.setToday} type="button" class="r-button r-ripple r-nospace"> {jalali ? 'امروز' : 'today'} </button>
                     </div>
+
                 </div>
             </CalendarContext.Provider>
         )

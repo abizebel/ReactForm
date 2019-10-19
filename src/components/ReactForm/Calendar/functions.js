@@ -1,7 +1,29 @@
 const latinToPersianMap = ['۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '۰'];
 const latinNumbers = [/1/g, /2/g, /3/g, /4/g, /5/g, /6/g, /7/g, /8/g, /9/g, /0/g];
+const monthMapping = {
+  Farvardin : 'فروردین',
+  Ordibehesht : 'اردیبهشت',
+  Khordaad : 'خرداد',
+  Tir : 'تیر',
+  Amordaad : 'مرداد',
+  Shahrivar : 'شهریور',
+  Mehr : 'مهر',
+  Aabaan : 'آبان',
+  Aazar : 'آذر',
+  Dey : 'دی',
+  Bahman : 'بهمن',
+  Esfand : 'اسفند',
 
+}
 
+export function mapPersianMonths (date){
+  for (let prop in monthMapping) {
+    if (date.indexOf(prop) !== -1) {
+      return date.replace(prop,monthMapping[prop] )
+    }
+  }
+
+}
 
 export function getDaysOfMonth(month, isJalali) {
   const days = [];
