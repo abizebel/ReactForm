@@ -69,6 +69,7 @@ class Calendar extends Component {
             setMode : this.setMode,
             setMonth : this.setMonth,
             setYear : this.setYear,
+            change : this.props.change,
         }
     }
 

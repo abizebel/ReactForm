@@ -3,8 +3,8 @@ import { Calendar } from '../components/ReactForm';
 
 class CalendarContainer extends Component {
 
-  changeToggle (val){
-   console.log('toggle is : '+val)
+  changeCalendar (val){
+   console.log(val)
   }
   render (){
     return (
@@ -12,11 +12,11 @@ class CalendarContainer extends Component {
 
         <div className="page-content-box" >
             <div className="page-content-title">Georgian Calendar</div>
-            <Calendar />
+            <Calendar change={this.changeCalendar.bind(this)} />
         </div>
         <div className="page-content-box" >
             <div className="page-content-title">Jalali (Persian) Calendar</div>
-            <Calendar jalali={true} />
+            <Calendar jalali={true} change={this.changeCalendar.bind(this)} />
         </div>
          
       </Fragment>

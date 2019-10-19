@@ -7,6 +7,7 @@ import Modal from './Modal/Modal';
 import Toggle from './Toggle/Toggle';
 import Tabs from './Tabs/Tabs';
 import Calendar from './Calendar/Calendar';
+import Datepicker from './Datepicker/Datepicker';
 
 
 // without default
@@ -19,5 +20,6 @@ export {
     Modal,
     Toggle,
     Tabs,
-    Calendar
+    Calendar,
+    Datepicker
 }

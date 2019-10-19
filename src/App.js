@@ -10,6 +10,7 @@ import ModalContainer from './containers/modalContainer'
 import ToggleContainer from './containers/toggleContainer';
 import TabContainer from './containers/tabContainer';
 import CalendarContainer from './containers/calendarContainer';
+import DatepickerContainer from './containers/datepickerContainer';
 
 
 class App extends Component {
@@ -30,6 +31,8 @@ class App extends Component {
               <li><Link to="/toggle/">Toggle</Link> </li>
               <li><Link to="/tab/">Tab</Link> </li>
               <li><Link to="/calendar/">Calendar</Link> </li>
+              <li><Link to="/datepicker/">Datepicker</Link> </li>
+
             </ul>
            
         </div>
@@ -46,6 +49,7 @@ class App extends Component {
           <Route path="/toggle/" component={ToggleContainer} />
           <Route path="/tab/" component={TabContainer} />
           <Route path="/calendar/" component={CalendarContainer} />
+          <Route path="/datepicker/" component={DatepickerContainer} />
         </div>
     </Router>
       
