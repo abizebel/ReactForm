@@ -15,7 +15,6 @@ class AutocomplteContainer extends Component {
           <Tag change={this.changeTag.bind(this)}
             label={'Last Name'}
             defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
-            api={'api/getTag'} //get search tag result from server
             required={'asdasdasd'}
             values ={
               [{id:'11',name:'Hosseini' },

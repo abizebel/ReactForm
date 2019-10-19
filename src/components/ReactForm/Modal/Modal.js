@@ -4,7 +4,6 @@ import $ from 'jquery';
 import {createIcon} from '../functions';
 import '../ReactForm.css';
 import './Modal.css';
-import '../Button/Button.css';
 
 class Modal extends Component {
 

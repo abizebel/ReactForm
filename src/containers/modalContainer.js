@@ -85,10 +85,7 @@ class AutocomplteContainer extends Component {
                     ]}
                     mapping = {{text : 'name', value : 'id'}}
                 />
-                <Checkbox 
-                    label={'I Agree'}
-                    change={this.changeCheckbox.bind(this)}
-                />
+ 
             </Modal >
     
         </div>

@@ -6,8 +6,6 @@ import {getValueByProp, createIcon, createUID} from '../functions';
 
 import icons from '../icons';
 import '../ReactForm.css';
-import '../Options/Options.css';
-
 import './Select.css';
 
 class Select extends Component {

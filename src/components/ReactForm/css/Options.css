@@ -1,7 +1,6 @@
 /************************
   * SELECT OPTIONS
 ************************/
-
 .options-appear {
 	opacity: 0;
 	transition: all 0.5s ease;

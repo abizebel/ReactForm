@@ -1,9 +1,7 @@
 import React, {Component, createRef} from 'react';
 import {getValueByProp, createIcon} from '../functions';
-import icons from '../icons';
+import Chips from '../Chips/Chips';
 import '../ReactForm.css';
-import '../Chips/Chips.css';
-
 import './Tag.css';
 
 class Tag extends Component {
@@ -111,15 +109,13 @@ class Tag extends Component {
         const {tags} = this.state;
         const {mapping} = this.props;
 
-        const tagEls = tags.map((o, i) =>{
-            return (
-                <li key={i} className="r-chips-item" >{o[mapping.text]}
-                    <span className="r-tag-icon" onClick={this.removeTag.bind(this, i)}>{icons.close}</span>
-                </li>
-            )
-        });
-
-        return (<ul className="r-chips">{tagEls}</ul>)
+        return (
+            <Chips
+                values={tags}
+                onClose={this.removeTag.bind(this)}
+                mapping={mapping}
+            />
+        )
     }
 
     /**
