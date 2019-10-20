@@ -265,7 +265,7 @@ input:-webkit-autofill:active  {
 /* Focus */
 .r-input > input:focus ,
 .r-input > textarea:focus {
-    	background-size: 100% 1px, 100% 1px;
+    	background-size: 100% 2px, 100% 2px;
 
 }
 .r-input > input:focus ~ label,
