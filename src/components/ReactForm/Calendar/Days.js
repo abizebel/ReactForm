@@ -9,22 +9,11 @@ class Days extends Component {
     static contextType = calendarContext;
 
     selectDay = selectedDay => {
-        const { month, jalali,setMonth, change } = this.context;
-        const yearMonthFormat = jalali ? 'jYYYYjMM' : 'YYYYMM';
-        const fullDateFormat = jalali ? 'jYYYY/jM/jD': 'YYYY/M/D';
+        const { jalali,setMonth, change } = this.context;
+        const selectedValue = jalali ? persianNumber(selectedDay.format('jYYYY/jM/jD')) :selectedDay.format('YYYY/M/D') ;
         
         setMonth(selectedDay);
-        change(selectedDay.format(fullDateFormat))
-
-
-
-        // // Because there's no `m1.isSame(m2, 'jMonth')`
-        // if (selectedDay.format(yearMonthFormat) !== month.format(yearMonthFormat)) {
-
-        //     setMonth(selectedDay);
-        // }
-    
-        // this.setState({ selectedDay });
+        change(selectedValue)
     }
 
     renderDays (){

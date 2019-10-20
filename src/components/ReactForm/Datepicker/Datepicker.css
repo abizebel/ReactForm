@@ -8,3 +8,7 @@
   position: absolute;
   top: calc(100% + 1px);
 }
+
+.r-datepicker .r-icon {
+  cursor: pointer;
+}

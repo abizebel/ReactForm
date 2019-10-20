@@ -26,12 +26,9 @@ class Datepicker extends Component {
     /**
      * Close autocomplete
      * 
-     * @param {Event} e 
      */
-    close (e){ 
-        setTimeout(()=>{
-            this.setState({open : false})
-        },500)       
+    close (){ 
+        this.setState({open : false})
     }
     inputChange (e){
         let value = e.target.value;
@@ -43,6 +40,7 @@ class Datepicker extends Component {
         const {change} = this.props;
 
         this.setState({inputValue : value})
+        this.close()
         change(value)
     }
 
@@ -55,19 +53,17 @@ class Datepicker extends Component {
         const outlineClass = outline ? ' r-bordered' :''; 
         const disabledClass = disabled ? ' r-disabled' :''; 
         return (
-            <div className={`r-datepicker r-input${filledClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div onBlur={this.close.bind(this)} className={`r-datepicker r-input${filledClass}${rtlClass}${outlineClass}${disabledClass}`}>
                 <input 
-                onBlur={this.close.bind(this)}
-                onFocus={this.open.bind(this)}
+               
                 disabled={false} 
                 type="text" 
                 onChange={this.inputChange.bind(this)}
                 className="filled" 
                 value={inputValue}  
                 />
-                <label>{'adadsad'}</label>
-            
-                <span className="r-icon">{icons.calendar}</span>
+                <label>{label}</label>
+                <span onClick={this.open.bind(this)} className="r-icon r-ripple-xs ">{icons.calendar}</span>
                 {open && <Calendar change={this.handleChange.bind(this)} jalali={jalali} />}
             </div>
         )
