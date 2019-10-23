@@ -166,27 +166,30 @@
 .r-checkbox.r-nospace .r-checkbox-text {
 	padding: 0
 }
-/* Rtl */
-
-.r-checkbox.r-rtl {
-	text-align: right
-}
-
-.r-checkbox.r-rtl .r-checkbox-fake {
-	float: none;
-	float: right
-}
-
-.r-checkbox.r-rtl .r-checkbox-text {
-	text-align: right;
-	direction: rtl
-}
-
 
 /* Disabled */
 
 .r-checkbox.r-disabled {
 	opacity: .3
+}
+
+/* Rtl */
+
+.r-checkbox.r-rtl,
+.r-rtl .r-checkbox  {
+	text-align: right
+}
+
+.r-checkbox.r-rtl .r-checkbox-fake,
+.r-rtl .r-checkbox .r-checkbox-fake {
+	float: none;
+	float: right
+}
+
+.r-checkbox.r-rtl .r-checkbox-text ,
+.r-rtl .r-checkbox .r-checkbox-text {
+	text-align: right;
+	direction: rtl
 }
 
 

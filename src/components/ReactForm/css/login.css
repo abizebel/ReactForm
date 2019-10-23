@@ -28,7 +28,7 @@ body {
   
 }
 
-.rtl .page-header {
+.r-rtl .page-header {
 
   flex-direction: row-reverse;
 

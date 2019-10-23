@@ -319,71 +319,89 @@ input:-webkit-autofill:active  {
 * RTL INPUT
 ***********************************************/
 .r-input.r-rtl.r-error > .r-message,
-.r-input.r-rtl.r-success > .r-message{
+.r-input.r-rtl.r-success > .r-message,
+.r-rtl .r-input.r-error > .r-message,
+.r-rtl .r-input.r-success > .r-message{
     text-align: right;
     direction:rtl;
 }
 
 .r-input.r-rtl > input,
-.r-input.r-rtl > textarea{
+.r-input.r-rtl > textarea,
+.r-rtl .r-input > input,
+.r-rtl .r-input > textarea{
     text-align: right ;
     direction: rtl;
 }
 
-.r-input.r-rtl > .r-icon {
+.r-input.r-rtl > .r-icon,
+.r-rtl .r-input > .r-icon {
     right:unset;
     left: 0;
     
 }
-.r-input.r-rtl > label {
+.r-input.r-rtl > label,
+.r-rtl .r-input > label {
     left: unset;
     right: 0
 }
 
 /* Has icon */
-.r-input.r-rtl.r-has-icon > .r-input-icon {
+.r-input.r-rtl.r-has-icon > .r-input-icon ,
+.r-rtl .r-input.r-has-icon > .r-input-icon {
     left: unset;
     right: 0 ; 
 }
 .r-input.r-rtl.r-has-icon > input,
-.r-input.r-rtl.r-has-icon > textarea{
+.r-input.r-rtl.r-has-icon > textarea,
+.r-rtl .r-input.r-has-icon > input,
+.r-rtl .r-input.r-has-icon > textarea{
     padding-left: unset;
     padding-right: 32px ;
 }
-.r-input.r-rtl.r-has-icon > label {
+.r-input.r-rtl.r-has-icon > label ,
+.r-rtl .r-input.r-has-icon > label{
     left: unset;
    right: 32px
 }
 
 
 /* Bordered */
-.r-input.r-rtl.r-bordered > .r-icon {
+.r-input.r-rtl.r-bordered > .r-icon ,
+.r-rtl .r-input.r-bordered > .r-icon{
     right:unset;
     left: 8px;
     
 }
 .r-input.r-rtl.r-bordered > input,
-.r-input.r-rtl.r-bordered > textarea {
+.r-input.r-rtl.r-bordered > textarea,
+.r-rtl .r-input.r-bordered > input,
+.r-rtl .r-input.r-bordered > textarea {
     padding-left: unset;
     padding-right: 16px ;
 }
-.r-input.r-rtl.r-bordered > label {
+.r-input.r-rtl.r-bordered > label ,
+.r-rtl .r-input.r-bordered > label{
     left: unset;
     right: 16px
 }
 
 /* Has icon & Bordered */
-.r-input.r-rtl.r-bordered.r-has-icon > .r-input-icon {
+.r-input.r-rtl.r-bordered.r-has-icon > .r-input-icon,
+.r-rtl .r-input.r-bordered.r-has-icon > .r-input-icon  {
     
     left: unset;
     right: 8px
 }
 .r-input.r-rtl.r-bordered.r-has-icon > input,
-.r-input.r-rtl.r-bordered.r-has-icon > textarea{
+.r-input.r-rtl.r-bordered.r-has-icon > textarea,
+.r-rtl .r-input.r-bordered.r-has-icon > input,
+.r-rtl .r-input.r-bordered.r-has-icon > textarea{
     padding-right: unset;
     padding-right: 40px ;
 }
-.r-input.r-rtl.r-bordered.r-has-icon > label {
+.r-input.r-rtl.r-bordered.r-has-icon > label,
+.r-rtl .r-input.r-bordered.r-has-icon > label {
     left: unset;
    right: 40px
 }
@@ -392,12 +410,20 @@ input:-webkit-autofill:active  {
 .r-input.r-rtl.r-error > input,
 .r-input.r-rtl.r-error > textarea ,
 .r-input.r-rtl.r-success > input,
-.r-input.r-rtl.r-success > textarea {
+.r-input.r-rtl.r-success > textarea,
+.r-rtl .r-input.r-error > input,
+.r-rtl .r-input.r-error > textarea ,
+.r-rtl .r-input.r-success > input,
+.r-rtl .r-input.r-success > textarea {
     padding-left: 24px
 }
 .r-input.r-rtl.r-bordered.r-error > input,
 .r-input.r-rtl.r-bordered.r-error > textarea,
 .r-input.r-rtl.r-bordered.r-success > input,
-.r-input.r-rtl.r-bordered.r-success > textarea{
+.r-input.r-rtl.r-bordered.r-success > textarea,
+.r-rtl .r-input.r-bordered.r-error > input,
+.r-rtl .r-input.r-bordered.r-error > textarea,
+.r-rtl .r-input.r-bordered.r-success > input,
+.r-rtl .r-input.r-bordered.r-success > textarea{
     padding-left: 40px;
 }

@@ -124,15 +124,19 @@ body.r-popup-open {
 }
 
 /* Rtl */
-.r-modal.r-rtl {
+.r-modal.r-rtl,
+.r-rtl .r-modal {
   left: 0
 }
-.r-modal.r-rtl .r-modal-header{
+.r-modal.r-rtl .r-modal-header,
+.r-rtl .r-modal .r-modal-header{
   flex-direction: row-reverse
 }
-.r-modal.r-rtl .r-modal-buttons {
+.r-modal.r-rtl .r-modal-buttons,
+.r-rtl .r-modal .r-modal-buttons {
   flex-direction: row
 }
-.r-modal.r-rtl .r-modal-body{
+.r-modal.r-rtl .r-modal-body,
+.r-rtl .r-modal .r-modal-body{
   direction: rtl
 }

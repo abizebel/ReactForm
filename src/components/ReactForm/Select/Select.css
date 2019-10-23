@@ -38,16 +38,19 @@
 
 /* RTL */
 
-.r-select.r-rtl > input {
+.r-select.r-rtl > input,
+.r-rtl .r-select > input  {
     padding-right: unset;
     padding-left: 28px;
 }
-.r-select.r-bordered.r-rtl > input {
+.r-select.r-bordered.r-rtl > input,
+.r-rtl .r-select.r-bordered > input  {
     padding-left: 40px;
 }
 
 /* Multi Select Checkbox*/
-.r-select.r-rtl .r-checkbox.r-nospace .r-checkbox-fake {
+.r-select.r-rtl .r-checkbox.r-nospace .r-checkbox-fake ,
+.r-rtl .r-select .r-checkbox.r-nospace .r-checkbox-fake {
     padding: 0;
 	margin-left:16px !important;
 }

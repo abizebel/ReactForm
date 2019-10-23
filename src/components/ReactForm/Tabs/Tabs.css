@@ -18,10 +18,12 @@
 }
 
 /* Rtl */
-.r-tab.r-rtl .r-tab-list {
+.r-tab.r-rtl .r-tab-list,
+.r-rtl .r-tab .r-tab-list {
     justify-content: flex-start;
     flex-direction: row-reverse;
 }
-.r-tab.r-rtl .r-tab-content {
+.r-tab.r-rtl .r-tab-content,
+.r-rtl .r-tab .r-tab-content  {
     direction: rtl;
 }

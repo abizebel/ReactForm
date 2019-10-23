@@ -61,22 +61,26 @@
 
 /* RTL */
 
- .r-tag.r-rtl .r-chips-item >.r-tag-icon >svg {
+ .r-tag.r-rtl .r-chips-item >.r-tag-icon >svg,
+ .r-rtl .r-tag .r-chips-item >.r-tag-icon >svg {
      float: unset;
      float: left;
      line-height: 32px;
      padding:9px 10px 0 0;    
  }
- .r-tag.r-rtl .r-chips {
+ .r-tag.r-rtl .r-chips,
+ .r-rtl .r-tag .r-chips {
      text-align: right;
      direction: rtl;
  }
- .r-tag.r-rtl .r-chips-item > img  {
+ .r-tag.r-rtl .r-chips-item > img,
+ .r-rtl .r-tag .r-chips-item > img  {
      float: none;
      float: right;
      margin: 0 -12px 0 8px;
  }
- .r-tag.r-rtl .r-chips-item {
+ .r-tag.r-rtl .r-chips-item,
+ .r-rtl .r-tag .r-chips-item  {
      text-align: right;
      direction: rtl;
      margin-right: unset;
