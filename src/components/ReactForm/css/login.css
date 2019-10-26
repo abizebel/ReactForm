@@ -33,6 +33,9 @@ body {
   flex-direction: row-reverse;
 
 }
+.r-rtl .page-header-buttons {
+  flex-direction:row
+} 
 .page-header {
   position: relative;
   display:flex;
@@ -75,16 +78,25 @@ body {
   list-style: none;
   display: flex;
   flex-direction: row-reverse;
-    padding: 24px 12px
+  padding: 24px 12px
 }
 .page-header-buttons li {
-  margin: 0 12px
+  margin: 0 12px;
+    color: #fff;
+  font-size: 22px;
+  position:relative;
+  
 }
 .page-header-buttons li a{
   color: #fff;
   font-size: 22px;
 }
-
+.page-header-language {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0
+}
 
 .form {
   margin: 0 auto;
