@@ -89,7 +89,7 @@ class Input extends Component {
     }
 
     render (){
-        const {rtl, outline, label, disabled, multiline, icon} = this.props;
+        const {rtl, outline, label, disabled, multiline, icon, onFocus, onBlur, autoFocus} = this.props;
         const {value, hasError, errorMessage} = this.state;
         const filledClass = String(value).length > 0 || disabled ? ' filled' :''; 
         const rtlClass = rtl ? ' r-rtl' : ''; 
@@ -108,6 +108,9 @@ class Input extends Component {
                 
                 {   multiline ? 
                     <textarea 
+                        autoFocus={autoFocus}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
                         data-autoresize
                         ref={this.textareaDom}
                         type="text" 
@@ -116,6 +119,9 @@ class Input extends Component {
                         disabled = {disabled}
                     ></textarea>:
                     <input 
+                        autoFocus={autoFocus}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
                         type="text" 
                         value={value}
                         onChange={this.handleChange.bind(this)}
@@ -148,6 +154,7 @@ class Input extends Component {
 }
 
 Input.defaultProps = {
+    autoFocus : false,
     rtl : false,
     outline : false,
     disabled : false,
