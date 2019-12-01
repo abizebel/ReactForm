@@ -67,6 +67,7 @@ class Tag extends Component {
     }
 
 
+
     /**
      * Render tag list for selection
      */
@@ -75,25 +76,21 @@ class Tag extends Component {
         const {listValues} = this.state;
         var options;
 
-        if (listValues.length === 0) {
-            options = (<div className="r-options-item">Not Found</div>)
-        }
-
-        else {
-            options = listValues.map((o, i) => {
-                return (
-                    <div key={i} className="r-options-item" onClick={this.select.bind(this,o)}>
-                        {mapping.icon && 
-                            <span className="r-option-icon" onClick={this.removeTag.bind(this)}>
-                                {createIcon(getValueByProp(o, mapping.icon))}
-                            </span> 
-                        }
-                        {getValueByProp(o, mapping.text)}
-                    </div>
-                )
-            })
-        }
+       
+        options = listValues.map((o, i) => {
+            return (
+                <div key={i} className="r-options-item" onClick={this.select.bind(this,o)}>
+                    {mapping.icon && 
+                        <span className="r-option-icon" onClick={this.removeTag.bind(this)}>
+                            {createIcon(getValueByProp(o, mapping.icon))}
+                        </span> 
+                    }
+                    {getValueByProp(o, mapping.text)}
+                </div>
+            )
+        })
         
+    
         return (
             <div className="r-options">
                 <div className="r-options-items">{options}</div>
