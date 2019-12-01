@@ -3,11 +3,17 @@
 * INPUT
 ***********************************************/
 /* Change the white to any color ;) */
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active  {
+.r-input input:-webkit-autofill,
+.r-input input:-webkit-autofill:hover, 
+.r-input input:-webkit-autofill:focus, 
+.r-input input:-webkit-autofill:active  {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+.r-input:not(.r-bordered) input:-webkit-autofill,
+.r-input:not(.r-bordered) input:-webkit-autofill:hover, 
+.r-input:not(.r-bordered) input:-webkit-autofill:focus, 
+.r-input:not(.r-bordered) input:-webkit-autofill:active{
+   border-bottom: 1px solid var(--label-color)  !important
 }
 
 
