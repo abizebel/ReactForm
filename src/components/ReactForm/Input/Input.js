@@ -123,7 +123,7 @@ class Input extends Component {
                     />
                 }
                 
-                <label>{label}</label>
+                {label && <label>{label}</label>}
 
                 {   icon !== null &&
                     <span className="r-input-icon">{inputIcon}</span>
@@ -148,7 +148,6 @@ class Input extends Component {
 }
 
 Input.defaultProps = {
-    label : 'not set',
     rtl : false,
     outline : false,
     disabled : false,
