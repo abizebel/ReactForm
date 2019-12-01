@@ -26,6 +26,7 @@
     icon={'icon icon-home'} //user svg or icon string
     onFocus={(e) => {}}
     onBlur={(e) => {}}
+    onKeyUp={(e) => {}}
     //Error handling
     serverError={{status : true,  message : 'this has a error'}}
     regex = {{pattern :  /^\d+$/, message : 'should be number'}}
