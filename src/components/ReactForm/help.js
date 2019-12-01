@@ -24,11 +24,14 @@
     value={'Hosseini'} //value of input
     change={this.changeInput.bind(this)} //change method of input
     icon={'icon icon-home'} //user svg or icon string
+    onFocus={(e) => {}}
+    onBlur={(e) => {}}
     //Error handling
     serverError={{status : true,  message : 'this has a error'}}
     regex = {{pattern :  /^\d+$/, message : 'should be number'}}
     required={'this field is required'}
     //Booleans
+    autoFocus = {true}
     disabled={true} //disable input
     outline={true} //outlined input
     rtl={true} //rtl support
