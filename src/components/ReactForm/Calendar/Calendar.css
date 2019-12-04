@@ -33,7 +33,8 @@
 /* Content */
 
 .r-calendar-content {
- 
+  display: flex;
+  flex-wrap: wrap
 }
 
 .r-calendar-item.r-month {
@@ -44,7 +45,6 @@
 
 .r-calendar-item{
   color: var(--text-color);
-  display: inline-block;
   width: 36px;
   cursor: pointer;
   height: 36px;
@@ -104,7 +104,6 @@
 
 
 /* RTL */
-.r-calendar.r-rtl ,
-.r-rtl .r-calendar {
+.r-calendar.r-rtl {
   direction: rtl
 }
