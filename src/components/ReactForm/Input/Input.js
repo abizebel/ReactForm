@@ -10,8 +10,9 @@ class Input extends Component {
     constructor (props) {
         super(props);
         this.textareaDom = createRef();
+        let  {value = ''} = this.props;
         this.state = {
-            value : this.props.value || '',
+            value,
             hasError : this.validate(this.props.value).hasError,
             errorMessage : this.validate(this.props.value).errorMessage
         }
