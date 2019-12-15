@@ -26,6 +26,10 @@ class Autcomplete extends Component {
             hasError : this.validate(defaultValue).hasError,
             errorMessage : this.validate(defaultValue).errorMessage
         }
+
+
+        this.timer =null; 
+        this.waitInterval =1000; 
     }
 
     /**
@@ -150,37 +154,15 @@ class Autcomplete extends Component {
     }
 
 
-    ////////////////////// CHANGE //////////////////////
     /**
-     * Get searching tag results from server
+     * Get searching item results from server
      * 
      * @param {String} str 
      */
-    getTagFromServer (str){
-        const {rtl} = this.props
-        var ltrList = [
-            {id:'0110',name:'Hosseini' , info:{icon:sampleIcon}},
-            {id:'0220',name:'feiz', info:{icon:sampleIcon}},
-            {id:'0330',name:'mohammadi', info:{icon:sampleIcon}},
-            {id:'0440',name:'khosravi', info:{icon:sampleIcon}},
-            {id:'0440',name:'ranjbar', info:{icon:sampleIcon}}
-        ];
-        var rtlList = [
-            {id:'0110',name:'حسینی' , info:{icon:sampleIcon}},
-            {id:'0220',name:'فیض', info:{icon:sampleIcon}},
-            {id:'0330',name:'محمدی', info:{icon:sampleIcon}},
-            {id:'0440',name:'خسروی', info:{icon:sampleIcon}},
-            {id:'0440',name:'رنجبر', info:{icon:sampleIcon}}
-         ];
-        const list = rtl ? rtlList :ltrList;
-        const target = str.toLowerCase();
-
-        const foundValues = list.filter(o => {
-            return o.name.toLowerCase().indexOf(target)!== -1
-        })
-        return foundValues;
+    async getItemFromServer (str){
+        const {api} = this.props;
+        return await api(str);
     }
-    ////////////////////// CHANGE //////////////////////
 
 
 
@@ -194,8 +176,7 @@ class Autcomplete extends Component {
         const target = e.target.value.toLowerCase();
         let foundValues ;
 
-       // handle change
-       this.setState({searchValue : e.target.value});
+
        this.validate(target)
        change(e.target.value);
 
@@ -207,7 +188,7 @@ class Autcomplete extends Component {
 
         //Remote search
         if(api){
-            foundValues = await this.getTagFromServer(target);
+            foundValues = await this.getItemFromServer(target);
         }
         //local search
         else { 
@@ -246,10 +227,26 @@ class Autcomplete extends Component {
         this.setState({searchValue : ''})
         $(this.inputDom.current).focus()
     }   
-    
+
+
+    handleSearch  (e) {
+        const Event = {target : {value : e.target.value}};
+        clearTimeout(this.timer);
+        
+       // handle change
+       this.setState({searchValue : e.target.value});
+
+        this.timer = setTimeout(()=>{
+            this.search(Event)
+        }, this.waitInterval);
+    }
+
+    keydown (){
+        clearTimeout(this.timer);
+    }
 
     render (){
-        const {label, mapping, rtl, disabled, outline, defaultValue} = this.props;
+        const {label, mapping, rtl, disabled, outline, defaultValue, placeholer} = this.props;
         const {open, searchValue, selectedItem,errorMessage, hasError} = this.state;
 
         const activeClass = open ? ' active' : '';
@@ -270,9 +267,10 @@ class Autcomplete extends Component {
                 ref={this.inputDom}
                 disabled={disabled} 
                 type="text" 
+                placeholder={placeholer}
                 className="filled" 
                 value={searchValue}  
-                onChange={this.search.bind(this)}
+                onChange={this.handleSearch.bind(this)}
             />
             <label>{label}</label>
             <span className="r-line"></span>
