@@ -22,7 +22,10 @@ class Tag extends Component {
             errorMessage : this.validate(selectedTags).errorMessage,
         }
 
-        this.inputDom = createRef()
+        this.inputDom = createRef();
+
+        this.timer =null; 
+        this.waitInterval =1000; 
     }
 
     handleChange (e){    
@@ -65,7 +68,6 @@ class Tag extends Component {
         this.setState({hasError, errorMessage});
         return {hasError, errorMessage}
     }
-
 
 
     /**
@@ -242,8 +244,7 @@ class Tag extends Component {
         const target = e.target.value.toLowerCase();
         let foundValues ;
 
-        //handle change
-        this.handleChange(e);
+        
 
        //Close if search value is empty
         if(e.target.value.length === 0) {
@@ -269,6 +270,21 @@ class Tag extends Component {
         this.open(e)
     }
 
+
+    handleSearch  (e) {
+        const Event = {target : {value : e.target.value}};
+        clearTimeout(this.timer);
+
+        //handle change
+        this.handleChange(e);
+        this.timer = setTimeout(()=>{
+            this.search(Event)
+        }, this.waitInterval);
+    }
+
+    keydown (){
+        clearTimeout(this.timer);
+    }
     render (){
         const {rtl, outline, label, disabled, mapping} = this.props;
         const {searchValue, open, tags, hasError, errorMessage} = this.state;
@@ -286,11 +302,12 @@ class Tag extends Component {
             <div className={`r-tag r-input${errorClass}${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`} >
                 {this.renderTags()}
                 <input 
+                    onKeyDown={this.keydown.bind(this)} 
                     onBlur={this.close.bind(this)}
                     value={searchValue}
                     disabled={disabled}
                     ref={this.inputDom} type="text" 
-                    onChange={this.search.bind(this)} 
+                    onChange={this.handleSearch.bind(this)} 
                     onKeyUp={this.enter.bind(this)}
                 />
                 <label>{label}</label>
