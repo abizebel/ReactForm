@@ -1,11 +1,33 @@
 import React from 'react';
 
+/**
+ * Convert object to class name
+ * 
+ * @param {Object} obj 
+ * @returns {String}
+ * sample : {
+ *  rtl : true,
+ *  disbaled : false
+ * }
+ */
+export function mapObjectToClassName (obj){
+    let str = '';
+
+    for (let prop in obj) {
+        if (obj[prop]) {
+            str += ` ${prop}`
+        }
+    }
+
+    return str
+}
+
 
 export function createUID (){
     var S4 = function() {
         return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
-     };
-     return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+    };
+    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
 }
 
 export function createIcon (icon){

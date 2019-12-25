@@ -1,6 +1,10 @@
 @import "../variables.scss";
+@import '../ReactForm.css';
 
 
+
+/// Create input style
+/// @access public
 @mixin input () {
     font-family: inherit;
     font-size: $text-size;
@@ -15,12 +19,8 @@
     background-image: linear-gradient(to bottom, var(--focus-color),var(--focus-color)), linear-gradient(to bottom, silver, silver);
     background-size: 0 1px, 100% 1px;
     background-position: 50% 100%, 50% 100%;
-      transition: background-size 0.4s cubic-bezier(0.64, 0.09, 0.08, 1);
-
-
+    transition: background-size 0.4s cubic-bezier(0.64, 0.09, 0.08, 1);
 }
-
-
 
 /// Create bordered input style
 /// @access public
@@ -36,6 +36,8 @@
   height:$input-height + $extraHeight
 }
 
+/// Fix input in browser autofill state
+/// @access public
 @mixin fixAutofill () {
     //Fix autofill
     input:-webkit-autofill {
@@ -308,7 +310,7 @@
   }
   
 
-  }
+}
   
 
   /**********************************************

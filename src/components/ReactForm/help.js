@@ -20,6 +20,8 @@
  * Input Component
  ************************************************************/
 <Input 
+    style={{}}
+    className={'custom'}
     label={'Last Name'} //label of input
     value={'Hosseini'} //value of input
     change={this.changeInput.bind(this)} //change method of input

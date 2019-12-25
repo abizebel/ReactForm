@@ -1,8 +1,7 @@
 import React, {Component, Fragment, createRef} from 'react';
-import {createIcon} from '../functions';
+import {createIcon, mapObjectToClassName} from '../functions';
 import icons from '../icons';
 import $ from 'jquery';
-import '../ReactForm.css';
 import './Input.scss';
 
 
@@ -12,14 +11,28 @@ class Input extends Component {
         this.textareaDom = createRef();
         let  {value = ''} = this.props;
         this.state = {
+            initialValue  : value,
             value,
+            validate : this.validate.bind(this),
             hasError : this.validate(this.props.value).hasError,
             errorMessage : this.validate(this.props.value).errorMessage
         }
  
     }
 
+    static getDerivedStateFromProps (props, state) {
+        if (props.value !== state.initialValue){
+            let  {value = ''} = props;
+            return {
+                value ,
+                initialValue : value,
+                hasError : state.validate(props.value).hasError,
+                errorMessage : state.validate(props.value).errorMessage
+            }
+        }
 
+        return null;
+    }
 
     componentDidMount(){
         $.each($('textarea[data-autoresize]'), function() {
@@ -59,8 +72,6 @@ class Input extends Component {
         let errorMessage = '';
 
         if(!this.isValidationMode()) return {hasError,errorMessage} ;
-
- 
        
         if(serverError && serverError.status) {
             hasError = true;
@@ -89,23 +100,38 @@ class Input extends Component {
         return validationMode;
     }
 
+
+    /**
+     * Get style
+     */
+    getInputClass (){
+        const {rtl, outline, disabled, icon, className} = this.props;
+        const {value, hasError} = this.state;
+        const validationMode = this.isValidationMode ();
+      
+        let names =  {
+            [className] : className !== '' ? true : false,
+            'filled' :String(value).length > 0 || disabled, 
+            'r-input' : true,
+            'r-rtl': rtl,
+            'r-bordered': outline,
+            'r-disabled' : disabled,
+            'r-has-icon' : icon !== null,
+            'r-error' :  validationMode && hasError,
+            'r-success' : validationMode && !hasError,
+        }
+
+        return mapObjectToClassName(names)
+    }
+
     render (){
-        const {rtl, outline, label, disabled, multiline, icon, onFocus, onBlur, autoFocus, onKeyUp} = this.props;
+        const { label, disabled, multiline, icon, onFocus, onBlur, autoFocus, onKeyUp, style} = this.props;
         const {value, hasError, errorMessage} = this.state;
-        const filledClass = String(value).length > 0 || disabled ? ' filled' :''; 
-        const rtlClass = rtl ? ' r-rtl' : ''; 
-        const outlineClass = outline ? ' r-bordered' :''; 
-        const disabledClass = disabled ? ' r-disabled' :''; 
-        const iconClass = icon !== null ? ' r-has-icon' :''; 
         const inputIcon = createIcon(icon);
         const validationMode = this.isValidationMode ();
-        const errorClass =  validationMode && hasError ? ' r-error' :''; 
-        const sucessClass = validationMode && !hasError ? ' r-success' :''; 
       
-
-
         return (
-            <div className={`r-input${filledClass}${rtlClass}${outlineClass}${disabledClass}${errorClass}${sucessClass}${iconClass}`} >  
+            <div style={style} className={this.getInputClass()} >  
                 
                 {   multiline ? 
                     <textarea 
@@ -163,6 +189,8 @@ Input.defaultProps = {
     disabled : false,
     multiline: false,
     icon : null,
+    style : {},
+    className : ''
 }
 
 export default Input
