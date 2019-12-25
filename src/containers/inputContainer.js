@@ -11,7 +11,7 @@ class InputContainer extends Component {
     return (
       <Fragment>
 
-        <div className="page-content-box" >
+        <div className="page-content-box" dir="rtl">
           <div className="page-content-title">Input</div>
           <Input 
             label={'Last Name'}
