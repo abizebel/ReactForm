@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import $ from 'jquery';
 import Checkbox from '../Checkbox/Checkbox';
 import {getValueByProp, createIcon, createUID} from '../functions';
@@ -11,9 +11,9 @@ import './Select.css';
 class Select extends Component {
     constructor(props) {
         super(props);
-
         const {values , defaultValue} = this.props;
         //Our method always get array and when user send "String" should be convert to array
+        
         this.selectedIds = (typeof defaultValue === 'number' ?  [defaultValue] : defaultValue) || [];
         this.values =  this.createList (values);
         const selectedItems =  this.getSelectedItems (this.selectedIds)
@@ -29,29 +29,33 @@ class Select extends Component {
         }
     }
 
-    componentDidMount(){
-        const {uid} = this.state;
 
-        $(document).click((e) => {
-            let selectElement = $(e.target).closest('.r-select');
+    // componentDidMount(){
+    //     const {uid} = this.state;
+    //     const {change} = this.props;
 
-            /* *
-             * When one dropdown is opened close another
-             */
+    //     $(document).click((e) => {
+    //         let selectElement = $(e.target).closest('.r-select');
 
-            if (selectElement.attr('data-id') !== uid) {
-                this.setState({open : false})
-            }
+    //         /* *
+    //          * When one dropdown is opened close another
+    //          */
 
-            /**
-             * If select was open and clicked outside of it close it
-             * length == 0 means that user clicked outside of select
-             */
-            if(selectElement.length === 0 && this.state.open === true){
-               this.setState({open : false})
-            }
-        })
-    }
+    //         if (selectElement.attr('data-id') !== uid) {
+    //             this.setState({open : false})
+    //         }
+
+    //         /**
+    //          * If select was open and clicked outside of it close it
+    //          * length == 0 means that user clicked outside of select
+    //          */
+    //         if(selectElement.length === 0 && this.state.open === true){
+    //            this.setState({open : false});
+    //            debugger
+    //            change(this.state.selectedItems)
+    //         }
+    //     })
+    // }
 
     /**
      * Detect validation mode
@@ -144,7 +148,7 @@ class Select extends Component {
     
 
     /**
-     * Open popup
+     * Open options
      * 
      * @param {Event} e 
      */
@@ -158,9 +162,25 @@ class Select extends Component {
         });
     }
 
+    /**
+     * Close options
+     * 
+     * @param {Event} e 
+     */
+    close =e =>{
+        const {multi, change} = this.props;
+
+        this.setState({open : false});
+
+        if (multi) {
+            change(this.state.selectedItems)
+        }
+    }
+
+
 
     /**
-     * Open popup
+     * Open options
      * 
      * @param {Event} e 
      */
@@ -218,7 +238,7 @@ class Select extends Component {
      * @param {Object} item 
      */
     toggleSelect (item){
-        const {change} = this.props;
+      
         
         this.setState(prevState => {
             
@@ -231,7 +251,7 @@ class Select extends Component {
             }
             
             this.validate(prevState.selectedItems)
-            change(prevState.selectedItems)
+          //  change(prevState.selectedItems)
 
             return {
                 selectedItems : prevState.selectedItems
@@ -274,7 +294,6 @@ class Select extends Component {
      */
     select (item, index){
         const {change, mapping, multi} = this.props;
-
         /**
          * If user had selected "no item" send Null otherwise send selected object
          * Null item is {text : 'No Selected', value : -99}
@@ -453,7 +472,7 @@ class Select extends Component {
 
     render (){
         const { label, mapping, rtl, disabled, outline, multi} = this.props;
-        const {errorMessage, hasError,open, selectedItems, uid} = this.state;
+        const {errorMessage, hasError,open, selectedItems, uid,} = this.state;
 
         const activeClass = open ? ' active' : '';
         const hasIconClass =  mapping.icon &&  !multi  ? ' r-has-icon' : '';
@@ -465,31 +484,36 @@ class Select extends Component {
         const validationMode = this.isValidationMode();
         const errorClass =  validationMode && hasError ? ' r-error' :''; 
       
-        
         return (
-            <div data-id={uid} className={`r-select r-noselect r-input filled${errorClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
-                <input 
-                    onClick={this.toggle.bind(this)}
-                    disabled={disabled} 
-                    type="text" 
-                    onChange={()=>{}} 
-                    value={inputValue.trim()}   
-                />
-                <label>{label}</label>
-                <span className="r-line"></span>
-                {!multi && mapping.icon && <span className="r-input-icon">{renderIcon}</span>}
-                <span onClick={this.open.bind(this)} className="r-icon">{icons.down}</span>
-                             
-                {   hasError &&
-                    <span className="r-message">{errorMessage}</span> 
-                }
-                {/* <ReactCSSTransitionGroup 
-                transitionName="fade" 
-                transitionAppear={true}> */}
-                    {open && this.renderOptions()}
-                {/* </ReactCSSTransitionGroup> */}
-              
-            </div>
+            <Fragment>
+
+            
+                
+                <div data-id={uid} className={`r-select r-noselect r-input filled${errorClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+                {open && <div onClick={this.close} className="r-backdrop" style={{width:'100%',height:'100%',position:'fixed',background:'transparent',left:0,top:0}}></div>}
+                    <input 
+                        onClick={this.toggle.bind(this)}
+                        disabled={disabled} 
+                        type="text" 
+                        onChange={()=>{}} 
+                        value={inputValue.trim()}   
+                    />
+                    <label>{label}</label>
+                    <span className="r-line"></span>
+                    {!multi && mapping.icon && <span className="r-input-icon">{renderIcon}</span>}
+                    <span onClick={this.open.bind(this)} className="r-icon">{icons.down}</span>
+                                
+                    {   hasError &&
+                        <span className="r-message">{errorMessage}</span> 
+                    }
+                    {/* <ReactCSSTransitionGroup 
+                    transitionName="fade" 
+                    transitionAppear={true}> */}
+                        {open && this.renderOptions()}
+                    {/* </ReactCSSTransitionGroup> */}
+                
+                </div>
+            </Fragment>
         )
     }
 }

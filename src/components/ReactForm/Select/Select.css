@@ -4,6 +4,7 @@
 ************************/
 .r-select {
     cursor: pointer;  
+	width:100%
 }
 .r-select > input {
     padding-right: 28px;
