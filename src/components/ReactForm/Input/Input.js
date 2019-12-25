@@ -3,7 +3,7 @@ import {createIcon} from '../functions';
 import icons from '../icons';
 import $ from 'jquery';
 import '../ReactForm.css';
-import './Input.css';
+import './Input.scss';
 
 
 class Input extends Component {

@@ -49,7 +49,7 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} />
           <Input 
             label={'نام خانوادگی'}
-            icon={sampleIcon}
+            icon={'mdi mdi-home'}
             rtl={true} 
             value={'حسینی'} 
             change={this.changeInput.bind(this)} 
