@@ -11,14 +11,22 @@
     box-sizing: border-box;
     display: block;
     color: $text-color;
-    background: #fff no-repeat;
-    background-image: linear-gradient(to bottom, $focus-color, $focus-color), linear-gradient(to bottom, $label-color,  $label-color);
+    background: white no-repeat;
+    background-image: linear-gradient(to bottom, var(--focus-color),var(--focus-color)), linear-gradient(to bottom, silver, silver);
     background-size: 0 1px, 100% 1px;
     background-position: 50% 100%, 50% 100%;
-    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+      transition: background-size 0.4s cubic-bezier(0.64, 0.09, 0.08, 1);
+
+
 }
 
-@mixin BorderedInput ($extraHeight) {
+
+
+/// Create bordered input style
+/// @access public
+/// @param {Number} $extraHeight [28px] - Input Height
+
+@mixin borderedInput ($extraHeight) {
   background-image: none;
   padding-top: .3rem;
   border: 1px solid $label-color;
@@ -72,25 +80,24 @@
     }
 
     textarea {
-        @include input();
-        resize: none !important;
-        padding-top: ($input-height/2 - 8px);
-        padding-bottom: ($input-height/2 - 8px);
-
+      @include input();
+      resize: none !important;
+      padding-top: ($input-height/2 - 8px);
+      padding-bottom: ($input-height/2 - 8px);
     }
 
     label {
-        position: absolute;
-        left: 0;
-        top: calc(50% - 8px);
-        height: 16px;
-        line-height: 18px;;
-        font-size: $text-size;
-        color: $text-color;
-        pointer-events: none;
-        cursor: text;
-        background: transparent;
-        transition: 300ms ease all;
+      position: absolute;
+      left: 0;
+      top: calc(50% - 8px);
+      height: 16px;
+      line-height: 18px;;
+      font-size: $text-size;
+      color: $text-color;
+      pointer-events: none;
+      cursor: text;
+      background: transparent;
+      transition: 300ms ease all;
     }
 
     /****************************
@@ -107,9 +114,9 @@
     }
 
     input:focus ~ label, textarea:focus ~ label {
-        top: -18px;
-        color: $label-color;
-        font-size: $label-size;
+      top: -18px;
+      color: $label-color;
+      font-size: $label-size;
     }
 
     /****************************
@@ -125,10 +132,10 @@
       line-height: 24px;
 
       svg {
-          width: 20px !important;
-          height: 20px !important;
-          padding-top: 2px;
-          padding-left: 2px;
+        width: 20px !important;
+        height: 20px !important;
+        padding-top: 2px;
+        padding-left: 2px;
       }
     }
 
@@ -192,14 +199,14 @@
       }
 
       input, textarea {
-          border-color: $danger-color;
+        border-color: $danger-color;
       }
       input:focus ~ label, textarea:focus ~ label {
         color: $danger-color;
       }
 
       &.filled > label {
-          color: $danger-color;
+        color: $danger-color;
       }
     }
 
@@ -234,10 +241,10 @@
   *****************************/
   &.r-bordered {
     input {
-      @include BorderedInput(16)
+      @include borderedInput(16)
     }
     textarea {
-      @include BorderedInput(27)
+      @include borderedInput(27)
     }
 
     label {
@@ -308,8 +315,6 @@
   * RTL INPUT
   ***********************************************/
   .r-input.r-rtl {
-
-  
     input, textarea {
       text-align: right;
       direction: rtl;
@@ -319,8 +324,6 @@
       right: 0;
     }
     
-   
-
     /* Message */
     &.r-error > .r-message, &.r-success > .r-message {
       text-align: right;
