@@ -2,11 +2,9 @@ import React, {Component, Fragment} from 'react';
 import $ from 'jquery';
 import Checkbox from '../Checkbox/Checkbox';
 import {getValueByProp, createIcon, createUID} from '../functions';
-// import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import icons from '../icons';
-import '../ReactForm.css';
-import './Select.css';
+import './Select.scss';
 
 class Select extends Component {
     constructor(props) {
@@ -28,34 +26,6 @@ class Select extends Component {
             searchValue : ''
         }
     }
-
-
-    // componentDidMount(){
-    //     const {uid} = this.state;
-    //     const {change} = this.props;
-
-    //     $(document).click((e) => {
-    //         let selectElement = $(e.target).closest('.r-select');
-
-    //         /* *
-    //          * When one dropdown is opened close another
-    //          */
-
-    //         if (selectElement.attr('data-id') !== uid) {
-    //             this.setState({open : false})
-    //         }
-
-    //         /**
-    //          * If select was open and clicked outside of it close it
-    //          * length == 0 means that user clicked outside of select
-    //          */
-    //         if(selectElement.length === 0 && this.state.open === true){
-    //            this.setState({open : false});
-    //            debugger
-    //            change(this.state.selectedItems)
-    //         }
-    //     })
-    // }
 
     /**
      * Detect validation mode
@@ -486,9 +456,6 @@ class Select extends Component {
       
         return (
             <Fragment>
-
-            
-                
                 <div data-id={uid} className={`r-select r-noselect r-input filled${errorClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
                 {open && <div onClick={this.close} className="r-backdrop" style={{width:'100%',height:'100%',position:'fixed',background:'transparent',left:0,top:0}}></div>}
                     <input 
@@ -499,18 +466,14 @@ class Select extends Component {
                         value={inputValue.trim()}   
                     />
                     <label>{label}</label>
-                    <span className="r-line"></span>
                     {!multi && mapping.icon && <span className="r-input-icon">{renderIcon}</span>}
                     <span onClick={this.open.bind(this)} className="r-icon">{icons.down}</span>
                                 
                     {   hasError &&
                         <span className="r-message">{errorMessage}</span> 
                     }
-                    {/* <ReactCSSTransitionGroup 
-                    transitionName="fade" 
-                    transitionAppear={true}> */}
-                        {open && this.renderOptions()}
-                    {/* </ReactCSSTransitionGroup> */}
+             
+                    {open && this.renderOptions()}
                 
                 </div>
             </Fragment>

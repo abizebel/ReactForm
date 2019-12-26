@@ -1,5 +1,4 @@
-@import "../variables.scss";
-@import '../ReactForm.css';
+@import "../css/variables.scss";
 
 
 
@@ -88,19 +87,21 @@
       padding-bottom: ($input-height/2 - 8px);
     }
 
-    label {
-      position: absolute;
-      left: 0;
-      top: calc(50% - 8px);
-      height: 16px;
-      line-height: 18px;;
-      font-size: $text-size;
-      color: $text-color;
-      pointer-events: none;
-      cursor: text;
-      background: transparent;
-      transition: 300ms ease all;
-    }
+     > {
+      label {
+        position: absolute;
+        left: 0;
+        top: calc(50% - 8px);
+        height: 16px;
+        line-height: 18px;;
+        font-size: $text-size;
+        color: $text-color;
+        pointer-events: none;
+        cursor: text;
+        background: transparent;
+        transition: 300ms ease all;
+      }
+     }
 
     /****************************
      * Filled & Focus  

@@ -11,7 +11,7 @@ class SelectContainer extends Component {
     return (
       <Fragment>
         
-        <div className="page-content-box" >
+        <div className="page-content-box" dir="rtl">
           <div className="page-content-title">Multi Select</div>
           <Select   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
