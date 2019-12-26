@@ -12,7 +12,7 @@
 	position: absolute;
 	width: 100%;
 	background: #fff;
-	z-index: 99999;
+	z-index: 9;
 	left: 0;
 	top: calc(100% + 3px)
 }
@@ -20,6 +20,7 @@
 	max-height: 300px;
 	overflow-y: auto
 }
+
 .active .r-options {
 	display: block
 }
@@ -31,6 +32,9 @@
 	color: $text-color;
 	font-size: $text-size;
 	cursor: pointer;
+}
+.r-options-item.add-item {
+	display: flex;
 }
 
 .r-option-icon {
@@ -81,7 +85,6 @@
 }
 
 /* Has Icon */
-
 .r-has-icon .r-option-icon {
 	text-align: center;
 	font-size: 25px;

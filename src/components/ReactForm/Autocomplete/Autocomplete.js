@@ -1,5 +1,8 @@
 import React, {Component, createRef} from 'react';
 import {getValueByProp, createIcon, mapObjectToClassName} from '../functions';
+import Backdrop from '../Backdrop/Backdrop';
+import {DotsLoading} from '../Loading/Loading';
+
 import './Autocomplete.scss';
 import $ from 'jquery';
 import icons from '../icons';
@@ -28,7 +31,7 @@ class Autcomplete extends Component {
 
 
         this.timer =null; 
-        this.waitInterval =1000; 
+        this.waitInterval =800; 
     }
 
     /**
@@ -84,14 +87,23 @@ class Autcomplete extends Component {
      * Render select options
      */
     renderOptions (){
-        const {mapping ,notFoundMessage, rtl} = this.props;
-        const { listValues } = this.state;
+        const {mapping , rtl} = this.props;
+        const { listValues , searchValue} = this.state;
+        
         let options;
 
         //If options list is empty show "Not Found"
-        if (listValues.length === 0) {
-            const notFoundText = notFoundMessage ? notFoundMessage : (rtl ? 'یافت نشد' : 'Not Found');
+        if (listValues.length === 0 && searchValue.length) {
+            const notFoundText = rtl ? 'یافت نشد' : 'Not Found';
             options = (<div onClick={this.close} className="r-options-item">{notFoundText}</div>)
+        }
+        else if (!searchValue.length) {
+            const doSearch = rtl ? 'جستجو کنید' : 'Search';
+            options = (
+                <div onClick={this.close} className="r-options-item">
+                    <DotsLoading text={doSearch} />
+                </div>
+            )
         }
         else {
             options = listValues.map((o, i) => {
@@ -137,7 +149,7 @@ class Autcomplete extends Component {
      * 
      * @param {Event} e 
      */
-    open (e){        
+    open = e => {        
         this.setState({open : true})
     }
 
@@ -277,9 +289,10 @@ class Autcomplete extends Component {
         return (
             <div style={style} className={this.getAutocompleteClass ()}>
             
-            {open && <div onClick={this.close} className="r-backdrop" style={{width:'100%',height:'100%',position:'fixed',background:'transparent',left:0,top:0}}></div>}
+            {open && <Backdrop onClick={this.close} />}
            
             <input 
+                onFocus={this.open}
                 ref={this.inputDom}
                 disabled={disabled} 
                 type="text" 

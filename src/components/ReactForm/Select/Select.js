@@ -1,8 +1,7 @@
 import React, {Component, Fragment} from 'react';
-import $ from 'jquery';
 import Checkbox from '../Checkbox/Checkbox';
+import Backdrop from '../Backdrop/Backdrop';
 import {getValueByProp, createIcon, mapObjectToClassName} from '../functions';
-
 import icons from '../icons';
 import './Select.scss';
 
@@ -136,7 +135,7 @@ class Select extends Component {
      * 
      * @param {Event} e 
      */
-    close =e =>{
+    close  =e =>{
         const {multi, change} = this.props;
 
         this.setState({open : false});
@@ -489,10 +488,10 @@ class Select extends Component {
 
         return (
             <Fragment>
+                 
                 <div style={style} className={this.getSelectClass()}>
-
-                   {open && <div onClick={this.close} className="r-backdrop" style={{width:'100%',height:'100%',position:'fixed',background:'transparent',left:0,top:0}}></div>}
-                    
+                {open && <Backdrop onClick={this.close} />}
+                   
                     <input 
                         onClick={this.toggle.bind(this)}
                         disabled={disabled} 

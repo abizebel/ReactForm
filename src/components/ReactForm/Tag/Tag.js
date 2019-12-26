@@ -1,8 +1,12 @@
 import React, {Component, createRef} from 'react';
-import {getValueByProp, createIcon} from '../functions';
+import Backdrop from '../Backdrop/Backdrop';
 import Chips from '../Chips/Chips';
+import {DotsLoading} from '../Loading/Loading';
+import {getValueByProp, createIcon, mapObjectToClassName} from '../functions';
+
 import '../ReactForm.css';
-import './Tag.css';
+import './Tag.scss';
+import icons from '../icons';
 
 class Tag extends Component {
     constructor(props){
@@ -25,7 +29,7 @@ class Tag extends Component {
         this.inputDom = createRef();
 
         this.timer =null; 
-        this.waitInterval =1000; 
+        this.waitInterval = 800; 
     }
 
     handleChange (e){    
@@ -74,23 +78,42 @@ class Tag extends Component {
      * Render tag list for selection
      */
     renderOptions (){
-        const {mapping} = this.props;
-        const {listValues} = this.state;
+        const {mapping, rtl} = this.props;
+        const {listValues, searchValue} = this.state;
         var options;
 
-       
-        options = listValues.map((o, i) => {
-            return (
-                <div key={i} className="r-options-item" onClick={this.select.bind(this,o)}>
-                    {mapping.icon && 
-                        <span className="r-option-icon" onClick={this.removeTag.bind(this)}>
-                            {createIcon(getValueByProp(o, mapping.icon))}
-                        </span> 
-                    }
-                    {getValueByProp(o, mapping.text)}
+        //If options list is empty show "Not Found"
+        if (listValues.length === 0 && searchValue.length) {
+            const notFoundText = rtl ? 'افزودن' : 'Add';
+            options = (
+                <div onClick={this.addNotfound} className="r-options-item add-item">
+                    {icons.add}&nbsp;
+                    {`${notFoundText} "${searchValue}"`}
                 </div>
             )
-        })
+        }
+        else if (!searchValue.length) {
+            const doSearch = rtl ? 'جستجو کنید' : 'Search';
+            options = (
+                <div onClick={this.close} className="r-options-item">
+                    <DotsLoading text={doSearch} />
+                </div>
+            )
+        }
+        else {
+            options = listValues.map((o, i) => {
+                return (
+                    <div key={i} className="r-options-item" onClick={this.select.bind(this,o)}>
+                        {mapping.icon && 
+                            <span className="r-option-icon" onClick={this.removeTag.bind(this)}>
+                                {createIcon(getValueByProp(o, mapping.icon))}
+                            </span> 
+                        }
+                        {getValueByProp(o, mapping.text)}
+                    </div>
+                )
+            })
+        }
         
     
         return (
@@ -133,17 +156,15 @@ class Tag extends Component {
      * 
      * @param {Event} e 
      */
-    open (e){        
+    open = e =>{        
         this.setState({open : true})
     }
 
     /**
      * Close tag list
      */
-    close (){
-        setTimeout(()=>{
-            this.setState({open : false})
-        },500)
+    close = e =>{
+        this.setState({open : false})
     }
 
 
@@ -220,7 +241,7 @@ class Tag extends Component {
      * 
      * @param {Event} e 
      */
-    enter (e){
+    enter = e =>{
         const {mapping} = this.props;
 
         if (e.keyCode === 13) {
@@ -231,8 +252,25 @@ class Tag extends Component {
             this.setState({open:false});
 
         }
-       
     }
+
+    /**
+     * Add notfound text with plus icon in option list
+     * 
+     * @param {Event} e 
+     */
+    addNotfound = e =>{
+        const {mapping} = this.props;
+        const {searchValue} = this.state;
+        if (searchValue.trim() === '') return;
+
+        this.addTag({[mapping.text] : searchValue});
+        this.setState({open:false});
+    
+    }
+
+
+  
 
     /**
      * Search for a tag
@@ -285,8 +323,34 @@ class Tag extends Component {
     keydown (){
         clearTimeout(this.timer);
     }
+
+
+       /**
+     * Get style
+     */
+    getTagClass (){
+        const {rtl, outline, disabled, mapping, className} = this.props;
+        const {searchValue, open, tags, hasError} = this.state;
+        const validationMode = this.isValidationMode();
+
+      
+        let names =  {
+            [className] : className ? true : false,
+            'active' : open ,
+            'r-tag r-input' : true,
+            'filled':(searchValue.length > 0 || tags.length >0),
+            'r-rtl': rtl,
+            'r-bordered': outline,
+            'r-disabled' : disabled,
+            'r-has-icon' : mapping.icon,
+            'r-error' :  validationMode && hasError,
+        }
+
+        return mapObjectToClassName(names)
+    }
+
     render (){
-        const {rtl, outline, label, disabled, mapping} = this.props;
+        const {rtl, outline, label, disabled, mapping, style} = this.props;
         const {searchValue, open, tags, hasError, errorMessage} = this.state;
         const filledClass = (searchValue.length > 0 || tags.length >0) ? ' filled' :''; 
         const rtlClass = rtl ? ' r-rtl' :''; 
@@ -299,11 +363,15 @@ class Tag extends Component {
       
 
         return (
-            <div className={`r-tag r-input${errorClass}${filledClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}${activeClass}`} >
+            <div style={style} className={this.getTagClass()} >
+                 {open && <Backdrop onClick={this.close} />}
+           
+
                 {this.renderTags()}
+
                 <input 
+                    onFocus={this.open}
                     onKeyDown={this.keydown.bind(this)} 
-                    onBlur={this.close.bind(this)}
                     value={searchValue}
                     disabled={disabled}
                     ref={this.inputDom} type="text" 
@@ -327,6 +395,7 @@ Tag.defaultProps = {
     outline : false,
     disabled : false,
     values : [],
+    style : {},
 }
 
 export default Tag;
