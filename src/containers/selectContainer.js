@@ -19,7 +19,6 @@ class SelectContainer extends Component {
             multi={true}
             nullable={true}
             search = {true}
-            searchLabel = {'Search ... '}
             values ={
               [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
               {id:'22',name:'feiz', info:{icon:sampleIcon}},

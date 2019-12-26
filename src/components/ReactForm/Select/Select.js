@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import $ from 'jquery';
 import Checkbox from '../Checkbox/Checkbox';
-import {getValueByProp, createIcon, createUID} from '../functions';
+import {getValueByProp, createIcon, mapObjectToClassName} from '../functions';
 
 import icons from '../icons';
 import './Select.scss';
@@ -22,7 +22,6 @@ class Select extends Component {
             listValues : this.values,
             hasError : this.validate(selectedItems).hasError,
             errorMessage : this.validate(selectedItems).errorMessage,
-            uid : createUID(),
             searchValue : ''
         }
     }
@@ -146,8 +145,6 @@ class Select extends Component {
             change(this.state.selectedItems)
         }
     }
-
-
 
     /**
      * Open options
@@ -292,22 +289,45 @@ class Select extends Component {
     }
 
     /**
+     * Get selected class in single select mode
+     * @param {Number} index 
+     */
+    getSelectedClass (index){
+        const { mapping} = this.props;
+        const {selectedItems, listValues } = this.state;
+        
+        if (selectedItems.length) {
+            const selectedId = selectedItems[0][mapping.value];
+            if (listValues[index][mapping.value] === selectedId) {
+                return 'selected'
+            }
+        }
+
+
+        return ''
+
+    }
+
+    /**
      * Render select optionsmulti
      */
     renderOptions (){
-        const {mapping, search ,notFoundMessage, rtl, multi} = this.props;
-        const {listValues  } = this.state;
+        const {mapping, search , rtl, multi} = this.props;
+        const {listValues ,selectedItems } = this.state;
         let options;
+
+      
+       const selectedClass = !multi
 
         //If options list is empty show "Not Found"
         if (listValues.length === 0) {
-            const notFoundText = notFoundMessage ? notFoundMessage : (rtl ? 'یافت نشد' : 'Not Found');
+            const notFoundText = rtl ? 'یافت نشد' : 'Not Found';
             options = (<div className="r-options-item">{notFoundText}</div>)
         }
         else {
             options = listValues.map((o, i) => {
                 return (
-                    <div key={i} className={`r-options-item`} onClick={this.select.bind(this,o,i)}>
+                    <div key={i} className={`r-options-item ${!multi && this.getSelectedClass(i)}`} onClick={this.select.bind(this,o,i)}>
                       
                         {multi && o[mapping.value] !==-99 &&
                             <Checkbox 
@@ -370,9 +390,9 @@ class Select extends Component {
      * Render options search  
      */
     renderSearch (){
-        const {searchLabel, rtl} = this.props;
+        const { rtl} = this.props;
         const {searchValue} = this.state;
-        const searchLableText = searchLabel ? searchLabel : (rtl ? 'جستجو ...' : 'Search ...')
+        const searchLableText = rtl ? 'جستجو ...' : 'Search ...';
 
         return (
             <div className="r-options-search">
@@ -438,26 +458,41 @@ class Select extends Component {
         return inputText
     }
 
+    /**
+     * Get style
+     */
+    getSelectClass (){
+        const { mapping, rtl, disabled, outline, multi, className} = this.props;
+        const { hasError, open} = this.state;
+        const validationMode = this.isValidationMode();
 
+        let names =  {
+            [className] : className ? true : false,
+            'active' :open, 
+            'r-select r-noselect r-input filled' : true,
+            'r-rtl': rtl,
+            'r-bordered': outline,
+            'r-disabled' : disabled,
+            'r-has-icon' : mapping.icon &&  !multi,
+            'r-error' :  validationMode && hasError,
+        }
+
+        return mapObjectToClassName(names)
+    }
 
     render (){
-        const { label, mapping, rtl, disabled, outline, multi} = this.props;
-        const {errorMessage, hasError,open, selectedItems, uid,} = this.state;
+        const { label, mapping, disabled, multi, style} = this.props;
+        const {errorMessage, hasError,open, selectedItems} = this.state;
 
-        const activeClass = open ? ' active' : '';
-        const hasIconClass =  mapping.icon &&  !multi  ? ' r-has-icon' : '';
-        const rtlClass = rtl ? ' r-rtl' : '';
-        const outlineClass = outline ? ' r-bordered' :''; 
-        const disabledClass = disabled ? ' r-disabled' :''; 
         const inputValue = this.getInputText();
         const renderIcon = mapping.icon ? createIcon(getValueByProp(selectedItems, mapping.icon)) : '';
-        const validationMode = this.isValidationMode();
-        const errorClass =  validationMode && hasError ? ' r-error' :''; 
-      
+
         return (
             <Fragment>
-                <div data-id={uid} className={`r-select r-noselect r-input filled${errorClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
-                {open && <div onClick={this.close} className="r-backdrop" style={{width:'100%',height:'100%',position:'fixed',background:'transparent',left:0,top:0}}></div>}
+                <div style={style} className={this.getSelectClass()}>
+
+                   {open && <div onClick={this.close} className="r-backdrop" style={{width:'100%',height:'100%',position:'fixed',background:'transparent',left:0,top:0}}></div>}
+                    
                     <input 
                         onClick={this.toggle.bind(this)}
                         disabled={disabled} 
@@ -465,16 +500,16 @@ class Select extends Component {
                         onChange={()=>{}} 
                         value={inputValue.trim()}   
                     />
+
                     <label>{label}</label>
-                    {!multi && mapping.icon && <span className="r-input-icon">{renderIcon}</span>}
-                    <span onClick={this.open.bind(this)} className="r-icon">{icons.down}</span>
-                                
-                    {   hasError &&
-                        <span className="r-message">{errorMessage}</span> 
-                    }
-             
-                    {open && this.renderOptions()}
-                
+
+                    { !multi && mapping.icon && <span className="r-input-icon">{renderIcon}</span> }
+
+                    <span onClick={this.open.bind(this)} className="r-icon">{icons.down}</span>     
+
+                    { hasError && <span className="r-message">{errorMessage}</span> }
+
+                    {open && this.renderOptions()} 
                 </div>
             </Fragment>
         )
@@ -487,6 +522,7 @@ Select.defaultProps = {
     disabled : false,
     nullable : false,
     multi : false,
+    style : {}
     
 }
 

@@ -1,7 +1,6 @@
 import React, {Component, createRef} from 'react';
-import {getValueByProp, createIcon} from '../functions';
-import '../ReactForm.css';
-import './Autocomplete.css';
+import {getValueByProp, createIcon, mapObjectToClassName} from '../functions';
+import './Autocomplete.scss';
 import $ from 'jquery';
 import icons from '../icons';
 
@@ -92,7 +91,7 @@ class Autcomplete extends Component {
         //If options list is empty show "Not Found"
         if (listValues.length === 0) {
             const notFoundText = notFoundMessage ? notFoundMessage : (rtl ? 'یافت نشد' : 'Not Found');
-            options = (<div className="r-options-item">{notFoundText}</div>)
+            options = (<div onClick={this.close} className="r-options-item">{notFoundText}</div>)
         }
         else {
             options = listValues.map((o, i) => {
@@ -147,10 +146,8 @@ class Autcomplete extends Component {
      * 
      * @param {Event} e 
      */
-    close (e){ 
-        setTimeout(()=>{
-            this.setState({open : false})
-        },500)       
+    close = e => { 
+        this.setState({open : false})
     }
 
 
@@ -190,6 +187,7 @@ class Autcomplete extends Component {
         if(api){
             foundValues = await this.getItemFromServer(target);
         }
+
         //local search
         else { 
             foundValues = this.values.filter(o => {
@@ -245,25 +243,43 @@ class Autcomplete extends Component {
         clearTimeout(this.timer);
     }
 
+
+   /**
+     * Get style
+     */
+    getAutocompleteClass (){
+        const {mapping, rtl, disabled, outline, className } = this.props;
+        const {searchValue ,hasError, open} = this.state;
+        const validationMode = this.isValidationMode ();
+      
+        let names =  {
+            [className] : className ? true : false,
+            'active' : open ,
+            'r-autocomplete r-input' : true,
+            'filled': searchValue.length > 0,
+            'r-rtl': rtl,
+            'r-bordered': outline,
+            'r-disabled' : disabled,
+            'r-has-icon' : mapping.icon,
+            'r-error' :  validationMode && hasError,
+        }
+
+        return mapObjectToClassName(names)
+    }
+
     render (){
-        const {label, mapping, rtl, disabled, outline, defaultValue, placeholer} = this.props;
+        const {label, mapping, disabled, defaultValue, placeholer,style} = this.props;
         const {open, searchValue, selectedItem,errorMessage, hasError} = this.state;
 
-        const activeClass = open ? ' active' : '';
-        const filledClass = searchValue.length > 0  ? ' filled' :''; 
-        const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
-        const rtlClass = rtl ? ' r-rtl' : '';
-        const outlineClass = outline ? ' r-bordered' :''; 
-        const disabledClass = disabled ? ' r-disabled' :''; 
         const showClean = searchValue.length !== 0 ? true : false 
-        const validationMode = this.isValidationMode ();
-        const errorClass =  validationMode && hasError ? ' r-error' :''; 
       
         
         return (
-            <div className={`r-autocomplete r-input ${errorClass}${filledClass}${activeClass}${hasIconClass}${rtlClass}${outlineClass}${disabledClass}`}>
+            <div style={style} className={this.getAutocompleteClass ()}>
+            
+            {open && <div onClick={this.close} className="r-backdrop" style={{width:'100%',height:'100%',position:'fixed',background:'transparent',left:0,top:0}}></div>}
+           
             <input 
-                onBlur={this.close.bind(this)}
                 ref={this.inputDom}
                 disabled={disabled} 
                 type="text" 
@@ -279,16 +295,14 @@ class Autcomplete extends Component {
                 <span className="r-message">{errorMessage}</span> 
       
             }
-            {mapping.icon && defaultValue.icon && selectedItem ===null &&
-                <span className="r-input-icon">{createIcon(defaultValue.icon)}</span>
-            }
+
             {mapping.icon && selectedItem !==null &&
                 <span className="r-input-icon">{createIcon(getValueByProp(selectedItem, mapping.icon))}</span>
             }
 
             {showClean && <span className="r-icon" onClick={this.clean.bind(this)}>{icons.close}</span>}
 
-            {this.open && this.renderOptions()}
+            {open && this.renderOptions()}
 
         </div>
         )

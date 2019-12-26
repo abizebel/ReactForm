@@ -12,10 +12,11 @@ class AutocomplteContainer extends Component {
       <Fragment>
         
      
-        <div className="page-content-box" >
+        <div className="page-content-box" dir="rtl">
           <div className="page-content-title">Autocomplete</div>
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
+            defaultValue ='Abbas'
             values ={
               [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
               {id:'22',name:'feiz', info:{icon:sampleIcon}},

@@ -1,0 +1,16 @@
+@import '../css/variables.scss';
+@import '../css/Options.scss';
+
+
+/************************
+* AUTOCOMPLETE
+*************************/
+.r-autocomplete {
+    width: 100%;
+    direction: ltr;
+
+    /* Animated arrow */
+    .r-icon {
+        cursor: pointer;
+    }
+}

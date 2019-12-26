@@ -46,6 +46,8 @@
  ************************************************************/
 <Select 
     //Basic
+    style={{}}
+    className={'custom'}
     change={this.changeSelect.bind(this)}    
     label={'Last Name'}
     values ={ //icon can be <svg></svg> or 'mdi mdi-home'
@@ -81,6 +83,8 @@
  ************************************************************/
 <Autocomplete 
     //Basic
+    style={{}}
+    className={'custom'}
     change={this.changeAutocomplete.bind(this)}
     label={'Last Name'}
     defaultValue ={'abbas'}

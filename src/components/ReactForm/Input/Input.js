@@ -110,7 +110,7 @@ class Input extends Component {
         const validationMode = this.isValidationMode ();
       
         let names =  {
-            [className] : className !== '' ? true : false,
+            [className] : className ? true : false,
             'filled' :String(value).length > 0 || disabled, 
             'r-input' : true,
             'r-rtl': rtl,

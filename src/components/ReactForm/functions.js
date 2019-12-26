@@ -41,6 +41,7 @@ export function createIcon (icon){
 }
 
 export function getValueByProp(arr, field) {
+    
     let obj =!Array.isArray(arr) || arr.length === 0 ? arr: arr[0] ;
     if (Array.isArray(field)) { field = field[obj.level]; }
     field = field.split('.');
