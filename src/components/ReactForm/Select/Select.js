@@ -1,7 +1,7 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component, Fragment, createRef} from 'react';
 import Checkbox from '../Checkbox/Checkbox';
 import Backdrop from '../Backdrop/Backdrop';
-import {getValueByProp, createIcon, mapObjectToClassName} from '../functions';
+import {getValueByProp, createIcon, mapObjectToClassName, handlePosition} from '../functions';
 import icons from '../icons';
 import './Select.scss';
 
@@ -10,7 +10,7 @@ class Select extends Component {
         super(props);
         const {values , defaultValue} = this.props;
         //Our method always get array and when user send "String" should be convert to array
-        
+        this.optionsDom = createRef();
         this.selectedIds = (typeof defaultValue === 'number' ?  [defaultValue] : defaultValue) || [];
         this.values =  this.createList (values);
         const selectedItems =  this.getSelectedItems (this.selectedIds)
@@ -23,8 +23,10 @@ class Select extends Component {
             errorMessage : this.validate(selectedItems).errorMessage,
             searchValue : ''
         }
+        
     }
 
+  
     /**
      * Detect validation mode
      */
@@ -122,12 +124,12 @@ class Select extends Component {
      */
     open (e){
         const {disabled} = this.props;
-        
         if (disabled) return;
-        
+
         this.setState((prevState) => {
             return { open : !prevState.open}
         });
+     
     }
 
     /**
@@ -135,7 +137,7 @@ class Select extends Component {
      * 
      * @param {Event} e 
      */
-    close  =e =>{
+    close  = e =>{
         const {multi, change} = this.props;
 
         this.setState({open : false});
@@ -158,6 +160,7 @@ class Select extends Component {
         this.setState((prevState) => {
             return { open : !prevState.open}
         });
+
     }
 
     /**
@@ -301,8 +304,6 @@ class Select extends Component {
                 return 'selected'
             }
         }
-
-
         return ''
 
     }
@@ -351,7 +352,7 @@ class Select extends Component {
         }
         
         return (
-            <div className="r-options">
+            <div className="r-options" ref={d => {handlePosition(d)}}>
                 {search && this.renderSearch()}
                 <div className="r-options-items">{options}</div>
             </div>

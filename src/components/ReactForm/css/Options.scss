@@ -2,6 +2,9 @@
 
 /************************
   * SELECT OPTIONS
+
+  // left: 0;
+	// top: calc(100% + 3px)
 ************************/
 .r-options {
 	-webkit-user-select: none;
@@ -13,8 +16,7 @@
 	width: 100%;
 	background: #fff;
 	z-index: 9;
-	left: 0;
-	top: calc(100% + 3px)
+	
 }
 .r-options-items {
 	max-height: 300px;

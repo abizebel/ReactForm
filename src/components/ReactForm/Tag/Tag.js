@@ -2,7 +2,7 @@ import React, {Component, createRef} from 'react';
 import Backdrop from '../Backdrop/Backdrop';
 import Chips from '../Chips/Chips';
 import {DotsLoading} from '../Loading/Loading';
-import {getValueByProp, createIcon, mapObjectToClassName} from '../functions';
+import {getValueByProp, createIcon, mapObjectToClassName,handlePosition} from '../functions';
 
 import '../ReactForm.css';
 import './Tag.scss';
@@ -117,7 +117,7 @@ class Tag extends Component {
         
     
         return (
-            <div className="r-options">
+            <div className="r-options"  ref={d => {handlePosition(d)}}>
                 <div className="r-options-items">{options}</div>
             </div>
         )

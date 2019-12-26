@@ -1,4 +1,48 @@
 import React from 'react';
+import $ from 'jquery';
+
+
+
+/**
+ * Handle element position when advance from page area
+ * @param {Dom Object} elementDom
+ */
+export function handlePosition (elementDom) {
+    
+        if (!elementDom) return ;
+
+        let boxDom = elementDom;
+        
+        //reset befor any calculate
+        $(boxDom).css('top','100%')
+
+        let pageWidth = window.innerWidth + window.pageXOffset;
+        let pageHeight = window.innerHeight ;
+        let itemWidth =  $(boxDom).width();
+        let itemHeight =  $(boxDom).height();
+        let itemLeft =  $(boxDom).offset().left ;
+        let itemRight = itemLeft + itemWidth;
+        let itemTop =  $(boxDom).offset().top - window.pageYOffset;
+        let itemBottom = itemTop + itemHeight;
+        
+        // if (itemLeft < 0) {
+        //     $(boxDom).css('left', 0)
+        // }
+        // else if (itemRight > pageWidth) {
+        //     $(boxDom).css('right', 0)
+        // }
+    
+        if (itemTop < 0) {
+            $(boxDom).css('top', '100%')
+        }
+        else if (itemBottom > pageHeight && itemHeight < (pageHeight - (pageHeight - itemTop))) {
+            $(boxDom).css('top',`-${itemHeight}px`)
+        }
+
+    
+
+}
+
 
 /**
  * Convert object to class name

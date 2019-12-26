@@ -1,5 +1,5 @@
 import React, {Component, createRef} from 'react';
-import {getValueByProp, createIcon, mapObjectToClassName} from '../functions';
+import {getValueByProp, createIcon, mapObjectToClassName,handlePosition} from '../functions';
 import Backdrop from '../Backdrop/Backdrop';
 import {DotsLoading} from '../Loading/Loading';
 
@@ -121,7 +121,7 @@ class Autcomplete extends Component {
         }
         
         return (
-            <div className="r-options">
+            <div className="r-options"  ref={d => {handlePosition(d)}}>
                 <div className="r-options-items">{options}</div>
             </div>
         )

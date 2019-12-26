@@ -85,6 +85,18 @@ class AutocomplteContainer extends Component {
                     ]}
                     mapping = {{text : 'name', value : 'id'}}
                 />
+                  <Select      
+                    change={this.changeSelect.bind(this)}
+                    label={'User Type'}
+                    defaultValue={11}
+                    values ={
+                    [{id:'11',name:'Administrator' },
+                    {id:'22',name:'Author'},
+                    {id:'33',name:'Editor'},
+                    {id:'44',name:'Coleader'},
+                    ]}
+                    mapping = {{text : 'name', value : 'id'}}
+                />
  
             </Modal >
     
