@@ -26,7 +26,20 @@ class Select extends Component {
         
     }
 
-  
+    arrowKey = e => {
+        return 
+        //be farze selected sade
+        if (e.keyCode === 13) {
+            this.toggle()
+        }
+        if (e.keyCode === 38) { //up 
+           
+        }
+        else if (e.keyCode === 40 ) {//down 
+           
+        }
+    }
+
     /**
      * Detect validation mode
      */
@@ -189,12 +202,30 @@ class Select extends Component {
      * @param {Object} item
      * @returns {Boolean}
      */
-    findItemIndex (item){
+    findSelectedIndex (item){
         const {mapping} = this.props;
         const {selectedItems} = this.state;
 
         for (var i=0 ; i< selectedItems.length ; i++) {
             if(selectedItems[i][mapping.value] === item[mapping.value]) {
+                return i;
+            }
+        }
+
+    }
+
+    /**
+     * Find item index in list values
+     * 
+     * @param {Object} item
+     * @returns {Boolean}
+     */
+    findListIndex (item){
+        const {mapping} = this.props;
+        const {listValues} = this.state;
+
+        for (var i=0 ; i< listValues.length ; i++) {
+            if(listValues[i][mapping.value] === item[mapping.value]) {
                 return i;
             }
         }
@@ -212,7 +243,7 @@ class Select extends Component {
         this.setState(prevState => {
             
             if(this.isExist(item)) {
-                const itemIndex = this.findItemIndex(item);
+                const itemIndex = this.findSelectedIndex(item);
                 prevState.selectedItems.splice(itemIndex, 1 )
             }
             else {
@@ -261,7 +292,7 @@ class Select extends Component {
      * @param {Object} item 
      * @description Select a item that user clicked on it 
      */
-    select (item, index){
+    select = (item, index) =>{
         const {change, mapping, multi} = this.props;
         /**
          * If user had selected "no item" send Null otherwise send selected object
@@ -276,14 +307,16 @@ class Select extends Component {
             return;
         }
         
+        //MultiSelect
         if (multi){
             this.toggleOptions(index);
             this.toggleSelect(item) ;
         }
+        //SingleSelect
         else {
             this.setState({selectedItems : [item]})
             this.validate([item])
-            this.setState({open:false});
+           // this.close();
             change(item);
      
         }
@@ -494,6 +527,7 @@ class Select extends Component {
                 {open && <Backdrop onClick={this.close} />}
                    
                     <input 
+                        onKeyDown={this.arrowKey}
                         onClick={this.toggle.bind(this)}
                         disabled={disabled} 
                         type="text" 

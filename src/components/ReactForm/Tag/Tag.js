@@ -3,7 +3,7 @@ import Backdrop from '../Backdrop/Backdrop';
 import Chips from '../Chips/Chips';
 import {DotsLoading} from '../Loading/Loading';
 import {getValueByProp, createIcon, mapObjectToClassName,handlePosition} from '../functions';
-
+import $ from 'jquery';
 import '../ReactForm.css';
 import './Tag.scss';
 import icons from '../icons';
@@ -20,7 +20,9 @@ class Tag extends Component {
             open : false,
             searchValue :  '',
             tags : selectedTags, // tags
-            listValues :  this.values || [], //search list
+            searchResults : [], //search results
+            notFound : false,
+            loading : false,
             selectedItem : null,
             hasError : this.validate(selectedTags).hasError,
             errorMessage : this.validate(selectedTags).errorMessage,
@@ -32,11 +34,11 @@ class Tag extends Component {
         this.waitInterval = 800; 
     }
 
-    handleChange (e){    
+    handleChange (value){    
         const {disabled} = this.props;
         if (disabled) return ;
 
-        this.setState({searchValue : e.target.value});
+        this.setState({searchValue :value});
     }
 
     /**
@@ -79,11 +81,10 @@ class Tag extends Component {
      */
     renderOptions (){
         const {mapping, rtl} = this.props;
-        const {listValues, searchValue} = this.state;
+        const {searchResults, searchValue, notFound, loading} = this.state;
         var options;
-
-        //If options list is empty show "Not Found"
-        if (listValues.length === 0 && searchValue.length) {
+        
+        if (!loading && notFound && searchValue.trim().length) {
             const notFoundText = rtl ? 'افزودن' : 'Add';
             options = (
                 <div onClick={this.addNotfound} className="r-options-item add-item">
@@ -92,7 +93,7 @@ class Tag extends Component {
                 </div>
             )
         }
-        else if (!searchValue.length) {
+        else if (loading || !searchValue.length || !searchResults.length) {
             const doSearch = rtl ? 'جستجو کنید' : 'Search';
             options = (
                 <div onClick={this.close} className="r-options-item">
@@ -101,7 +102,7 @@ class Tag extends Component {
             )
         }
         else {
-            options = listValues.map((o, i) => {
+            options = searchResults.map((o, i) => {
                 return (
                     <div key={i} className="r-options-item" onClick={this.select.bind(this,o)}>
                         {mapping.icon && 
@@ -156,14 +157,17 @@ class Tag extends Component {
      * 
      * @param {Event} e 
      */
-    open = e =>{        
+    open = () =>{        
         this.setState({open : true})
+        setTimeout(() => {
+            $(this.inputDom.current).focus()
+        },100)
     }
 
     /**
      * Close tag list
      */
-    close = e =>{
+    close = () =>{
         this.setState({open : false})
     }
 
@@ -216,6 +220,9 @@ class Tag extends Component {
         });
         
         this.setState({searchValue : ''})
+        setTimeout(() => {
+            $(this.inputDom.current).focus()
+        },200)
     }
     
     /**
@@ -268,8 +275,6 @@ class Tag extends Component {
         this.setState({open:false});
     
     }
-
-
   
 
     /**
@@ -277,16 +282,17 @@ class Tag extends Component {
      * 
      * @param {Evenet} e 
      */
-    async search (e){
+    search = async value => {
         const {api, mapping} = this.props;
-        const target = e.target.value.toLowerCase();
-        let foundValues ;
-
         
-
+        const target = value.toLowerCase();
+        let foundValues ;
+        //Reset search result
+        this.setState({searchResults : [], notFound : false, loading:true});
+        
        //Close if search value is empty
-        if(e.target.value.length === 0) {
-            this.setState({open : false})
+        if(target.length === 0) {
+            this.close()
             return;
         }
         
@@ -302,21 +308,25 @@ class Tag extends Component {
         }
         
         //Update tag list
-        this.setState({listValues : foundValues});
+        this.setState( {
+            searchResults : foundValues,
+            notFound : foundValues.length ? false : true ,
+            loading : false
+        });
 
         //Open
-        this.open(e)
+        this.open()
     }
 
 
-    handleSearch  (e) {
-        const Event = {target : {value : e.target.value}};
+    handleSearch = e => {
+        const value =  e.target.value;
         clearTimeout(this.timer);
 
         //handle change
-        this.handleChange(e);
+        this.handleChange(value);
         this.timer = setTimeout(()=>{
-            this.search(Event)
+            this.search(value)
         }, this.waitInterval);
     }
 
@@ -325,7 +335,7 @@ class Tag extends Component {
     }
 
 
-       /**
+    /**
      * Get style
      */
     getTagClass (){
@@ -350,23 +360,13 @@ class Tag extends Component {
     }
 
     render (){
-        const {rtl, outline, label, disabled, mapping, style} = this.props;
-        const {searchValue, open, tags, hasError, errorMessage} = this.state;
-        const filledClass = (searchValue.length > 0 || tags.length >0) ? ' filled' :''; 
-        const rtlClass = rtl ? ' r-rtl' :''; 
-        const outlineClass = outline ? ' r-bordered' :''; 
-        const disabledClass = disabled ? ' r-disabled' :''; 
-        const activeClass = open ? ' active' : '';
-        const hasIconClass =  mapping.icon ? ' r-has-icon' : '';
-        const validationMode = this.isValidationMode();
-        const errorClass =  validationMode && hasError ? ' r-error' :''; 
-      
+        const { label, disabled, style} = this.props;
+        const {searchValue, open, hasError, errorMessage} = this.state;      
 
         return (
             <div style={style} className={this.getTagClass()} >
                  {open && <Backdrop onClick={this.close} />}
            
-
                 {this.renderTags()}
 
                 <input 
@@ -375,7 +375,7 @@ class Tag extends Component {
                     value={searchValue}
                     disabled={disabled}
                     ref={this.inputDom} type="text" 
-                    onChange={this.handleSearch.bind(this)} 
+                    onChange={this.handleSearch} 
                     onKeyUp={this.enter.bind(this)}
                 />
                 <label>{label}</label>

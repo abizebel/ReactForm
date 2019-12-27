@@ -16,8 +16,9 @@
 	width: 100%;
 	background: #fff;
 	z-index: 9;
-	
 }
+
+
 .r-options-items {
 	max-height: 300px;
 	overflow-y: auto
@@ -37,6 +38,9 @@
 }
 .r-options-item.add-item {
 	display: flex;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .r-option-icon {

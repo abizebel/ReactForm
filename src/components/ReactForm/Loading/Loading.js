@@ -4,11 +4,11 @@ import './Loading.scss'
 
 export function DotsLoading(props){
     return (
-        <div class="r-dots-loading">
+        <div className="r-dots-loading">
             <div>{props.text}</div>&nbsp;
-            <div class="dot one"></div>
-            <div class="dot two"></div>
-            <div class="dot three"></div>
+            <div className="dot one"></div>
+            <div className="dot two"></div>
+            <div className="dot three"></div>
         </div>
     )
 }

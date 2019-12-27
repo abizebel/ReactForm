@@ -1,6 +1,23 @@
 import React, {Component,Fragment} from 'react';
 import {Autocomplete} from '../components/ReactForm';
 
+var arr =
+    [{id:'11',name:'Hosseini' },
+    {id:'22',name:'feiz'},
+    {id:'33',name:'mohammadi'},
+    {id:'44',name:'khosravi'},
+    {id:'44',name:'ranjbar'}
+  ]
+
+
+let getList = (value) => new Promise(resolve => {
+  setTimeout(()=>{
+    const res = arr.filter(o => {
+      return o.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+    })
+    resolve(res)
+  },1500)
+});
 class AutocomplteContainer extends Component {
 
   changeAutocomplete (val){
@@ -17,13 +34,18 @@ class AutocomplteContainer extends Component {
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             defaultValue ='Abbas'
-            values ={
-              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
-              {id:'22',name:'feiz', info:{icon:sampleIcon}},
-              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
-              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
-              {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
-            ]}
+            api={async (value) => {
+              const res = await getList(value);
+              
+              return res
+            }}
+            // values ={
+            //   [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+            //   {id:'22',name:'feiz', info:{icon:sampleIcon}},
+            //   {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+            //   {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+            //   {id:'44',name:'ranjbar', info:{icon:sampleIcon}}
+            // ]}
             mapping = {{text : 'name', value : 'id'}}
           />
           <Autocomplete change={this.changeAutocomplete.bind(this)}

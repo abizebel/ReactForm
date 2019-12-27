@@ -23,7 +23,9 @@ class Autcomplete extends Component {
         this.state = {
             open : false,
             searchValue : defaultValue,
-            listValues : this.values,
+            searchResults : [],
+            notFound : false,
+            loading : false,
             selectedItem : null,
             hasError : this.validate(defaultValue).hasError,
             errorMessage : this.validate(defaultValue).errorMessage
@@ -88,16 +90,19 @@ class Autcomplete extends Component {
      */
     renderOptions (){
         const {mapping , rtl} = this.props;
-        const { listValues , searchValue} = this.state;
+        const { searchResults , searchValue, notFound, loading} = this.state;
         
         let options;
 
-        //If options list is empty show "Not Found"
-        if (listValues.length === 0 && searchValue.length) {
+      if (!loading && notFound && searchValue.trim().length) {
             const notFoundText = rtl ? 'یافت نشد' : 'Not Found';
-            options = (<div onClick={this.close} className="r-options-item">{notFoundText}</div>)
+            options = (
+                <div onClick={this.close} className="r-options-item add-item">
+                    {`"${searchValue}" ${notFoundText}`}
+                </div>
+            )
         }
-        else if (!searchValue.length) {
+        else if (loading || !searchValue.length || !searchResults.length) {
             const doSearch = rtl ? 'جستجو کنید' : 'Search';
             options = (
                 <div onClick={this.close} className="r-options-item">
@@ -106,7 +111,7 @@ class Autcomplete extends Component {
             )
         }
         else {
-            options = listValues.map((o, i) => {
+            options = searchResults.map((o, i) => {
                 return (
                     <div key={i} className={'r-options-item'} onClick={this.select.bind(this,o)}>
                         {mapping.icon && 
@@ -150,7 +155,10 @@ class Autcomplete extends Component {
      * @param {Event} e 
      */
     open = e => {        
-        this.setState({open : true})
+        this.setState({open : true});
+        setTimeout(() => {
+            $(this.inputDom.current).focus()
+        },100)
     }
 
     /**
@@ -173,8 +181,6 @@ class Autcomplete extends Component {
         return await api(str);
     }
 
-
-
     /**
      * Search in autocomplete options
      * 
@@ -185,7 +191,9 @@ class Autcomplete extends Component {
         const target = e.target.value.toLowerCase();
         let foundValues ;
 
-
+        //Reset search result
+        this.setState({searchResults : [], notFound : false, loading:true});
+        
        this.validate(target)
        change(e.target.value);
 
@@ -207,7 +215,12 @@ class Autcomplete extends Component {
             });
         }
 
-        this.setState({listValues : foundValues});
+        //Update tag list
+        this.setState( {
+            searchResults : foundValues,
+            notFound : foundValues.length ? false : true ,
+            loading : false
+        });
 
         //Open
         this.open(e)

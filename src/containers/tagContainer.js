@@ -1,7 +1,28 @@
 import React, {Component,Fragment} from 'react';
 import { Tag} from '../components/ReactForm';
 
+
+var arr =
+    [{id:'11',name:'Hosseini' },
+    {id:'22',name:'feiz'},
+    {id:'33',name:'mohammadi'},
+    {id:'44',name:'khosravi'},
+    {id:'44',name:'ranjbar'}
+  ]
+
+
+let getTags = (value) => new Promise(resolve => {
+  setTimeout(()=>{
+    const res = arr.filter(o => {
+      return o.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+    })
+    resolve(res)
+  },1500)
+});
+
 class AutocomplteContainer extends Component {
+
+
 
   changeTag (val){
    console.log(val)
@@ -16,13 +37,18 @@ class AutocomplteContainer extends Component {
             label={'Last Name'}
             defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
             required={'asdasdasd'}
-            values ={
-              [{id:'11',name:'Hosseini' },
-              {id:'22',name:'feiz'},
-              {id:'33',name:'mohammadi'},
-              {id:'44',name:'khosravi'},
-              {id:'44',name:'ranjbar'}
-            ]}
+            api={async (value) => {
+              const res = await getTags(value);
+              
+              return res
+            }}
+            // values ={
+            //   [{id:'11',name:'Hosseini' },
+            //   {id:'22',name:'feiz'},
+            //   {id:'33',name:'mohammadi'},
+            //   {id:'44',name:'khosravi'},
+            //   {id:'44',name:'ranjbar'}
+            // ]}
             mapping = {{text : 'name', value : 'id'}}
           />
           <Tag change={this.changeTag.bind(this)}

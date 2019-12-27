@@ -32,7 +32,8 @@
   border-radius: 4px;
   padding-right: 16px;
   padding-left: 16px;
-  height:$input-height + $extraHeight
+  height:$input-height + $extraHeight;
+
 }
 
 /// Fix input in browser autofill state
@@ -261,10 +262,13 @@
       color: $label-color;
       font-size: $label-size;
       background: #fff;
+
     }
 
     input:focus, textarea:focus {
-      border-color:$focus-color;
+      border:2px solid $focus-color;
+      padding-right: 15px;
+      padding-left: 15px;
     }
 
     &.filled > label {
