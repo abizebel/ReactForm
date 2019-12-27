@@ -131,7 +131,7 @@
     .r-icon {
       position: absolute;
       top: calc(50% - 12px);
-      right: 0;
+      right: -6px;
       width: 24px;
       height: 24px;
       line-height: 24px;
@@ -341,7 +341,7 @@
     /* Icons */ 
     .r-icon {
       right: unset;
-      left: 0;
+      left: -6px;
     }
 
     &.r-has-icon > {
