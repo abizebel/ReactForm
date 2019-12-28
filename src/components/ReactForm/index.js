@@ -8,6 +8,7 @@ import Toggle from './Toggle/Toggle';
 import Tabs from './Tabs/Tabs';
 import Calendar from './Calendar/Calendar';
 import Datepicker from './Datepicker/Datepicker';
+import Table from './Table/Table';
 
 
 // without default
@@ -21,5 +22,6 @@ export {
     Toggle,
     Tabs,
     Calendar,
-    Datepicker
+    Datepicker,
+    Table
 }

@@ -1,0 +1,113 @@
+
+/// Handle first and last cell spacing
+@mixin handleFirstLast (){
+    &:first-child {
+        padding: 0 0 0 24px;
+    }
+
+    &:last-child {
+        padding: 0 14px 0 0;
+    }
+}
+
+.r-table {
+    direction: ltr;
+    text-align: left;
+    padding: 0;
+  
+    table {
+        table-layout: fixed;
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 12px;
+
+        tr {
+            td {
+                height: 48px;
+                padding: 0 0 0 56px;
+                font-size: 13px;
+                color: rgba(0, 0, 0, 0.87);
+                border-bottom: solid 1px #DDDDDD;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                @include handleFirstLast ()
+
+            }
+            &:hover {
+                background-color: #EEE;
+            }
+    
+        }
+  
+        th {
+            cursor: pointer;
+            height: 56px;
+            padding: 0 0 0 56px;
+            font-weight: 500;
+            color: #757575;
+            vertical-align: middle;
+            outline: none !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            @include handleFirstLast ()
+        }
+    
+    
+    }
+
+
+      
+}
+  
+
+@media screen and (max-width : 768px) {
+    .r-table {
+
+        table {
+
+            thead {
+                display: none;   
+                   
+            }
+
+            tr {
+                &:hover {
+                    background:none;
+                }
+                
+                border: 1px solid #ddd;
+                border-bottom-width: 3px;
+                display: block;
+                margin-bottom: 16px;
+                padding: 16px;
+                
+                td {
+                    padding:16px 0 0 0 !important;
+                    position: relative;
+                    height: 32px;
+                    border-bottom: 1px solid #ddd;
+                    display: block;
+                    text-align: right;
+    
+                    &::before {
+                        content: attr(data-title);
+                        margin-right: 16px;
+                        float: left;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                    }
+    
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+                }
+            }
+     
+            
+            
+        }
+
+    }
+}

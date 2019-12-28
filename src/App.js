@@ -11,6 +11,7 @@ import ToggleContainer from './containers/toggleContainer';
 import TabContainer from './containers/tabContainer';
 import CalendarContainer from './containers/calendarContainer';
 import DatepickerContainer from './containers/datepickerContainer';
+import TableContainer from './containers/tableContainer';
 
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
               <li><Link to="/tab/">Tab</Link> </li>
               <li><Link to="/calendar/">Calendar</Link> </li>
               <li><Link to="/datepicker/">Datepicker</Link> </li>
+              <li><Link to="/table/">table</Link> </li>
 
             </ul>
            
@@ -50,6 +52,7 @@ class App extends Component {
           <Route path="/tab/" component={TabContainer} />
           <Route path="/calendar/" component={CalendarContainer} />
           <Route path="/datepicker/" component={DatepickerContainer} />
+          <Route path="/table/" component={TableContainer} />
         </div>
     </Router>
       
