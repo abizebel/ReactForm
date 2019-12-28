@@ -316,7 +316,7 @@ class Select extends Component {
         else {
             this.setState({selectedItems : [item]})
             this.validate([item])
-           // this.close();
+            this.close();
             change(item);
      
         }
@@ -495,12 +495,13 @@ class Select extends Component {
      * Get style
      */
     getSelectClass (){
-        const { mapping, rtl, disabled, outline, multi, className} = this.props;
+        const { mapping, rtl, disabled, outline, multi, className,border} = this.props;
         const { hasError, open} = this.state;
         const validationMode = this.isValidationMode();
 
         let names =  {
             [className] : className ? true : false,
+            'r-noborder' : !border,
             'active' :open, 
             'r-select r-noselect r-input filled' : true,
             'r-rtl': rtl,
@@ -535,7 +536,7 @@ class Select extends Component {
                         value={inputValue.trim()}   
                     />
 
-                    <label>{label}</label>
+                    {label && <label>{label}</label>}
 
                     { !multi && mapping.icon && <span className="r-input-icon">{renderIcon}</span> }
 
@@ -556,7 +557,8 @@ Select.defaultProps = {
     disabled : false,
     nullable : false,
     multi : false,
-    style : {}
+    style : {},
+    border : true,
     
 }
 

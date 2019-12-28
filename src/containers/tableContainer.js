@@ -19,8 +19,18 @@ class TableContainer extends Component {
             columns = {[
                 {field : 'name' },
                 {field : 'type' },
-                {field : 'number' },
-                {field : 'ccy' },
+                {
+                    field : 'ccy',
+                    type:'select',
+                    values : [
+                        {Name : 'Iran', Id : 1},
+                        {Name : 'Iraq', Id : 2},
+                        {Name : 'Usa', Id : 3},
+                        {Name : 'Turkey', Id : 4},
+
+                    ],
+                    mapping : {text : 'Name', value : 'Id'}
+                },
                 {field : 'balance' }
             
             ]}
@@ -28,26 +38,29 @@ class TableContainer extends Component {
                 {
                     name : 'David Washington',
                     type : 'Private',
-                    number : '456456456465465',
-                    ccy : 'EUR',
-                    balance : '6555465465adasdasdasdasdujhuasihykahyddjhwayhedi4564'
+                    number : '78',
+                    ccy : 1,
+                    balance : '8857'
+                },
+                {
+                    name : 'David Washisangton',
+                    type : 'Private',
+                    number : '12',
+                    ccy : 2,
+                    balance : '476'
                 },
                 {
                     name : 'David Washington',
                     type : 'Private',
-                    number : '456456456465465',
-                    ccy : 'EUR',
-                    balance : '65554654654564'
-                },
-                {
-                    name : 'David Washington',
-                    type : 'Private',
-                    number : '456456456465465',
-                    ccy : 'EUR',
-                    balance : '65554654654564'
+                    number : '22',
+                    ccy : 3,
+                    balance : '22'
                 }
             ] }
-          
+            edit = {true}
+            change={val => {
+                console.log(val)
+            }}
           />
 
         </div>

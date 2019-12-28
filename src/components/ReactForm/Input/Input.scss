@@ -64,8 +64,14 @@
     direction: ltr;
     position: relative;
     margin-top: $space-around;
-    margin-bottom: $space-around;;
-  
+    margin-bottom: $space-around;
+
+    &.r-noborder {
+      input {
+        background: none !important;
+      }
+    }
+
     &.r-noselect > input {
       user-select: none;
       color: transparent;

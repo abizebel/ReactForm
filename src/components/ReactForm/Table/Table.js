@@ -6,11 +6,20 @@ import './Table.scss';
 
 class Table extends Component {
 
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            data  : this.props.data
+        }
+    }
+
+
     renderRows (){
-        const {data} = this.props;
+        const {data} = this.state;
 
         return data.map((o, i) => {
-            return (<Row key={i} row={o} />)
+            return (<Row key={i} index={i} row={o} />)
         });
     }
 
@@ -19,29 +28,50 @@ class Table extends Component {
 
         const cols =  columns.map((o, i) => {
             return <th key={i}>{o.field}</th>
-        })
+        });
+
         return (<tr>{cols}</tr>) 
     }
 
+    /**
+     * Update cell value
+     * 
+     * @param {Number} rowIndex
+     * @param {Object} col
+     * @param {Any} value
+     */
+    changeCell = (rowIndex, col, value) => {
+        const {change} = this.props;
+
+        let data = Array.from(this.state.data);
+        data[rowIndex][col.field] = value;
+
+        this.setState({data});
+        change(data)
+    }
+
     render (){
-        const {columns, data} = this.props;
+        const {columns, edit} = this.props;
+        const {data} = this.state;
 
         const contextValue = {
             columns,
-            data
+            data,
+            edit,
+            changeCell : this.changeCell,
         }
 
         return (
             <TableContext.Provider value={contextValue}>
  
-                <div class="r-table">
-                    <div class="table-header">
-                        <span class="table-title">Material Datatable</span>
-                        <div class="actions">
-                        <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                <div className="r-table">
+                    <div className="table-header">
+                        <span className="table-title">Material Datatable</span>
+                        <div className="actions">
+                        <a href="#" className="search-toggle waves-effect btn-flat nopadding"><i className="material-icons">search</i></a>
                         </div>
                     </div>
-                    <table >
+                    <table>
                         <thead>
                             {this.renderColumns()}
                         </thead>
@@ -55,5 +85,8 @@ class Table extends Component {
     }
 }
 
+Table.defaultProps = {
+    edit : false ,
+}
 
 export default Table

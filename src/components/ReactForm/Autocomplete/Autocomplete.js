@@ -314,7 +314,7 @@ class Autcomplete extends Component {
                 value={searchValue}  
                 onChange={this.handleSearch.bind(this)}
             />
-            <label>{label}</label>
+            {label && <label>{label}</label>}
             <span className="r-line"></span>
 
             {   hasError &&

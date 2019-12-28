@@ -6,11 +6,9 @@ import Cell from './Cell';
 class Row extends Component {
     static contextType = TableContext;
 
-
-
     renderCells (){
         const {columns} = this.context;
-        const {row} = this.props;
+        const {row, index} = this.props;
 
 
         return columns.map((o, i) => {
@@ -19,6 +17,7 @@ class Row extends Component {
                     key={i}
                     row={row}
                     col={o}
+                    rowIndex = {index}
                 />
             )
         })

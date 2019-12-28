@@ -378,7 +378,7 @@ class Tag extends Component {
                     onChange={this.handleSearch} 
                     onKeyUp={this.enter.bind(this)}
                 />
-                <label>{label}</label>
+                {label && <label>{label}</label>}
                 <span className="r-line"></span>
                 {   hasError &&
                     <span className="r-message">{errorMessage}</span> 

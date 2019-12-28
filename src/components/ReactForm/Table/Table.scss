@@ -1,4 +1,8 @@
 
+@import '../css/variables.scss';
+
+
+
 /// Handle first and last cell spacing
 @mixin handleFirstLast (){
     &:first-child {
@@ -10,9 +14,16 @@
     }
 }
 
+/// When Overflow text show dots
+@mixin overflowText (){
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .r-table {
     direction: ltr;
     text-align: left;
+
     padding: 0;
   
     table {
@@ -28,14 +39,12 @@
                 font-size: 13px;
                 color: rgba(0, 0, 0, 0.87);
                 border-bottom: solid 1px #DDDDDD;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                @include handleFirstLast ()
+                @include handleFirstLast ();
+                @include overflowText ();
+                &.edit {
+                    overflow: unset;
+                }
 
-            }
-            &:hover {
-                background-color: #EEE;
             }
     
         }
@@ -48,10 +57,8 @@
             color: #757575;
             vertical-align: middle;
             outline: none !important;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            @include handleFirstLast ()
+            @include handleFirstLast ();
+            @include overflowText ();
         }
     
     
@@ -73,15 +80,11 @@
             }
 
             tr {
-                &:hover {
-                    background:none;
-                }
-                
                 border: 1px solid #ddd;
                 border-bottom-width: 3px;
                 display: block;
                 margin-bottom: 16px;
-                padding: 16px;
+                padding:0 16px;
                 
                 td {
                     padding:16px 0 0 0 !important;

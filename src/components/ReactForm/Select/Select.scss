@@ -13,6 +13,15 @@
       padding-right: 28px;
     }
 
+    /* No Border */
+    &.r-noborder  {
+        @media screen and (min-width: 768px){
+          .r-icon {
+            left: -25px;
+          }
+        }
+    }
+
     /* Bordered */
     &.r-bordered > input {
       padding-right: 40px;
@@ -27,8 +36,6 @@
     /* Animated arrow */
     .r-icon {
       transition: .2s ease-in-out all;
-      bottom: 5px;
-      
     }
   
     &.active > .r-icon {
@@ -41,17 +48,35 @@
 /************************
 * RTL SELECT
 ************************/
-.r-select.r-rtl > input{
-  padding-right: unset;
-  padding-left: 28px;
-}
-/* Bordered */
-.r-select.r-bordered.r-rtl > input {
-  padding-left: 40px;
+.r-select.r-rtl {
+  > input{
+    padding-right: unset;
+    padding-left: 28px;
+  }
+
+  /* bordered */
+  &.r-bordered > input {
+    padding-left: 40px;
+  }
+
+  /* No Border */
+  &.r-noborder  {
+    @media screen and (min-width: 768px){
+      .r-icon {
+        left: unset;
+        right: -25px;
+      }
+    }
+  }
+
+  /* Multi Select Checkbox*/
+  .r-checkbox.r-nospace .r-checkbox-fake {
+    padding: 0;
+    margin-left: 12px !important;
+  }
+
+
 }
 
-/* Multi Select Checkbox*/
-.r-select.r-rtl .r-checkbox.r-nospace .r-checkbox-fake {
-  padding: 0;
-  margin-left: 12px !important;
-}
+
+
