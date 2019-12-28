@@ -14,7 +14,7 @@ class TableContainer extends Component {
       <Fragment>
 
         <div className="page-content-box" >
-          <div className="page-content-title">Tag</div>
+          <div className="page-content-title">Table</div>
           <Table
             columns = {[
                 {field : 'name' },
@@ -31,7 +31,7 @@ class TableContainer extends Component {
                     ],
                     mapping : {text : 'Name', value : 'Id'}
                 },
-                {field : 'balance' }
+                {field : 'balance',width:200 }
             
             ]}
             data = {[
@@ -43,19 +43,54 @@ class TableContainer extends Component {
                     balance : '8857'
                 },
                 {
-                    name : 'David Washisangton',
+                    name : 'Adel feiz',
                     type : 'Private',
                     number : '12',
                     ccy : 2,
                     balance : '476'
                 },
                 {
-                    name : 'David Washington',
+                    name : 'Mina Aghapour',
                     type : 'Private',
                     number : '22',
                     ccy : 3,
                     balance : '22'
-                }
+                },
+                {
+                  name : 'David Washington',
+                  type : 'Private',
+                  number : '21232',
+                  ccy : 3,
+                  balance : '21232'
+              },
+              {
+                name : 'Abbas Hosseini',
+                type : 'Private',
+                number : '22',
+                ccy : 2,
+                balance : '21232'
+            },
+            {
+              name : 'Bratt Pitt',
+              type : 'Private',
+              number : '22',
+              ccy : 1,
+              balance : '2232'
+            },
+            {
+              name : 'Reza Ranjbar',
+              type : 'Private',
+              number : '22',
+              ccy : 3,
+              balance : '1'
+            },
+            {
+              name : 'David Washington',
+              type : 'Private',
+              number : '11',
+              ccy : 2,
+              balance : '22'
+            }
             ] }
             edit = {true}
             change={val => {

@@ -6,6 +6,7 @@
 *************************/
 .r-tag {
   direction: ltr;
+  text-align: left;
   width: 100%;
   position: relative;
 
@@ -70,7 +71,13 @@
 
 
  
-
+/************************
+* RTL TAG
+*************************/
+.r-tag.r-rtl {
+  direction: rtl;
+  text-align: right;
+}
   
 
   

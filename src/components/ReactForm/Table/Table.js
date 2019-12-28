@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import TableContext from './TableContext';
 import Row from './Row';
+import Backdrop from '../Backdrop/Backdrop'
+
 import './Table.scss';
 
 
@@ -10,16 +12,19 @@ class Table extends Component {
         super(props);
 
         this.state = {
-            data  : this.props.data
+            data  : this.props.data,
+            editMode : false,
+            activeRow : null
         }
     }
 
-
     renderRows (){
         const {data} = this.state;
-
+        
         return data.map((o, i) => {
-            return (<Row key={i} index={i} row={o} />)
+            return (
+                <Row key={i} index={i} row={o} />
+            )
         });
     }
 
@@ -27,7 +32,7 @@ class Table extends Component {
         const {columns} = this.props;
 
         const cols =  columns.map((o, i) => {
-            return <th key={i}>{o.field}</th>
+            return <th key={i} style={{width : o.width}}>{o.field}</th>
         });
 
         return (<tr>{cols}</tr>) 
@@ -50,27 +55,41 @@ class Table extends Component {
         change(data)
     }
 
+    startEdit = (index) => {
+        this.setState({ editMode : true , activeRow : index})
+    }
+
+    endEdit = () => {
+        this.setState({ editMode : false, activeRow : null })
+    }
+
+
     render (){
         const {columns, edit} = this.props;
-        const {data} = this.state;
+        const {data, editMode, activeRow} = this.state;
 
         const contextValue = {
             columns,
             data,
             edit,
+            activeRow,
+            startEdit : this.startEdit,
+            endEdit : this.endEdit,
             changeCell : this.changeCell,
         }
 
         return (
             <TableContext.Provider value={contextValue}>
- 
+
+                {editMode && <Backdrop onClick={this.endEdit} />}
+
                 <div className="r-table">
-                    <div className="table-header">
+                    {/* <div className="table-header">
                         <span className="table-title">Material Datatable</span>
                         <div className="actions">
                         <a href="#" className="search-toggle waves-effect btn-flat nopadding"><i className="material-icons">search</i></a>
                         </div>
-                    </div>
+                    </div> */}
                     <table>
                         <thead>
                             {this.renderColumns()}

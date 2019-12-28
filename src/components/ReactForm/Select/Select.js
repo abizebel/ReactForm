@@ -501,7 +501,6 @@ class Select extends Component {
 
         let names =  {
             [className] : className ? true : false,
-            'r-noborder' : !border,
             'active' :open, 
             'r-select r-noselect r-input filled' : true,
             'r-rtl': rtl,
@@ -558,7 +557,6 @@ Select.defaultProps = {
     nullable : false,
     multi : false,
     style : {},
-    border : true,
     
 }
 

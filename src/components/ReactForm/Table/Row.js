@@ -1,19 +1,21 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import TableContext from './TableContext';
 import Cell from './Cell';
+import Backdrop from '../Backdrop/Backdrop'
 
 
 class Row extends Component {
     static contextType = TableContext;
 
     renderCells (){
-        const {columns} = this.context;
+        const {columns, activeRow} = this.context;
         const {row, index} = this.props;
-
+        const isEditMode = activeRow !== null && activeRow === index;
 
         return columns.map((o, i) => {
             return (
                 <Cell
+                    editMode={isEditMode}
                     key={i}
                     row={row}
                     col={o}
@@ -25,13 +27,15 @@ class Row extends Component {
 
 
     render (){
-
-
+        const {index} = this.props;
+        const {startEdit} = this.context;
 
         return (
-            <tr>
-                {this.renderCells()} 
-            </tr>
+            <Fragment>
+                <tr onClick={() => {startEdit(index)}}>
+                    {this.renderCells()} 
+                </tr>
+            </Fragment>
         )
     }
 }

@@ -105,13 +105,12 @@ class Input extends Component {
      * Get style
      */
     getInputClass (){
-        const {rtl, outline, disabled, icon, className, border} = this.props;
+        const {rtl, outline, disabled, icon, className} = this.props;
         const {value, hasError} = this.state;
         const validationMode = this.isValidationMode ();
       
         let names =  {
             [className] : className ? true : false,
-            'r-noborder' : !border,
             'filled' :String(value).length > 0 || disabled, 
             'r-input' : true,
             'r-rtl': rtl,
@@ -192,7 +191,6 @@ Input.defaultProps = {
     icon : null,
     style : {},
     className : '',
-    border : true,
 }
 
 export default Input

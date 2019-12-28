@@ -33,7 +33,7 @@ class App extends Component {
               <li><Link to="/tab/">Tab</Link> </li>
               <li><Link to="/calendar/">Calendar</Link> </li>
               <li><Link to="/datepicker/">Datepicker</Link> </li>
-              <li><Link to="/table/">table</Link> </li>
+              <li><Link to="/table/">Table</Link> </li>
 
             </ul>
            

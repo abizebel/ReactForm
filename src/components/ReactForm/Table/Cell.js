@@ -3,89 +3,78 @@ import TableContext from './TableContext';
 import Input from '../Input/Input';
 import Select from '../Select/Select';
 
-
 class Cell extends Component {
     static contextType = TableContext;
-
-    constructor (props) {
-        super(props);
-
-        this.state = {
-            editMode : false,
-        }
-    }
-
-    startEdit = () => {
-        this.setState({ editMode : true })
-    }
-
-    endEdit = () => {
-        this.setState({ editMode : false })
-    }
-
-    enter = (e) => {
-        if(e.keyCode === 13) {
-            this.endEdit();
-        }
-    }
     
-    editMode(){
-        const {row, rowIndex, col} = this.props;
+    renderSelect(){
+        const {row, rowIndex, col, editMode} = this.props;
         const {changeCell} = this.context;
-        const value = row[col.field]
+        const value = row[col.field];
 
-        if (col.type === 'select') {
+        if (editMode) {
             return (
                 <Select
-                    style={{margin:0}}
-                    defaultValue={1}
-                    change={val => {
-                        changeCell(rowIndex, col, val) ;
-                        this.endEdit()
-                    }}
+                    style={{margin:0, zIndex : 11}}
+                    defaultValue={value}
+                    change={val => {changeCell(rowIndex, col, val[col.mapping.value])}}
                     mapping={col.mapping}
                     values = {col.values}
-                    border={false}
-
+    
                 />
             )
         }
-
         else {
+            const found = col.values.filter(o => {
+                return o[col.mapping.value] === value
+            })
+
+            return (found.length ? found[0][col.mapping.text] : '') 
+        }
+        
+        
+    }
+
+    renderInput(){
+        const {row, rowIndex, col, editMode} = this.props;
+        const {changeCell} = this.context;
+        const value = row[col.field]
+
+        if (editMode) {
             return (
                 <Input
                     style={{margin:0, zIndex : 10}}
                     value={value}
-                    change={val => { changeCell(rowIndex, col, val) }}
-                    autoFocus={true}
-                    onBlur={this.endEdit}
-                    onKeyUp={this.enter}
+                    change={val => {changeCell(rowIndex, col, val) }}
                 />
             )
         }
-
-        
+        else {
+            return value
+        }
     }
 
-    readMode(){
-        const {row , col} = this.props;
-        return  row[col.field];
-    }
 
-    
+    renderValue (){
+        const {col} = this.props;
+
+        if (col.type === 'select') {
+            return this.renderSelect()
+        }
+        else {
+            return this.renderInput()
+        }
+    }
     render (){
         const {col} = this.props;
-        const {edit} = this.context;
-        const {editMode} = this.state;
-        const showEditMode = col.type || (edit && editMode ) ;
-
+        const {editMode} = this.props;
 
         return (
-            (
-                <td className={`${editMode ? 'edit' : ''}`} data-title={col.field} onClick={this.startEdit}>
-                   { showEditMode? this.editMode() : this.readMode() }
-                </td>
-            )
+            
+            <td  className={`${editMode ? 'edit' : ''}`} data-title={col.field} >
+                <div className="r-cell">
+                {this.renderValue() }
+                </div>
+            </td>  
         )
     }
 }

@@ -8,8 +8,8 @@ class Backdrop extends Component {
         const {onClick} = this.props;
 
         return (
-           <div className="r-backdrop" onClick={onClick} >
-           </div>
+           <span className="r-backdrop" onClick={onClick} >
+           </span>
         )
     }
 }

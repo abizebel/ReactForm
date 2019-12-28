@@ -7,20 +7,13 @@
 .r-select {
     cursor: pointer;
     direction: ltr;
+    text-align: left;
     width: 100%;
 
     > input {
       padding-right: 28px;
     }
 
-    /* No Border */
-    &.r-noborder  {
-        @media screen and (min-width: 768px){
-          .r-icon {
-            left: -25px;
-          }
-        }
-    }
 
     /* Bordered */
     &.r-bordered > input {
@@ -49,6 +42,8 @@
 * RTL SELECT
 ************************/
 .r-select.r-rtl {
+  direction: rtl;
+  text-align: right;
   > input{
     padding-right: unset;
     padding-left: 28px;
@@ -59,15 +54,6 @@
     padding-left: 40px;
   }
 
-  /* No Border */
-  &.r-noborder  {
-    @media screen and (min-width: 768px){
-      .r-icon {
-        left: unset;
-        right: -25px;
-      }
-    }
-  }
 
   /* Multi Select Checkbox*/
   .r-checkbox.r-nospace .r-checkbox-fake {

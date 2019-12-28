@@ -8,9 +8,18 @@
 .r-autocomplete {
     width: 100%;
     direction: ltr;
+    text-align: left;
 
     /* Animated arrow */
     .r-icon {
         cursor: pointer;
     }
+}
+
+/************************
+* RTL AUTOCOMPLETE
+*************************/
+.r-autocomplete.r-rtl {
+    direction: rtl;
+    text-align: right;
 }

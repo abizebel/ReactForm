@@ -62,15 +62,10 @@
 .r-input {
     @include fixAutofill();
     direction: ltr;
+    text-align: left;
     position: relative;
     margin-top: $space-around;
     margin-bottom: $space-around;
-
-    &.r-noborder {
-      input {
-        background: none !important;
-      }
-    }
 
     &.r-noselect > input {
       user-select: none;
