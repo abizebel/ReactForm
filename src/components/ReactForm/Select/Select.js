@@ -27,14 +27,14 @@ class Select extends Component {
     }
 
     arrowKey = e => {
-        const {selectedItem} = this.state;
+
         if (e.keyCode === 13){
 
         }
 
 
         if (e.keyCode === 38) {//up
-            let inde = selectedItem.index;
+            
         }
         else if (e.keyCode === 40 ) {//down 
            
@@ -129,8 +129,6 @@ class Select extends Component {
      */
     select = (item, index) =>{
         const {change} = this.props;
-
-        item.index  = index;
 
         this.setState({selectedItem : item})
         this.validate([item])
@@ -237,8 +235,7 @@ class Select extends Component {
      */
     search (e){
         const {mapping} = this.props;
-        const {initialValues} =     * @param {String} seperator is between key and text
-        this.state;
+        const {initialValues} = this.state;
         const value = e.target.value;
 
         //Store search value in state
@@ -283,7 +280,7 @@ class Select extends Component {
         const {mapping, showKey} = this.props;
         const text = item[mapping.text];
         const value = item[mapping.value];
-        const key = showKey ? `${value} ${seperator}`  : '' ;
+        const key = showKey ? `${value} ${'-'}`  : '' ;
         const itemText = `${key} ${text}`;
 
         return itemText;
