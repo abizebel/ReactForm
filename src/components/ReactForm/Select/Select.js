@@ -1,43 +1,45 @@
 import React, {Component, Fragment, createRef} from 'react';
 import Checkbox from '../Checkbox/Checkbox';
 import Backdrop from '../Backdrop/Backdrop';
-import {getValueByProp, createIcon, mapObjectToClassName, handlePosition} from '../functions';
+import * as FN from '../functions';
 import icons from '../icons';
 import './Select.scss';
+import { timeout } from 'q';
 
 class Select extends Component {
     constructor(props) {
         super(props);
-        const {values , defaultValue} = this.props;
-        //Our method always get array and when user send "String" should be convert to array
+        const {values, defaultValue , mapping} = props;
         this.optionsDom = createRef();
-        this.selectedIds = (typeof defaultValue === 'number' ?  [defaultValue] : defaultValue) || [];
-        this.values =  this.createList (values);
-        const selectedItems =  this.getSelectedItems (this.selectedIds)
+        
+        this.selected = FN.findItemById(values, defaultValue, mapping);
         
         this.state = {
             open : false,
-            selectedItems :selectedItems,
-            listValues : this.values,
-            hasError : this.validate(selectedItems).hasError,
-            errorMessage : this.validate(selectedItems).errorMessage,
-            searchValue : ''
+            values : values,
+            initialValues : values,
+            // hasError : this.validate(selectedItems).hasError,
+            // errorMessage : this.validate(selectedItems).errorMessage,
+            searchValue : '',
+            selectedItem : this.selected.length ? this.selected[0] : null,
         }
         
     }
 
     arrowKey = e => {
-        return 
-        //be farze selected sade
-        if (e.keyCode === 13) {
-            this.toggle()
+        const {selectedItem} = this.state;
+        if (e.keyCode === 13){
+
         }
-        if (e.keyCode === 38) { //up 
-           
+
+
+        if (e.keyCode === 38) {//up
+            let inde = selectedItem.index;
         }
         else if (e.keyCode === 40 ) {//down 
            
         }
+        
     }
 
     /**
@@ -52,7 +54,6 @@ class Select extends Component {
 
     /**
      * Check if select has error or not depends on our configs
-     * 
      */
     validate (selectedItems = []){
         const {serverError, required} = this.props;
@@ -74,62 +75,7 @@ class Select extends Component {
         return {hasError, errorMessage}
     }
 
-    /**
-     * Add Selected property to values that listed as options
-     * 
-     * @param {Array} values 
-     */
-    addSelectedProp (values){
-        const {mapping, multi} = this.props;
-
-        values.forEach(o =>{
-            o.selected = false;
-            if(multi && this.selectedIds.indexOf(Number(o[mapping.value])) !==-1){
-                o.selected = true
-            }
-        });
-    }
-
-    /**
-     * Create list for select options
-     */
-    createList (values){
-        const {nullable, mapping,notSelectedText, rtl} = this.props;
-        let listValues = [...values];
-        
-        this.addSelectedProp(listValues)
-        
-        //If nullable add a fake object 
-        if (nullable) {
-            const notSelected = notSelectedText ? notSelectedText : (rtl ? 'انتخاب نشده' : 'No Selected');
-
-            listValues.unshift({
-                [mapping.text] : notSelected,
-                [mapping.value] : -99,
-            })
-        }
-
-        return listValues;
-    }
-
-    /**
-     * import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
-     * @param {Number} id 
-     * @description Find selected value by id for single select
-     */
-    getSelectedItems (id){
-        const {mapping} = this.props;
-
-        const selectedItems = this.values.filter(o => {
-            return id.indexOf(Number(o[mapping.value])) !== -1
-
-        });
-
-        return selectedItems;
-    }
-    
-
+ 
     /**
      * Open options
      * 
@@ -177,150 +123,35 @@ class Select extends Component {
     }
 
     /**
-     * Preventing add duplicate item to selected list
-     * 
-     * @param {Object} item
-     * @returns {Boolean}
-     */
-    isExist (item){
-
-        const {mapping} = this.props;
-        const {selectedItems} = this.state;
-
-        for (var i=0 ; i< selectedItems.length ; i++) {
-            if(selectedItems[i][mapping.value] === item[mapping.value]) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Find item index in selected list
-     * 
-     * @param {Object} item
-     * @returns {Boolean}
-     */
-    findSelectedIndex (item){
-        const {mapping} = this.props;
-        const {selectedItems} = this.state;
-
-        for (var i=0 ; i< selectedItems.length ; i++) {
-            if(selectedItems[i][mapping.value] === item[mapping.value]) {
-                return i;
-            }
-        }
-
-    }
-
-    /**
-     * Find item index in list values
-     * 
-     * @param {Object} item
-     * @returns {Boolean}
-     */
-    findListIndex (item){
-        const {mapping} = this.props;
-        const {listValues} = this.state;
-
-        for (var i=0 ; i< listValues.length ; i++) {
-            if(listValues[i][mapping.value] === item[mapping.value]) {
-                return i;
-            }
-        }
-
-    }
-
-    /**
-     * Toggle select in multiselect mode 
-     * 
-     * @param {Object} item 
-     */
-    toggleSelect (item){
-      
-        
-        this.setState(prevState => {
-            
-            if(this.isExist(item)) {
-                const itemIndex = this.findSelectedIndex(item);
-                prevState.selectedItems.splice(itemIndex, 1 )
-            }
-            else {
-                prevState.selectedItems.push(item);
-            }
-            
-            this.validate(prevState.selectedItems)
-          //  change(prevState.selectedItems)
-
-            return {
-                selectedItems : prevState.selectedItems
-            }
-        });
-        
-    }
-
-    /**
-     * Toggle options iwth index
-     * 
-     * @param {Number} index 
-     */
-    toggleOptions (index){
-        this.setState(prevState => {
-
-            prevState.listValues[index].selected = !prevState.listValues[index].selected;
-            return {
-                listValues : prevState.listValues
-            }
-        })
-    }
-
-    /**
-     * Deselect all options
-     */
-    deselectOptions (){
-        this.setState(prevState => {
-            prevState.listValues.forEach(o => (o.selected = false))
-            return {
-                listValues : prevState.listValues
-            }
-        })
-    }
-
-    /**
      * 
      * @param {Object} item 
      * @description Select a item that user clicked on it 
      */
     select = (item, index) =>{
-        const {change, mapping, multi} = this.props;
-        /**
-         * If user had selected "no item" send Null otherwise send selected object
-         * Null item is {text : 'No Selected', value : -99}
-         */
-        if (item[mapping.value] === -99) {
-            this.deselectOptions()
-            this.setState({selectedItems : []});
-            this.setState({open:false});
-            this.validate([]);
-            change(null);
-            return;
-        }
-        
-        //MultiSelect
-        if (multi){
-            this.toggleOptions(index);
-            this.toggleSelect(item) ;
-        }
-        //SingleSelect
-        else {
-            this.setState({selectedItems : [item]})
-            this.validate([item])
-            this.close();
-            change(item);
-     
-        }
- 
+        const {change} = this.props;
+
+        item.index  = index;
+
+        this.setState({selectedItem : item})
+        this.validate([item])
+        this.close();
+
+        change(item);
+    }
+
+    /**
+     * 
+     * @param {Object} item 
+     * @description Deslect options to null value 
+     */
+    deSelect = (item, index) =>{
+        const {change} = this.props;
+
+        this.setState({selectedItem : null})
+        //this.validate([item])
+        this.close();
+
+        change(item);
     }
 
     /**
@@ -329,63 +160,69 @@ class Select extends Component {
      */
     getSelectedClass (index){
         const { mapping} = this.props;
-        const {selectedItems, listValues } = this.state;
-        
-        if (selectedItems.length) {
-            const selectedId = selectedItems[0][mapping.value];
-            if (listValues[index][mapping.value] === selectedId) {
+        const {values, selectedItem } = this.state;
+
+        if (selectedItem) {
+            const selectedId = selectedItem[mapping.value];
+            if (values[index][mapping.value] === selectedId) {
                 return 'selected'
             }
         }
-        return ''
 
+        return ''
     }
+
+    /**
+     * Add null values to options
+     */
+    createNullValue (){
+        const {rtl} = this.props;
+
+        const notSelected = rtl ? 'انتخاب نشده' : 'No Selected';
+        return (
+            <div className="r-options-item" onClick={this.deSelect}>
+                {notSelected}
+            </div>
+        )
+    }
+
 
     /**
      * Render select optionsmulti
      */
     renderOptions (){
-        const {mapping, search , rtl, multi} = this.props;
-        const {listValues ,selectedItems } = this.state;
+        const {mapping, search , rtl, nullable} = this.props;
+        const {values } = this.state;
         let options;
 
-      
-       const selectedClass = !multi
-
         //If options list is empty show "Not Found"
-        if (listValues.length === 0) {
+        if (values.length === 0) {
             const notFoundText = rtl ? 'یافت نشد' : 'Not Found';
             options = (<div className="r-options-item">{notFoundText}</div>)
         }
         else {
-            options = listValues.map((o, i) => {
+            options = values.map((o, i) => {
+                
                 return (
-                    <div key={i} className={`r-options-item ${!multi && this.getSelectedClass(i)}`} onClick={this.select.bind(this,o,i)}>
-                      
-                        {multi && o[mapping.value] !==-99 &&
-                            <Checkbox 
-                                size={'xs'}
-                                justViewMode={true} 
-                                nospace={true} 
-                                rtl={rtl} 
-                                defaultValue={o.selected}
-                            />
-                        }
+                    <div key={i} className={`r-options-item ${this.getSelectedClass(i)}`} onClick={this.select.bind(this,o,i)}>
 
-                        {mapping.icon && !multi &&
+                        {mapping.icon &&
                             <span className="r-option-icon">
-                                {createIcon(getValueByProp(o, mapping.icon))}
+                                {FN.createIcon(FN.getValueByProp(o, mapping.icon))}
                             </span> 
                         }
 
-                        {this.getItemText(o, '-')}
+                        {this.getItemText(o)}
                     </div>
                 )
             })
+            if (nullable) {
+                options.unshift(this.createNullValue())
+            }
         }
         
         return (
-            <div className="r-options" ref={d => {handlePosition(d)}}>
+            <div className="r-options" ref={d => {FN.handlePosition(d)}}>
                 {search && this.renderSearch()}
                 <div className="r-options-items">{options}</div>
             </div>
@@ -400,6 +237,8 @@ class Select extends Component {
      */
     search (e){
         const {mapping} = this.props;
+        const {initialValues} =     * @param {String} seperator is between key and text
+        this.state;
         const value = e.target.value;
 
         //Store search value in state
@@ -407,16 +246,16 @@ class Select extends Component {
 
         //Reset list if input hasnt value
         if(value.length === 0) {
-            this.setState({listValues :this.values})
+            this.setState({listValues :initialValues})
         }
 
         //Search
         const target = value.toLowerCase();
-        const foundValues = this.values.filter(o => {
+        const foundValues = initialValues.filter(o => {
             return o[mapping.text].toLowerCase().indexOf(target)!== -1
         });
 
-        this.setState({listValues : foundValues})
+        this.setState({values : foundValues})
     }
 
     /**
@@ -438,20 +277,13 @@ class Select extends Component {
      * Get list item value
      * 
      * @param {Object} item 
-     * @param {String} seperator is between key and text
      * @returns {String}
      */
-    getItemText (item, seperator = ""){
+    getItemText (item){
         const {mapping, showKey} = this.props;
-
         const text = item[mapping.text];
         const value = item[mapping.value];
-
-        /**
-         * Null item should not show key
-         * Null item is {text : 'No Selected', value : -99}
-         */
-        const key = (showKey && value !== -99) ? `${value} ${seperator}`  : '' ;
+        const key = showKey ? `${value} ${seperator}`  : '' ;
         const itemText = `${key} ${text}`;
 
         return itemText;
@@ -465,37 +297,28 @@ class Select extends Component {
      * @returns {String}
      */
     getInputText (){
-        const {mapping, showKey, notSelectedText, rtl, multi} = this.props;
-        const {selectedItems} = this.state
+        const {mapping, showKey, rtl} = this.props;
+        const {selectedItem} = this.state;
         let inputText = '';
-
-        if (!selectedItems || selectedItems.length === 0) {
-            const notSelected = notSelectedText ? notSelectedText : (rtl ? 'انتخاب نشده' : 'No Selected');
+        
+        if (!selectedItem) {
+            const notSelected = rtl ? 'انتخاب نشده' : 'No Selected';
             return notSelected;
         }
 
-        selectedItems.forEach((o,i) =>{
-            const text = o[mapping.text];
-            const value = o[mapping.value];
-            const seperator = multi && selectedItems.length >1 && i>0 ? ' , ' : '';
-
-            /**
-             * Null item should not show key
-             * Null item is {text : 'No Selected', value : -99}
-             */
-            const key = (showKey && value !== -99) ? `${value}`  : '' ;
-            inputText += `${seperator}${key} ${text}`;
-
-        })
-        
-        return inputText
+        const text = selectedItem[mapping.text];
+        const value = selectedItem[mapping.value];
+        const key = showKey ? `${value}-` : '' ;
+        inputText += `${key} ${text}`;
+      
+        return inputText;
     }
 
     /**
      * Get style
      */
     getSelectClass (){
-        const { mapping, rtl, disabled, outline, multi, className,border} = this.props;
+        const { mapping, rtl, disabled, outline, className} = this.props;
         const { hasError, open} = this.state;
         const validationMode = this.isValidationMode();
 
@@ -506,19 +329,19 @@ class Select extends Component {
             'r-rtl': rtl,
             'r-bordered': outline,
             'r-disabled' : disabled,
-            'r-has-icon' : mapping.icon &&  !multi,
+            'r-has-icon' : mapping.icon ,
             'r-error' :  validationMode && hasError,
         }
 
-        return mapObjectToClassName(names)
+        return FN.mapObjectToClassName(names)
     }
 
     render (){
         const { label, mapping, disabled, multi, style} = this.props;
-        const {errorMessage, hasError,open, selectedItems} = this.state;
+        const {errorMessage, hasError,open, selectedItem} = this.state;
 
         const inputValue = this.getInputText();
-        const renderIcon = mapping.icon ? createIcon(getValueByProp(selectedItems, mapping.icon)) : '';
+        const renderIcon = mapping.icon ? FN.createIcon(FN.getValueByProp(selectedItem, mapping.icon)) : '';
 
         return (
             <Fragment>

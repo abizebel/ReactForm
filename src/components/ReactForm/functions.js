@@ -2,6 +2,24 @@ import React from 'react';
 import $ from 'jquery';
 
 
+/**
+ * Find item by id related to mapping config 
+ * 
+ * @param {Array} list 
+ * @param {Any} id 
+ * @param {Object} mapping 
+ */
+export function findItemById (list, id, mapping) {
+    
+    const selectedItems = list.filter(o => {
+        return String(o[mapping.value]) ===  String(id)
+    });
+
+    return selectedItems;
+}
+
+
+
 
 /**
  * Handle element position when advance from page area

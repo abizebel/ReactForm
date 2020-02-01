@@ -11,7 +11,7 @@ class SelectContainer extends Component {
     return (
       <Fragment>
         
-        <div className="page-content-box" dir="rtl">
+        {/* <div className="page-content-box" dir="rtl">
           <div className="page-content-title">Multi Select</div>
           <Select   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
@@ -183,12 +183,15 @@ class SelectContainer extends Component {
           />
 
 
-        </div>
+        </div> */}
         <div className="page-content-box" >
           <div className="page-content-title"> Select</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
+            search={true}
+            nullable={true}
+            //showKey={true}
             values ={
               [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
               {id:'22',name:'feiz', info:{icon:sampleIcon}},
@@ -198,7 +201,7 @@ class SelectContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-          <Select   change={this.changeSelect.bind(this)}
+          {/* <Select   change={this.changeSelect.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
             defaultValue ={33}
@@ -375,7 +378,7 @@ class SelectContainer extends Component {
               {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
             ]}
             mapping = {{text : 'name', value : 'id'}}
-          />
+          /> */}
 
         </div>
 
@@ -383,7 +386,7 @@ class SelectContainer extends Component {
 
 
 
-        <div className="page-content-box" >
+        {/* <div className="page-content-box" >
           <div className="page-content-title">Select with Search</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
@@ -586,7 +589,7 @@ class SelectContainer extends Component {
             mapping = {{text : 'name', value : 'id'}}
           /> 
 
-        </div>
+        </div> */}
 
      
       </Fragment>
