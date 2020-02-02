@@ -36,7 +36,7 @@ class Select extends Component {
 
     static getDerivedStateFromProps (props, state){
         if (
-            !isEqual(props.values, state.values) ||
+            !isEqual(props.values, state.initialValues) ||
             !isEqual(props.defaultValue, state.initialDefaultValue)
         ){
             const {values, defaultValue , mapping} = props;
@@ -296,7 +296,7 @@ class Select extends Component {
         const {mapping} = this.props;
         const {initialValues} = this.state;
         const value = e.target.value;
-
+        
         //Store search value in state
         this.setState({searchValue : value})
 

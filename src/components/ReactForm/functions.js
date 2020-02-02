@@ -15,7 +15,6 @@ export function getItemIndex (list, obj) {
 
 
 
-
 /**
  * Find item by id related to mapping config 
  * 
@@ -29,9 +28,6 @@ export function findItemById (list, id, mapping) {
 
     return findWhere(list, {[mapping.value] : String(id)} );
 }
-
-
-
 
 /**
  * Handle element position when advance from page area
@@ -73,7 +69,6 @@ export function handlePosition (elementDom) {
 
 }
 
-
 /**
  * Convert object to class name
  * 
@@ -95,7 +90,6 @@ export function mapObjectToClassName (obj){
 
     return str
 }
-
 
 export function createUID (){
     var S4 = function() {

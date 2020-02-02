@@ -2,7 +2,7 @@ import React, {Component,Fragment} from 'react';
 import {Select} from '../components/ReactForm';
 
 class SelectContainer extends Component {
-
+  
   changeSelect (val){
    console.log(val)
   }
