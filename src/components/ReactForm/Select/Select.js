@@ -4,7 +4,7 @@ import Backdrop from '../Backdrop/Backdrop';
 import * as FN from '../functions';
 import icons from '../icons';
 import './Select.scss';
-import { timeout } from 'q';
+import $ from 'jquery';
 
 class Select extends Component {
     constructor(props) {
@@ -12,33 +12,62 @@ class Select extends Component {
         const {values, defaultValue , mapping} = props;
         this.optionsDom = createRef();
         
-        this.selected = FN.findItemById(values, defaultValue, mapping);
         
         this.state = {
             open : false,
             values : values,
             initialValues : values,
+            selectedItem : FN.findItemById(values, defaultValue, mapping),
             // hasError : this.validate(selectedItems).hasError,
             // errorMessage : this.validate(selectedItems).errorMessage,
             searchValue : '',
-            selectedItem : this.selected.length ? this.selected[0] : null,
+            
         }
         
     }
 
     arrowKey = e => {
+        const {values} = this.state;
 
         if (e.keyCode === 13){
-
+            const selectedIndex = $(this.optionsDom.current).find('.selected').attr('data-index')
+            if(selectedIndex) {
+                
+                this.select(values[selectedIndex])
+            }
+            else {
+                this.deSelect()
+            }
         }
 
 
-        if (e.keyCode === 38) {//up
-            
+        if (e.keyCode === 38) {//u
+            let selected = $(this.optionsDom.current).find('.selected');
+            let index =selected.length ? selected.index() : -1;
+
+            if (index > 0) {
+                $(this.optionsDom.current).find('.r-options-item').removeClass('selected')
+                $(this.optionsDom.current).find('.r-options-item').eq([--index]).addClass('selected')
+            }
+   
         }
         else if (e.keyCode === 40 ) {//down 
-           
+            let selected = $(this.optionsDom.current).find('.selected');
+            let index =selected.length ? selected.index() : -1;
+    
+            if (index < $(this.optionsDom.current).find('.r-options-item').length-1) {
+                $(this.optionsDom.current).find('.r-options-item').removeClass('selected')
+                $(this.optionsDom.current).find('.r-options-item').eq([++index]).addClass('selected')
+            }
+
         }
+        
+    }
+
+
+    nextItem (){
+        const {selectedItem, values} = this.state;
+        
         
     }
 
@@ -97,13 +126,8 @@ class Select extends Component {
      * @param {Event} e 
      */
     close  = e =>{
-        const {multi, change} = this.props;
-
         this.setState({open : false});
 
-        if (multi) {
-            change(this.state.selectedItems)
-        }
     }
 
     /**
@@ -125,6 +149,7 @@ class Select extends Component {
     /**
      * 
      * @param {Object} item 
+     * 
      * @description Select a item that user clicked on it 
      */
     select = (item, index) =>{
@@ -142,7 +167,7 @@ class Select extends Component {
      * @param {Object} item 
      * @description Deslect options to null value 
      */
-    deSelect = (item, index) =>{
+    deSelect = (item) =>{
         const {change} = this.props;
 
         this.setState({selectedItem : null})
@@ -202,7 +227,7 @@ class Select extends Component {
             options = values.map((o, i) => {
                 
                 return (
-                    <div key={i} className={`r-options-item ${this.getSelectedClass(i)}`} onClick={this.select.bind(this,o,i)}>
+                    <div key={i} data-index={i} className={`r-options-item ${this.getSelectedClass(i)}`} onClick={this.select.bind(this,o,i)}>
 
                         {mapping.icon &&
                             <span className="r-option-icon">
@@ -222,7 +247,7 @@ class Select extends Component {
         return (
             <div className="r-options" ref={d => {FN.handlePosition(d)}}>
                 {search && this.renderSearch()}
-                <div className="r-options-items">{options}</div>
+                <div className="r-options-items" ref={this.optionsDom}>{options}</div>
             </div>
         )
         
@@ -265,7 +290,7 @@ class Select extends Component {
 
         return (
             <div className="r-options-search">
-                <input value={searchValue} onChange={this.search.bind(this)} placeholder={searchLableText} type="text" />
+                <input  onKeyDown={this.arrowKey} value={searchValue} onChange={this.search.bind(this)} placeholder={searchLableText} type="text" />
             </div>
         )
     }
@@ -334,7 +359,7 @@ class Select extends Component {
     }
 
     render (){
-        const { label, mapping, disabled, multi, style} = this.props;
+        const { label, mapping, disabled, style} = this.props;
         const {errorMessage, hasError,open, selectedItem} = this.state;
 
         const inputValue = this.getInputText();
@@ -357,7 +382,7 @@ class Select extends Component {
 
                     {label && <label>{label}</label>}
 
-                    { !multi && mapping.icon && <span className="r-input-icon">{renderIcon}</span> }
+                    {  mapping.icon && <span className="r-input-icon">{renderIcon}</span> }
 
                     <span onClick={this.open.bind(this)} className="r-icon">{icons.down}</span>     
 
@@ -375,7 +400,6 @@ Select.defaultProps = {
     outline : false,
     disabled : false,
     nullable : false,
-    multi : false,
     style : {},
     
 }

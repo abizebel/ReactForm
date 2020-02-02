@@ -1,6 +1,20 @@
 import React from 'react';
 import $ from 'jquery';
 
+import {findWhere, findIndex} from 'underscore'
+
+/**
+ * Find object index in a array
+ * 
+ * @param {Array} list 
+ * @param {Object} obj 
+ */
+export function getItemIndex (list, obj) {
+    return findIndex(list, obj);
+}
+
+
+
 
 /**
  * Find item by id related to mapping config 
@@ -10,12 +24,12 @@ import $ from 'jquery';
  * @param {Object} mapping 
  */
 export function findItemById (list, id, mapping) {
-    
-    const selectedItems = list.filter(o => {
-        return String(o[mapping.value]) ===  String(id)
+
+    const result = findWhere(list, {
+        [mapping.value] : String(id)
     });
 
-    return selectedItems;
+    return result.length ? result : null;
 }
 
 
