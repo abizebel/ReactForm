@@ -11,15 +11,17 @@ class Select extends Component {
         super(props);
         const {values, defaultValue , mapping} = props;
         this.optionsDom = createRef();
-        
-        
+        this.searchDom = createRef();
+        this.selected = FN.findItemById(values, defaultValue, mapping)
+
+
         this.state = {
             open : false,
             values : values,
             initialValues : values,
-            selectedItem : FN.findItemById(values, defaultValue, mapping),
-            // hasError : this.validate(selectedItems).hasError,
-            // errorMessage : this.validate(selectedItems).errorMessage,
+            selectedItem : this.selected,
+            hasError : this.validate(this.selected).hasError,
+            errorMessage : this.validate(this.selected).errorMessage,
             searchValue : '',
             
         }
@@ -27,9 +29,10 @@ class Select extends Component {
     }
 
     arrowKey = e => {
-        const {values} = this.state;
+        const {values, open} = this.state;
+        const {search} = this.props;
 
-        if (e.keyCode === 13){
+        if (e.keyCode === 13 && open){
             const selectedIndex = $(this.optionsDom.current).find('.selected').attr('data-index')
             if(selectedIndex) {
                 
@@ -39,15 +42,23 @@ class Select extends Component {
                 this.deSelect()
             }
         }
+        else if (e.keyCode === 13 && !open) {
+            this.open()
+        }
 
 
-        if (e.keyCode === 38) {//u
+        if (e.keyCode === 38) {//up
             let selected = $(this.optionsDom.current).find('.selected');
             let index =selected.length ? selected.index() : -1;
 
             if (index > 0) {
                 $(this.optionsDom.current).find('.r-options-item').removeClass('selected')
                 $(this.optionsDom.current).find('.r-options-item').eq([--index]).addClass('selected')
+            }
+            else {
+                if (search) {
+                    $(this.searchDom.current).focus().select()
+                }
             }
    
         }
@@ -65,12 +76,6 @@ class Select extends Component {
     }
 
 
-    nextItem (){
-        const {selectedItem, values} = this.state;
-        
-        
-    }
-
     /**
      * Detect validation mode
      */
@@ -84,7 +89,7 @@ class Select extends Component {
     /**
      * Check if select has error or not depends on our configs
      */
-    validate (selectedItems = []){
+    validate (selectedItem){
         const {serverError, required} = this.props;
         let hasError = false;
         let errorMessage = '';
@@ -95,7 +100,7 @@ class Select extends Component {
             hasError = true;
             errorMessage = serverError.message;
         }
-        else if(!serverError && required && selectedItems.length === 0){
+        else if(!serverError && required && !selectedItem){
             hasError = true;
             errorMessage = required;
         }
@@ -107,7 +112,7 @@ class Select extends Component {
  
     /**
      * Open options
-     * 
+     * ip
      * @param {Event} e 
      */
     open (e){
@@ -133,7 +138,7 @@ class Select extends Component {
     /**
      * Open options
      * 
-     * @param {Event} e 
+     * @param {Event} e ip
      */
     toggle (e){
         const {disabled} = this.props;
@@ -156,7 +161,7 @@ class Select extends Component {
         const {change} = this.props;
 
         this.setState({selectedItem : item})
-        this.validate([item])
+        this.validate(item)
         this.close();
 
         change(item);
@@ -171,7 +176,7 @@ class Select extends Component {
         const {change} = this.props;
 
         this.setState({selectedItem : null})
-        //this.validate([item])
+        this.validate(null)
         this.close();
 
         change(item);
@@ -290,7 +295,7 @@ class Select extends Component {
 
         return (
             <div className="r-options-search">
-                <input  onKeyDown={this.arrowKey} value={searchValue} onChange={this.search.bind(this)} placeholder={searchLableText} type="text" />
+                <input ref={this.searchDom} onKeyDown={this.arrowKey} value={searchValue} onChange={this.search.bind(this)} placeholder={searchLableText} type="text" />
             </div>
         )
     }
