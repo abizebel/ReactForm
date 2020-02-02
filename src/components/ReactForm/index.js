@@ -1,5 +1,7 @@
 import Input from './Input/Input';
 import Select from './Select/Select';
+import MultiSelect from './MultiSelect/MultiSelect';
+
 import Autocomplete from './Autocomplete/Autocomplete';
 import Tag from './Tag/Tag';
 import Checkbox from './Checkbox/Checkbox';
@@ -15,6 +17,7 @@ import Table from './Table/Table';
 export {
     Input,
     Select,
+    MultiSelect,
     Autocomplete,
     Tag,
     Checkbox,

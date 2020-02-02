@@ -4,7 +4,7 @@
 /************************
 * SELECT
 ************************/
-.r-select {
+.r-multiselect {
     cursor: pointer;
     direction: ltr;
     text-align: left;
@@ -41,7 +41,7 @@
 /************************
 * RTL SELECT
 ************************/
-.r-select.r-rtl {
+.r-multiselect.r-rtl {
   direction: rtl;
   text-align: right;
   > input{

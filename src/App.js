@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import ButtonContainer from './containers/buttonContainerjs'
-import CheckboxContainer from './containers/checkboxContainer'
-import InputContainer from './containers/inputContainer'
-import SelectContainer from './containers/selectContainer'
-import AutocompleteContainer from './containers/autocompleteContainer'
-import TagContainer from './containers/tagContainer'
-import ModalContainer from './containers/modalContainer'
+import ButtonContainer from './containers/buttonContainerjs';
+import CheckboxContainer from './containers/checkboxContainer';
+import InputContainer from './containers/inputContainer';
+import SelectContainer from './containers/selectContainer';
+import MultiSelectContainer from './containers/multiSelectContainer';
+
+import AutocompleteContainer from './containers/autocompleteContainer';
+import TagContainer from './containers/tagContainer';
+import ModalContainer from './containers/modalContainer';
 import ToggleContainer from './containers/toggleContainer';
 import TabContainer from './containers/tabContainer';
 import CalendarContainer from './containers/calendarContainer';
@@ -26,6 +28,7 @@ class App extends Component {
               <li><Link to="/checkbox/">Checkbox</Link></li>
               <li><Link to="/input/">Input</Link></li>
               <li><Link to="/select/">Select</Link></li>
+              <li><Link to="/multiselect/">MultiSelect</Link></li>
               <li><Link to="/autocomplete/">Autocomplete</Link> </li>
               <li><Link to="/tag/">Tag</Link> </li>
               <li><Link to="/modal/">Modal</Link> </li>
@@ -45,6 +48,7 @@ class App extends Component {
           <Route path="/checkbox/" component={CheckboxContainer} />
           <Route path="/input/" component={InputContainer} />
           <Route path="/select/" component={SelectContainer} />
+          <Route path="/multiselect/" component={MultiSelectContainer} />
           <Route path="/autocomplete/" component={AutocompleteContainer} />
           <Route path="/tag/" component={TagContainer} />
           <Route path="/modal/" component={ModalContainer} />

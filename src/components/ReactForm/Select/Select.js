@@ -5,6 +5,8 @@ import * as FN from '../functions';
 import icons from '../icons';
 import './Select.scss';
 import $ from 'jquery';
+import {isEqual} from 'underscore'
+
 
 class Select extends Component {
     constructor(props) {
@@ -12,6 +14,7 @@ class Select extends Component {
         const {values, defaultValue , mapping} = props;
         this.optionsDom = createRef();
         this.searchDom = createRef();
+        debugger
         this.selected = FN.findItemById(values, defaultValue, mapping)
 
 
@@ -19,13 +22,39 @@ class Select extends Component {
             open : false,
             values : values,
             initialValues : values,
+            initialDefaultValue: defaultValue, 
             selectedItem : this.selected,
             hasError : this.validate(this.selected).hasError,
             errorMessage : this.validate(this.selected).errorMessage,
             searchValue : '',
+            validate : this.validate.bind(this)
             
         }
         
+    }
+
+
+    static getDerivedStateFromProps (props, state){
+        if (
+            !isEqual(props.values, state.values) ||
+            !isEqual(props.defaultValue, state.initialDefaultValue)
+        ){
+            const {values, defaultValue , mapping} = props;
+            let selected = FN.findItemById(values, defaultValue, mapping)
+            return {
+                values : values,
+                initialValues : values,
+                initialDefaultValue: defaultValue, 
+                selectedItem : selected,
+                hasError : state.validate(selected).hasError,
+                errorMessage : state.validate(selected).errorMessage,
+            }
+        
+
+        }
+        return null
+
+      
     }
 
     arrowKey = e => {

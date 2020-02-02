@@ -27,9 +27,7 @@ export function findItemById (list, id, mapping) {
 
     if (!id) return null;
 
-    const result = findWhere(list, {[mapping.value] : String(id)} );
-
-    return result.length ? result : null;
+    return findWhere(list, {[mapping.value] : String(id)} );
 }
 
 
@@ -118,7 +116,7 @@ export function createIcon (icon){
 
 export function getValueByProp(arr, field) {
     if(!arr) return '';
-    
+
     let obj =!Array.isArray(arr) || arr.length === 0 ? arr: arr[0] ;
     if (Array.isArray(field)) { field = field[obj.level]; }
     field = field.split('.');

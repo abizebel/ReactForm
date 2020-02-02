@@ -3,9 +3,9 @@ import Checkbox from '../Checkbox/Checkbox';
 import Backdrop from '../Backdrop/Backdrop';
 import {getValueByProp, createIcon, mapObjectToClassName, handlePosition} from '../functions';
 import icons from '../icons';
-import './Select.scss';
+import './MultiSelect.scss';
 
-class Select extends Component {
+class MultiSelect extends Component {
     constructor(props) {
         super(props);
         const {values , defaultValue} = this.props;
@@ -502,7 +502,7 @@ class Select extends Component {
         let names =  {
             [className] : className ? true : false,
             'active' :open, 
-            'r-select r-noselect r-input filled' : true,
+            'r-multiselect r-noselect r-input filled' : true,
             'r-rtl': rtl,
             'r-bordered': outline,
             'r-disabled' : disabled,
@@ -550,7 +550,7 @@ class Select extends Component {
     }
 }
 
-Select.defaultProps = {
+MultiSelect.defaultProps = {
     rtl : false,
     outline : false,
     disabled : false,
@@ -560,4 +560,4 @@ Select.defaultProps = {
     
 }
 
-export default Select
+export default MultiSelect
