@@ -58,27 +58,27 @@ class MultiSelect extends Component {
     }
 
 
-    static getDerivedStateFromProps (props, state) {
-        if (
-            !_.isEqual(props.values, state.initialValues) ||
-            !_.isEqual(props.defaultValue, state.initialDefaultValue)
-        )
-        {
-            const {values ,mapping, defaultValue} = props;     
-            let finalValues = addSelectedProp(values, mapping, defaultValue);
-            let selectedItems = getSelectedItems(finalValues);
+    // static getDerivedStateFromProps (props, state) {
+    //     if (
+    //         !_.isEqual(props.values, state.initialValues) ||
+    //         !_.isEqual(props.defaultValue, state.initialDefaultValue)
+    //     )
+    //     {
+    //         const {values ,mapping, defaultValue} = props;     
+    //         let finalValues = addSelectedProp(values, mapping, defaultValue);
+    //         let selectedItems = getSelectedItems(finalValues);
 
-            return {
-                values :finalValues ,
-                selectedItems ,
-                initilaValues : values,
-                initialDefaultValue : defaultValue,
-            }
+    //         return {
+    //             values :finalValues ,
+    //             selectedItems ,
+    //             initilaValues : values,
+    //             initialDefaultValue : defaultValue,
+    //         }
 
-        }
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
     /**
      * Detect validation mode
@@ -203,7 +203,7 @@ class MultiSelect extends Component {
 
         const notSelected = rtl ? 'انتخاب نشده' : 'No Selected';
         return (
-            <div className="r-options-item" onClick={this.deselectOptions}>
+            <div key="null" className="r-options-item" onClick={this.deselectOptions}>
                 {notSelected}
             </div>
         )

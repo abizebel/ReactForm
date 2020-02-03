@@ -33,28 +33,28 @@ class Select extends Component {
     }
 
 
-    static getDerivedStateFromProps (props, state){
-        if (
-            !isEqual(props.values, state.initialValues) ||
-            !isEqual(props.defaultValue, state.initialDefaultValue)
-        ){
-            const {values, defaultValue , mapping} = props;
-            let selected = FN.findItemById(values, defaultValue, mapping)
-            return {
-                values : values,
-                initialValues : values,
-                initialDefaultValue: defaultValue, 
-                selectedItem : selected,
-                // hasError : state.validate(selected).hasError,
-                // errorMessage : state.validate(selected).errorMessage,
-            }
+    // static getDerivedStateFromProps (props, state){
+    //     if (
+    //         !isEqual(props.values, state.initialValues) ||
+    //         !isEqual(props.defaultValue, state.initialDefaultValue)
+    //     ){
+    //         const {values, defaultValue , mapping} = props;
+    //         let selected = FN.findItemById(values, defaultValue, mapping)
+    //         return {
+    //             values : values,
+    //             initialValues : values,
+    //             initialDefaultValue: defaultValue, 
+    //             selectedItem : selected,
+    //             // hasError : state.validate(selected).hasError,
+    //             // errorMessage : state.validate(selected).errorMessage,
+    //         }
         
 
-        }
-        return null
+    //     }
+    //     return null
 
       
-    }
+    // }
 
     arrowKey = e => {
         const {values, open} = this.state;
@@ -236,7 +236,7 @@ class Select extends Component {
 
         const notSelected = rtl ? 'انتخاب نشده' : 'No Selected';
         return (
-            <div className="r-options-item" onClick={this.deSelect}>
+            <div key={null} className="r-options-item" onClick={this.deSelect}>
                 {notSelected}
             </div>
         )
