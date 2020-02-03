@@ -10,7 +10,7 @@ class Cell extends Component {
         const {row, rowIndex, col, editMode} = this.props;
         const {changeCell} = this.context;
         const value = row[col.field];
-
+        
         if (editMode) {
             return (
                 <Select

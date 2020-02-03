@@ -48,7 +48,6 @@ class MultiSelect extends Component {
             values :finalValues ,
             selectedItems ,
             initilaValues : values,
-            initialDefaultValue : defaultValue,
             // hasError : this.validate(selectedItems).hasError,
             // errorMessage : this.validate(selectedItems).errorMessage,
             searchValue : '',
@@ -58,27 +57,26 @@ class MultiSelect extends Component {
     }
 
 
-    // static getDerivedStateFromProps (props, state) {
-    //     if (
-    //         !_.isEqual(props.values, state.initialValues) ||
-    //         !_.isEqual(props.defaultValue, state.initialDefaultValue)
-    //     )
-    //     {
-    //         const {values ,mapping, defaultValue} = props;     
-    //         let finalValues = addSelectedProp(values, mapping, defaultValue);
-    //         let selectedItems = getSelectedItems(finalValues);
+    static getDerivedStateFromProps (props, state) {
+        if (
+            !_.isEqual(props.values, state.initialValues) 
+        )
+        {
+            const {values ,mapping, defaultValue} = props;     
+            let finalValues = addSelectedProp(values, mapping, defaultValue);
+            let selectedItems = getSelectedItems(finalValues);
 
-    //         return {
-    //             values :finalValues ,
-    //             selectedItems ,
-    //             initilaValues : values,
-    //             initialDefaultValue : defaultValue,
-    //         }
+            return {
+                values :finalValues ,
+                selectedItems ,
+                initilaValues : values,
+                initialDefaultValue : defaultValue,
+            }
 
-    //     }
+        }
 
-    //     return null;
-    // }
+        return null;
+    }
 
     /**
      * Detect validation mode

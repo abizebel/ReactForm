@@ -21,7 +21,6 @@ class Select extends Component {
             open : false,
             values : values,
             initialValues : values,
-            initialDefaultValue: defaultValue, 
             selectedItem : this.selected,
             // hasError : this.validate(this.selected).hasError,
             // errorMessage : this.validate(this.selected).errorMessage,
@@ -33,28 +32,29 @@ class Select extends Component {
     }
 
 
-    // static getDerivedStateFromProps (props, state){
-    //     if (
-    //         !isEqual(props.values, state.initialValues) ||
-    //         !isEqual(props.defaultValue, state.initialDefaultValue)
-    //     ){
-    //         const {values, defaultValue , mapping} = props;
-    //         let selected = FN.findItemById(values, defaultValue, mapping)
-    //         return {
-    //             values : values,
-    //             initialValues : values,
-    //             initialDefaultValue: defaultValue, 
-    //             selectedItem : selected,
-    //             // hasError : state.validate(selected).hasError,
-    //             // errorMessage : state.validate(selected).errorMessage,
-    //         }
+    static getDerivedStateFromProps (props, state){
+        console.log(props)
+        console.log(state)
+        if (
+            !isEqual(props.values, state.initialValues)
+        ){
+            const {values, defaultValue , mapping} = props;
+            let selected = FN.findItemById(values, defaultValue, mapping)
+            return {
+                values : values,
+                initialValues : values,
+                initialDefaultValue: defaultValue, 
+                selectedItem : selected,
+                // hasError : state.validate(selected).hasError,
+                // errorMessage : state.validate(selected).errorMessage,
+            }
         
 
-    //     }
-    //     return null
+        }
+        return null
 
       
-    // }
+    }
 
     arrowKey = e => {
         const {values, open} = this.state;
