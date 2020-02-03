@@ -1,57 +1,84 @@
 import React, {Component, Fragment, createRef} from 'react';
 import Checkbox from '../Checkbox/Checkbox';
 import Backdrop from '../Backdrop/Backdrop';
-import {getValueByProp, createIcon, mapObjectToClassName, handlePosition} from '../functions';
+import * as FN from '../functions';
 import icons from '../icons';
 import './MultiSelect.scss';
-import {isEqual} from 'underscore'
+import * as _ from 'underscore'
+
+
+/**
+ * 
+ * @param {Array} arr 
+ * @param {Object} mapping 
+ * @param {Array} ids 
+ */
+
+function addSelectedProp (arr, mapping, ids){
+
+    for (var i=0; i< arr.length; i++) {
+        let id = Number(arr[i][mapping.value]);
+        if (ids.indexOf(id) !== -1) {
+            arr[i].selected = true;
+        }
+        else {
+            arr[i].selected = false;
+        }
+    }
+
+    return arr
+}
+
+
+function getSelectedItems (arr){
+    return arr.filter(o => o.selected === true)
+}
 
 class MultiSelect extends Component {
     constructor(props) {
         super(props);
-        const {values , defaultValue} = this.props;
+        const {values ,mapping, defaultValue} = this.props;
         this.optionsDom = createRef();
-        this.selectedIds = defaultValue || [];
-        const selectedItems =  this.getSelectedItems (this.selectedIds)
         
+        let finalValues = addSelectedProp(values, mapping, defaultValue);
+        let selectedItems = getSelectedItems(finalValues);
+
         this.state = {
             open : false,
-            selectedItems :selectedItems,
-            values : values,
+            values :finalValues ,
+            selectedItems ,
             initilaValues : values,
             initialDefaultValue : defaultValue,
             // hasError : this.validate(selectedItems).hasError,
             // errorMessage : this.validate(selectedItems).errorMessage,
             searchValue : '',
-            getSelectedItems : this.getSelectedItems.bind(this),
-            validate : this.validate.bind(this)
+            //validate : this.validate.bind(this)
         }
         
     }
 
 
+    static getDerivedStateFromProps (props, state) {
+        if (
+            !_.isEqual(props.values, state.initialValues) ||
+            !_.isEqual(props.defaultValue, state.initialDefaultValue)
+        )
+        {
+            const {values ,mapping, defaultValue} = props;     
+            let finalValues = addSelectedProp(values, mapping, defaultValue);
+            let selectedItems = getSelectedItems(finalValues);
 
-    // static getDerivedStateFromProps (props, state) {
+            return {
+                values :finalValues ,
+                selectedItems ,
+                initilaValues : values,
+                initialDefaultValue : defaultValue,
+            }
 
-    //     if (
-    //         !isEqual(props.values, state.initialValues) ||
-    //         !isEqual(props.defaultValue, state.initialDefaultValue)
-    //     ){
-    //         const {values , defaultValue} = props;
-    //         let selectedIds = defaultValue || [];
-    //         const selectedItems =  state.getSelectedItems (selectedIds);
+        }
 
-    //         return {
-    //             selectedItems :selectedItems,
-    //             values : values,
-    //             initilaValues : values,
-    //             initialDefaultValue : defaultValue,
-    //             // hasError : state.validate(selectedItems).hasError,
-    //             // errorMessage : state.validate(selectedItems).errorMessage,
-    //         }
-    //     }
-    //     return null
-    // }
+        return null;
+    }
 
     /**
      * Detect validation mode
@@ -88,25 +115,6 @@ class MultiSelect extends Component {
         return {hasError, errorMessage}
     }
 
-
-
-    /**
-     * 
-
-     * @param {Number} id 
-     * @description Find selected value by id for single select
-     */
-    getSelectedItems (id){
-        const {mapping, values} = this.props;
-
-        const selectedItems = values.filter(o => {
-            return id.indexOf(Number(o[mapping.value])) !== -1
-
-        });
-
-        return selectedItems;
-    }
-    
 
     /**
      * Open options
@@ -154,149 +162,58 @@ class MultiSelect extends Component {
     }
 
     /**
-     * Preventing add duplicate item to selected list
-     * 
-     * @param {Object} item
-     * @returns {Boolean}
-     */
-    isExist (item){
-
-        const {mapping} = this.props;
-        const {selectedItems} = this.state;
-
-        for (var i=0 ; i< selectedItems.length ; i++) {
-            if(selectedItems[i][mapping.value] === item[mapping.value]) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Find item index in selected list
-     * 
-     * @param {Object} item
-     * @returns {Boolean}
-     */
-    findSelectedIndex (item){
-        const {mapping} = this.props;
-        const {selectedItems} = this.state;
-
-        for (var i=0 ; i< selectedItems.length ; i++) {
-            if(selectedItems[i][mapping.value] === item[mapping.value]) {
-                return i;
-            }
-        }
-
-    }
-
-    /**
-     * Find item index in list values
-     * 
-     * @param {Object} item
-     * @returns {Boolean}
-     */
-    findListIndex (item){
-        const {mapping} = this.props;
-        const {values} = this.state;
-
-        for (var i=0 ; i< values.length ; i++) {
-            if(values[i][mapping.value] === item[mapping.value]) {
-                return i;
-            }
-        }
-
-    }
-
-    /**
-     * Toggle select in multiselect mode 
+     * Toggle select optionss
      * 
      * @param {Object} item 
      */
-    toggleSelect (item){
-      
-        
-        this.setState(prevState => {
-            
-            if(this.isExist(item)) {
-                const itemIndex = this.findSelectedIndex(item);
-                prevState.selectedItems.splice(itemIndex, 1 )
-            }
-            else {
-                prevState.selectedItems.push(item);
-            }
-            
-            this.validate(prevState.selectedItems)
-          //  change(prevState.selectedItems)
+    toggleSelect = (item ,index) =>{
+        let values = Array.from(this.state.values);
+        values[index].selected = !values[index].selected;
 
-            return {
-                selectedItems : prevState.selectedItems
-            }
-        });
-        
-    }
+        let selectedItems = getSelectedItems(values);
 
-    /**
-     * Toggle options iwth index
-     * 
-     * @param {Number} index 
-     */
-    toggleOptions (index){
-        this.setState(prevState => {
-
-            prevState.values[index].selected = !prevState.values[index].selected;
-            return {
-                values : prevState.values
-            }
+        this.setState({
+            selectedItems,
+            values ,
         })
     }
+
 
     /**
      * Deselect all options
      */
-    deselectOptions (){
-        this.setState(prevState => {
-            prevState.values.forEach(o => (o.selected = false))
-            return {
-                values : prevState.values
-            }
+    deselectOptions =() =>{
+        let values = Array.from(this.state.values);
+        values.forEach(o => (o.selected = false));
+
+        let selectedItems = getSelectedItems(values);
+
+        this.setState({
+            selectedItems,
+            values ,
         })
+        
     }
 
     /**
-     * 
-     * @param {Object} item 
-     * @description Select a item that user clicked on it 
+     * Add null values to options
      */
-    select = (item, index) =>{
-        const {change, mapping} = this.props;
-        /**
-         * If user had selected "no item" send Null otherwise send selected object
-         * Null item is {text : 'No Selected', value : -99}
-         */
-        // if (item[mapping.value] === -99) {
-        //     this.deselectOptions()
-        //     this.setState({selectedItems : []});
-        //     this.setState({open:false});
-        //     this.validate([]);
-        //     change(null);
-        //     return;
-        // }
-        
+    createNullValue (){
+        const {rtl} = this.props;
 
-        this.toggleOptions(index);
-        this.toggleSelect(item) ;
-    
-
- 
+        const notSelected = rtl ? 'انتخاب نشده' : 'No Selected';
+        return (
+            <div className="r-options-item" onClick={this.deselectOptions}>
+                {notSelected}
+            </div>
+        )
     }
 
     /**
      * Render select optionsmulti
      */
     renderOptions (){
-        const {mapping, search , rtl} = this.props;
+        const {mapping, search , rtl, nullable} = this.props;
         const {values  } = this.state;
         let options;
 
@@ -308,7 +225,7 @@ class MultiSelect extends Component {
         else {
             options = values.map((o, i) => {
                 return (
-                    <div key={i} className="r-options-item" onClick={this.select.bind(this,o,i)}>
+                    <div key={i} className="r-options-item" onClick={this.toggleSelect.bind(this,o,i)}>
                       
                         {
                             <Checkbox 
@@ -322,7 +239,7 @@ class MultiSelect extends Component {
 
                         {   mapping.icon &&
                             <span className="r-option-icon">
-                                {createIcon(getValueByProp(o, mapping.icon))}
+                                {FN.createIcon(FN.getValueByProp(o, mapping.icon))}
                             </span> 
                         }
 
@@ -330,10 +247,13 @@ class MultiSelect extends Component {
                     </div>
                 )
             })
+            if (nullable) {
+                options.unshift(this.createNullValue())
+            }
         }
         
         return (
-            <div className="r-options" ref={d => {handlePosition(d)}}>
+            <div className="r-options" ref={d => {FN.handlePosition(d)}}>
                 {search && this.renderSearch()}
                 <div className="r-options-items">{options}</div>
             </div>
@@ -416,7 +336,7 @@ class MultiSelect extends Component {
 
         if (!selectedItems || selectedItems.length === 0) {
             const notSelected = rtl ? 'انتخاب نشده' : 'No Selected';
-            return notSelected;
+            return notSelected;      
         }
 
         selectedItems.forEach((o,i) =>{
@@ -450,7 +370,7 @@ class MultiSelect extends Component {
             'r-error' :  validationMode && hasError,
         }
 
-        return mapObjectToClassName(names)
+        return FN.mapObjectToClassName(names)
     }
 
     render (){
@@ -458,7 +378,7 @@ class MultiSelect extends Component {
         const {errorMessage, hasError,open, selectedItems} = this.state;
 
         const inputValue = this.getInputText();
-        const renderIcon = mapping.icon ? createIcon(getValueByProp(selectedItems, mapping.icon)) : '';
+        const renderIcon = mapping.icon ? FN.createIcon(FN.getValueByProp(selectedItems, mapping.icon)) : '';
 
         return (
             <Fragment>
@@ -496,6 +416,7 @@ MultiSelect.defaultProps = {
     disabled : false,
     nullable : false,
     style : {},
+    defaultValue : [],
     
 }
 

@@ -14,7 +14,6 @@ class Select extends Component {
         const {values, defaultValue , mapping} = props;
         this.optionsDom = createRef();
         this.searchDom = createRef();
-        debugger
         this.selected = FN.findItemById(values, defaultValue, mapping)
 
 
@@ -24,8 +23,8 @@ class Select extends Component {
             initialValues : values,
             initialDefaultValue: defaultValue, 
             selectedItem : this.selected,
-            hasError : this.validate(this.selected).hasError,
-            errorMessage : this.validate(this.selected).errorMessage,
+            // hasError : this.validate(this.selected).hasError,
+            // errorMessage : this.validate(this.selected).errorMessage,
             searchValue : '',
             validate : this.validate.bind(this)
             
@@ -46,8 +45,8 @@ class Select extends Component {
                 initialValues : values,
                 initialDefaultValue: defaultValue, 
                 selectedItem : selected,
-                hasError : state.validate(selected).hasError,
-                errorMessage : state.validate(selected).errorMessage,
+                // hasError : state.validate(selected).hasError,
+                // errorMessage : state.validate(selected).errorMessage,
             }
         
 

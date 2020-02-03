@@ -1,8 +1,13 @@
 import React, {Component,Fragment} from 'react';
 import {MultiSelect} from '../components/ReactForm';
 
-class MultiSelectContainer extends Component {
 
+
+
+
+
+class MultiSelectContainer extends Component {
+  
   changeSelect (val){
    console.log(val)
   }
@@ -15,7 +20,7 @@ class MultiSelectContainer extends Component {
           <MultiSelect   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
             defaultValue ={[11]}
-            multi={true}
+            
             nullable={true}
             search = {true}
             values ={
@@ -34,7 +39,7 @@ class MultiSelectContainer extends Component {
           <MultiSelect  change={this.changeSelect.bind(this)}       
             label={'نام خانوادگی'}            
             defaultValue ={[11,22,33]}
-            multi={true}
+            
             rtl={true}
             nullable={true}
             search = {true}
@@ -56,7 +61,7 @@ class MultiSelectContainer extends Component {
           <MultiSelect   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
             defaultValue ={[11,22,33]}
-            multi={true}
+            
             outline={true}
             nullable={true}
             search = {true}
@@ -77,7 +82,7 @@ class MultiSelectContainer extends Component {
           <MultiSelect   change={this.changeSelect.bind(this)}       
             label={'نام خانوادگی'}            
             defaultValue ={[11,22,33]}
-            multi={true}
+            
             rtl={true}
             outline={true}
 
@@ -101,7 +106,7 @@ class MultiSelectContainer extends Component {
           <MultiSelect   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
             required={'This filed is required'}
-            multi={true}
+            
             nullable={true}
             search = {true}
             searchLabel = {'Search ... '}
@@ -121,7 +126,7 @@ class MultiSelectContainer extends Component {
           <MultiSelect   change={this.changeSelect.bind(this)}       
             label={'نام خانوادگی'}            
             required={'پر کردن این فیلد الزامیست'}
-            multi={true}
+            
             rtl={true}
             nullable={true}
             search = {true}
@@ -143,7 +148,7 @@ class MultiSelectContainer extends Component {
           <MultiSelect   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
             required={'This filed is required'}
-            multi={true}
+            
             nullable={true}
             search = {true}
             outline={true}
@@ -165,7 +170,7 @@ class MultiSelectContainer extends Component {
           <MultiSelect   change={this.changeSelect.bind(this)}       
             label={'نام خانوادگی'}            
             required={'پر کردن این فیلد الزامیست'}
-            multi={true}
+            
             rtl={true}
             outline={true}
             nullable={true}

@@ -11,9 +11,7 @@ class SelectContainer extends Component {
     return (
       <Fragment>
         
-        
-        
-        
+   
         <div className="page-content-box" >
           <div className="page-content-title"> Select</div>
           <Select   change={this.changeSelect.bind(this)}
@@ -28,7 +26,7 @@ class SelectContainer extends Component {
             ]}
             mapping = {{text : 'name', value : 'id'}}
           />
-           <Select   change={this.changeSelect.bind(this)}
+          <Select   change={this.changeSelect.bind(this)}
             rtl={true}
             label={'نام خانوادگی'}
             defaultValue ={33}
@@ -43,9 +41,8 @@ class SelectContainer extends Component {
           />
 
         </div>
-         
         <div className="page-content-box" >
-         <div className="page-content-title">Outlined Select</div>
+          <div className="page-content-title">Outlined Select</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
@@ -75,8 +72,349 @@ class SelectContainer extends Component {
           />
 
         </div>
-    
-     
+
+        <div className="page-content-box" >
+          <div className="page-content-title">Required Select</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            required={'This field is required'}
+            nullable={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            label={'نام خانوادگی'}
+            required={'پر کردن این فیلد الزامیست'}
+            nullable={true}
+
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Required Select</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            required={'This field is required'}
+            outline={true}
+            nullable={true}
+
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            label={'نام خانوادگی'}
+            required={'پر کردن این فیلد الزامیست'}
+            outline={true}
+            nullable={true}
+
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Select with Id</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            showKey ={true}
+            
+            defaultValue ={33}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            showKey ={true}
+            label={'نام خانوادگی'}
+            defaultValue ={33}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+
+        <div className="page-content-box" >
+          <div className="page-content-title">Outlined Select with Id</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            showKey ={true}
+            defaultValue ={33}
+            outline={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            outline={true}
+            showKey ={true}
+            label={'نام خانوادگی'}
+            defaultValue ={33}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+
+
+
+
+
+        <div className="page-content-box" >
+          <div className="page-content-title">Select with Search</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            defaultValue ={33}
+            search = {true}
+            searchLabel = {'search your item'}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            label={'نام خانوادگی'}
+            defaultValue ={33}
+            search = {true}
+            searchLabel = {'آیتم مورد نظرتان را جستجو کنید'}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+
+        <div className="page-content-box" >
+          <div className="page-content-title">Outlined Select with Search</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            defaultValue ={33}
+            outline={true}
+            search = {true}
+            searchLabel = {'search your item'}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            outline={true}
+            label={'نام خانوادگی'}
+            defaultValue ={33}
+            search = {true}
+            searchLabel = {'آیتم مورد نظرتان را جستجو کنید'}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Select with Icon</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            defaultValue ={33}
+            search = {true}
+            nullable={true}
+            searchLabel = {'search your item'}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:'mdi mdi-account'}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            label={'نام خانوادگی'}
+            defaultValue ={33}
+            search = {true}
+            searchLabel = {'آیتم مورد نظرتان را جستجو کنید'}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+
+        </div>
+
+        <div className="page-content-box" >
+          <div className="page-content-title">Outlined Select with Icon</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            defaultValue ={33}
+            search = {true}
+            searchLabel = {'search your item'}
+            outline={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            outline={true}
+            label={'نام خانوادگی'}
+
+            defaultValue ={33}
+            search = {true}
+            searchLabel = {'آیتم مورد نظرتان را جستجو کنید'}            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id',icon:'info.icon'}}
+          />
+
+        </div>
+        <div className="page-content-box" >
+          <div className="page-content-title">Disabled Select</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            defaultValue ={33}
+            disabled={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            label={'Last Name'}
+            defaultValue ={33}
+            disabled={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+
+        </div>
+
+        <div className="page-content-box" >
+          <div className="page-content-title">Disabled Outlined Select</div>
+          <Select   change={this.changeSelect.bind(this)}
+            label={'Last Name'}
+            defaultValue ={33}
+            outline={true}
+            disabled={true}
+            values ={
+              [{id:'11',name:'Hosseini' , info:{icon:sampleIcon}},
+              {id:'22',name:'feiz', info:{icon:sampleIcon}},
+              {id:'33',name:'mohammadi', info:{icon:sampleIcon}},
+              {id:'44',name:'khosravi', info:{icon:sampleIcon}},
+              {id:'55',name:'ranjbar', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          />
+          <Select   change={this.changeSelect.bind(this)}
+            rtl={true}
+            outline={true}
+            label={'نام خانوادگی'}
+            defaultValue ={33}
+            disabled={true}
+            values ={
+              [{id:'11',name:'حسینی' , info:{icon:sampleIcon}},
+              {id:'22',name:'فیض', info:{icon:sampleIcon}},
+              {id:'33',name:'محمدی', info:{icon:sampleIcon}},
+              {id:'44',name:'خسروی', info:{icon:sampleIcon}},
+              {id:'55',name:'رنجبر', info:{icon:sampleIcon}}
+            ]}
+            mapping = {{text : 'name', value : 'id'}}
+          /> 
+
+        </div>
 
 
 
