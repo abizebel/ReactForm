@@ -1,10 +1,11 @@
 import React, {Component, Fragment, createRef} from 'react';
 import Checkbox from '../Checkbox/Checkbox';
-import Backdrop from '../Backdrop/Backdrop';
-import * as FN from '../functions';
 import icons from '../icons';
 import './Select.scss';
 import $ from 'jquery';
+import * as FN from '../functions';
+import Backdrop from '../Backdrop/Backdrop';
+
 import {isEqual} from 'underscore'
 
 
@@ -20,6 +21,7 @@ class Select extends Component {
         this.state = {
             open : false,
             values : values,
+            defaultValue : defaultValue,
             initialValues : values,
             selectedItem : this.selected,
             // hasError : this.validate(this.selected).hasError,
@@ -33,17 +35,17 @@ class Select extends Component {
 
 
     static getDerivedStateFromProps (props, state){
-        console.log(props)
-        console.log(state)
+
         if (
-            !isEqual(props.values, state.initialValues)
+            !isEqual(props.values, state.initialValues) ||
+            props.defaultValue !== state.defaultValue
         ){
             const {values, defaultValue , mapping} = props;
             let selected = FN.findItemById(values, defaultValue, mapping)
             return {
                 values : values,
                 initialValues : values,
-                initialDefaultValue: defaultValue, 
+                defaultValue: defaultValue, 
                 selectedItem : selected,
                 // hasError : state.validate(selected).hasError,
                 // errorMessage : state.validate(selected).errorMessage,
@@ -57,6 +59,7 @@ class Select extends Component {
     }
 
     arrowKey = e => {
+        debugger
         const {values, open} = this.state;
         const {search} = this.props;
 
@@ -81,7 +84,7 @@ class Select extends Component {
 
             if (index > 0) {
                 $(this.optionsDom.current).find('.r-options-item').removeClass('selected')
-                $(this.optionsDom.current).find('.r-options-item').eq([--index]).addClass('selected')
+                $(this.optionsDom.current).find('.r-options-item').eq([--index]).addClass('selected').focus()
             }
             else {
                 if (search) {
@@ -96,7 +99,7 @@ class Select extends Component {
     
             if (index < $(this.optionsDom.current).find('.r-options-item').length-1) {
                 $(this.optionsDom.current).find('.r-options-item').removeClass('selected')
-                $(this.optionsDom.current).find('.r-options-item').eq([++index]).addClass('selected')
+                $(this.optionsDom.current).find('.r-options-item').eq([++index]).addClass('selected').focus()
             }
 
         }
@@ -186,7 +189,7 @@ class Select extends Component {
      * @description Select a item that user clicked on it 
      */
     select = (item, index) =>{
-        const {change} = this.props;
+        const {change ,mapping} = this.props;
 
         this.setState({selectedItem : item})
         this.validate(item)
@@ -236,7 +239,7 @@ class Select extends Component {
 
         const notSelected = rtl ? 'انتخاب نشده' : 'No Selected';
         return (
-            <div key={null} className="r-options-item" onClick={this.deSelect}>
+            <div tabIndex="-1" key={null} className="r-options-item" onClick={this.deSelect}>
                 {notSelected}
             </div>
         )
@@ -260,7 +263,7 @@ class Select extends Component {
             options = values.map((o, i) => {
                 
                 return (
-                    <div key={i} data-index={i} className={`r-options-item ${this.getSelectedClass(i)}`} onClick={this.select.bind(this,o,i)}>
+                    <div tabIndex={i} key={i} data-index={i} className={`r-options-item ${this.getSelectedClass(i)}`} onClick={this.select.bind(this,o,i)}>
 
                         {mapping.icon &&
                             <span className="r-option-icon">
@@ -353,10 +356,10 @@ class Select extends Component {
      */
     getInputText (){
         const {mapping, showKey, rtl} = this.props;
-        const {selectedItem} = this.state;
+        const {selectedItem, defaultValue} = this.state;
         let inputText = '';
         
-        if (!selectedItem) {
+        if (!selectedItem || !defaultValue) {
             const notSelected = rtl ? 'انتخاب نشده' : 'No Selected';
             return notSelected;
         }
@@ -400,12 +403,10 @@ class Select extends Component {
 
         return (
             <Fragment>
-                 
-                <div style={style} className={this.getSelectClass()}>
+                <div tabIndex={0} onKeyDown={this.arrowKey} style={style} className={this.getSelectClass()}>
                 {open && <Backdrop onClick={this.close} />}
                    
                     <input 
-                        onKeyDown={this.arrowKey}
                         onClick={this.toggle.bind(this)}
                         disabled={disabled} 
                         type="text" 

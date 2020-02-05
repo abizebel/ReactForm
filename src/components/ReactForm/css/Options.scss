@@ -80,7 +80,9 @@
   padding-left: 16px;
   cursor: pointer;
 }
-
+.r-options-item:focus {
+	background: red
+}
 .r-option-icon {
   position: absolute;
   height: 24px;

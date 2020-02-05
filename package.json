@@ -15,7 +15,8 @@
     "react-onclickoutside": "^6.9.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
-    "react-tether": "^2.0.4"
+    "react-tether": "^2.0.4",
+    "react-toast-notifications": "^2.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

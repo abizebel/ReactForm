@@ -5,10 +5,6 @@ import * as _ from 'underscore'
 
 
 
-
-
-
-
 /**
  * Find items by ids related to mapping config 
  * 
@@ -22,7 +18,6 @@ export function findItemsByIds(arr, ids, mapping){
     return arr.filter (o => ids.indexOf(Number(o[mapping.value])) != -1)
 }
 
-
 /**
  * Find item by id related to mapping config 
  * 
@@ -31,10 +26,13 @@ export function findItemsByIds(arr, ids, mapping){
  * @param {Object} mapping 
  */
 export function findItemById (list, id, mapping) {
-
     if (!id) return null;
-
-    return _.findWhere(list, {[mapping.value] : String(id)} );
+    
+    const result = list.filter(o => {
+        return String(o[mapping.value]) === String(id)
+    });
+    
+    return result.length ? result[0] : null
 }
 
 /**
