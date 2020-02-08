@@ -191,7 +191,17 @@ class Select extends Component {
     select = (item, index) =>{
         const {change ,mapping} = this.props;
 
-        this.setState({selectedItem : item})
+        /**
+         * نکته مهم
+         * از آنجاییکه معماری کامپوننت های من جوری است که وقتی تغییری در
+         * آن ایجاد میشود خودش اپدیت میشه و تغییرش رو به بیرون اطلاع میده
+         * تغییر ثبت شده در خودشم باید نگهداری بشه تا اگز از بالا براش اومد توی
+         * چرخه دیریود استیت مشکل پیش نیاد
+         */
+        this.setState({
+            selectedItem : item, 
+            defaultValue : item[mapping.value]
+        })
         this.validate(item)
         this.close();
 
