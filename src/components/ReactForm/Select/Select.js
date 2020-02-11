@@ -7,8 +7,6 @@ import * as FN from '../functions';
 import Backdrop from '../Backdrop/Backdrop';
 
 import {isEqual} from 'underscore'
-
-
 class Select extends Component {
     constructor(props) {
         super(props);
@@ -37,8 +35,8 @@ class Select extends Component {
     static getDerivedStateFromProps (props, state){
 
         if (
-            !isEqual(props.values, state.initialValues) ||
-            props.defaultValue !== state.defaultValue
+            !isEqual(props.values, state.initialValues) || 
+            ((props.defaultValue === null || props.defaultValue === undefined) && props.defaultValue !== state.defaultValue)     
         ){
             const {values, defaultValue , mapping} = props;
             let selected = FN.findItemById(values, defaultValue, mapping)
@@ -59,7 +57,6 @@ class Select extends Component {
     }
 
     arrowKey = e => {
-        debugger
         const {values, open} = this.state;
         const {search} = this.props;
 
@@ -76,7 +73,6 @@ class Select extends Component {
         else if (e.keyCode === 13 && !open) {
             this.open()
         }
-
 
         if (e.keyCode === 38) {//up
             let selected = $(this.optionsDom.current).find('.selected');
@@ -202,10 +198,12 @@ class Select extends Component {
             selectedItem : item, 
             defaultValue : item[mapping.value]
         })
-        this.validate(item)
+           
+       
+        this.validate(item);
         this.close();
-
         change(item);
+      
     }
 
     /**
@@ -215,7 +213,7 @@ class Select extends Component {
      */
     deSelect = (item) =>{
         const {change} = this.props;
-
+        
         this.setState({selectedItem : null})
         this.validate(null)
         this.close();
@@ -365,11 +363,11 @@ class Select extends Component {
      * @returns {String}
      */
     getInputText (){
-        const {mapping, showKey, rtl} = this.props;
+        const {mapping, showKey, rtl } = this.props;
         const {selectedItem, defaultValue} = this.state;
         let inputText = '';
         
-        if (!selectedItem || !defaultValue) {
+        if (!selectedItem || defaultValue === undefined) {
             const notSelected = rtl ? 'انتخاب نشده' : 'No Selected';
             return notSelected;
         }
@@ -407,9 +405,11 @@ class Select extends Component {
     render (){
         const { label, mapping, disabled, style} = this.props;
         const {errorMessage, hasError,open, selectedItem} = this.state;
-
         const inputValue = this.getInputText();
         const renderIcon = mapping.icon ? FN.createIcon(FN.getValueByProp(selectedItem, mapping.icon)) : '';
+
+
+        
 
         return (
             <Fragment>
@@ -449,3 +449,4 @@ Select.defaultProps = {
 }
 
 export default Select
+
