@@ -7,21 +7,23 @@ import * as FN from '../functions';
 import Backdrop from '../Backdrop/Backdrop';
 
 import {isEqual} from 'underscore'
+
 class Select extends Component {
     constructor(props) {
         super(props);
         const {values, defaultValue , mapping} = props;
         this.optionsDom = createRef();
         this.searchDom = createRef();
+        
         this.selected = FN.findItemById(values, defaultValue, mapping)
-
-
+        
         this.state = {
             open : false,
             values : values,
-            defaultValue : defaultValue,
             initialValues : values,
             selectedItem : this.selected,
+            defaultValue,
+            initialDefaultValue : defaultValue,
             // hasError : this.validate(this.selected).hasError,
             // errorMessage : this.validate(this.selected).errorMessage,
             searchValue : '',
@@ -33,27 +35,29 @@ class Select extends Component {
 
 
     static getDerivedStateFromProps (props, state){
-
+        
         if (
-            !isEqual(props.values, state.initialValues) || 
-            ((props.defaultValue === null || props.defaultValue === undefined) && props.defaultValue !== state.defaultValue)     
+            !isEqual(props.values, state.initialValues)    
         ){
             const {values, defaultValue , mapping} = props;
             let selected = FN.findItemById(values, defaultValue, mapping)
             return {
                 values : values,
                 initialValues : values,
-                defaultValue: defaultValue, 
                 selectedItem : selected,
                 // hasError : state.validate(selected).hasError,
                 // errorMessage : state.validate(selected).errorMessage,
             }
         
-
         }
-        return null
+        
+        if (state.initialDefaultValue !== props.defaultValue) {
+            return {
+                defaultValue : props.defaultValue
+            }
+        }
 
-      
+        return null
     }
 
     arrowKey = e => {
@@ -101,8 +105,7 @@ class Select extends Component {
         }
         
     }
-
-
+ 
     /**
      * Detect validation mode
      */
@@ -187,19 +190,11 @@ class Select extends Component {
     select = (item, index) =>{
         const {change ,mapping} = this.props;
 
-        /**
-         * نکته مهم
-         * از آنجاییکه معماری کامپوننت های من جوری است که وقتی تغییری در
-         * آن ایجاد میشود خودش اپدیت میشه و تغییرش رو به بیرون اطلاع میده
-         * تغییر ثبت شده در خودشم باید نگهداری بشه تا اگز از بالا براش اومد توی
-         * چرخه دیریود استیت مشکل پیش نیاد
-         */
         this.setState({
             selectedItem : item, 
-            defaultValue : item[mapping.value]
+            defaultValue : item[mapping.value],
         })
            
-       
         this.validate(item);
         this.close();
         change(item);
@@ -366,8 +361,8 @@ class Select extends Component {
         const {mapping, showKey, rtl } = this.props;
         const {selectedItem, defaultValue} = this.state;
         let inputText = '';
-        
-        if (!selectedItem || defaultValue === undefined) {
+  
+        if (!selectedItem || defaultValue === null) {
             const notSelected = rtl ? 'انتخاب نشده' : 'No Selected';
             return notSelected;
         }
@@ -408,9 +403,7 @@ class Select extends Component {
         const inputValue = this.getInputText();
         const renderIcon = mapping.icon ? FN.createIcon(FN.getValueByProp(selectedItem, mapping.icon)) : '';
 
-
-        
-
+    
         return (
             <Fragment>
                 <div tabIndex={0} onKeyDown={this.arrowKey} style={style} className={this.getSelectClass()}>
