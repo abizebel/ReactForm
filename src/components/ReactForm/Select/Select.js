@@ -206,14 +206,14 @@ class Select extends Component {
      * @param {Object} item 
      * @description Deslect options to null value 
      */
-    deSelect = (item) =>{
+    deSelect = () =>{
         const {change} = this.props;
         
         this.setState({selectedItem : null})
         this.validate(null)
         this.close();
 
-        change(item);
+        change(null);
     }
 
     /**
