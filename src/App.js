@@ -20,7 +20,66 @@ class App extends Component {
   render (){
    return (
     <Router>
-        <div className="page-sidebar">
+
+
+    <div id="main">
+        <div id="sidebar">
+            <div class="sidebar-header">
+                <img src="../../images/react-icon.svg" alt="" width="65" />
+                <h2>React Components</h2>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" placeholder="Search your component ..." />
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href=""><span class="mdi mdi-chevron-right"></span>Inputs</a>
+                        <ul>
+                            <li><Link to="/input/">Simple Input</Link></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><span class="mdi mdi-chevron-right"></span>Calenders</a>
+                        <ul>
+                            <li><Link to="/calendar/">Calendar</Link> </li>
+                            <li><Link to="/datepicker/">Datepicker</Link> </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            <div class="content-header">
+                
+            </div>
+            <Route exact path="/" component={ButtonContainer} />
+            <Route path="/button/" component={ButtonContainer} />
+            <Route path="/checkbox/" component={CheckboxContainer} />
+            <Route path="/input/" component={InputContainer} />
+            <Route path="/select/" component={SelectContainer} />
+            <Route path="/multiselect/" component={MultiSelectContainer} />
+            <Route path="/autocomplete/" component={AutocompleteContainer} />
+            <Route path="/tag/" component={TagContainer} />
+            <Route path="/modal/" component={ModalContainer} />
+            <Route path="/toggle/" component={ToggleContainer} />
+            <Route path="/tab/" component={TabContainer} />
+            <Route path="/calendar/" component={CalendarContainer} />
+            <Route path="/datepicker/" component={DatepickerContainer} />
+            <Route path="/table/" component={TableContainer} />
+        </div>
+    </div>
+ 
+
+
+
+
+
+
+
+
+        {/* <div className="page-sidebar">
             <h3 >React Material Forms </h3>  
             <h4 >Author : Abbas Hosseini</h4>
             <ul>
@@ -57,7 +116,7 @@ class App extends Component {
           <Route path="/calendar/" component={CalendarContainer} />
           <Route path="/datepicker/" component={DatepickerContainer} />
           <Route path="/table/" component={TableContainer} />
-        </div>
+        </div> */}
     </Router>
       
     );

@@ -13,7 +13,7 @@ import * as _ from 'underscore'
  * @param {Object} mapping 
  */
 export function findItemsByIds(arr, ids, mapping){
-      if (ids === undefined || id === null) return [];
+      if (ids === undefined || ids === null) return [];
 
 
     return arr.filter (o => ids.indexOf(Number(o[mapping.value])) != -1)
