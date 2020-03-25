@@ -8,6 +8,7 @@ import MonthsHeader from './MonthsHeader';
 import Months from './Months';
 import '../ReactForm.css';
 import './Calendar.css';
+import RangeList from './rangeList';
 
 
 
@@ -15,10 +16,12 @@ class Calendar extends Component {
     constructor(props){
         super(props);
         const m = moment();
+                
         this.state = {
             month : m,
             year : m,
             mode : 'days',//default
+            ranges :  new RangeList(this.props.ranges)
 
         }
     }

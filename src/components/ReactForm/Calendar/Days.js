@@ -17,16 +17,20 @@ class Days extends Component {
     }
 
     renderDays (){
-        const {month, jalali} = this.context;
+        const {month, jalali, ranges} = this.context;
         const dayList = getDaysOfMonth(month,jalali);
         const monthFormat = jalali ? 'jMM' : 'MM';
 
         return dayList.map((day,i) => {
-            const disabled = day.format(monthFormat) !== month.format(monthFormat);
-            const disabledClass = disabled ? 'r-disabled' : ''
-            const todayClass = checkToday(day.format('YYYYMMDD')) ? 'r-today' : ''
+
+            const dayState = ranges.getDayState(day);
+            const isDisabled =  dayState.disabled ? 'r-disabled' : '';
+            const isOutOfDays =  day.format(monthFormat) !== month.format(monthFormat)  ? 'r-outOfDays' : ''
+            const isToday = checkToday(day.format('YYYYMMDD')) ? 'r-today' : '';
+           
+            
             return ( 
-                <div onClick={this.selectDay.bind(this,day)} key={i} class={`r-calendar-item ${disabledClass} ${todayClass}`}>
+                <div onClick={this.selectDay.bind(this,day)} key={i} class={`r-calendar-item ${isDisabled} ${isOutOfDays} ${isToday}`}>
                     <span> {jalali ? persianNumber(day.format('jD')) : day.format('D')} </span>
                 </div>
             )

@@ -37,18 +37,14 @@
   border-radius:50%;
   outline:0;
   position: relative;
-overflow: hidden;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 
 .r-calendar-header button svg {
   width:20px !important;
-  fill: red;
-  cursor: pointer;
- 
-}
-.r-calendar-header button svg:hover {
-    fill:red;
+  cursor: pointer; 
 }
 .r-calendar-header .r-title {
   font-size: 14px;
@@ -73,7 +69,6 @@ overflow: hidden;
   text-align: center;
   font-size: 13px;
   vertical-align: middle;
-  transition: all .5s ease-out;
 }
 .r-calendar-item > span{
    width:30px;
@@ -83,22 +78,28 @@ overflow: hidden;
 
 }
 .r-calendar-item:hover span{
-   background: #eee;
+   background: var(--focus-color);
    border-radius: 50%;
-  transition: all .5s ease;
+  color: #fff;
 
 }
-/* Disabled */
-.r-calendar-item.r-disabled {
+/* Out of days */
+.r-calendar-item.r-outOfDays {
   color: #ddd;
+  pointer-events: none;
+  display: none;
+}
+
+/* Disbaled */
+.r-calendar-item.r-disabled {
+  background: #f2f2f2;
   pointer-events: none;
 }
 /* Today && Current Month */
 .r-calendar-item.r-today span,
 .r-calendar-item.r-currentMonth span{
-  color: #fff;
-  background: var(--focus-color);
-  border-radius: 50%
+  border:1px solid var(--focus-color);
+  border-radius: 50%;
 } 
 
 /* Week */
