@@ -25,7 +25,7 @@ class App extends Component {
     <div id="main">
         <div id="sidebar">
             <div class="sidebar-header">
-                <img src="../../images/react-icon.svg" alt="" width="65" />
+                <img src="../../images/react-icon.svg" alt="" width="70" />
                 <h2>React Components</h2>
             </div>
             <div class="sidebar-search">
