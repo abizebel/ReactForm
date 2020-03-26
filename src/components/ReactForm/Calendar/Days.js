@@ -8,30 +8,64 @@ const jalaliWeekNames = ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'];
 class Days extends Component {
     static contextType = calendarContext;
 
-    selectDay = selectedDay => {
-        const { jalali,setMonth, change } = this.context;
-        const selectedValue = jalali ? persianNumber(selectedDay.format('jYYYY/jM/jD')) :selectedDay.format('YYYY/M/D') ;
-        
-        setMonth(selectedDay);
-        change(selectedValue)
-    }
 
+    selectDay = selectedDay => {
+        const { jalali, change , setDay,selectedDay2, multiselect, setSelectStep, selectStep} = this.context;
+        const selectedValue = jalali ? persianNumber(selectedDay.format('jYYYY/jM/jD')) :selectedDay.format('YYYY/M/D') ;
+
+        if (multiselect) {
+            if (selectStep === 0) {
+                setSelectStep(1);
+                setDay(selectedDay);
+            }
+            else if (selectStep === 1) {
+                setSelectStep(2);
+                setDay(selectedDay, true);
+            }
+            else if (selectStep === 2) {
+                setSelectStep(0);
+                setDay(null);
+                setDay(null, true);
+            }
+        }
+        else {
+            setDay(selectedDay);
+            change(selectedValue)
+        }
+    
+    }
+    hoverDisbale = (day) => {
+        const {month, jalali, ranges, selectedDay, selectedDay2, multiselect, selectStep} = this.context;
+        if (multiselect && multiselect === 1) {
+            const isDisabled = day.isBefore(selectedDay) ? 'r-disabled' : '' ;
+        }
+
+    }
     renderDays (){
-        const {month, jalali, ranges} = this.context;
+        const {month, jalali, ranges, selectedDay, selectedDay2, multiselect, selectStep} = this.context;
         const dayList = getDaysOfMonth(month,jalali);
         const monthFormat = jalali ? 'jMM' : 'MM';
 
         return dayList.map((day,i) => {
 
-            const dayState = ranges.getDayState(day);
-            const isDisabled =  dayState.disabled ? 'r-disabled' : '';
+            //const dayState = ranges.getDayState(day);
+            //const isDisabled =  dayState.disabled ? 'r-disabled' : '';
+            
+            //const isAction = selectStep === 2 ? 'isBefore' : 'isAfter' ;
+            const isDisabled = multiselect && selectStep === 2 &&  (day['isBefore'](selectedDay2) && day['isAfter'](selectedDay)) ? 'r-disabled' : '' ;
+
+
             const isOutOfDays =  day.format(monthFormat) !== month.format(monthFormat)  ? 'r-outOfDays' : ''
             const isToday = checkToday(day.format('YYYYMMDD')) ? 'r-today' : '';
-           
-            
+            const selected = selectedDay ? selectedDay.isSame(day, 'day') : false;
+            const selected2 =selectedDay2 ? selectedDay2.isSame(day, 'day') : false;
+            const isSelected =  selected|| selected2 ? 'r-selected' : '';
+
             return ( 
-                <div onClick={this.selectDay.bind(this,day)} key={i} class={`r-calendar-item ${isDisabled} ${isOutOfDays} ${isToday}`}>
-                    <span> {jalali ? persianNumber(day.format('jD')) : day.format('D')} </span>
+                <div onClick={this.selectDay.bind(this,day)}  key={i} 
+                    onMouseEnter={this.hoverDisbale.bind(this,day)}
+                    class={`r-calendar-item ${isSelected} ${isDisabled} ${isOutOfDays} ${isToday}`}>
+                        <span> {jalali ? persianNumber(day.format('jD')) : day.format('D')} </span>
                 </div>
             )
         });

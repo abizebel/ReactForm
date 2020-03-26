@@ -1,5 +1,15 @@
+/* Range Calendar */
 
-
+.r-rangeCalendar {
+  display: flex;
+  border:1px solid #D3D3D3;
+  border-radius:15px;
+  width: 603px;
+}
+.r-rangeCalendar .r-calendar {
+  border: 0;
+}
+/* Calendar */
 .r-calendar {
   width: 300px;
   border:1px solid #D3D3D3;
@@ -54,12 +64,10 @@
 
 
 /* Content */
-
 .r-calendar-content {
   display: flex;
   flex-wrap: wrap;
 }
-
 .r-calendar-item{
   color: var(--text-color);
   width: 14.28571428571429%;
@@ -93,8 +101,16 @@
 /* Disbaled */
 .r-calendar-item.r-disabled {
   background: #f2f2f2;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
+
+/* Selected */
+.r-calendar-item.r-selected span {
+  background: var(--focus-color);
+  border-radius: 50%;
+  color: #fff;
+}
+
 /* Today && Current Month */
 .r-calendar-item.r-today span,
 .r-calendar-item.r-currentMonth span{

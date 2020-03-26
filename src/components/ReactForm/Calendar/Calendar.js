@@ -21,11 +21,25 @@ class Calendar extends Component {
             month : m,
             year : m,
             mode : 'days',//default
-            ranges :  new RangeList(this.props.ranges)
+           // ranges :  new RangeList(this.props.ranges),
+            selectedDay:  this.props.defaultValue || null,
+            selectedDay2:  null,
+            selectStep : 0, //0 = no select, 1 = firstSelect, 2 = secondSelect
 
         }
-    }
+    }   
+    static getDerivedStateFromProps (props,state){
+        if (props.selectMode !== state.selectMode) {
+            return {
+                selectMode :props.selectMode
+            }
+        }
 
+        return null;
+    }
+    setSelectStep = (step) => {
+        this.setState({selectStep : step})
+    }
     setToday = () => {
         this.setState({
             month : moment(),
@@ -41,6 +55,18 @@ class Calendar extends Component {
     setMonth = (month) => {
         this.setState({month})
     }
+    setDay = (selectedDay, isSecondSelect = false ) => {
+        const { month, jalali } = this.state;
+        const yearMonthFormat = jalali ? 'YYYYMM' : 'jYYYYjMM';
+    
+        // Because there's no `m1.isSame(m2, 'jMonth')`
+        // if (selectedDay.format(yearMonthFormat) !== month.format(yearMonthFormat)) {
+        //   this.setState({ month: selectedDay });
+        // }
+    
+        this.setState({ [isSecondSelect ? 'selectedDay2' : 'selectedDay' ] : selectedDay });
+    }
+
     nextMonth = () => {
         const {month} = this.state;
         this.setState({ month: month.clone().add(1, `Month`) });
@@ -49,12 +75,10 @@ class Calendar extends Component {
         const {month} = this.state;
         this.setState({  month: month.clone().subtract(1, `Month`) });
     }
-
     nextYear = () => {
         const {year} = this.state;
         this.setState({ year: year.clone().add(1, 'year')});
     }
-
     prevYear = () => {
         const {year} = this.state;
         this.setState({ year: year.clone().subtract(1, 'year')});
@@ -65,6 +89,7 @@ class Calendar extends Component {
         return {
             ...this.state,
             jalali : this.props.jalali,
+            multiselect: this.props.multiselect,
             nextMonth : this.nextMonth,
             prevMonth : this.prevMonth,
             nextYear :this.nextYear,
@@ -72,6 +97,8 @@ class Calendar extends Component {
             setMode : this.setMode,
             setMonth : this.setMonth,
             setYear : this.setYear,
+            setDay : this.setDay,
+            setSelectStep : this.setSelectStep,
             change : this.props.change,
         }
     }
@@ -101,6 +128,7 @@ class Calendar extends Component {
 }
 
 Calendar.defaultProps = {
-    jalali : false
+    jalali : false,
+    multiselect : false,
 }
 export default Calendar
