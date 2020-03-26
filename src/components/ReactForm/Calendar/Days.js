@@ -9,18 +9,18 @@ class Days extends Component {
     static contextType = calendarContext;
 
 
-    selectDay = selectedDay => {
+    selectDay = day => {
         const { jalali, change , setDay,selectedDay2, multiselect, setSelectStep, selectStep} = this.context;
-        const selectedValue = jalali ? persianNumber(selectedDay.format('jYYYY/jM/jD')) :selectedDay.format('YYYY/M/D') ;
+        const selectedValue = jalali ? persianNumber(day.format('jYYYY/jM/jD')) :day.format('YYYY/M/D') ;
 
         if (multiselect) {
             if (selectStep === 0) {
                 setSelectStep(1);
-                setDay(selectedDay);
+                setDay(day);
             }
             else if (selectStep === 1) {
                 setSelectStep(2);
-                setDay(selectedDay, true);
+                setDay(day, true);
             }
             else if (selectStep === 2) {
                 setSelectStep(0);
@@ -29,18 +29,12 @@ class Days extends Component {
             }
         }
         else {
-            setDay(selectedDay);
+            setDay(day);
             change(selectedValue)
         }
     
     }
-    hoverDisbale = (day) => {
-        const {month, jalali, ranges, selectedDay, selectedDay2, multiselect, selectStep} = this.context;
-        if (multiselect && multiselect === 1) {
-            const isDisabled = day.isBefore(selectedDay) ? 'r-disabled' : '' ;
-        }
 
-    }
     renderDays (){
         const {month, jalali, ranges, selectedDay, selectedDay2, multiselect, selectStep} = this.context;
         const dayList = getDaysOfMonth(month,jalali);
@@ -63,7 +57,7 @@ class Days extends Component {
 
             return ( 
                 <div onClick={this.selectDay.bind(this,day)}  key={i} 
-                    onMouseEnter={this.hoverDisbale.bind(this,day)}
+                    //onMouseEnter={this.hoverDisbale.bind(this,day)}
                     class={`r-calendar-item ${isSelected} ${isDisabled} ${isOutOfDays} ${isToday}`}>
                         <span> {jalali ? persianNumber(day.format('jD')) : day.format('D')} </span>
                 </div>
