@@ -10,8 +10,10 @@ class Days extends Component {
 
 
     selectDay = day => {
-        const { jalali, change , setDay,selectedDay2, multiselect, setSelectStep, selectStep} = this.context;
+        const { jalali, change , setDay,selectedDay,selectedDay2, multiselect, setSelectStep, selectStep} = this.context;
         const selectedValue = jalali ? persianNumber(day.format('jYYYY/jM/jD')) :day.format('YYYY/M/D') ;
+
+
 
         if (multiselect) {
             if (selectStep === 0) {
@@ -20,6 +22,13 @@ class Days extends Component {
                 change(selectedValue)
             }
             else if (selectStep === 1) {
+                if (day.isBefore(selectedDay)) {
+                    setSelectStep(0);
+                    setDay(null);
+                    setDay(null, true);
+                    change(null);
+                    return;
+                }
                 setSelectStep(2);
                 setDay(day, true);
                 change(selectedValue)
@@ -37,6 +46,9 @@ class Days extends Component {
         }
     
     }
+
+
+
     focusDay = day => {
         const {setDay, multiselect, setSelectStep, selectStep} = this.context;
 
