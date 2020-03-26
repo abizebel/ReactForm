@@ -86,9 +86,6 @@ class Days extends Component {
             selected2 = selectedDay2 ? selectedDay2.isSame(day, 'day') : false;
             isSelected =  (selected) || selected2 ? 'r-selected' : '';
             
-            
-
-
             return ( 
                 <div onClick={this.selectDay.bind(this,day)} key={i} 
                     onMouseEnter={this.focusDay.bind(this,day)}

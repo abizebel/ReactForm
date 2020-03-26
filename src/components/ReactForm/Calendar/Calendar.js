@@ -18,8 +18,9 @@ class Calendar extends Component {
     constructor(props){
         super(props);
         const m = moment();
+  
         this.state = {
-            month : m,
+            month :props.id === 'c2' ? m.clone().add(1, `Month`) : m   ,
             year : m,
             mode : 'days',//default
 
