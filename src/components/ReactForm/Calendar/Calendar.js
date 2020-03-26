@@ -2,50 +2,30 @@ import React, {Component,Fragment} from 'react';
 import moment from 'moment-jalaali';
 
 import CalendarContext from './CalendarContext';
+import BaseCalendarContext from './BaseCalendarContext';
 import DaysHeader from './DaysHeader';
 import Days from './Days';
 import MonthsHeader from './MonthsHeader';
 import Months from './Months';
 import '../ReactForm.css';
 import './Calendar.css';
-import RangeList from './rangeList';
 
 
 
 class Calendar extends Component {
+    static contextType = BaseCalendarContext;
+    
     constructor(props){
         super(props);
         const m = moment();
-                
         this.state = {
             month : m,
             year : m,
             mode : 'days',//default
-           // ranges :  new RangeList(this.props.ranges),
-            selectedDay:  this.props.defaultValue || null,
-            selectedDay2:  null,
-            selectStep : 0, //0 = no select, 1 = firstSelect, 2 = secondSelect
 
         }
     }   
-    static getDerivedStateFromProps (props,state){
-        if (props.selectMode !== state.selectMode) {
-            return {
-                selectMode :props.selectMode
-            }
-        }
 
-        return null;
-    }
-    setSelectStep = (step) => {
-        this.setState({selectStep : step})
-    }
-    setToday = () => {
-        this.setState({
-            month : moment(),
-            mode : 'days'
-        })
-    }
     setMode = (mode) => {
         this.setState({mode})
     }
@@ -86,10 +66,13 @@ class Calendar extends Component {
 
 
     getContextValue (){
+        const {change, setSelectStep,selectStep, setDay, jalali, range,selectedDay,selectedDay2,double} = this.context;
+        const {id} = this.props;
+
         return {
             ...this.state,
-            jalali : this.props.jalali,
-            multiselect: this.props.multiselect,
+            jalali,
+            multiselect: range,
             nextMonth : this.nextMonth,
             prevMonth : this.prevMonth,
             nextYear :this.nextYear,
@@ -97,15 +80,20 @@ class Calendar extends Component {
             setMode : this.setMode,
             setMonth : this.setMonth,
             setYear : this.setYear,
-            setDay : this.setDay,
-            setSelectStep : this.setSelectStep,
-            change : this.props.change,
+            selectedDay,
+            selectedDay2,
+            setDay : setDay,
+            setSelectStep ,
+            selectStep,
+            change : change,
+            id ,
+            double,
         }
     }
 
     render (){
         const {mode} = this.state;
-        const {jalali} = this.props;
+        const {jalali} = this.context;
         const rtlClass = jalali ? 'r-rtl' : '';
         return (
             <CalendarContext.Provider value ={this.getContextValue()}>
@@ -116,7 +104,7 @@ class Calendar extends Component {
                             <Fragment> <DaysHeader   /> <Days   /> </Fragment> :
                             <Fragment> <MonthsHeader /> <Months /> </Fragment>
                         }
-
+                        
                         <div class="r-calendar-footer">
                             <button onClick={this.setToday} type="button" class="r-button r-ripple r-nospace"> {jalali ? 'امروز' : 'today'} </button>
                         </div>

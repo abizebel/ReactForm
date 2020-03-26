@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import { RangeCalendar, Calendar } from '../components/ReactForm';
+import {  Calendar, RangeCalendar } from '../components/ReactForm';
 
 
 class CalendarContainer extends Component {
@@ -12,12 +12,12 @@ class CalendarContainer extends Component {
       <Fragment>
         <div className="page-content-box" >
             <div className="page-content-title">Range Calendar</div>
-            <RangeCalendar jalali={true} change={this.changeCalendar.bind(this)} />
+            <RangeCalendar jalali={false} change={this.changeCalendar.bind(this)} />
         </div>
-        {/* <div className="page-content-box" >
+        <div className="page-content-box" >
             <div className="page-content-title">Georgian Calendar</div>
-            <Calendar  change={this.changeCalendar.bind(this)} />
-        </div> */}
+            <Calendar range={true} change={this.changeCalendar.bind(this)} />
+        </div>
         {/* <div className="page-content-box" >
             <div className="page-content-title">Jalali (Persian) Calendar</div>
             <Calendar  jalali={true} change={this.changeCalendar.bind(this)} />

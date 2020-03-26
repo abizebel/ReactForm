@@ -11,38 +11,38 @@ class Days extends Component {
 
     selectDay = day => {
         const { jalali, change , setDay,selectedDay,selectedDay2, multiselect, setSelectStep, selectStep} = this.context;
-        const selectedValue = jalali ? persianNumber(day.format('jYYYY/jM/jD')) :day.format('YYYY/M/D') ;
+        const dateStatr = jalali ? persianNumber(day.format('jYYYY/jM/jD')) :day.format('YYYY/M/D') ;
 
-
-
+        let  result = {
+            dateStatr ,
+            d : day,
+        }
         if (multiselect) {
             if (selectStep === 0) {
                 setSelectStep(1);
                 setDay(day);
-                change(selectedValue)
+                change(result)
             }
             else if (selectStep === 1) {
                 if (day.isBefore(selectedDay)) {
-                    setSelectStep(0);
-                    setDay(null);
-                    setDay(null, true);
-                    change(null);
+                    setSelectStep(1);
+                    setDay(day);
+                    change(result)
                     return;
                 }
                 setSelectStep(2);
                 setDay(day, true);
-                change(selectedValue)
+                change(result)
             }
             else if (selectStep === 2) {
-                setSelectStep(0);
-                setDay(null);
-                setDay(null, true);
-                change(null)
+                setSelectStep(1);
+                    setDay(day);
+                    change(result)
             }
         }
         else {
             setDay(day);
-            change(selectedValue)
+            change(result)
         }
     
     }
@@ -50,7 +50,7 @@ class Days extends Component {
 
 
     focusDay = day => {
-        const {setDay, multiselect, setSelectStep, selectStep} = this.context;
+        const {setDay, multiselect, selectStep} = this.context;
 
         if (multiselect) {
             if (selectStep === 1) {
@@ -59,7 +59,7 @@ class Days extends Component {
         } 
     }
     blurDay = day => {
-        const {setDay, multiselect, setSelectStep, selectStep} = this.context;
+        const {setDay, multiselect, selectStep} = this.context;
 
         if (multiselect) {
             if (selectStep === 1) {
@@ -69,32 +69,32 @@ class Days extends Component {
     }
 
     renderDays (){
-        const {month, jalali, ranges, selectedDay, selectedDay2, multiselect, selectStep} = this.context;
+        const {month, jalali, selectedDay, selectedDay2, multiselect, selectStep, id, double} = this.context;
         const dayList = getDaysOfMonth(month,jalali);
         const monthFormat = jalali ? 'jMM' : 'MM';
 
         return dayList.map((day,i) => {
+            let selected;
+            let selected2;
+            let isSelected;
 
-            //const dayState = ranges.getDayState(day);
-            //const isDisabled =  dayState.disabled ? 'r-disabled' : '';
-            
-            //const isAction = selectStep === 2 ? 'isBefore' : 'isAfter' ;
-            console.log(selectStep)
-            const isDisabled = multiselect &&  (day['isBefore'](selectedDay2) && day['isAfter'](selectedDay)) ? 'r-disabled' : '' ;
-
-
+            const isDisabled = multiselect &&  (day.isBefore(selectedDay2) && day.isAfter(selectedDay)) ? 'r-disabled' : '' ;
             const isOutOfDays =  day.format(monthFormat) !== month.format(monthFormat)  ? 'r-outOfDays' : ''
             const isToday = checkToday(day.format('YYYYMMDD')) ? 'r-today' : '';
-            const selected = selectedDay ? selectedDay.isSame(day, 'day') : false;
-            const selected2 =selectedDay2 ? selectedDay2.isSame(day, 'day') : false;
-            const isSelected =  selected|| selected2 ? 'r-selected' : '';
+
+            selected = selectedDay ? selectedDay.isSame(day, 'day') : false;
+            selected2 = selectedDay2 ? selectedDay2.isSame(day, 'day') : false;
+            isSelected =  (selected) || selected2 ? 'r-selected' : '';
+            
+            
+
 
             return ( 
-                <div onClick={this.selectDay.bind(this,day)}  key={i} 
+                <div onClick={this.selectDay.bind(this,day)} key={i} 
                     onMouseEnter={this.focusDay.bind(this,day)}
                     onMouseLeave={this.blurDay.bind(this,day)}
                     class={`r-calendar-item ${isSelected} ${isDisabled} ${isOutOfDays} ${isToday}`}>
-                        <span> {jalali ? persianNumber(day.format('jD')) : day.format('D')} </span>
+                    <span> {jalali ? persianNumber(day.format('jD')) : day.format('D')} </span>
                 </div>
             )
         });
