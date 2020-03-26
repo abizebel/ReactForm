@@ -17,15 +17,18 @@ class Days extends Component {
             if (selectStep === 0) {
                 setSelectStep(1);
                 setDay(day);
+                change(selectedValue)
             }
             else if (selectStep === 1) {
                 setSelectStep(2);
                 setDay(day, true);
+                change(selectedValue)
             }
             else if (selectStep === 2) {
                 setSelectStep(0);
                 setDay(null);
                 setDay(null, true);
+                change(null)
             }
         }
         else {
@@ -33,6 +36,24 @@ class Days extends Component {
             change(selectedValue)
         }
     
+    }
+    focusDay = day => {
+        const {setDay, multiselect, setSelectStep, selectStep} = this.context;
+
+        if (multiselect) {
+            if (selectStep === 1) {
+                setDay(day, true);
+            }
+        } 
+    }
+    blurDay = day => {
+        const {setDay, multiselect, setSelectStep, selectStep} = this.context;
+
+        if (multiselect) {
+            if (selectStep === 1) {
+                setDay(null, true);
+            }
+        } 
     }
 
     renderDays (){
@@ -46,7 +67,8 @@ class Days extends Component {
             //const isDisabled =  dayState.disabled ? 'r-disabled' : '';
             
             //const isAction = selectStep === 2 ? 'isBefore' : 'isAfter' ;
-            const isDisabled = multiselect && selectStep === 2 &&  (day['isBefore'](selectedDay2) && day['isAfter'](selectedDay)) ? 'r-disabled' : '' ;
+            console.log(selectStep)
+            const isDisabled = multiselect &&  (day['isBefore'](selectedDay2) && day['isAfter'](selectedDay)) ? 'r-disabled' : '' ;
 
 
             const isOutOfDays =  day.format(monthFormat) !== month.format(monthFormat)  ? 'r-outOfDays' : ''
@@ -57,7 +79,8 @@ class Days extends Component {
 
             return ( 
                 <div onClick={this.selectDay.bind(this,day)}  key={i} 
-                    //onMouseEnter={this.hoverDisbale.bind(this,day)}
+                    onMouseEnter={this.focusDay.bind(this,day)}
+                    onMouseLeave={this.blurDay.bind(this,day)}
                     class={`r-calendar-item ${isSelected} ${isDisabled} ${isOutOfDays} ${isToday}`}>
                         <span> {jalali ? persianNumber(day.format('jD')) : day.format('D')} </span>
                 </div>
