@@ -20,7 +20,6 @@ class Calendar extends Component {
         const m = moment();
   
         this.state = {
-            month :props.id === 'c2' ? m.clone().add(1, `Month`) : m   ,
             year : m,
             mode : 'days',//default
 
@@ -34,28 +33,13 @@ class Calendar extends Component {
         this.setState({year})
     }
     setMonth = (month) => {
-        this.setState({month})
-    }
-    setDay = (selectedDay, isSecondSelect = false ) => {
-        const { month, jalali } = this.state;
-        const yearMonthFormat = jalali ? 'YYYYMM' : 'jYYYYjMM';
-    
-        // Because there's no `m1.isSame(m2, 'jMonth')`
-        // if (selectedDay.format(yearMonthFormat) !== month.format(yearMonthFormat)) {
-        //   this.setState({ month: selectedDay });
-        // }
-    
-        this.setState({ [isSecondSelect ? 'selectedDay2' : 'selectedDay' ] : selectedDay });
+        const {setMonth} = this.context;
+        const { id} = this.props;
+        const isSecond =id === '2';
+       
+        setMonth(month, isSecond)
     }
 
-    nextMonth = () => {
-        const {month} = this.state;
-        this.setState({ month: month.clone().add(1, `Month`) });
-    }
-    prevMonth = () => {
-        const {month} = this.state;
-        this.setState({  month: month.clone().subtract(1, `Month`) });
-    }
     nextYear = () => {
         const {year} = this.state;
         this.setState({ year: year.clone().add(1, 'year')});
@@ -67,20 +51,21 @@ class Calendar extends Component {
 
 
     getContextValue (){
-        const {change, setSelectStep,selectStep, setDay, jalali, range,selectedDay,selectedDay2,double} = this.context;
+        const {change, setSelectStep,selectStep, setDay, jalali, range,selectedDay,selectedDay2,double,selectedMonth , selectedMonth2} = this.context;
         const {id} = this.props;
-
+        debugger
         return {
             ...this.state,
             jalali,
             multiselect: range,
-            nextMonth : this.nextMonth,
-            prevMonth : this.prevMonth,
+            nextMonth : this.nextMonth ,
+            prevMonth :  this.prevMonth,
             nextYear :this.nextYear,
             prevYear : this.prevYear,
             setMode : this.setMode,
-            setMonth : this.setMonth,
+            setMonth :this.setMonth,
             setYear : this.setYear,
+            
             selectedDay,
             selectedDay2,
             setDay : setDay,
@@ -89,6 +74,10 @@ class Calendar extends Component {
             change : change,
             id ,
             double,
+            selectedMonth,
+            selectedMonth2,
+            month : id === '2' ? selectedMonth2: selectedMonth ,
+            
         }
     }
 

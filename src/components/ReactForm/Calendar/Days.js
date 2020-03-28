@@ -49,7 +49,7 @@ class Days extends Component {
 
 
 
-    focusDay = day => {
+    focusDay = (day,e) => {
         const {setDay, multiselect, selectStep} = this.context;
 
         if (multiselect) {
@@ -58,7 +58,7 @@ class Days extends Component {
             }
         } 
     }
-    blurDay = day => {
+    blurDay =  (day,e) => {
         const {setDay, multiselect, selectStep} = this.context;
 
         if (multiselect) {
@@ -69,7 +69,7 @@ class Days extends Component {
     }
 
     renderDays (){
-        const {month, jalali, selectedDay, selectedDay2, multiselect, selectStep, id, double} = this.context;
+        const {month, jalali, selectedDay, selectedDay2, multiselect} = this.context;
         const dayList = getDaysOfMonth(month,jalali);
         const monthFormat = jalali ? 'jMM' : 'MM';
 
