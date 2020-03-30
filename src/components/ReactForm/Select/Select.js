@@ -63,7 +63,7 @@ class Select extends Component {
     arrowKey = e => {
         const {values, open} = this.state;
         const {search} = this.props;
-
+        e.preventDefault()
         if (e.keyCode === 13 && open){
             const selectedIndex = $(this.optionsDom.current).find('.selected').attr('data-index')
             if(selectedIndex) {
