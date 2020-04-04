@@ -20,7 +20,6 @@ class Calendar extends Component {
         const m = moment();
   
         this.state = {
-            year : m,
             mode : 'days',//default
 
         }
@@ -29,45 +28,42 @@ class Calendar extends Component {
     setMode = (mode) => {
         this.setState({mode})
     }
-    setYear = (year) => {
-        this.setState({year})
-    }
-    setMonth = (month) => {
+
+    setMonth = (month,  is= false) => {
         const {setMonth} = this.context;
         const { id} = this.props;
-        const isSecond =id === '2';
+        debugger
+        const isSecond = is || id === '2';
        
         setMonth(month, isSecond)
     }
+    setYear = (year, is= false) => {
+        const {setYear} = this.context;
+        const {id} = this.props;
+        const isSecond = is || id === '2';
+       
+        setYear(year, isSecond)
+    }
 
-    nextYear = () => {
-        const {year} = this.state;
-        this.setState({ year: year.clone().add(1, 'year')});
-    }
-    prevYear = () => {
-        const {year} = this.state;
-        this.setState({ year: year.clone().subtract(1, 'year')});
-    }
 
 
     getContextValue (){
-        const {change, setSelectStep,selectStep, setDay, jalali, range,selectedDay,selectedDay2,double,selectedMonth , selectedMonth2} = this.context;
+        const {change, setSelectStep,selectedYear,selectedYear2,selectStep, setDay, jalali, range,selectedDay,selectedDay2,double,selectedMonth , selectedMonth2} = this.context;
         const {id} = this.props;
-        debugger
+        
         return {
             ...this.state,
             jalali,
             multiselect: range,
             nextMonth : this.nextMonth ,
             prevMonth :  this.prevMonth,
-            nextYear :this.nextYear,
-            prevYear : this.prevYear,
             setMode : this.setMode,
-            setMonth :this.setMonth,
-            setYear : this.setYear,
-            
+            setYear : this.setYear ,
+            setMonth : this.setMonth,
             selectedDay,
             selectedDay2,
+            selectedYear,
+            selectedYear2,
             setDay : setDay,
             setSelectStep ,
             selectStep,
@@ -76,23 +72,29 @@ class Calendar extends Component {
             double,
             selectedMonth,
             selectedMonth2,
-            month : id === '2' ? selectedMonth2: selectedMonth ,
+            month : id === '1' ? selectedMonth: selectedMonth2 ,
+            year : id === '1' ? selectedYear: selectedYear2 ,
             
         }
     }
 
     render (){
         const {mode} = this.state;
-        const {jalali} = this.context;
+        const {jalali, monthOnly} = this.context;
         const rtlClass = jalali ? 'r-rtl' : '';
         return (
             <CalendarContext.Provider value ={this.getContextValue()}>
                 <div class={`r-calendar ${rtlClass}`}>
                     <div className="r-calendar-wrapper">
 
-                        {   mode === 'days' ?
-                            <Fragment> <DaysHeader   /> <Days   /> </Fragment> :
+                    {   !monthOnly ?  
+                            (
+                                mode === 'days' ?
+                                <Fragment> <DaysHeader   /> <Days   /> </Fragment> :
+                                <Fragment> <MonthsHeader /> <Months /> </Fragment>
+                            ) : 
                             <Fragment> <MonthsHeader /> <Months /> </Fragment>
+
                         }
                         
                         <div class="r-calendar-footer">

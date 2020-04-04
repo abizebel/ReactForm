@@ -37,8 +37,10 @@ class Days extends Component {
                 change(result)
             }
             else if (selectStep === 2) {
+                
                 setSelectStep(1);
                     setDay(day);
+                    setDay(null, true);
                     change(result)
             }
         }

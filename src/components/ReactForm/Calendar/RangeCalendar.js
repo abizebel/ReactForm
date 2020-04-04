@@ -5,16 +5,23 @@ import BaseCalendar from './BaseCalendar'
 class RangeCalendar extends Component {
 
     render (){
-        const {jalali, change} = this.props;
+        const {jalali, change, monthOnly} = this.props;
 
         return (
-            <BaseCalendar jalali={jalali} range={true} double={true} change={change} />
+            <BaseCalendar
+                monthOnly={monthOnly}
+                jalali={jalali} 
+                range={true} 
+                double={true} 
+                change={change}
+            />
         )
     }
 }
 
 RangeCalendar.defaultProps ={
     jalali : false,
+    monthOnly: false
 }
 
 export default RangeCalendar

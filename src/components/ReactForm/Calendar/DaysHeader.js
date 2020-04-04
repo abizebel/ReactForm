@@ -12,7 +12,6 @@ class DaysHeader extends Component {
         
         if (double){
             if (id === '1' && dir ==='next'){
-                debugger
                 if (month.clone().add(1, 'month').isAfter(selectedMonth2) ||  month.clone().add(1, 'month').isSame(selectedMonth2)) return true;
             }
             else if (id === '2' && dir ==='prev'){
