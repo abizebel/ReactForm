@@ -8,11 +8,11 @@ class BaseCalendar extends Component {
         super(props);
         const m = moment();
 
-        const {monthOnly} = this.props;
+        const {monthOnly, double, range} = this.props;
 
         this.state = {
-            selectedMonth:monthOnly ? null : m,
-            selectedMonth2: monthOnly ? null : m.clone().add(1, `Month`),
+            selectedMonth: m,
+            selectedMonth2: double ?  m.clone().add(1, `Month`) : null,
             selectedYear : m,
             selectedYear2 : m.clone().add(1, `year`),
             selectedDay:  this.props.defaultValue || null,

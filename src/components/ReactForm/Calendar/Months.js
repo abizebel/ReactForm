@@ -131,14 +131,14 @@ class Days extends Component {
     }
 
     renderMonths (){
-        const {jalali, selectedMonth, selectedMonth2, multiselect} = this.context;
+        const {jalali, selectedMonth, selectedMonth2, multiselect, monthOnly,selectStep} = this.context;
         const months = jalali ? jalaliMonths : georgianMonths;
 
         return months.map((monthItem, i) => {
             const month = this.createMonth(i+1);
-            const isDisabled = multiselect &&  (month.isBefore(selectedMonth2) && month.isAfter(selectedMonth)) ? 'r-disabled' : '' ;
-            const selected = selectedMonth ? selectedMonth.isSame(month, 'month') : false;
-            const selected2 = selectedMonth2 ? selectedMonth2.isSame(month, 'month') : false;
+            const isDisabled = multiselect && monthOnly && selectStep!==0 &&  (month.isBefore(selectedMonth2) && month.isAfter(selectedMonth)) ? 'r-disabled' : '' ;
+            const selected = selectedMonth  ? selectedMonth.isSame(month, 'month') : false;
+            const selected2 = selectedMonth2 && !multiselect ? selectedMonth2.isSame(month, 'month') : false;
             const isSelected = selected || selected2 ? 'r-selected' : '';
             
             return ( 
