@@ -12,6 +12,10 @@ class CalendarContainer extends Component {
       <Fragment>
         <div className="page-content-box" >
             <div className="page-content-title">Range Calendar</div>
+            <RangeCalendar jalali={false}  change={this.changeCalendar.bind(this)} />
+        </div>
+        <div className="page-content-box" >
+            <div className="page-content-title">Range Calendar</div>
             <RangeCalendar jalali={false} monthOnly={true} change={this.changeCalendar.bind(this)} />
         </div>
         <div className="page-content-box" >

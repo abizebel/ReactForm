@@ -9,16 +9,16 @@ class MonthsHeader extends Component {
 
 
     checkVisibility (dir){
-        const { month, selectedYear,selectedYear2, double} = this.context;
+        const { year, selectedYear,selectedYear2, double} = this.context;
         const {id} = this.context;
         
-        if (double && month){
+        if (double && year){
             if (id === '1' && dir ==='next'){
-                if (month.clone().add(1, 'year').isAfter(selectedYear2) ||  month.clone().add(1, 'year').isSame(selectedYear2)) return true;
+                if (year.clone().add(1, 'year').isAfter(selectedYear2) ||  year.clone().add(1, 'year').isSame(selectedYear2)) return true;
             }
             else if (id === '2' && dir ==='prev'){
                 
-                if (month.clone().subtract(1, 'year').isBefore(selectedYear) ||  month.clone().subtract(1, 'year').isSame(selectedYear)) return true;
+                if (year.clone().subtract(1, 'year').isBefore(selectedYear) ||  year.clone().subtract(1, 'year').isSame(selectedYear)) return true;
             }
             return false
         }

@@ -166,8 +166,8 @@ class Days extends Component {
             
             return ( 
                 <div key={i} 
-                 // onMouseEnter={this.focusMonth.bind(this, this.createMonth(i+1))}
-                  // onMouseLeave={this.blurMonth.bind(this, this.createMonth(i+1))}
+                  onMouseEnter={this.focusMonth.bind(this, this.createMonth(i+1))}
+                   onMouseLeave={this.blurMonth.bind(this, this.createMonth(i+1))}
                     onClick={this.selectMonth.bind(this, this.createMonth(i+1))} 
                     class={`r-calendar-item r-month ${isSelected} ${isDisabled} `}>
                         <span>{monthItem}</span>
