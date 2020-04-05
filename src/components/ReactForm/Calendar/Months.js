@@ -138,7 +138,7 @@ class Days extends Component {
             const month = this.createMonth(i+1);
             const isDisabled = multiselect && monthOnly && selectStep!==0 &&  (month.isBefore(selectedMonth2) && month.isAfter(selectedMonth)) ? 'r-disabled' : '' ;
             const selected = selectedMonth  ? selectedMonth.isSame(month, 'month') : false;
-            const selected2 = selectedMonth2 && !multiselect ? selectedMonth2.isSame(month, 'month') : false;
+            const selected2 = selectedMonth2 && selectStep!==0 ? selectedMonth2.isSame(month, 'month') : false;
             const isSelected = selected || selected2 ? 'r-selected' : '';
             
             return ( 
