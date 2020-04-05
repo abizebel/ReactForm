@@ -1,4 +1,4 @@
-import React, {Component,Fragment} from 'react';
+import React, {Component} from 'react';
 import Calendar from './Calendar';
 import BaseCalendarContext from './BaseCalendarContext';
 import moment from 'moment-jalaali';

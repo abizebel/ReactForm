@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import calendarContext from './CalendarContext';
 import moment from 'moment-jalaali';
+import {persianNumber } from './functions';
 
 
 // List of months
@@ -40,39 +41,29 @@ class Days extends Component {
 
 
     
-    getResult = (monthNumber) => {
-        const { jalali,  selectedMonth, selectedMonth2, multiselect} = this.context;
-
+    getResult = (month) => {
+        const {jalali,  selectedMonth, selectedMonth2, multiselect} = this.context;
         let result = {};
         if(multiselect ){
             result = {
-                //startDateStr :selectedMonth && (jalali ? persianNumber(selectedMonth.format('jMM/jYYYY/jDD')) : selectedMonth.format('MM/YYYY/DD'))  ,
-                //endDateStr : selectedMonth2 && (jalali ? persianNumber(selectedMonth2.format('jMM/jYYYY/jDD')) : selectedMonth2.format('MM/YYYY/DD') ),
+                startDateStr :selectedMonth && (jalali ? persianNumber(selectedMonth.format('jYYYY/jM/1')) : selectedMonth.format('YYYY/MM/1'))  ,
+                endDateStr : selectedMonth2 && (jalali ? persianNumber(selectedMonth2.format('jYYYY/jM/1')) : selectedMonth2.format('YYYY/MM/1') ),
                 startD :selectedMonth,
                 endD: selectedMonth2
             }
         }
         else {
-           
-           
             result = {
-               // dateStr :selectedMonth &&( jalali ? persianNumber(selectedMonth.format('jMM/jYYYY/jDD')) : selectedMonth.format('MM/YYYY/DD')) ,
-                d :selectedMonth,
+               dateStr :jalali ? persianNumber(month.format('jYYYY/jM/1')) : month.format('YYYY/MM/1') ,
+                d :month,
             }
         }
 
-
         return result
-
-
     }
 
     selectMonth (month){
-        const {setMonth, setMode, jalali, year, monthOnly,selectedMonth, selectedMonth2, change, multiselect, setSelectStep, selectStep, id} = this.context;
-
-       
-        
-
+        const {setMonth,setMode, monthOnly,selectedMonth, selectedMonth2, change, multiselect, setSelectStep, selectStep, id} = this.context;
         if (multiselect) {
             
             if (selectStep === 0) {
@@ -84,24 +75,24 @@ class Days extends Component {
                 if ( month.isBefore(selectedMonth || (id === '2' && month.isBefore(selectedMonth2)))  ) {
                     setSelectStep(1);
                     setMonth(month);
-                    //change(result)
+                    change(result)
                     return;
                 }
                 setSelectStep(2);
                 setMonth(month, true);
-               // change(result)
+                change(result)
             }
             else if (selectStep === 2) {
-                debugger
                 setSelectStep(1);
                 setMonth(month);
                 setMonth(null,true);
             }
         }
         else {
-            const result = this.getResult()
+            const result = this.getResult(month)
+            setMode('days')
             setMonth(month);
-            //change(result)
+            change(result)
         }
 
 

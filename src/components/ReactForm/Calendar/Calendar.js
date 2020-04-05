@@ -32,7 +32,6 @@ class Calendar extends Component {
     setMonth = (month,  is= false) => {
         const {setMonth} = this.context;
         const { id} = this.props;
-        debugger
         const isSecond = is || id === '2';
        
         setMonth(month, isSecond)

@@ -9,22 +9,38 @@ class Days extends Component {
     static contextType = calendarContext;
 
 
-    selectDay = day => {
-        const { jalali, change , setDay,selectedDay,selectedDay2, multiselect, setSelectStep, selectStep, id} = this.context;
-        
-        const dateStatr = jalali ? persianNumber(day.format('jYYYY/jM/jD')) :day.format('YYYY/M/D') ;
-
-        let  result = {
-            dateStatr ,
-            d : day,
+    getResult = (day) => {
+        const {jalali,  selectedDay, selectedDay2, multiselect} = this.context;
+        let result = {};
+        if(multiselect ){
+            result = {
+                startDateStr :selectedDay && (jalali ? persianNumber(selectedDay.format('jYYYY/jM/jD')) : selectedDay.format('YYYY/MM/DD'))  ,
+                endDateStr : selectedDay2 && (jalali ? persianNumber(selectedDay2.format('jYYYY/jM/jD')) : selectedDay2.format('YYYY/MM/DD') ),
+                startD :selectedDay,
+                endD: selectedDay2
+            }
         }
+        else {
+            result = {
+               dateStr :jalali ? persianNumber(day.format('jYYYY/jM/jD')) : day.format('YYYY/MM/DD'),
+               d :day,
+            }
+        }
+
+        return result
+    }
+
+
+    selectDay = day => {
+        const { change , setDay,selectedDay,selectedDay2, multiselect, setSelectStep, selectStep, id} = this.context;
+        
         if (multiselect) {
             if (selectStep === 0) {
                 setSelectStep(1);
                 setDay(day);
-                change(result)
             }
             else if (selectStep === 1) {
+                const result = this.getResult(day)
                 if ( day.isBefore(selectedDay || (id === '2' && day.isBefore(selectedDay2)))  ) {
                     setSelectStep(1);
                     setDay(day);
@@ -41,10 +57,10 @@ class Days extends Component {
                 setSelectStep(1);
                     setDay(day);
                     setDay(null, true);
-                    change(result)
             }
         }
         else {
+            const result = this.getResult(day)
             setDay(day);
             change(result)
         }
