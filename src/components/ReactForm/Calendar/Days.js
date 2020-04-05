@@ -33,7 +33,6 @@ class Days extends Component {
 
     selectDay = day => {
         const { change , setDay,selectedDay,selectedDay2, multiselect, setSelectStep, selectStep, id} = this.context;
-        
         if (multiselect) {
             if (selectStep === 0) {
                 setSelectStep(1);

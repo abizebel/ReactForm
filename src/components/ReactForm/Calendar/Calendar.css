@@ -1,5 +1,58 @@
-/* Range Calendar */
+/******************
+ * DatePicker
+ ******************/
+.r-datepicker {
+ cursor: pointer;
 
+}
+
+.r-datepicker-header {
+  display: flex;
+  justify-content:space-evenly;
+  margin-bottom:16px;
+  align-items:center;
+  direction: ltr;
+  border: 1px solid #D3D3D3;
+  border-radius: 30px;
+  width: 240px;
+  height: 45px;
+
+}
+.r-datepicker-header button {
+  background:#fff;
+  border:1px solid #D3D3D3;
+  width:30px;
+  height:30px;
+  padding:0 !important;
+  line-height:40px;
+  border-radius:50%;
+  outline:0;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+
+.r-datepicker-header button svg {
+  width:20px !important;
+  cursor: pointer; 
+}
+.r-datepicker-selected {
+  display: flex;
+  user-select: none;
+
+}
+.r-datepicker-selected  .r-selected-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:60px;
+  font-size: 12px;
+}
+/******************
+ * Range Calendar 
+ ******************/
 .r-rangeCalendar {
   display: flex;
   border:1px solid #D3D3D3;
@@ -9,7 +62,9 @@
 .r-rangeCalendar .r-calendar {
   border: 0;
 }
-/* Calendar */
+/***************
+ * Calendar 
+ ***************/
 .r-calendar {
   width: 300px;
   border:1px solid #D3D3D3;

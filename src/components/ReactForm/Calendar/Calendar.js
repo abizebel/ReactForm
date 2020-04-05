@@ -28,7 +28,7 @@ class Calendar extends Component {
 
 
     getContextValue (){
-        const {change,multiselect,setMonth,setYear, setSelectStep,selectedYear,selectedYear2,selectStep, setDay, jalali, range,selectedDay,selectedDay2,double,selectedMonth , selectedMonth2} = this.context;
+        const {change,selectedYear,selectedYear2,selectedMonth , selectedMonth2} = this.context;
         const {id} = this.props;
         
         return {

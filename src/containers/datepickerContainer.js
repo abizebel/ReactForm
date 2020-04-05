@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import { Datepicker } from '../components/ReactForm';
+import { DatePicker } from '../components/ReactForm';
 
 class DatepickerContainer extends Component {
 
@@ -9,16 +9,8 @@ class DatepickerContainer extends Component {
   render (){
     return (
       <Fragment>
-
-        <div className="page-content-box" >
-            <div className="page-content-title">Georgian Datepicker</div>
-            <Datepicker defaultValue={'aaa'} change={this.changeDatepicker.bind(this)} />
-        </div>
-        <div className="page-content-box" >
-            <div className="page-content-title">Jalali (Persian) Datepicker</div>
-            <Datepicker defaultValue={'aaa'} jalali={true}  change={this.changeDatepicker.bind(this)} />
-        </div>
-         
+        <DatePicker change={this.changeDatepicker} />
+       
       </Fragment>
       
     );

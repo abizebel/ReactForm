@@ -63,8 +63,8 @@ class Days extends Component {
     }
 
     selectMonth (month){
-        const {setMonth,setMode,selectedMonth, selectedMonth2, change, multiselect, setSelectStep, selectStep, id} = this.context;
-        if (multiselect) {
+        const {setMonth,setDay,setMode,selectedMonth, selectedMonth2, change, multiselect, setSelectStep, selectStep, id, monthOnly} = this.context;
+        if (multiselect && monthOnly) {
             if (selectStep === 0) {
                 setSelectStep(1);
                 setMonth(month);
@@ -91,24 +91,30 @@ class Days extends Component {
         }
         else {
             const result = this.getResult(month)
+            
+           
+            if(!monthOnly){
+                setDay(null)
+                setDay(null,true)
+            }
             setMode('days')
             setMonth(month);
             change(result)
         }
     }
     focusMonth = (month) => {
-        const {setMonth, multiselect, selectStep} = this.context;
+        const {setMonth, multiselect, selectStep, monthOnly} = this.context;
 
-        if (multiselect) {
+        if (multiselect && monthOnly) {
             if (selectStep === 1) {
                 setMonth(month, true);
             }
         } 
     }
     blurMonth =  () => {
-        const {setMonth, multiselect, selectStep} = this.context;
+        const {setMonth, multiselect, selectStep,monthOnly} = this.context;
 
-        if (multiselect) {
+        if (multiselect && monthOnly) {
             if (selectStep === 1) {
                 setMonth(null, true);
             }
