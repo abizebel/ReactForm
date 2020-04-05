@@ -43,7 +43,7 @@ class BaseCalendar extends Component {
         return {
             ...this.state,
             jalali ,
-            range ,
+            multiselect : range ,
             double ,
             monthOnly,
             setDay : this.setDay,

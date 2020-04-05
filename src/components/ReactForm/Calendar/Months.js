@@ -65,7 +65,6 @@ class Days extends Component {
     selectMonth (month){
         const {setMonth,setMode,selectedMonth, selectedMonth2, change, multiselect, setSelectStep, selectStep, id} = this.context;
         if (multiselect) {
-            debugger
             if (selectStep === 0) {
                 setSelectStep(1);
                 setMonth(month);
