@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
+import React, {Component,Fragment} from 'react';
 import Calendar from './Calendar';
 import BaseCalendarContext from './BaseCalendarContext';
 import moment from 'moment-jalaali';
-
+ const m = moment();
 class BaseCalendar extends Component {
     constructor(props){
         super(props);
-        const m = moment();
+       
 
-        const {monthOnly, double, range} = this.props;
+        const {double} = this.props;
 
         this.state = {
             selectedMonth: m,
@@ -20,6 +20,8 @@ class BaseCalendar extends Component {
             selectStep : 0, //0 = no select, 1 = firstSelect, 2 = secondSelect
         }
     }   
+
+
 
     setSelectStep = (step) => {
         this.setState({selectStep : step})
