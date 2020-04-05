@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import TableContext from './TableContext';
 import Input from '../Input/Input';
 import Select from '../Select/Select';

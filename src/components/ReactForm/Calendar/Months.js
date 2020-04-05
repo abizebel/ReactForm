@@ -63,16 +63,18 @@ class Days extends Component {
     }
 
     selectMonth (month){
-        const {setMonth,setMode, monthOnly,selectedMonth, selectedMonth2, change, multiselect, setSelectStep, selectStep, id} = this.context;
+        const {setMonth,setMode,selectedMonth, selectedMonth2, change, multiselect, setSelectStep, selectStep, id} = this.context;
         if (multiselect) {
-            
+            debugger
             if (selectStep === 0) {
                 setSelectStep(1);
                 setMonth(month);
             }
             else if (selectStep === 1) {
-                const result = this.getResult()
-                if ( month.isBefore(selectedMonth || (id === '2' && month.isBefore(selectedMonth2)))  ) {
+                const result = this.getResult();
+                
+                if ( month.isBefore(selectedMonth) || (id === '2' && month.isBefore(selectedMonth2)) )   {
+                    
                     setSelectStep(1);
                     setMonth(month);
                     change(result)
@@ -94,29 +96,8 @@ class Days extends Component {
             setMonth(month);
             change(result)
         }
-
-
-
-
-        
-        // setMonth (selectedMonth);
-        // setMode('days');
-
-
-        
-        // if (monthOnly) {
-        //     const monStr =   jalali ? selectedMonth.format('jYYYY/jM/jD') :selectedMonth.format('YYYY/M/D') ;
-        //     let x = monStr.split('/');
-        //     x[x.length - 1] = '1'
-        //     let y = x.join('/')
-
-        //     change({
-        //         dateStr : y
-        //     })
-        //     return ;
-        // }
     }
-    focusMonth = (month,e) => {
+    focusMonth = (month) => {
         const {setMonth, multiselect, selectStep} = this.context;
 
         if (multiselect) {
@@ -125,7 +106,7 @@ class Days extends Component {
             }
         } 
     }
-    blurMonth =  (month,e) => {
+    blurMonth =  () => {
         const {setMonth, multiselect, selectStep} = this.context;
 
         if (multiselect) {

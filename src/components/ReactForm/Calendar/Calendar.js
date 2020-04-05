@@ -1,6 +1,4 @@
 import React, {Component,Fragment} from 'react';
-import moment from 'moment-jalaali';
-
 import CalendarContext from './CalendarContext';
 import BaseCalendarContext from './BaseCalendarContext';
 import DaysHeader from './DaysHeader';
@@ -17,7 +15,6 @@ class Calendar extends Component {
     
     constructor(props){
         super(props);
-        const m = moment();
   
         this.state = {
             mode : 'days',//default
@@ -29,25 +26,9 @@ class Calendar extends Component {
         this.setState({mode})
     }
 
-    setMonth = (month,  is= false) => {
-        const {setMonth} = this.context;
-        const { id} = this.props;
-        const isSecond = is || id === '2';
-       
-        setMonth(month, isSecond)
-    }
-    setYear = (year, is= false) => {
-        const {setYear} = this.context;
-        const {id} = this.props;
-        const isSecond = is || id === '2';
-       
-        setYear(year, isSecond)
-    }
-
-
 
     getContextValue (){
-        const {change, setSelectStep,selectedYear,selectedYear2,selectStep, setDay, jalali, range,selectedDay,selectedDay2,double,selectedMonth , selectedMonth2} = this.context;
+        const {change,setMonth,setYear, setSelectStep,selectedYear,selectedYear2,selectStep, setDay, jalali, range,selectedDay,selectedDay2,double,selectedMonth , selectedMonth2} = this.context;
         const {id} = this.props;
         
         return {
@@ -57,8 +38,8 @@ class Calendar extends Component {
             nextMonth : this.nextMonth ,
             prevMonth :  this.prevMonth,
             setMode : this.setMode,
-            setYear : this.setYear ,
-            setMonth : this.setMonth,
+            setYear ,
+            setMonth ,
             selectedDay,
             selectedDay2,
             selectedYear,

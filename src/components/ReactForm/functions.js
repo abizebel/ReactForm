@@ -1,9 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
 
-import * as _ from 'underscore'
-
-
 
 /**
  * Find items by ids related to mapping config 
@@ -16,7 +13,7 @@ export function findItemsByIds(arr, ids, mapping){
       if (ids === undefined || ids === null) return [];
 
 
-    return arr.filter (o => ids.indexOf(Number(o[mapping.value])) != -1)
+    return arr.filter (o => ids.indexOf(Number(o[mapping.value])) !== -1)
 }
 
 /**
@@ -50,12 +47,12 @@ export function handlePosition (elementDom) {
         //reset befor any calculate
         $(boxDom).css('top','100%')
 
-        let pageWidth = window.innerWidth + window.pageXOffset;
+        //let pageWidth = window.innerWidth + window.pageXOffset;
         let pageHeight = window.innerHeight ;
-        let itemWidth =  $(boxDom).width();
+        //let itemWidth =  $(boxDom).width();
         let itemHeight =  $(boxDom).height();
-        let itemLeft =  $(boxDom).offset().left ;
-        let itemRight = itemLeft + itemWidth;
+        //let itemLeft =  $(boxDom).offset().left ;
+        //let itemRight = itemLeft + itemWidth;
         let itemTop =  $(boxDom).offset().top - window.pageYOffset;
         let itemBottom = itemTop + itemHeight;
         
@@ -90,7 +87,7 @@ export function handlePosition (elementDom) {
 export function mapObjectToClassName (obj){
     let str = '';
 
-    for (let prop in obj) {
+    for (var prop in obj) {
         if (obj[prop]) {
             str += ` ${prop}`
         }

@@ -1,5 +1,4 @@
 import React, {Component, Fragment, createRef} from 'react';
-import Checkbox from '../Checkbox/Checkbox';
 import icons from '../icons';
 import './Select.scss';
 import $ from 'jquery';

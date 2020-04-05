@@ -17,9 +17,9 @@ const monthMapping = {
 }
 
 export function mapPersianMonths (date){
-  for (let prop in monthMapping) {
+  for (var prop in monthMapping) {
     if (date.indexOf(prop) !== -1) {
-      return date.replace(prop,monthMapping[prop] )
+      return date.replace(prop ,monthMapping[prop] )
     }
   }
 

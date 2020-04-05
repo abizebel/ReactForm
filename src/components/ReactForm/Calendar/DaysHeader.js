@@ -26,12 +26,14 @@ class DaysHeader extends Component {
     }
 
     prev = () =>{
-        const {month, setMonth} = this.context;
-        setMonth(month.clone().subtract(1, 'month'))
+        const {month, setMonth, id} = this.context;
+        const isSecond = id === '2';
+        setMonth(month.clone().subtract(1, 'month'),isSecond)
     }
     next = () =>{
-        const {month, setMonth} = this.context;
-        setMonth(month.clone().add(1, 'month'))
+        const {month, setMonth,id} = this.context;
+        const isSecond = id === '2';
+        setMonth(month.clone().add(1, 'month'),isSecond)
     }
     render () {
         const {setMode, month, jalali} = this.context;

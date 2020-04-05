@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import {Input, Modal, Select, Tag, Checkbox} from '../components/ReactForm';
+import {Input, Modal, Select, Tag} from '../components/ReactForm';
 
 
 class AutocomplteContainer extends Component {

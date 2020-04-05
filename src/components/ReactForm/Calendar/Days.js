@@ -41,7 +41,7 @@ class Days extends Component {
             }
             else if (selectStep === 1) {
                 const result = this.getResult(day)
-                if ( day.isBefore(selectedDay || (id === '2' && day.isBefore(selectedDay2)))  ) {
+                if ( day.isBefore(selectedDay) || (id === '2' && day.isBefore(selectedDay2)) )   {
                     setSelectStep(1);
                     setDay(day);
                     change(result)
