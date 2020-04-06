@@ -96,7 +96,7 @@ class DatePicker extends Component {
                         </svg>
                     </button>
                     
-                    <div class="r-datepicker-selected" onClick={this.open}> 
+                    <div class="r-datepicker-selected" onClick={this.open} style={{ direction : jalali ? 'rtl' : 'ltr'}}> 
                         {this.renderSelected()}
                         
                     </div>
