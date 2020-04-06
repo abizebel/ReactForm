@@ -10,7 +10,6 @@ class DatepickerContainer extends Component {
     return (
       <Fragment>
         <DatePicker startDtate={"2012/8/1s"} endDtate={"2012/8/1"} jalali={true} monthOnly={true} change={this.changeDatepicker} />
-       
       </Fragment>
       
     );

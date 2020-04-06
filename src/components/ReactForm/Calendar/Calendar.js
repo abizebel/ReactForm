@@ -30,6 +30,8 @@ class Calendar extends Component {
     getContextValue (){
         const {change,selectedYear,selectedYear2,selectedMonth , selectedMonth2} = this.context;
         const {id} = this.props;
+        const {mode} = this.state;
+
         
         return {
             ...this.context,
@@ -38,6 +40,7 @@ class Calendar extends Component {
             id ,
             month : id === '1' ? selectedMonth: selectedMonth2 ,
             year : id === '1' ? selectedYear: selectedYear2 ,
+            mode
             
         }
     }

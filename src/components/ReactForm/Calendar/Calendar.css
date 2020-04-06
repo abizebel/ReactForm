@@ -41,6 +41,8 @@
 .r-datepicker-selected {
   display: flex;
   user-select: none;
+  justify-content: center;
+  width: 120px;
 
 }
 .r-datepicker-selected  .r-selected-item{
@@ -174,7 +176,11 @@
   background: #ebebeb;
   /* pointer-events: none; */
 }
-
+.r-calendar-item.r-forbidden {
+  background: #ebebeb;
+  pointer-events: none;
+  cursor: not-allowed;
+}
 /* Selected */
 .r-calendar-item.r-selected span {
   background: var(--focus-color);

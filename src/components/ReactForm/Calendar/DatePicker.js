@@ -10,7 +10,8 @@ class DatePicker extends Component {
         this.state = {
             isDouble : false,
             startDate : null,
-            endDate : null
+            endDate : null,
+            open : false
 
         }
     }
@@ -24,7 +25,9 @@ class DatePicker extends Component {
         return isDouble ? 610 : 310
     }
 
-
+    toggle = () => {
+        this.setState({open:!this.state.open})
+    }
 
 
     renderSelected = () => {
@@ -69,7 +72,7 @@ class DatePicker extends Component {
         return (
            <div className="r-datepicker">
 
-               <div className="r-datepicker-header">
+               <div className="r-datepicker-header" onClick={this.toggle}>
                     <button type="button" className="r-ripple">
                         <svg viewBox="0 0 24 24">
                             <path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
@@ -88,7 +91,7 @@ class DatePicker extends Component {
                     </button>
                </div>
               
-                    <div className="r-datepicker-content" style={{width:this.getWidth()}}>
+                    {this.state.open && <div className="r-datepicker-content" style={{width:this.getWidth()}}>
                         {!isDouble &&<BaseCalendar
                             monthOnly={monthOnly}
                             jalali={jalali} 
@@ -115,7 +118,7 @@ class DatePicker extends Component {
                         <button  style={{margin:'0 8px'}} className={`r-button r-ripple r-xs ${isDouble ? 'r-info' : `r-default `} r-rounded r-nospace`} type="button" onClick={this.toggleCalendar}>
                             انتخاب دوره ای 
                          </button>
-                    </div>
+                    </div>}
                 </div>
            
         )
