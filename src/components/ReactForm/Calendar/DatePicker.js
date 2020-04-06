@@ -1,6 +1,8 @@
-import React, {Component,Fragment} from 'react';
+import React, {Component,Fragment,createRef} from 'react';
 import BaseCalendar from './BaseCalendar'
 import {persianNumber,mapPersianMonths } from './functions';
+import $ from 'jquery';
+import Backdrop from '../Backdrop/Backdrop';
 
 
 class DatePicker extends Component {
@@ -11,25 +13,40 @@ class DatePicker extends Component {
             isDouble : false,
             startDate : null,
             endDate : null,
-            open : false
+            open : false,
+            top : null,
 
+            left :null
         }
+
+        this.datepikcerDom = createRef();
     }
 
 
     toggleCalendar = () => {
         this.setState({ isDouble : !this.state.isDouble })
     }
+
     getWidth = () =>{
         const {isDouble } = this.state;
         return isDouble ? 610 : 310
     }
 
-    toggle = () => {
-        this.setState({open:!this.state.open})
+    open = () => {
+        this.setState({open:true})
+
+        var x = $(this.datepikcerDom.current).offset().left;
+        var y = $(this.datepikcerDom.current).offset().top;
+        this.setState({
+            top : y+50,
+            left : x
+        })
+    }
+    close = () => {
+        this.setState({open:false})
     }
 
-
+    
     renderSelected = () => {
         const {isDouble, startDate, endDate } = this.state;
         const {jalali} = this.props;
@@ -66,20 +83,20 @@ class DatePicker extends Component {
     }
     render (){
         const {jalali, change, monthOnly} = this.props;
-        const {isDouble } = this.state;
+        const {isDouble, open, top, left } = this.state;
         
         
         return (
-           <div className="r-datepicker">
-
-               <div className="r-datepicker-header" onClick={this.toggle}>
+           <div className="r-datepicker" >
+                {open && <Backdrop onClick={this.close} />}
+               <div className="r-datepicker-header"  ref={ this.datepikcerDom}>
                     <button type="button" className="r-ripple">
                         <svg viewBox="0 0 24 24">
                             <path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
                         </svg>
                     </button>
                     
-                    <div class="r-datepicker-selected"> 
+                    <div class="r-datepicker-selected" onClick={this.open}> 
                         {this.renderSelected()}
                         
                     </div>
@@ -91,7 +108,10 @@ class DatePicker extends Component {
                     </button>
                </div>
               
-                    {this.state.open && <div className="r-datepicker-content" style={{width:this.getWidth()}}>
+                    {open && <div className="r-datepicker-content" style={{width:this.getWidth(),top,left, direction : jalali ? 'rtl' : 'ltr'}}>
+                 
+                        
+                        
                         {!isDouble &&<BaseCalendar
                             monthOnly={monthOnly}
                             jalali={jalali} 

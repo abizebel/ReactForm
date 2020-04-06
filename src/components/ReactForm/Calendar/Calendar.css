@@ -2,8 +2,8 @@
  * DatePicker
  ******************/
 .r-datepicker {
- cursor: pointer;
-
+  cursor: pointer;
+  
 }
 
 /* Header */
@@ -40,7 +40,8 @@
 }
 .r-datepicker-selected {
   display: flex;
-  user-select: none;
+  -webkit-user-select: none;
+          user-select: none;
   justify-content: center;
   width: 120px;
 
@@ -59,14 +60,16 @@
   border:1px solid #D3D3D3;
   border-radius:15px;
   padding: 4px;
+  position: fixed;
+  z-index: 99999999999999;
 }
 .r-datepicker-content  .r-calendar,
 .r-datepicker-content  .r-rangeCalendar {
   border: 0;
 }
 /******************
- * Range Calendar 
- ******************/
+* Range Calendar 
+******************/
 .r-rangeCalendar {
   display: flex;
   border:1px solid #D3D3D3;
@@ -77,15 +80,14 @@
   border: 0;
 }
 /***************
- * Calendar 
- ***************/
+* Calendar 
+***************/
 .r-calendar {
   width: 300px;
   border:1px solid #D3D3D3;
   border-radius:15px;
   padding: 8px;
   -webkit-user-select: none;
-  -moz-user-select: none;
   user-select: none; 
   background: #fff;
   z-index: 2;
@@ -150,36 +152,33 @@
   text-align: center;
   font-size: 13px;
   vertical-align: middle;
+  position: relative
 }
 .r-calendar-item > span{
-   width:30px;
-   height:30px;
-   line-height: 30px;
+  width:30px;
+  height:30px;
+  line-height: 30px;
   display: block;
 
 }
-.r-calendar-item:hover span{
-   background: var(--focus-color);
-   border-radius: 50%;
-  color: #fff;
 
-}
 /* Out of days */
 .r-calendar-item.r-outOfDays {
-  color: #ddd;
+  color: #aaa;
   pointer-events: none;
   display: none;
 }
 
 /* Disbaled */
 .r-calendar-item.r-disabled {
-  background: #ebebeb;
+  color: #aaa;
+  background: #f1f1f1;
+
   /* pointer-events: none; */
 }
-.r-calendar-item.r-forbidden {
-  background: #ebebeb;
-  pointer-events: none;
-  cursor: not-allowed;
+
+.r-calendar-item.r-disabled:hover span {
+  color: #000
 }
 /* Selected */
 .r-calendar-item.r-selected span {
@@ -224,3 +223,4 @@
 .r-calendar.r-rtl {
   direction: rtl
 }
+  

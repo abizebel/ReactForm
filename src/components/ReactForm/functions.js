@@ -35,6 +35,16 @@ export function findItemById (list, id, mapping) {
 }
 
 /**
+ * Get position of clicked element
+ * @param {Dom Object} elementDom
+ */
+export function getClickedPosition (elementDom) {
+
+}
+
+
+
+/**
  * Handle element position when advance from page area
  * @param {Dom Object} elementDom
  */

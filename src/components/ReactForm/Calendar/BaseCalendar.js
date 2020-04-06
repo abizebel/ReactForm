@@ -39,6 +39,21 @@ class BaseCalendar extends Component {
         this.setState({ [isSecondSelect ? 'selectedYear2' : 'selectedYear' ] : year });
     }
 
+    nextYear = (year, isSecondSelect = false) => {
+        this.setState({ [isSecondSelect ? 'selectedYear2' : 'selectedYear' ] : year.clone().add(1, 'year') });
+    }
+
+    prevYear = (year, isSecondSelect = false) => {
+        this.setState({ [isSecondSelect ? 'selectedYear2' : 'selectedYear' ] : year.clone().subtract(1, 'year') });
+    }
+
+    nextMonth = (month, isSecondSelect = false) => {
+        this.setState({ [isSecondSelect ? 'selectedMonth2' : 'selectedMonth' ] : month.clone().add(1, 'month') });
+    }
+
+    prevMonth = (month, isSecondSelect = false) => {
+        this.setState({ [isSecondSelect ? 'selectedMonth2' : 'selectedMonth' ] : month.clone().subtract(1, 'month') });
+    }
 
     getContextValue (){
         const {jalali,range, double, monthOnly } = this.props;
@@ -52,6 +67,10 @@ class BaseCalendar extends Component {
             setSelectStep : this.setSelectStep,
             setMonth:this.setMonth,
             setYear:this.setYear,
+            nextMonth:this.nextMonth,
+            prevMonth:this.prevMonth,
+            nextYear:this.nextYear,
+            prevYear:this.prevYear,
             change : this.props.change,
         }
     }

@@ -28,14 +28,14 @@ class MonthsHeader extends Component {
     }
 
     prev = () =>{
-        const {year, setYear,id} = this.context;
+        const {year, prevYear,id} = this.context;
         const isSecond = id === '2'
-        setYear(year.clone().subtract(1, 'year'),isSecond)
+        prevYear(year,isSecond)
     }
     next = () =>{
-        const {year, setYear,id} = this.context;
+        const {year, nextYear,id} = this.context;
         const isSecond = id === '2'
-        setYear(year.clone().add(1, 'year'),isSecond)
+        nextYear(year,isSecond)
     }
 
 
