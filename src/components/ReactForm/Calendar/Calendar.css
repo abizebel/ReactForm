@@ -171,7 +171,6 @@
 
 /* Disbaled */
 .r-calendar-item.r-disabled {
-  color: #aaa;
   background: #f1f1f1;
 
   /* pointer-events: none; */
