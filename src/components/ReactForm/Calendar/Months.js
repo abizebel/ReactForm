@@ -140,24 +140,43 @@ class Days extends Component {
             (month.isBefore(selectedMonth2) && month.isAfter(selectedMonth)) 
         )
     }
-
+    isForbidden = (month) =>{
+        const { selectedMonth,selectedMonth2, double} = this.context;
+        const {id} = this.context;
+        
+        if (double){
+            if (id === '1' ){
+                if (month.clone().add(1, 'month').isAfter(selectedMonth2) ||  month.clone().add(1, 'month').isSame(selectedMonth2)) return true;
+            }
+            else if (id === '2' ){
+                
+                if (month.clone().subtract(1, 'month').isBefore(selectedMonth) ||  month.clone().subtract(1, 'month').isSame(selectedMonth)) return true;
+            }
+            return false
+        }
+        
+        return false
+    }
     renderMonths (){
         const {jalali, selectedMonth, selectedMonth2, multiselect, monthOnly,selectStep,mode} = this.context;
         const months = jalali ? jalaliMonths : georgianMonths;
 
+
+
         return months.map((monthItem, i) => {
             const month = this.createMonth(i+1);
             const isDisabled = this.isDisbaled(month) ? 'r-disabled' : '' ;
+            const isForbidden = this.isForbidden(month) ? 'r-forbidden' : '' ;
             const selected = selectedMonth  ? selectedMonth.isSame(month, 'month') : false;
             const selected2 = selectedMonth2 && mode !=='months' && selectStep!==0 ? selectedMonth2.isSame(month, 'month') : false;
             const isSelected = selected || selected2 ? 'r-selected' : '';
             
             return ( 
                 <div key={i} 
-                  onMouseEnter={this.focusMonth.bind(this, this.createMonth(i+1))}
-                   onMouseLeave={this.blurMonth.bind(this, this.createMonth(i+1))}
+                    onMouseEnter={this.focusMonth.bind(this, this.createMonth(i+1))}
+                    onMouseLeave={this.blurMonth.bind(this, this.createMonth(i+1))}
                     onClick={this.selectMonth.bind(this, this.createMonth(i+1))} 
-                    class={`r-calendar-item r-month  ${isSelected} ${isDisabled} `}>
+                    class={`r-calendar-item r-month ${isForbidden} ${isSelected} ${isDisabled} `}>
                         <span>{monthItem}</span>
                 </div>
             )

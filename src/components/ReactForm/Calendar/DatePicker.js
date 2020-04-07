@@ -1,21 +1,20 @@
 import React, {Component,Fragment,createRef} from 'react';
-import BaseCalendar from './BaseCalendar'
+import Calendar from './Calendar'
 import {persianNumber,mapPersianMonths } from './functions';
 import $ from 'jquery';
 import Backdrop from '../Backdrop/Backdrop';
-
+import BaseCalendarContext from './BaseCalendarContext'
 
 class DatePicker extends Component {
+
+
+    static contextType = BaseCalendarContext;
     constructor (props){
         super(props);
 
         this.state = {
-            isDouble : false,
-            startDate : null,
-            endDate : null,
             open : false,
             top : null,
-
             left :null
         }
 
@@ -23,13 +22,10 @@ class DatePicker extends Component {
     }
 
 
-    toggleCalendar = () => {
-        this.setState({ isDouble : !this.state.isDouble })
-    }
 
     getWidth = () =>{
-        const {isDouble } = this.state;
-        return isDouble ? 610 : 310
+        const {double } = this.context;
+        return double ? 610 : 310
     }
 
     open = () => {
@@ -42,55 +38,76 @@ class DatePicker extends Component {
             left : x
         })
     }
+
     close = () => {
         this.setState({open:false})
     }
 
-    
+    prevAction = () => {
+        const {selectedMonth,selectedMonth2,nextMonth, prevMonth,double} = this.context;
+        if (double) {
+            nextMonth(selectedMonth)
+            nextMonth(selectedMonth2, true)
+        }
+        else {
+            nextMonth(selectedMonth)
+        }
+        
+    }
+    nextAction = () =>{
+        const {selectedMonth,selectedMonth2,nextMonth, prevMonth,double} = this.context;
+       
+        if (double) {
+            prevMonth(selectedMonth)
+            prevMonth(selectedMonth2, true)
+        }
+        else {
+            prevMonth(selectedMonth)
+        }
+    }
     renderSelected = () => {
-        const {isDouble, startDate, endDate } = this.state;
-        const {jalali} = this.props;
+        const {double, selectedMonth, selectedMonth2 ,jalali} = this.context;
 
         
-        if (isDouble)   {
-            if (!startDate || !endDate) return 'Not Selected';
+        if (double)   {
+            if (!selectedMonth || !selectedMonth2) return 'Not Selected';
             return (
                 <Fragment>
                     <div className="r-selected-item">
-                        <span>{jalali ?  mapPersianMonths(persianNumber(startDate.locale('fa').format('jMMMM'))) :   startDate.locale('en').format('MMMM')}</span>
-                        <span>{jalali ? persianNumber(startDate.locale('fa').format('jYYYY')):   startDate.locale('en').format('YYYY') }</span>
+                        <span>{jalali ?  mapPersianMonths(persianNumber(selectedMonth.locale('fa').format('jMMMM'))) :   selectedMonth.locale('en').format('MMMM')}</span>
+                        <span>{jalali ? persianNumber(selectedMonth.locale('fa').format('jYYYY')):   selectedMonth.locale('en').format('YYYY') }</span>
                     </div>
                     <div className="r-selected-item" style={{width:10}}>
                         <span style={{opacity:0}}>-</span>
                         <span>-</span>
                     </div>
                     <div className="r-selected-item">
-                        <span>{jalali ?  mapPersianMonths(persianNumber(endDate.locale('fa').format('jMMMM'))) :   endDate.locale('en').format('MMMM')}</span>
-                        <span>{jalali ? persianNumber(endDate.locale('fa').format('jYYYY')):   endDate.locale('en').format('YYYY') }</span>
+                        <span>{jalali ?  mapPersianMonths(persianNumber(selectedMonth2.locale('fa').format('jMMMM'))) :   selectedMonth2.locale('en').format('MMMM')}</span>
+                        <span>{jalali ? persianNumber(selectedMonth2.locale('fa').format('jYYYY')):   selectedMonth2.locale('en').format('YYYY') }</span>
                     </div>
                 </Fragment>
             )
         }      
         else {
-            if (!startDate) return 'Not Selected';
+            if (!selectedMonth) return 'Not Selected';
             return (
                 <div className="r-selected-item">
-                    <span>{jalali ?  mapPersianMonths(persianNumber(startDate.locale('fa').format('jMMMM'))) :   startDate.locale('en').format('MMMM')}</span>
-                    <span>{jalali ? persianNumber(startDate.locale('fa').format('jYYYY')):   startDate.locale('en').format('YYYY') }</span>
+                    <span>{jalali ?  mapPersianMonths(persianNumber(selectedMonth.locale('fa').format('jMMMM'))) :   selectedMonth.locale('en').format('MMMM')}</span>
+                    <span>{jalali ? persianNumber(selectedMonth.locale('fa').format('jYYYY')):   selectedMonth.locale('en').format('YYYY') }</span>
                 </div>
             )
         }           
     }
     render (){
-        const {jalali, change, monthOnly} = this.props;
-        const {isDouble, open, top, left } = this.state;
+        const {jalali,toggleCalendar, double} = this.context;
+        const { open, top, left } = this.state;
         
         
         return (
            <div className="r-datepicker" >
                 {open && <Backdrop onClick={this.close} />}
                <div className="r-datepicker-header"  ref={ this.datepikcerDom}>
-                    <button type="button" className="r-ripple">
+                    <button type="button" className="r-ripple" onClick={this.nextAction}>
                         <svg viewBox="0 0 24 24">
                             <path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
                         </svg>
@@ -101,41 +118,20 @@ class DatePicker extends Component {
                         
                     </div>
 
-                    <button  type="button" class="r-ripple">
+                    <button  type="button" class="r-ripple" onClick={this.prevAction}>
                         <svg viewBox="0 0 24 24">
                             <path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                         </svg>
                     </button>
                </div>
               
-                    {open && <div className="r-datepicker-content" style={{width:this.getWidth(),top,left, direction : jalali ? 'rtl' : 'ltr'}}>
+                        {open && <div className="r-datepicker-content" style={{width:this.getWidth(),top,left, direction : jalali ? 'rtl' : 'ltr'}}>
                  
-                        
-                        
-                        {!isDouble &&<BaseCalendar
-                            monthOnly={monthOnly}
-                            jalali={jalali} 
-                            range={false} 
-                            double={false} 
-                            change={val => {
-                                this.setState({startDate : val.d})
-                                change(val)
-                            }}
-                        />}
+                        {!double && <div className="r-rangeCalendar"><Calendar id="1" /></div>}
 
-                        {isDouble && <BaseCalendar
-                            monthOnly={monthOnly}
-                            jalali={jalali} 
-                            range={true} 
-                            double={true} 
-                            change={val => {
-                                this.setState({startDate : val.startD})
-                                this.setState({endDate : val.endD})
-                                change(val);
-                            }}
-                        />}
+                        {double &&  <div className="r-rangeCalendar"><Calendar id="1" /><Calendar id="2" /></div>}
 
-                        <button  style={{margin:'0 8px'}} className={`r-button r-ripple r-xs ${isDouble ? 'r-info' : `r-default `} r-rounded r-nospace`} type="button" onClick={this.toggleCalendar}>
+                        <button  style={{margin:'0 8px'}} className={`r-button r-ripple r-xs ${double ? 'r-info' : `r-default `} r-rounded r-nospace`} type="button" onClick={toggleCalendar}>
                             انتخاب دوره ای 
                          </button>
                     </div>}

@@ -109,7 +109,7 @@ class Days extends Component {
                 <div onClick={this.selectDay.bind(this,day)} key={i} 
                     onMouseEnter={this.focusDay.bind(this,day)}
                     onMouseLeave={this.blurDay.bind(this,day)}
-                    class={`r-calendar-item ${isSelected} ${isDisabled} ${isOutOfDays} ${isToday}`}>
+                    className={`r-calendar-item ${isSelected} ${isDisabled} ${isOutOfDays} ${isToday}`}>
                     <span> {jalali ? persianNumber(day.format('jD')) : day.format('D')} </span>
                 </div>
             )
@@ -123,7 +123,7 @@ class Days extends Component {
 
         return resultWeekNames.map((name, i) => {
             return (
-                <div key={i} class="r-calendar-item r-week">
+                <div key={i} className="r-calendar-item r-week">
                     <span>{name}</span>
                 </div>       
 
@@ -133,7 +133,7 @@ class Days extends Component {
 
    render (){
        return (
-        <div class="r-calendar-content">
+        <div className="r-calendar-content">
             {this.renderWeeks()}
             {this.renderDays()}
         </div>

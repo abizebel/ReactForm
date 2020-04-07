@@ -19,7 +19,7 @@ class CalendarContainer extends Component {
             <RangeCalendar jalali={false} monthOnly={true} change={this.changeCalendar.bind(this)} />
         </div>
   
-        {/* <div className="page-content-box" >
+        <div className="page-content-box" >
             <div className="page-content-title">Georgian Calendar</div>
             <Calendar range={false} jalali={false}  change={this.changeCalendar.bind(this)} />
         </div>
@@ -31,7 +31,7 @@ class CalendarContainer extends Component {
             <div className="page-content-title">Georgian Calendar</div>
             <Calendar range={true} monthOnly={true} jalali={false}  change={this.changeCalendar.bind(this)} />
         </div> 
-         */}
+         
   
       </Fragment>
       

@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "jest": "^24.8.0",
     "jquery": "^3.4.1",
     "moment-jalaali": "^0.9.1",
     "moment-jalali": "^0.3.9",
@@ -17,7 +20,8 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "react-tether": "^2.0.4",
-    "react-toast-notifications": "^2.4.0"
+    "react-toast-notifications": "^2.4.0",
+    "underscore": "^1.9.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,7 +45,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "underscore": "^1.9.2"
+  "transform": {
+    "\\.js$": "<rootDir>/node_modules/babel-jest"
   }
 }

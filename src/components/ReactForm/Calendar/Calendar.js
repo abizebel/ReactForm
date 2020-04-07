@@ -51,7 +51,7 @@ class Calendar extends Component {
         const rtlClass = jalali ? 'r-rtl' : '';
         return (
             <CalendarContext.Provider value ={this.getContextValue()}>
-                <div class={`r-calendar ${rtlClass}`}>
+                <div className={`r-calendar ${rtlClass}`}>
                     <div className="r-calendar-wrapper">
 
                     {   !monthOnly ?  

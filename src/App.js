@@ -24,23 +24,23 @@ class App extends Component {
 
     <div id="main">
         <div id="sidebar">
-            <div class="sidebar-header">
+            <div className="sidebar-header">
                 <img src="../../images/react-icon.svg" alt="" width="70" />
                 <h2>React Components</h2>
             </div>
-            <div class="sidebar-search">
+            <div className="sidebar-search">
                 <input type="text" placeholder="Search your component ..." />
             </div>
-            <div class="sidebar-menu">
+            <div className="sidebar-menu">
                 <ul>
                     <li>
-                        <a href=""><span class="mdi mdi-chevron-right"></span>Inputs</a>
+                        <a href=""><span className="mdi mdi-chevron-right"></span>Inputs</a>
                         <ul>
                             <li><Link to="/input/">Simple Input</Link></li>
                         </ul>
                     </li>
                     <li>
-                        <a href=""><span class="mdi mdi-chevron-right"></span>Calenders</a>
+                        <a href=""><span className="mdi mdi-chevron-right"></span>Calenders</a>
                         <ul>
                             <li><Link to="/calendar/">Calendar</Link> </li>
                             <li><Link to="/datepicker/">Datepicker</Link> </li>
@@ -51,7 +51,7 @@ class App extends Component {
             </div>
         </div>
         <div id="content">
-            <div class="content-header">
+            <div className="content-header">
                 
             </div>
             <Route exact path="/" component={ButtonContainer} />

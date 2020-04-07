@@ -42,7 +42,7 @@ class DaysHeader extends Component {
         const georgianMonthYear = month.locale('en').format('MMMM YYYY');
         
         return (
-            <div class="r-calendar-header">
+            <div className="r-calendar-header">
                
                 <button onClick={this.prev} type="button" className="r-ripple" disabled={this.checkVisibility('prev') }>
                     <svg viewBox="0 0 24 24">
@@ -51,11 +51,11 @@ class DaysHeader extends Component {
                 </button>
                 
 
-                <div class="r-title" onClick={()=>{setMode('months')}}> 
+                <div className="r-title" onClick={()=>{setMode('months')}}> 
                 {jalali ? jalaliMonthYear : georgianMonthYear} 
                 </div>
 
-                <button onClick={this.next} type="button" class="r-ripple" disabled={this.checkVisibility('next')}>
+                <button onClick={this.next} type="button" className="r-ripple" disabled={this.checkVisibility('next')}>
                     <svg viewBox="0 0 24 24">
                         <path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                     </svg>
