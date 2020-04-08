@@ -24,9 +24,18 @@ class DatepickerContainer extends Component {
         <Calendar 
           startDtate={"2012/8/1s"}
           endDtate={"2012/8/1"}
-          jalali={true} 
-          monthOnly={true}
+          monthOnly={false}
           datepicker={true}
+
+          change={this.changeDatepicker}
+        />
+        <Calendar 
+          startDtate={"2012/8/1s"}
+          endDtate={"2012/8/1"}
+          jalali={true} 
+          monthOnly={false}
+          datepicker={true}
+
           change={this.changeDatepicker}
         />
       </Fragment>

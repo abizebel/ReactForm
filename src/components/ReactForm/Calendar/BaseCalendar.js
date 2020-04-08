@@ -3,14 +3,16 @@ import Calendar from './Calendar';
 import BaseCalendarContext from './BaseCalendarContext';
 import DatePicker from './DatePicker';
 import moment from 'moment-jalaali';
- const m = moment();
+
 class BaseCalendar extends Component {
     constructor(props){
         super(props);
-       
+        const m = moment();
+
         this.state = {
+            moment : m,
             selectedMonth: m,
-            selectedMonth2: this.props.double ?  m.clone().add(1, `Month`) : null,
+            selectedMonth2: m.clone().add(1, `Month`) ,
             selectedYear : m,
             selectedYear2 : m.clone().add(1, `year`),
             selectedDay:  this.props.defaultValue || null,
@@ -18,14 +20,15 @@ class BaseCalendar extends Component {
             selectStep : 0, //0 = no select, 1 = firstSelect, 2 = secondSelect
             double : this.props.double
         }
-    }   
-
+    }  
+    
     setSelectStep = (step) => {
         this.setState({selectStep : step})
     }
 
     setDay = (day, isSecondSelect = false ) => {
         this.setState({ [isSecondSelect ? 'selectedDay2' : 'selectedDay' ] : day });
+
     }
 
     setMonth = (month, isSecondSelect = false) => {
@@ -37,23 +40,37 @@ class BaseCalendar extends Component {
     }
 
     nextYear = (year, isSecondSelect = false) => {
+        if(!year) return;
         this.setState({ [isSecondSelect ? 'selectedYear2' : 'selectedYear' ] : year.clone().add(1, 'year') });
     }
 
     prevYear = (year, isSecondSelect = false) => {
+        if(!year) return;
         this.setState({ [isSecondSelect ? 'selectedYear2' : 'selectedYear' ] : year.clone().subtract(1, 'year') });
     }
 
     nextMonth = (month, isSecondSelect = false) => {
+        if(!month) return;
         this.setState({ [isSecondSelect ? 'selectedMonth2' : 'selectedMonth' ] : month.clone().add(1, 'month') });
         this.setState({ [isSecondSelect ? 'selectedYear2' : 'selectedYear' ] : month });
     }
 
     prevMonth = (month, isSecondSelect = false) => {
+        if(!month) return;
         this.setState({ [isSecondSelect ? 'selectedMonth2' : 'selectedMonth' ] : month.clone().subtract(1, 'month') });
         this.setState({ [isSecondSelect ? 'selectedYear2' : 'selectedYear' ] : month });
     }
+    nextDay = (day, isSecondSelect = false) => {
+        if(!day) return;
+        this.setState({ [isSecondSelect ? 'selectedDay2' : 'selectedDay' ] : day.clone().add(1, 'day') });
+        this.setState({ [isSecondSelect ? 'selectedMonth2' : 'selectedMonth' ] : day });
+    }
 
+    prevDay = (day, isSecondSelect = false) => {
+        if(!day) return;
+        this.setState({ [isSecondSelect ? 'selectedDay2' : 'selectedDay' ] : day.clone().subtract(1, 'day') });
+        this.setState({ [isSecondSelect ? 'selectedMonth2' : 'selectedMonth' ] : day });
+    }
     toggleCalendar = ()=> {
         this.setState({ double : !this.state.double })
     }
@@ -75,6 +92,8 @@ class BaseCalendar extends Component {
             prevMonth:this.prevMonth,
             nextYear:this.nextYear,
             prevYear:this.prevYear,
+            nextDay : this.nextDay,
+            prevDay : this.prevDay,
             toggleCalendar : this.toggleCalendar,
             change : this.props.change,
         }

@@ -32,7 +32,6 @@ class Calendar extends Component {
         const {id} = this.props;
         const {mode} = this.state;
 
-        
         return {
             ...this.context,
             ...this.state,

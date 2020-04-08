@@ -4,7 +4,7 @@ import {persianNumber,mapPersianMonths } from './functions';
 import $ from 'jquery';
 import Backdrop from '../Backdrop/Backdrop';
 import BaseCalendarContext from './BaseCalendarContext'
-
+import {getDay, getYear, getMonth, getMonthName, getShortYear} from './functions'
 class DatePicker extends Component {
 
 
@@ -44,58 +44,129 @@ class DatePicker extends Component {
     }
 
     prevAction = () => {
-        const {selectedMonth,selectedMonth2,nextMonth, prevMonth,double} = this.context;
+        const {selectedMonth,selectedMonth2,nextMonth, nextDay,double, monthOnly,selectedDay, selectedDay2} = this.context;
         if (double) {
-            nextMonth(selectedMonth)
-            nextMonth(selectedMonth2, true)
+            if (monthOnly) {
+                nextMonth(selectedMonth)
+                nextMonth(selectedMonth2, true)
+            }
+            else {
+                nextMonth(selectedDay)
+                nextMonth(selectedDay2, true)
+            }
+            
         }
         else {
-            nextMonth(selectedMonth)
+            if (monthOnly) {
+                nextMonth(selectedMonth)
+            }
+            else {
+                nextDay(selectedDay)
+            }
+           
         }
         
     }
     nextAction = () =>{
-        const {selectedMonth,selectedMonth2,nextMonth, prevMonth,double} = this.context;
+        const {selectedMonth,selectedMonth2,prevDay, prevMonth,double, selectedDay,selectedDay2, monthOnly} = this.context;
        
         if (double) {
-            prevMonth(selectedMonth)
-            prevMonth(selectedMonth2, true)
+            if (monthOnly) {
+                prevMonth(selectedMonth)
+                prevMonth(selectedMonth2, true)
+            }
+            else {
+                prevDay(selectedDay)
+                prevDay(selectedDay2, true)
+            }
+          
         }
         else {
-            prevMonth(selectedMonth)
+            if (monthOnly) {
+                prevMonth(selectedMonth)
+            }
+            else {
+                prevDay(selectedDay)
+            }
+          
         }
     }
     renderSelected = () => {
-        const {double, selectedMonth, selectedMonth2 ,jalali} = this.context;
+        const {double, selectedMonth, selectedMonth2 ,selectedDay, selectedDay2,jalali, monthOnly} = this.context;
 
         
         if (double)   {
             if (!selectedMonth || !selectedMonth2) return 'Not Selected';
-            return (
-                <Fragment>
-                    <div className="r-selected-item">
-                        <span>{jalali ?  mapPersianMonths(persianNumber(selectedMonth.locale('fa').format('jMMMM'))) :   selectedMonth.locale('en').format('MMMM')}</span>
-                        <span>{jalali ? persianNumber(selectedMonth.locale('fa').format('jYYYY')):   selectedMonth.locale('en').format('YYYY') }</span>
-                    </div>
-                    <div className="r-selected-item" style={{width:10}}>
-                        <span style={{opacity:0}}>-</span>
-                        <span>-</span>
-                    </div>
-                    <div className="r-selected-item">
-                        <span>{jalali ?  mapPersianMonths(persianNumber(selectedMonth2.locale('fa').format('jMMMM'))) :   selectedMonth2.locale('en').format('MMMM')}</span>
-                        <span>{jalali ? persianNumber(selectedMonth2.locale('fa').format('jYYYY')):   selectedMonth2.locale('en').format('YYYY') }</span>
-                    </div>
-                </Fragment>
-            )
+            if (monthOnly) {
+                return (
+       
+                    <Fragment>
+                        <div className="r-selected-item">
+                            <span>{getMonthName(selectedMonth, jalali)}</span>
+                            <span>{getYear(selectedMonth, jalali)}</span>
+                        </div>
+                        <div className="r-selected-item" style={{width:10}}>
+                            <span style={{opacity:0}}> - </span>
+                            <span>-</span>
+                        </div>
+                        <div className="r-selected-item">
+                            <span>{getMonthName(selectedMonth2, jalali)}</span>
+                            <span>{getYear(selectedMonth2, jalali)}</span>
+                        </div>
+                    </Fragment>
+                )
+            }
+            else {
+                if (!selectedDay || !selectedDay2) return 'Not Selected';
+                return (
+
+                    <Fragment>
+                        <div className="r-selected-item">
+                            <span>{getDay(selectedDay, jalali)}</span>
+                            <span>
+                                <span>{getMonthName(selectedMonth,jalali)}</span>&nbsp;
+                                <span>{getShortYear(selectedMonth,jalali)}</span>
+                            </span>
+                        </div>
+                        <div className="r-selected-item" style={{width:10}}>
+                            <span style={{opacity:0}}> - </span>
+                            <span>-</span>
+                        </div>
+                        <div className="r-selected-item">
+                            <span>{getDay(selectedDay2, jalali)}</span>
+                            <span>
+                                <span>{getMonthName(selectedMonth2,jalali)}</span>&nbsp;
+                                <span>{getShortYear(selectedMonth2,jalali)}</span>
+                            </span>
+                        </div>
+                    </Fragment>
+                )
+            }
+            
         }      
         else {
-            if (!selectedMonth) return 'Not Selected';
-            return (
-                <div className="r-selected-item">
-                    <span>{jalali ?  mapPersianMonths(persianNumber(selectedMonth.locale('fa').format('jMMMM'))) :   selectedMonth.locale('en').format('MMMM')}</span>
-                    <span>{jalali ? persianNumber(selectedMonth.locale('fa').format('jYYYY')):   selectedMonth.locale('en').format('YYYY') }</span>
-                </div>
-            )
+            if (monthOnly) {
+                if (!selectedMonth) return 'Not Selected';
+                return (
+                    <div className="r-selected-item">
+                        <span>{getMonth(selectedMonth, jalali)}</span>
+                        <span>{getYear(selectedMonth, jalali)}</span>
+                    </div>
+                )
+            }
+            else {
+                if (!selectedDay) return 'Not Selected';
+                return (
+                    <div className="r-selected-item">
+                        <span>{getDay(selectedDay, jalali)}</span>
+                        <span>
+                            <span>{getMonthName(selectedMonth,jalali)}</span>&nbsp;
+                            <span>{getYear(selectedMonth,jalali)}</span>
+                         </span>
+                    </div>
+                )
+            }
+           
         }           
     }
     render (){
@@ -131,8 +202,10 @@ class DatePicker extends Component {
 
                         {double &&  <div className="r-rangeCalendar"><Calendar id="1" /><Calendar id="2" /></div>}
 
-                        <button  style={{margin:'0 8px'}} className={`r-button r-ripple r-xs ${double ? 'r-info' : `r-default `} r-rounded r-nospace`} type="button" onClick={toggleCalendar}>
-                            انتخاب دوره ای 
+                        <button  style={{margin:'0 8px'}} className={`r-button r-ripple r-xs r-default  r-rounded r-nospace`} type="button" onClick={toggleCalendar}>
+                           
+                           {!double ? 'انتخاب دوره ای ' :'تک انتخابی'}
+                            
                          </button>
                     </div>}
                 </div>

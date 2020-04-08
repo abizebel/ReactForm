@@ -1,3 +1,6 @@
+import moment from 'moment-jalaali';
+
+
 const latinToPersianMap = ['۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '۰'];
 const latinNumbers = [/1/g, /2/g, /3/g, /4/g, /5/g, /6/g, /7/g, /8/g, /9/g, /0/g];
 const monthMapping = {
@@ -15,7 +18,7 @@ const monthMapping = {
   Esfand : 'اسفند',
 
 }
-
+const m = moment();
 export function mapPersianMonths (date){
   for (var prop in monthMapping) {
     if (date.indexOf(prop) !== -1) {
@@ -76,19 +79,30 @@ export function persianNumber(input) {
   return latinToPersian(prepareNumber(input));
 }
 
-export function checkToday(compare) {
-  const today = new Date();
-  const todayString =
-    String(today.getFullYear()) +
-    addZero(String(today.getMonth() + 1)) +
-    addZero(String(today.getDate()));
-
-  return compare === todayString;
+export function checkToday(day) {
+  return m.isSame(day, 'day')
 }
 
-export function addZero(val) {
-  val = Number(val);
-  if (val < 10) return `0${val}`;
-  return val;
+export function checkCurentMonth(month) {
+  return m.isSame(month, 'month')
+}
+
+
+
+export function getDay (m, isJalai) {
+  return isJalai ? persianNumber(m.locale('fa').format('jDD')) :  m.locale('en').format('DD')
+}
+export function getMonth (m, isJalai) {
+  return isJalai ? persianNumber(m.locale('fa').format('jMM')) :  m.locale('en').format('MM')
+}
+export function getMonthName (m, isJalai) {
+  return isJalai ?  mapPersianMonths(persianNumber(m.locale('fa').format('jMMMM'))) :  m.locale('en').format('MMMM')
+}
+
+export function getYear (m, isJalai) {
+  return isJalai ? persianNumber(m.locale('fa').format('jYYYY')) :  m.locale('en').format('YYYY')
+}
+export function getShortYear (m, isJalai) {
+  return isJalai ? persianNumber(m.locale('fa').format('jYY')) :  m.locale('en').format('YY')
 }
 

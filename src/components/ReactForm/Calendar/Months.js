@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import calendarContext from './CalendarContext';
 import moment from 'moment-jalaali';
-import {persianNumber } from './functions';
+import {persianNumber, checkCurentMonth } from './functions';
 
 
 // List of months
@@ -140,22 +140,27 @@ class Days extends Component {
             (month.isBefore(selectedMonth2) && month.isAfter(selectedMonth)) 
         )
     }
-    isForbidden = (month) =>{
-        const { selectedMonth,selectedMonth2, double} = this.context;
-        const {id} = this.context;
-        
-        if (double){
-            if (id === '1' ){
-                if (month.clone().add(1, 'month').isAfter(selectedMonth2) ||  month.clone().add(1, 'month').isSame(selectedMonth2)) return true;
+    isSelected = (month) => {
+
+      
+        const {selectedYear, selectedYear2,selectedMonth, selectedMonth2, id, mode,selectStep, double} = this.context;
+        let selected = false;
+        let selected2 = false;
+
+        if (selectedYear && selectedYear2 && selectedYear.isSame(selectedYear2, 'month')) {
+            if (id === '1') {
+                selected = selectedMonth ? selectedMonth.isSame(month, 'month') : false;
             }
-            else if (id === '2' ){
-                
-                if (month.clone().subtract(1, 'month').isBefore(selectedMonth) ||  month.clone().subtract(1, 'month').isSame(selectedMonth)) return true;
+            else if (id === '2'){
+                selected2 = selectedMonth2 ? selectedMonth2.isSame(month, 'month') : false;
             }
-            return false
         }
-        
-        return false
+        else {
+            selected = selectedMonth && mode !=='months' && (!double || selectStep >0)  ?  selectedMonth.isSame(month, 'month') : false;
+            selected2 = selectedMonth2 && mode !=='months' && selectStep!==0 ? selectedMonth2.isSame(month, 'month') : false;
+        }
+
+        return selected || selected2   
     }
     renderMonths (){
         const {jalali, selectedMonth, selectedMonth2, multiselect, monthOnly,selectStep,mode} = this.context;
@@ -166,17 +171,15 @@ class Days extends Component {
         return months.map((monthItem, i) => {
             const month = this.createMonth(i+1);
             const isDisabled = this.isDisbaled(month) ? 'r-disabled' : '' ;
-            const isForbidden = this.isForbidden(month) ? 'r-forbidden' : '' ;
-            const selected = selectedMonth  ? selectedMonth.isSame(month, 'month') : false;
-            const selected2 = selectedMonth2 && mode !=='months' && selectStep!==0 ? selectedMonth2.isSame(month, 'month') : false;
-            const isSelected = selected || selected2 ? 'r-selected' : '';
-            
+          
+            const isSelected = this.isSelected(month) ? 'r-selected' : '';
+            const currentMonth = checkCurentMonth(month) ? 'r-currentMonth' : ''
             return ( 
                 <div key={i} 
                     onMouseEnter={this.focusMonth.bind(this, this.createMonth(i+1))}
                     onMouseLeave={this.blurMonth.bind(this, this.createMonth(i+1))}
                     onClick={this.selectMonth.bind(this, this.createMonth(i+1))} 
-                    class={`r-calendar-item r-month ${isForbidden} ${isSelected} ${isDisabled} `}>
+                    class={`r-calendar-item r-month ${currentMonth} ${isSelected} ${isDisabled} `}>
                         <span>{monthItem}</span>
                 </div>
             )

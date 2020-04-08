@@ -30,7 +30,6 @@ class Days extends Component {
         return result
     }
 
-
     selectDay = day => {
         const { change , setDay,selectedDay,selectedDay2, multiselect, setSelectStep, selectStep, id} = this.context;
         if (multiselect) {
@@ -66,8 +65,6 @@ class Days extends Component {
     
     }
 
-
-
     focusDay = (day,e) => {
         const {setDay, multiselect, selectStep} = this.context;
 
@@ -87,26 +84,43 @@ class Days extends Component {
         } 
     }
 
+
+    isSelected = (day) => {
+        const {selectedDay, selectedDay2,selectedMonth, selectedMonth2, id} = this.context;
+        let selected = false;
+        let selected2 = false;
+
+        if (selectedMonth && selectedMonth2 && selectedMonth.isSame(selectedMonth2, 'month')) {
+            if (id === '1') {
+                selected = selectedDay ? selectedDay.isSame(day, 'day') : false;
+            }
+            else if (id === '2'){
+                selected2 = selectedDay2 ? selectedDay2.isSame(day, 'day') : false;
+            }
+        }
+        else {
+            selected = selectedDay ? selectedDay.isSame(day, 'day') : false;
+            selected2 = selectedDay2 ? selectedDay2.isSame(day, 'day') : false;
+        }
+
+        return selected || selected2   
+    }
+
     renderDays (){
-        const {month, jalali, selectedDay, selectedDay2, multiselect} = this.context;
-        const dayList = getDaysOfMonth(month,jalali);
+        const {month, jalali, selectedDay, selectedDay2, multiselect, id} = this.context;
+        const dayList = getDaysOfMonth(month, jalali);
         const monthFormat = jalali ? 'jMM' : 'MM';
 
         return dayList.map((day,i) => {
-            let selected;
-            let selected2;
-            let isSelected;
-
-            const isDisabled = multiselect &&  (day.isBefore(selectedDay2) && day.isAfter(selectedDay)) ? 'r-disabled' : '' ;
+            const isDisabled = multiselect && (day.isBefore(selectedDay2) && day.isAfter(selectedDay)) ? 'r-disabled' : '' ;
             const isOutOfDays =  day.format(monthFormat) !== month.format(monthFormat)  ? 'r-outOfDays' : ''
-            const isToday = checkToday(day.format('YYYYMMDD')) ? 'r-today' : '';
-
-            selected = selectedDay ? selectedDay.isSame(day, 'day') : false;
-            selected2 = selectedDay2 ? selectedDay2.isSame(day, 'day') : false;
-            isSelected =  (selected) || selected2 ? 'r-selected' : '';
+            const isToday = checkToday(day) ? 'r-today' : '';
+            const isSelected = this.isSelected(day) ? 'r-selected' : '';
             
             return ( 
-                <div onClick={this.selectDay.bind(this,day)} key={i} 
+                <div 
+                    key={i} 
+                    onClick={this.selectDay.bind(this,day)} 
                     onMouseEnter={this.focusDay.bind(this,day)}
                     onMouseLeave={this.blurDay.bind(this,day)}
                     className={`r-calendar-item ${isSelected} ${isDisabled} ${isOutOfDays} ${isToday}`}>
