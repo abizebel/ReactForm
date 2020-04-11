@@ -44,16 +44,14 @@ class DatePicker extends Component {
     }
 
     prevAction = () => {
-        const {selectedMonth,selectedMonth2,nextMonth, nextDay,double, monthOnly,selectedDay, selectedDay2} = this.context;
+        const {selectedMonth,selectedMonth2,prevMonth,prevDay,nextMonth, nextDay,double, monthOnly,selectedDay, selectedDay2} = this.context;
         
         if (double) {
             if (monthOnly) {
-                nextMonth(selectedMonth)
-                nextMonth(selectedMonth2, true)
+                nextMonth(selectedMonth2,true)
             }
             else {
-                nextDay(selectedDay)
-                nextDay(selectedDay2, true)
+                nextDay(selectedDay2,true)
             }
             
         }
@@ -69,17 +67,15 @@ class DatePicker extends Component {
         
     }
     nextAction = () =>{
-        const {selectedMonth,selectedMonth2,prevDay, prevMonth,double, selectedDay,selectedDay2, monthOnly} = this.context;
+        const {selectedMonth,selectedMonth2,prevDay,nextMonth,nextDay, prevMonth,double, selectedDay,selectedDay2, monthOnly} = this.context;
         if (double) {
+           
             if (monthOnly) {
                 prevMonth(selectedMonth)
-                prevMonth(selectedMonth2, true)
             }
             else {
                 prevDay(selectedDay)
-                prevDay(selectedDay2, true)
             }
-          
         }
         else {
             if (monthOnly) {
@@ -149,7 +145,7 @@ class DatePicker extends Component {
                 if (!selectedMonth) return 'Not Selected';
                 return (
                     <div className="r-selected-item">
-                        <span>{getMonth(selectedMonth, jalali)}</span>
+                        <span>{getMonthName(selectedMonth, jalali)}</span>
                         <span>{getYear(selectedMonth, jalali)}</span>
                     </div>
                 )

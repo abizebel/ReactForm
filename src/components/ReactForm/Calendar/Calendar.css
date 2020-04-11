@@ -42,7 +42,7 @@
 .r-datepicker-selected {
   display: flex;
   -webkit-user-select: none;
-          user-select: none;
+  user-select: none;
   justify-content: center;
   width: 120px;
 
@@ -191,6 +191,9 @@
   background: var(--focus-color);
   border-radius: 50%;
   color: #fff;
+}
+.r-calendar-item:hover span {
+  border: 1px solid var(--focus-color);
 }
 
 /* Today && Current Month */
