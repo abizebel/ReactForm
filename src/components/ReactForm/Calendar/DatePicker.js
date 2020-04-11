@@ -45,14 +45,15 @@ class DatePicker extends Component {
 
     prevAction = () => {
         const {selectedMonth,selectedMonth2,nextMonth, nextDay,double, monthOnly,selectedDay, selectedDay2} = this.context;
+        
         if (double) {
             if (monthOnly) {
                 nextMonth(selectedMonth)
                 nextMonth(selectedMonth2, true)
             }
             else {
-                nextMonth(selectedDay)
-                nextMonth(selectedDay2, true)
+                nextDay(selectedDay)
+                nextDay(selectedDay2, true)
             }
             
         }
@@ -69,7 +70,6 @@ class DatePicker extends Component {
     }
     nextAction = () =>{
         const {selectedMonth,selectedMonth2,prevDay, prevMonth,double, selectedDay,selectedDay2, monthOnly} = this.context;
-       
         if (double) {
             if (monthOnly) {
                 prevMonth(selectedMonth)

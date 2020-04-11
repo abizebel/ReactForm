@@ -91,7 +91,7 @@ class Days extends Component {
         }
         else {
             const result = this.getResult(month)
-            
+            setSelectStep(1);
            
             if(!monthOnly){
                 setDay(null)
@@ -146,18 +146,19 @@ class Days extends Component {
         const {selectedYear, selectedYear2,selectedMonth, selectedMonth2, id, mode,selectStep, double} = this.context;
         let selected = false;
         let selected2 = false;
-
+        
         if (selectedYear && selectedYear2 && selectedYear.isSame(selectedYear2, 'month')) {
             if (id === '1') {
-                selected = selectedMonth ? selectedMonth.isSame(month, 'month') : false;
+                
+                selected = selectedMonth ? selectedMonth.isSame(month, 'month') && selectStep >0: false;
             }
             else if (id === '2'){
                 selected2 = selectedMonth2 ? selectedMonth2.isSame(month, 'month') : false;
             }
         }
         else {
-            selected = selectedMonth && mode !=='months' && (!double || selectStep >0)  ?  selectedMonth.isSame(month, 'month') : false;
-            selected2 = selectedMonth2 && mode !=='months' && selectStep!==0 ? selectedMonth2.isSame(month, 'month') : false;
+            selected = selectedMonth && mode !=='months' && ( selectStep >0)  ?  selectedMonth.isSame(month, 'month') : false;
+            selected2 = selectedMonth2 && mode !=='months' && selectStep>1 ? selectedMonth2.isSame(month, 'month') : false;
         }
 
         return selected || selected2   

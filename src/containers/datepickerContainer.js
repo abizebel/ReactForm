@@ -24,7 +24,7 @@ class DatepickerContainer extends Component {
         <Calendar 
           startDtate={"2012/8/1s"}
           endDtate={"2012/8/1"}
-          monthOnly={false}
+          monthOnly={true}
           datepicker={true}
 
           change={this.changeDatepicker}
@@ -32,7 +32,6 @@ class DatepickerContainer extends Component {
         <Calendar 
           startDtate={"2012/8/1s"}
           endDtate={"2012/8/1"}
-          jalali={true} 
           monthOnly={false}
           datepicker={true}
 

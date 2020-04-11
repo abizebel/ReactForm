@@ -58,7 +58,8 @@ class Days extends Component {
             }
         }
         else {
-            const result = this.getResult(day)
+            const result = this.getResult(day);
+            setSelectStep(1);
             setDay(day);
             change(result)
         }
