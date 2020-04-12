@@ -255,9 +255,13 @@ class Select extends Component {
         const {mapping, search , rtl, nullable} = this.props;
         const {values } = this.state;
         let options;
-
+        
+        if (values === undefined || values === null  ) {
+            const notFoundText = rtl ? 'داد ه ای موجود نیست' : 'No data Found';
+            options = (<div className="r-options-item">{notFoundText}</div>)
+        }
         //If options list is empty show "Not Found"
-        if (values.length === 0) {
+        else if (values.length === 0) {
             const notFoundText = rtl ? 'یافت نشد' : 'Not Found';
             options = (<div className="r-options-item">{notFoundText}</div>)
         }
