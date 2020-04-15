@@ -31,7 +31,7 @@ class Days extends Component {
     }
 
     selectDay = day => {
-        const { change , setDay,selectedDay,selectedDay2, multiselect, setSelectStep, selectStep, id} = this.context;
+        const { change , setDay,selectedDay,selectedDay2, multiselect, setSelectStep, selectStep, id, setChange} = this.context;
         if (multiselect) {
             if (selectStep === 0) {
                 setSelectStep(1);
@@ -43,12 +43,14 @@ class Days extends Component {
                     setSelectStep(1);
                     setDay(day);
                     change(result)
+                    setChange(result)
                     return;
                 }
 
                 setSelectStep(2);
                 setDay(day, true);
                 change(result)
+                setChange(result)
             }
             else if (selectStep === 2) {
                 
@@ -62,6 +64,7 @@ class Days extends Component {
             setSelectStep(1);
             setDay(day);
             change(result)
+            setChange(result)
         }
     
     }

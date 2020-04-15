@@ -63,7 +63,7 @@ class Days extends Component {
     }
 
     selectMonth (month){
-        const {setMonth,setDay,setMode,selectedMonth, selectedMonth2, change, multiselect, setSelectStep, selectStep, id, monthOnly} = this.context;
+        const {setMonth,setDay,setMode,selectedMonth, selectedMonth2, change, multiselect, setSelectStep, selectStep, id, monthOnly, setChange} = this.context;
         if (multiselect && monthOnly) {
             if (selectStep === 0) {
                 setSelectStep(1);
@@ -77,11 +77,13 @@ class Days extends Component {
                     setSelectStep(1);
                     setMonth(month);
                     change(result)
+                    setChange(result)
                     return;
                 }
                 setSelectStep(2);
                 setMonth(month, true);
                 change(result)
+                setChange(result)
             }
             else if (selectStep === 2) {
                 setSelectStep(1);
@@ -100,6 +102,7 @@ class Days extends Component {
             setMode('days')
             setMonth(month);
             change(result)
+            setChange(result)
         }
     }
     focusMonth = (month) => {

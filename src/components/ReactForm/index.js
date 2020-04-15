@@ -10,6 +10,7 @@ import Toggle from './Toggle/Toggle';
 import Tabs from './Tabs/Tabs';
 import Calendar from './Calendar/BaseCalendar';
 import RangeCalendar from './Calendar/RangeCalendar';
+import DatePicker from './Calendar/DatePicker';
 import Table from './Table/Table';
 
 
@@ -26,5 +27,6 @@ export {
     Tabs,
     Calendar,
     RangeCalendar,
+    DatePicker,
     Table
 }

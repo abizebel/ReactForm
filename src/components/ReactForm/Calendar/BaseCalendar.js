@@ -1,7 +1,7 @@
 import React, {Component,Fragment} from 'react';
 import Calendar from './Calendar';
 import BaseCalendarContext from './BaseCalendarContext';
-import DatePicker from './DatePicker';
+import Picker from './Picker';
 import moment from 'moment-jalaali';
 
 class BaseCalendar extends Component {
@@ -18,10 +18,16 @@ class BaseCalendar extends Component {
             selectedDay:  this.props.defaultValue || null,
             selectedDay2:   null,
             selectStep : 0, //0 = no select, 1 = firstSelect, 2 = secondSelect
-            double : this.props.double
+            double : this.props.double,
+            changeHistory : null
         }
     }  
     
+
+    setChange = (changeHistory) => {
+        this.setState({ changeHistory })
+    }
+
     setSelectStep = (step) => {
         this.setState({selectStep : step})
     }
@@ -95,15 +101,16 @@ class BaseCalendar extends Component {
             nextDay : this.nextDay,
             prevDay : this.prevDay,
             toggleCalendar : this.toggleCalendar,
+            setChange : this.setChange,
             change : this.props.change,
         }
     }
 
     render (){
-        const {double, datepicker} = this.props;
+        const {double, datepicker, approve} = this.props;
         return (
             <BaseCalendarContext.Provider value ={this.getContextValue()}>
-                {   datepicker  ? <DatePicker /> :
+                {   datepicker  ? <Picker approve={approve} /> :
                     double      ?  <div className="r-rangeCalendar"><Calendar id="1" /><Calendar id="2" /></div>:
                     <Calendar id="1" /> 
                 }
