@@ -126,9 +126,11 @@ class Days extends Component {
 
     createMonth = (monthNumber) => {
         const { jalali, year} = this.context;
-        const yearFormat =  jalali ? 'jMM/jYYYY/jDD' : 'MM/YYYY/DD' ;
+        const monthYearFormat = jalali ?  'jM-jYYYY':'M-YYYY' ;
+
+        const yearFormat =  jalali ? 'jYYYY' : 'YYYY' ;
         const key = `${monthNumber}-${year.format(yearFormat)}`;
-        const month = moment(key, yearFormat);
+        const month = moment(key, monthYearFormat);
 
         return month;
     }
