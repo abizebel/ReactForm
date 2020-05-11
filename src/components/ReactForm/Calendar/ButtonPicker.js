@@ -4,7 +4,7 @@ import $ from 'jquery';
 import Backdrop from '../Backdrop/Backdrop';
 import BaseCalendarContext from './BaseCalendarContext'
 import {getDay, getYear, getMonth, getMonthName, getShortYear} from './functions'
-class DatePicker extends Component {
+class ButtonPicker extends Component {
 
 
     static contextType = BaseCalendarContext;
@@ -233,9 +233,9 @@ class DatePicker extends Component {
     }
 }
 
-DatePicker.defaultProps ={
+ButtonPicker.defaultProps ={
     jalali : false,
     monthOnly: false
 }
 
-export default DatePicker
+export default ButtonPicker

@@ -12,6 +12,7 @@
     "moment-jalali": "^0.3.9",
     "moment-range": "^4.0.2",
     "node-sass": "^4.13.1",
+    "r-chart": "^4.0.9",
     "react": "^16.9.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.9.0",

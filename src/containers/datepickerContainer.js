@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import { DatePicker } from '../components/ReactForm';
+import { DatePicker, DatePickerButton } from '../components/ReactForm';
 
 class DatepickerContainer extends Component {
 
@@ -14,11 +14,22 @@ class DatepickerContainer extends Component {
   render (){
     return (
       <Fragment>
+
+        <DatePickerButton 
+          startDtate={"2012/8/1"}
+          endDtate={"2012/8/1"}
+          jalali={false} 
+          monthOnly={true}
+          jalali={true}
+          approve={this.approveDatepicker}
+          change={this.changeDatepicker}
+        />
         <DatePicker 
           startDtate={"2012/8/1"}
           endDtate={"2012/8/1"}
           jalali={false} 
           monthOnly={true}
+          jalali={true}
           approve={this.approveDatepicker}
           change={this.changeDatepicker}
         />

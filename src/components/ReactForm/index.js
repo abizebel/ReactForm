@@ -12,7 +12,7 @@ import Calendar from './Calendar/BaseCalendar';
 import RangeCalendar from './Calendar/RangeCalendar';
 import DatePicker from './Calendar/DatePicker';
 import Table from './Table/Table';
-
+import DatePickerButton from './Calendar/DatePickerButton'
 
 // without default
 export {
@@ -28,5 +28,6 @@ export {
     Calendar,
     RangeCalendar,
     DatePicker,
+    DatePickerButton,
     Table
 }

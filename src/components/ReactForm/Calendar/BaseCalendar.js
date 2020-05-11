@@ -1,7 +1,9 @@
 import React, {Component,Fragment} from 'react';
 import Calendar from './Calendar';
 import BaseCalendarContext from './BaseCalendarContext';
-import Picker from './Picker';
+import ButtonPicker from './ButtonPicker';
+import InputPicker from './InputPicker';
+
 import moment from 'moment-jalaali';
 
 class BaseCalendar extends Component {
@@ -107,10 +109,11 @@ class BaseCalendar extends Component {
     }
 
     render (){
-        const {double, datepicker, approve} = this.props;
+        const {double, datepicker, approve, datepickerButton} = this.props;
         return (
             <BaseCalendarContext.Provider value ={this.getContextValue()}>
-                {   datepicker  ? <Picker approve={approve} /> :
+                {   datepickerButton  ? <ButtonPicker approve={approve} /> :
+                    datepicker  ? <InputPicker approve={approve} /> :
                     double      ?  <div className="r-rangeCalendar"><Calendar id="1" /><Calendar id="2" /></div>:
                     <Calendar id="1" /> 
                 }
