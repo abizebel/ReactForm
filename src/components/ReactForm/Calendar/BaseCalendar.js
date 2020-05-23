@@ -3,6 +3,7 @@ import Calendar from './Calendar';
 import BaseCalendarContext from './BaseCalendarContext';
 import ButtonPicker from './ButtonPicker';
 import InputPicker from './InputPicker';
+import RangeList from './RangeList';
 
 import moment from 'moment-jalaali';
 
@@ -21,7 +22,8 @@ class BaseCalendar extends Component {
             selectedDay2:   null,
             selectStep : 0, //0 = no select, 1 = firstSelect, 2 = secondSelect
             double : this.props.double,
-            changeHistory : null
+            changeHistory : null,
+            ranges :new RangeList(this.props.ranges || []),
         }
     }  
     

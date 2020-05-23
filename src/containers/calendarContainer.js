@@ -1,6 +1,22 @@
 import React, {Component,Fragment} from 'react';
 import {  Calendar, RangeCalendar } from '../components/ReactForm';
 
+import moment from 'moment-jalaali';
+
+
+var disabledRanges = [
+  { 
+    disabled: true, 
+    start:moment().add(-1,'days'),
+    end:moment().add(1,'days') 
+  },
+  { 
+    disabled: true, 
+    start:moment().add(3,'days'), 
+    end:moment().add(6,'days') 
+  }
+]
+
 
 class CalendarContainer extends Component {
 
@@ -29,7 +45,7 @@ class CalendarContainer extends Component {
         </div> 
         <div className="page-content-box" >
             <div className="page-content-title">Georgian Calendar</div>
-            <Calendar  jalali={true} range={false} monthOnly={true}   change={this.changeCalendar.bind(this)} />
+            <Calendar ranges={disabledRanges}   jalali={true} range={false} monthOnly={true}   change={this.changeCalendar.bind(this)} />
         </div> 
          
   

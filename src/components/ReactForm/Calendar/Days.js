@@ -120,6 +120,8 @@ class Days extends Component {
             const isOutOfDays =  day.format(monthFormat) !== month.format(monthFormat)  ? 'r-outOfDays' : ''
             const isToday = checkToday(day) ? 'r-today' : '';
             const isSelected = this.isSelected(day) ? 'r-selected' : '';
+            // new method for disabling and highlighting the ranges of days
+            const dayState = this.state.ranges.getDayState(day);
             
             return ( 
                 <div 
