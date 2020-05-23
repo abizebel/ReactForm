@@ -178,6 +178,11 @@
 
   /* pointer-events: none; */
 }
+.r-calendar-item.r-disabled-range {
+  background: #f1f1f1;
+
+  pointer-events: none; 
+}
 .r-calendar-item.r-forbidden {
   background: #f1f1f1;
   pointer-events: none;

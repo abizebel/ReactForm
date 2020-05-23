@@ -111,7 +111,7 @@ class Days extends Component {
     }
 
     renderDays (){
-        const {month, jalali, selectedDay, selectedDay2, multiselect, id} = this.context;
+        const {month, jalali, selectedDay, selectedDay2, multiselect, id, ranges} = this.context;
         const dayList = getDaysOfMonth(month, jalali);
         const monthFormat = jalali ? 'jMM' : 'MM';
 
@@ -121,7 +121,8 @@ class Days extends Component {
             const isToday = checkToday(day) ? 'r-today' : '';
             const isSelected = this.isSelected(day) ? 'r-selected' : '';
             // new method for disabling and highlighting the ranges of days
-            const dayState = this.state.ranges.getDayState(day);
+            
+            const disbaledRange = ranges.getDayState(day).disabled ? 'r-disabled-range' :'';
             
             return ( 
                 <div 
@@ -129,7 +130,7 @@ class Days extends Component {
                     onClick={this.selectDay.bind(this,day)} 
                     onMouseEnter={this.focusDay.bind(this,day)}
                     onMouseLeave={this.blurDay.bind(this,day)}
-                    className={`r-calendar-item ${isSelected} ${isDisabled} ${isOutOfDays} ${isToday}`}>
+                    className={`r-calendar-item ${isSelected} ${isDisabled} ${isOutOfDays} ${isToday} ${disbaledRange}`}>
                     <span> {jalali ? persianNumber(day.format('jD')) : day.format('D')} </span>
                 </div>
             )
