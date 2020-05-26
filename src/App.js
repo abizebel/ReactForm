@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ButtonContainer from './containers/buttonContainerjs';
 import CheckboxContainer from './containers/checkboxContainer';
-import InputContainer from './containers/inputContainer';
+import {SimpleInput, IconInput, RequiredInput, RegexInput, DisabledInput, Textarea} from './containers/Input';
 import SelectContainer from './containers/selectContainer';
 import MultiSelectContainer from './containers/multiSelectContainer';
 
@@ -36,7 +36,12 @@ class App extends Component {
                     <li>
                         <a href=""><span className="mdi mdi-chevron-right"></span>Inputs</a>
                         <ul>
-                            <li><Link to="/input/">Simple Input</Link></li>
+                            <li><Link to="/input/simple">Simple</Link></li>
+                            <li><Link to="/input/icon">with icon</Link></li>
+                            <li><Link to="/input/required">Required</Link></li>
+                            <li><Link to="/input/regex">Regex</Link></li>
+                            <li><Link to="/input/disabled">Disabled</Link></li>
+                            <li><Link to="/input/textarea">Textarea</Link></li>
                         </ul>
                     </li>
                     <li>
@@ -57,7 +62,14 @@ class App extends Component {
             <Route exact path="/" component={ButtonContainer} />
             <Route path="/button/" component={ButtonContainer} />
             <Route path="/checkbox/" component={CheckboxContainer} />
-            <Route path="/input/" component={InputContainer} />
+            <Route path="/input/simple" component={SimpleInput} />
+            <Route path="/input/icon" component={IconInput} />
+            <Route path="/input/required" component={RequiredInput} />
+            <Route path="/input/regex" component={RegexInput} />
+            <Route path="/input/disabled" component={DisabledInput} />
+            <Route path="/input/textarea" component={Textarea} />
+
+
             <Route path="/select/" component={SelectContainer} />
             <Route path="/multiselect/" component={MultiSelectContainer} />
             <Route path="/autocomplete/" component={AutocompleteContainer} />
