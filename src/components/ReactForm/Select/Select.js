@@ -194,8 +194,8 @@ class Select extends Component {
 
     setPosition = () => {
         this.setState({
-            top : $(this.inputDom.current).position().top+30,
-            left : $(this.inputDom.current).position().right,
+            top : $(this.inputDom.current).offset().top+30,
+            left : $(this.inputDom.current).offset().left,
             width : $(this.inputDom.current).parent().width()
         });
     }
@@ -305,7 +305,7 @@ class Select extends Component {
             }
         }
         return (
-            <div className="r-options" ref={d => {/*FN.handlePosition(d)*/}} style={{top, width, left}}>
+            <div className="r-options" ref={d => {/*FN.handlePosition(d)*/}} style={{top, width, left,position:'fixed'}}>
                 {search && this.renderSearch()}
                 <div className="r-options-items" ref={this.optionsDom}>{options}</div>
             </div>
