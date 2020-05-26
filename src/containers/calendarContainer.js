@@ -7,8 +7,8 @@ import moment from 'moment-jalaali';
 var disabledRanges = [
   { 
     disabled: true, 
-    start:moment().add(-10,'days'),
-    end:moment().add(-1,'days') 
+    start:moment().add(1,'days'),
+    end:moment().add(30,'days') 
   },
 ]
 
