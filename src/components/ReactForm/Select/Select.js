@@ -192,9 +192,12 @@ class Select extends Component {
     }
 
 
+
     setPosition = () => {
+        const {outline} = this.props;
+
         this.setState({
-            top : $(this.inputDom.current).offset().top+30,
+            top : $(this.inputDom.current).offset().top+ (outline ? 45: 30),
             left : $(this.inputDom.current).offset().left,
             width : $(this.inputDom.current).parent().width()
         });
