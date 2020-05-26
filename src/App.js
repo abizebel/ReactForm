@@ -45,6 +45,20 @@ class App extends Component {
                         </ul>
                     </li>
                     <li>
+                        <a href=""><span className="mdi mdi-chevron-right"></span>Select</a>
+                        <ul>
+                            <li><Link to="/select">Simple</Link></li>
+      
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><span className="mdi mdi-chevron-right"></span>MultiSelect</a>
+                        <ul>
+                            <li><Link to="/multiselect">MultiSelect</Link></li>
+      
+                        </ul>
+                    </li>
+                    <li>
                         <a href=""><span className="mdi mdi-chevron-right"></span>Calenders</a>
                         <ul>
                             <li><Link to="/calendar/">Calendar</Link> </li>
@@ -68,6 +82,7 @@ class App extends Component {
             <Route path="/input/regex" component={RegexInput} />
             <Route path="/input/disabled" component={DisabledInput} />
             <Route path="/input/textarea" component={Textarea} />
+
 
 
             <Route path="/select/" component={SelectContainer} />

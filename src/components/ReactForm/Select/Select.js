@@ -13,10 +13,14 @@ class Select extends Component {
         const {values, defaultValue , mapping} = props;
         this.optionsDom = createRef();
         this.searchDom = createRef();
+        this.inputDom = createRef();
         
         this.selected = FN.findItemById(values, defaultValue, mapping)
         
         this.state = {
+            top : null,
+            left :null,
+            width : null,
             open : false,
             values : values,
             initialValues : values,
@@ -151,6 +155,9 @@ class Select extends Component {
         const {disabled} = this.props;
         if (disabled) return;
 
+        this.setPosition()
+
+        
         this.setState((prevState) => {
             return { open : !prevState.open}
         });
@@ -164,7 +171,6 @@ class Select extends Component {
      */
     close  = e =>{
         this.setState({open : false});
-
     }
 
     /**
@@ -177,12 +183,22 @@ class Select extends Component {
         
         if (disabled) return;
 
+
+        this.setPosition()
         this.setState((prevState) => {
             return { open : !prevState.open}
         });
 
     }
 
+
+    setPosition = () => {
+        this.setState({
+            top : $(this.inputDom.current).position().top+30,
+            left : $(this.inputDom.current).position().right,
+            width : $(this.inputDom.current).parent().width()
+        });
+    }
     /**
      * 
      * @param {Object} item 
@@ -256,7 +272,7 @@ class Select extends Component {
      */
     renderOptions (){
         const {mapping, search , rtl, nullable} = this.props;
-        const {values } = this.state;
+        const {values, top, left, width } = this.state;
         let options;
         
         if (values === undefined || values === null  ) {
@@ -288,9 +304,8 @@ class Select extends Component {
                 options.unshift(this.createNullValue())
             }
         }
-        
         return (
-            <div className="r-options" ref={d => {FN.handlePosition(d)}}>
+            <div className="r-options" ref={d => {/*FN.handlePosition(d)*/}} style={{top, width, left}}>
                 {search && this.renderSearch()}
                 <div className="r-options-items" ref={this.optionsDom}>{options}</div>
             </div>
@@ -416,6 +431,7 @@ class Select extends Component {
                 {open && <Backdrop onClick={this.close} />}
                    
                     <input 
+                        ref={this.inputDom}
                         onClick={this.toggle.bind(this)}
                         disabled={disabled} 
                         type="text" 
