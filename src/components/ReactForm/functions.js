@@ -49,7 +49,6 @@ export function getClickedPosition (elementDom) {
  * @param {Dom Object} elementDom
  */
 export function handlePosition (elementDom) {
-    return
         if (!elementDom) return ;
 
         let boxDom = elementDom;
