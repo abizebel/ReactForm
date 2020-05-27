@@ -15,8 +15,8 @@ class MultiSelectContainer extends Component {
     const sampleIcon = <svg viewBox="0 0 24 24"><path  d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>;
     return (
       <Fragment>   
-               <div className="page-content-box" dir="rtl">
-          <div className="page-content-title">Multi Select</div>
+               <div className="content-box" dir="rtl">
+          <div className="content-title">Multi Select</div>
           <MultiSelect   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
             defaultValue ={[11]}
@@ -56,8 +56,8 @@ class MultiSelectContainer extends Component {
 
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Outlined Multi Select</div>
+        <div className="content-box" >
+          <div className="content-title">Outlined Multi Select</div>
           <MultiSelect   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
             defaultValue ={[11,22,33]}
@@ -101,8 +101,8 @@ class MultiSelectContainer extends Component {
 
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Required Multi Select</div>
+        <div className="content-box" >
+          <div className="content-title">Required Multi Select</div>
           <MultiSelect   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
             required={'This filed is required'}
@@ -143,8 +143,8 @@ class MultiSelectContainer extends Component {
 
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Required Multi Select</div>
+        <div className="content-box" >
+          <div className="content-title">Required Multi Select</div>
           <MultiSelect   change={this.changeSelect.bind(this)}       
             label={'Last Name'}
             required={'This filed is required'}

@@ -11,8 +11,8 @@ class InputContainer extends Component {
     return (
       <Fragment>
 
-        <div className="page-content-box" dir="rtl">
-          <div className="page-content-title">Input</div>
+        <div className="content-box" dir="rtl">
+          <div className="content-title">Input</div>
           <Input 
             label={'Last Name'}
             value={''} 
@@ -25,8 +25,8 @@ class InputContainer extends Component {
           />
         </div>
 
-        <div className="page-content-box" >
-          <div className="page-content-title">Oulined Input</div>
+        <div className="content-box" >
+          <div className="content-title">Oulined Input</div>
           <Input 
            label={'Last Name'}
             value={''} 

@@ -5,7 +5,10 @@
   cursor: pointer;
   
 }
-
+.r-datepicker .r-icon{
+  z-index: 9;
+  
+}
 /* Header */
 .r-datepicker-header {
   display: flex;
@@ -67,20 +70,27 @@
   z-index: 12;
   background: #fff;
 }
-.r-datepicker-content  .r-calendar,
+/* .r-datepicker-content  .r-calendar,
 .r-datepicker-content  .r-rangeCalendar {
   border: 0;
-}
+} */
+
 /******************
 * Range Calendar 
 ******************/
 .r-rangeCalendar {
   display: flex;
-  border:1px solid #D3D3D3;
   border-radius:15px;
+  width: 600px;
 }
 .r-rangeCalendar .r-calendar {
   border: 0;
+}
+.r-rangeCalendar.r-rtl {
+  direction: rtl ;
+}
+.r-rangeCalendar.r-bordered {
+  border:1px solid #D3D3D3;
 }
 /***************
 * Calendar 

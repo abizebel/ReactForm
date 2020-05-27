@@ -11,8 +11,8 @@ class InputContainer extends Component {
     return (
       <Fragment>
 
-        <div className="page-content-box" >
-          <div className="page-content-title">Textarea</div>
+        <div className="content-box" >
+          <div className="content-title">Textarea</div>
           <Input 
            label={'Description'}
             value={'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy'} 
@@ -26,8 +26,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Outlined Textarea</div>
+        <div className="content-box" >
+          <div className="content-title">Outlined Textarea</div>
           <Input 
            label={'Description'}
            outline={true}

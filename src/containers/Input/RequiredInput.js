@@ -12,8 +12,8 @@ class InputContainer extends Component {
       <Fragment>
 
   
-        <div className="page-content-box" >
-          <div className="page-content-title">Required Input</div>
+        <div className="content-box" >
+          <div className="content-title">Required Input</div>
           <Input 
             label={'Last Name'}
             value={''} 
@@ -28,8 +28,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Outlined Required Input</div>
+        <div className="content-box" >
+          <div className="content-title">Outlined Required Input</div>
           <Input 
             label={'Last Name'}
             value={''} 

@@ -31,8 +31,8 @@ class AutocomplteContainer extends Component {
       <Fragment>
 
 
-        <div className="page-content-box" >
-            <div className="page-content-title">Modal</div>
+        <div className="content-box" >
+            <div className="content-title">Modal</div>
 
             <button type="button"  className="r-button r-ripple r-lg r-info r-gradient" onClick={()=>{this.setState({open1 : true})}}>Open ltr Modal</button>
             
@@ -101,8 +101,8 @@ class AutocomplteContainer extends Component {
             </Modal >
     
         </div>
-        <div className="page-content-box" >
-            <div className="page-content-title">Modal with Sidebar</div>
+        <div className="content-box" >
+            <div className="content-title">Modal with Sidebar</div>
 
             <button type="button"  className="r-button r-ripple r-lg r-info r-gradient" onClick={()=>{this.setState({open2 : true})}}>Open ltr Modal</button>
             
@@ -171,8 +171,8 @@ class AutocomplteContainer extends Component {
     
         </div>
 
-        <div className="page-content-box" >
-            <div className="page-content-title">RTL Modal</div>
+        <div className="content-box" >
+            <div className="content-title">RTL Modal</div>
 
             <button type="button" className="r-button r-ripple r-lg r-info r-gradient" onClick={()=>{this.setState({open3 : true})}}>Open RTL Modal</button>
             
@@ -234,8 +234,8 @@ class AutocomplteContainer extends Component {
     
         </div>
 
-        <div className="page-content-box" >
-            <div className="page-content-title">RTL Modal with Sidebar</div>
+        <div className="content-box" >
+            <div className="content-title">RTL Modal with Sidebar</div>
 
             <button type="button" className="r-button r-ripple r-lg r-info r-gradient" onClick={()=>{this.setState({open4 : true})}}>Open RTL Modal</button>
             

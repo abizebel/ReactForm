@@ -11,8 +11,8 @@ class CheckboxContainer extends Component {
       <Fragment>
         
      
-        <div className="page-content-box" >
-          <div className="page-content-title">Checkbox & Disabled</div>
+        <div className="content-box" >
+          <div className="content-title">Checkbox & Disabled</div>
             <Checkbox 
                 defaultValue={true}
                 label={'I Agree'}
@@ -48,8 +48,8 @@ class CheckboxContainer extends Component {
  
 
         </div>
-        <div className="page-content-box" style={{textAlign:'right',direction:'rtl'}}>
-          <div className="page-content-title">RTL Checkbox  & Disabled</div>
+        <div className="content-box" style={{textAlign:'right',direction:'rtl'}}>
+          <div className="content-title">RTL Checkbox  & Disabled</div>
           <Checkbox 
                 label={'موافقم'}
                 change={this.changeCheckbox.bind(this)}

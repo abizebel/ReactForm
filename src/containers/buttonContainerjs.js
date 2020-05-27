@@ -8,8 +8,8 @@ class ButtonContainer extends Component {
       <Fragment>
         
      
-        <div className="page-content-box" >
-          <div className="page-content-title">Button</div>
+        <div className="content-box" >
+          <div className="content-title">Button</div>
              <button type="button" className="r-button r-ripple r-lg r-info r-gradient"> Download</button>
           <button type="button" className="r-button r-ripple r-info r-gradient"> Download </button>
           <button type="button" className="r-button r-ripple r-xs r-info r-gradient"> Download </button>
@@ -59,8 +59,8 @@ class ButtonContainer extends Component {
       
 
 
-        <div className="page-content-box" style={{textAlign:'right',direction:'rtl'}}>
-          <div className="page-content-title">Rtl buttons</div>
+        <div className="content-box" style={{textAlign:'right',direction:'rtl'}}>
+          <div className="content-title">Rtl buttons</div>
          
          
               <button type="button" className="r-button r-ripple r-lg r-info r-gradient"> دانلود نرم افزار</button>

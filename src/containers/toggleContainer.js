@@ -10,8 +10,8 @@ class ToggleContainer extends Component {
     return (
       <Fragment>
 
-        <div className="page-content-box" >
-            <div className="page-content-title">Toggle</div>
+        <div className="content-box" >
+            <div className="content-title">Toggle</div>
             <Toggle
                 rtl={true}
                 size={'lg'}

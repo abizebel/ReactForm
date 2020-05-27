@@ -29,8 +29,8 @@ class AutocomplteContainer extends Component {
       <Fragment>
         
      
-        <div className="page-content-box" dir="rtl">
-          <div className="page-content-title">Autocomplete</div>
+        <div className="content-box" dir="rtl">
+          <div className="content-title">Autocomplete</div>
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             defaultValue ='Abbas'
@@ -63,8 +63,8 @@ class AutocomplteContainer extends Component {
           />
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Outlined Autocomplete</div>
+        <div className="content-box" >
+          <div className="content-title">Outlined Autocomplete</div>
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             outline = {true}
@@ -96,8 +96,8 @@ class AutocomplteContainer extends Component {
         </div>
 
 
-        <div className="page-content-box" >
-          <div className="page-content-title">Required Autocomplete</div>
+        <div className="content-box" >
+          <div className="content-title">Required Autocomplete</div>
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             required={'This filed is required'}
@@ -125,8 +125,8 @@ class AutocomplteContainer extends Component {
           />
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Required Outlined Autocomplete</div>
+        <div className="content-box" >
+          <div className="content-title">Required Outlined Autocomplete</div>
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             outline = {true}
@@ -162,8 +162,8 @@ class AutocomplteContainer extends Component {
       
 
 
-        <div className="page-content-box" >
-          <div className="page-content-title">Autocomplete with Icon</div>
+        <div className="content-box" >
+          <div className="content-title">Autocomplete with Icon</div>
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             defaultValue ='abbas'
@@ -191,8 +191,8 @@ class AutocomplteContainer extends Component {
           />
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Outlined Autocomplete with Icon</div>
+        <div className="content-box" >
+          <div className="content-title">Outlined Autocomplete with Icon</div>
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             outline = {true}
@@ -222,8 +222,8 @@ class AutocomplteContainer extends Component {
           />
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Disabled Autocomplete</div>
+        <div className="content-box" >
+          <div className="content-title">Disabled Autocomplete</div>
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             disabled={true}
@@ -254,8 +254,8 @@ class AutocomplteContainer extends Component {
           />
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Disabled  Autocomplete</div>
+        <div className="content-box" >
+          <div className="content-title">Disabled  Autocomplete</div>
           <Autocomplete change={this.changeAutocomplete.bind(this)}
             label={'Last Name'}
             outline = {true}

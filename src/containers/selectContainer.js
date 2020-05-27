@@ -24,8 +24,8 @@ class SelectContainer extends Component {
       <Fragment>
         
    
-        <div className="page-content-box" >
-          <div className="page-content-title"> Select</div>
+        <div className="content-box" >
+          <div className="content-title"> Select</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={22}
@@ -59,8 +59,8 @@ class SelectContainer extends Component {
           />
 
         </div>
-        {/* <div className="page-content-box" >
-          <div className="page-content-title">Outlined Select</div>
+        {/* <div className="content-box" >
+          <div className="content-title">Outlined Select</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
@@ -91,8 +91,8 @@ class SelectContainer extends Component {
 
         </div>
 
-        <div className="page-content-box" >
-          <div className="page-content-title">Required Select</div>
+        <div className="content-box" >
+          <div className="content-title">Required Select</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             required={'This field is required'}
@@ -123,8 +123,8 @@ class SelectContainer extends Component {
           />
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Required Select</div>
+        <div className="content-box" >
+          <div className="content-title">Required Select</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             required={'This field is required'}
@@ -158,8 +158,8 @@ class SelectContainer extends Component {
           />
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Select with Id</div>
+        <div className="content-box" >
+          <div className="content-title">Select with Id</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             showKey ={true}
@@ -191,8 +191,8 @@ class SelectContainer extends Component {
 
         </div>
 
-        <div className="page-content-box" >
-          <div className="page-content-title">Outlined Select with Id</div>
+        <div className="content-box" >
+          <div className="content-title">Outlined Select with Id</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             showKey ={true}
@@ -229,8 +229,8 @@ class SelectContainer extends Component {
 
 
 
-        <div className="page-content-box" >
-          <div className="page-content-title">Select with Search</div>
+        <div className="content-box" >
+          <div className="content-title">Select with Search</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
@@ -263,8 +263,8 @@ class SelectContainer extends Component {
 
         </div>
 
-        <div className="page-content-box" >
-          <div className="page-content-title">Outlined Select with Search</div>
+        <div className="content-box" >
+          <div className="content-title">Outlined Select with Search</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
@@ -298,8 +298,8 @@ class SelectContainer extends Component {
           />
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Select with Icon</div>
+        <div className="content-box" >
+          <div className="content-title">Select with Icon</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
@@ -333,8 +333,8 @@ class SelectContainer extends Component {
 
         </div>
 
-        <div className="page-content-box" >
-          <div className="page-content-title">Outlined Select with Icon</div>
+        <div className="content-box" >
+          <div className="content-title">Outlined Select with Icon</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
@@ -368,8 +368,8 @@ class SelectContainer extends Component {
           />
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Disabled Select</div>
+        <div className="content-box" >
+          <div className="content-title">Disabled Select</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}
@@ -400,8 +400,8 @@ class SelectContainer extends Component {
 
         </div>
 
-        <div className="page-content-box" >
-          <div className="page-content-title">Disabled Outlined Select</div>
+        <div className="content-box" >
+          <div className="content-title">Disabled Outlined Select</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
             defaultValue ={33}

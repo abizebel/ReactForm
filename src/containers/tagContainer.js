@@ -31,8 +31,8 @@ class AutocomplteContainer extends Component {
     return (
       <Fragment>
 
-        <div className="page-content-box" >
-          <div className="page-content-title">Tag</div>
+        <div className="content-box" >
+          <div className="content-title">Tag</div>
           <Tag change={this.changeTag.bind(this)}
             label={'Last Name'}
             defaultValue ={[{name: 'ahmadi'},{name: 'rahimi'}]}
@@ -68,8 +68,8 @@ class AutocomplteContainer extends Component {
 
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Outlined Tag</div>
+        <div className="content-box" >
+          <div className="content-title">Outlined Tag</div>
           <Tag change={this.changeTag.bind(this)}
             outline = {true}
             label={'Last Name'}
@@ -103,8 +103,8 @@ class AutocomplteContainer extends Component {
         </div>
 
 
-        <div className="page-content-box" >
-          <div className="page-content-title">Required Tag</div>
+        <div className="content-box" >
+          <div className="content-title">Required Tag</div>
           <Tag change={this.changeTag.bind(this)}
             label={'Last Name'}
             required={'This filed is required'}
@@ -137,8 +137,8 @@ class AutocomplteContainer extends Component {
 
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Required Outlined Tag</div>
+        <div className="content-box" >
+          <div className="content-title">Required Outlined Tag</div>
           <Tag change={this.changeTag.bind(this)}
             outline = {true}
             label={'Last Name'}
@@ -174,8 +174,8 @@ class AutocomplteContainer extends Component {
         </div>
 
 
-          <div className="page-content-box" >
-          <div className="page-content-title">Disabled Tag</div>
+          <div className="content-box" >
+          <div className="content-title">Disabled Tag</div>
           <Tag change={this.changeTag.bind(this)}
             label={'Last Name'}
             disabled={true}
@@ -208,8 +208,8 @@ class AutocomplteContainer extends Component {
 
 
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Disabled Outlined Tag</div>
+        <div className="content-box" >
+          <div className="content-title">Disabled Outlined Tag</div>
           <Tag change={this.changeTag.bind(this)}
             outline = {true}
             label={'Last Name'}

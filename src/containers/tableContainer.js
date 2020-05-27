@@ -13,8 +13,8 @@ class TableContainer extends Component {
     return (
       <Fragment>
 
-        <div className="page-content-box" >
-          <div className="page-content-title">Table</div>
+        <div className="content-box" >
+          <div className="content-title">Table</div>
           <Table
             columns = {[
                 {field : 'name' },

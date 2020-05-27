@@ -21,25 +21,25 @@ class CalendarContainer extends Component {
   render (){
     return (
       <Fragment>
-        {/* <div className="page-content-box" >
-            <div className="page-content-title">Range Calendar</div>
+        {/* <div className="content-box" >
+            <div className="content-title">Range Calendar</div>
             <RangeCalendar jalali={true} monthOnly={false} change={this.changeCalendar.bind(this)} />
         </div>
-        <div className="page-content-box" >
+        <div className="content-box" >
             <div className="page-true-title">Range Calendar</div>
             <RangeCalendar jalali={false} monthOnly={true} change={this.changeCalendar.bind(this)} />
         </div>
   
-        <div className="page-content-box" >
-            <div className="page-content-title">Georgian Calendar</div>
+        <div className="content-box" >
+            <div className="content-title">Georgian Calendar</div>
             <Calendar range={true} jalali={false}  change={this.changeCalendar.bind(this)} />
         </div>
-        <div className="page-content-box" >
-            <div className="page-content-title">Georgian Calendar</div>
+        <div className="content-box" >
+            <div className="content-title">Georgian Calendar</div>
             <Calendar  jalali={true} range={false}   change={this.changeCalendar.bind(this)} />
         </div>  */}
-        <div className="page-content-box" >
-            <div className="page-content-title">Georgian Calendar</div>
+        <div className="content-box" >
+            <div className="content-title">Georgian Calendar</div>
             <Calendar ranges={disabledRanges}   jalali={true} range={false} monthOnly={false}   change={this.changeCalendar.bind(this)} />
         </div> 
          

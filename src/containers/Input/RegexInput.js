@@ -12,8 +12,8 @@ class InputContainer extends Component {
       <Fragment>
 
         
-        <div className="page-content-box" >
-          <div className="page-content-title">Regex Validation Input (EX : numbers)</div>
+        <div className="content-box" >
+          <div className="content-title">Regex Validation Input (EX : numbers)</div>
           <Input 
             label={'Phone Number'}
             value={''} 
@@ -27,8 +27,8 @@ class InputContainer extends Component {
             change={this.changeInput.bind(this)} 
           />
         </div>
-        <div className="page-content-box" >
-          <div className="page-content-title">Outlined Regex Validation Input (EX : numbers)</div>
+        <div className="content-box" >
+          <div className="content-title">Outlined Regex Validation Input (EX : numbers)</div>
           <Input 
             label={'Phone Number'}
             value={''} 
