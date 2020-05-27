@@ -81,7 +81,7 @@
 .r-rangeCalendar {
   display: flex;
   border-radius:15px;
-  width: 600px;
+  max-width: 600px;
 }
 .r-rangeCalendar .r-calendar {
   border: 0;
