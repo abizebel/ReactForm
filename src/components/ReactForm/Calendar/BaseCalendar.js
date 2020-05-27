@@ -88,8 +88,10 @@ class BaseCalendar extends Component {
     getContextValue (){
         const {jalali,range, monthOnly } = this.props;
         const { double} = this.state;
+
         return {
             ...this.state,
+            ...this.props,
             jalali ,
             multiselect :double ? true :  range ,
             double  ,

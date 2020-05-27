@@ -26,12 +26,14 @@ class DatePicker extends Component {
 
 
     open = () => {
+        const {outline} = this.context;
+
         this.setState({open:true})
 
         var x = $(this.inputDom.current).offset().left;
         var y = $(this.inputDom.current).offset().top;
         this.setState({
-            top : y + 30,
+            top : y + (outline ? 44 : 30) ,
             left : x
         })
     }
@@ -47,9 +49,8 @@ class DatePicker extends Component {
     }
 
     render (){
-        const {jalali,toggleCalendar, double, approve,changeHistory} = this.context;
+        const {jalali,toggleCalendar, double, approve,changeHistory,outline} = this.context;
         const { open, top, left } = this.state;
-
         let value = '';
 
         if (changeHistory) {
@@ -62,7 +63,7 @@ class DatePicker extends Component {
         }
         
         return (
-           <div className={`r-input r-datepicker ${jalali ? 'r-rtl' : ''}`}  ref={this.inputDom}>
+           <div className={`r-input r-datepicker ${jalali ? 'r-rtl' : ''} ${outline ? 'r-bordered' : ''}`}  ref={this.inputDom}>
                
                         {open && <Backdrop onClick={this.close} />}
                         <span onClick={this.open} className="r-icon"><svg viewBox="0 0 24 24"><path fill="#000000" d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" /></svg></span>
