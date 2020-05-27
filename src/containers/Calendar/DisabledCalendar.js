@@ -23,11 +23,11 @@ class CalendarContainer extends Component {
       <Fragment>
           <div className="content-box" >
               <div className="content-title">Disabled Goergian Range Calendar</div>
-              <Calendar ranges={disabledRanges} jalali={true} monthOnly={false} change={this.changeCalendar.bind(this)} />
+              <Calendar ranges={disabledRanges} jalali={true}  change={this.changeCalendar.bind(this)} />
           </div>
           <div className="content-box" >
               <div className="content-title">Disabled Jalali Range Calendar</div>
-              <Calendar ranges={disabledRanges} monthOnly={false}  change={this.changeCalendar.bind(this)} />
+              <Calendar ranges={disabledRanges}   change={this.changeCalendar.bind(this)} />
           </div>
       </Fragment>
       

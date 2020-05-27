@@ -23,7 +23,7 @@ class BaseCalendar extends Component {
             selectStep : 0, //0 = no select, 1 = firstSelect, 2 = secondSelect
             double : this.props.double,
             changeHistory : null,
-            ranges :new RangeList(this.props.ranges || []),
+            rangeHanlder :new RangeList(this.props.ranges || []),
         }
     }  
     
@@ -114,6 +114,7 @@ class BaseCalendar extends Component {
 
     render (){
         const {double, datepicker, approve, datepickerButton, jalali} = this.props;
+
         return (
             <BaseCalendarContext.Provider value ={this.getContextValue()}>
                 {   datepickerButton  ? <ButtonPicker approve={approve} /> :

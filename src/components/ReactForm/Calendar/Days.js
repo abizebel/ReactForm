@@ -111,7 +111,8 @@ class Days extends Component {
     }
 
     renderDays (){
-        const {month, jalali, selectedDay, selectedDay2, multiselect, id, ranges} = this.context;
+        const {month, jalali, selectedDay, selectedDay2, multiselect, id, rangeHanlder} = this.context;
+        debugger
         const dayList = getDaysOfMonth(month, jalali);
         const monthFormat = jalali ? 'jMM' : 'MM';
 
@@ -122,7 +123,7 @@ class Days extends Component {
             const isSelected = this.isSelected(day) ? 'r-selected' : '';
             // new method for disabling and highlighting the ranges of days
             
-            const disbaledRange = ranges.getDayState(day).disabled ? 'r-disabled-range' :'';
+            const disbaledRange = rangeHanlder.getDayState(day).disabled ? 'r-disabled-range' :'';
             
             return ( 
                 <div 
