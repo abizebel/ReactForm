@@ -11,7 +11,7 @@ import TagContainer from './containers/tagContainer';
 import ModalContainer from './containers/modalContainer';
 import ToggleContainer from './containers/toggleContainer';
 import TabContainer from './containers/tabContainer';
-import {SimpleCalendar, RangeCalendar, DisabledCalendar} from './containers/Calendar';
+import {SimpleCalendar, RangeCalendar, DisabledCalendar, MonthCalendar, DatePicker, DateButtonPicker} from './containers/Calendar';
 import DatepickerContainer from './containers/datepickerContainer';
 import TableContainer from './containers/tableContainer';
 import $ from 'jquery'
@@ -66,9 +66,12 @@ class App extends Component {
                         <li onClick={this.toggle}>
                             <a href=""><span className="mdi mdi-chevron-right"></span>Calenders</a>
                             <ul>
-                                <li><Link to="/calendar/simple">Simple</Link> </li>
-                                <li><Link to="/calendar/range">Rangle</Link> </li>
-                                <li><Link to="/calendar/disabled">Disabled</Link> </li>
+                                <li><Link to="/calendar/simple">Simple Calendar</Link> </li>
+                                <li><Link to="/calendar/range">Rangle Calendar</Link> </li>
+                                <li><Link to="/calendar/disabled">Disabled Calendar</Link> </li>
+                                <li><Link to="/calendar/month">Month Calendar</Link> </li>
+                                <li><Link to="/calendar/datepicker">Datepicker</Link> </li>
+                                <li><Link to="/calendar/datebuttonpicker">DateButtonPicker</Link> </li>
                             </ul>
                         </li>
 
@@ -102,6 +105,10 @@ class App extends Component {
                 <Route path="/calendar/simple" component={SimpleCalendar} />
                 <Route path="/calendar/range" component={RangeCalendar} />
                 <Route path="/calendar/disabled" component={DisabledCalendar} />
+                <Route path="/calendar/month" component={MonthCalendar} />
+                <Route path="/calendar/datepicker" component={DatePicker} />
+                <Route path="/calendar/datebuttonpicker" component={DateButtonPicker} />
+
 
                 <Route path="/datepicker/" component={DatepickerContainer} />
                 <Route path="/table/" component={TableContainer} />

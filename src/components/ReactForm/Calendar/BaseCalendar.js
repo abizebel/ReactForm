@@ -115,7 +115,7 @@ class BaseCalendar extends Component {
         return (
             <BaseCalendarContext.Provider value ={this.getContextValue()}>
                 {   datepickerButton  ? <ButtonPicker approve={approve} /> :
-                    datepicker  ? <InputPicker approve={approve} /> :
+                    datepicker  ? <InputPicker /> :
                     double      ?  <div className={`r-rangeCalendar ${datepickerButton ? '' : 'r-bordered'} ${jalali ? 'r-rtl' : ''}`}><Calendar id="1" /><Calendar id="2" /></div>:
                     <Calendar id="1" /> 
                 }

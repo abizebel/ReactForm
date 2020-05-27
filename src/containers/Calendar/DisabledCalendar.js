@@ -22,16 +22,6 @@ class CalendarContainer extends Component {
     return (
       <Fragment>
           <div className="content-box" >
-              <div className="content-title">Disabled Georgian Range Calendar</div>
-              <Calendar ranges={disabledRanges} monthOnly={false} double={true} change={this.changeCalendar.bind(this)} />
-          </div>
-          
-     
-          <div className="content-box" >
-              <div className="content-title">Disabled Jalali Range Calendar</div>
-              <Calendar ranges={disabledRanges} jalali={true} monthOnly={false} double={true} change={this.changeCalendar.bind(this)} />
-          </div>
-          <div className="content-box" >
               <div className="content-title">Disabled Goergian Range Calendar</div>
               <Calendar ranges={disabledRanges} jalali={true} monthOnly={false} change={this.changeCalendar.bind(this)} />
           </div>
