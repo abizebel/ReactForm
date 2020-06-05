@@ -12,11 +12,9 @@ class Input extends Component {
         let  {value = ''} = this.props;
         this.state = {
             initialValue  : value,
-            value,
-            validate : this.validate.bind(this),
-            hasError : this.validate(this.props.value).hasError,
-            errorMessage : this.validate(this.props.value).errorMessage
+            value, 
         }
+        
  
     }
 
@@ -26,8 +24,7 @@ class Input extends Component {
             return {
                 value ,
                 initialValue : value,
-                hasError : state.validate(props.value).hasError,
-                errorMessage : state.validate(props.value).errorMessage
+
             }
         }
 
@@ -55,60 +52,20 @@ class Input extends Component {
         const {change} = this.props;
         let value = e.target.value;
         
-        this.setState({value});
-
-        this.validate(value)
+        this.setState( {value})
+       
 
         change(value)
     }
 
-    /**
-     * Check if input has error or not depends on our configs
-     * 
-     */
-    validate (value = ''){
-        const {serverError, required, regex} = this.props;
-        let hasError = false;
-        let errorMessage = '';
-
-        if(!this.isValidationMode()) return {hasError,errorMessage} ;
-       
-        if(serverError && serverError.status) {
-            hasError = true;
-            errorMessage = serverError.message;
-        }
-        else if(!serverError && required && value.trim() === ''){
-            hasError = true;
-            errorMessage = required;
-        }
-        else if (!serverError && regex) {
-            hasError = !regex.pattern.test(value);
-            errorMessage = regex.message;     
-        }
- 
-        this.setState({hasError, errorMessage});
-        return {hasError, errorMessage}
-    }
-
-    /**
-     * Detect validation mode
-     */
-    isValidationMode (){
-        const {required, serverError, regex} = this.props;
-
-        const validationMode = required || serverError || regex ? true : false;
-        return validationMode;
-    }
 
 
     /**
      * Get style
      */
     getInputClass (){
-        const {rtl, outline, disabled, icon, className} = this.props;
-        const {value, hasError} = this.state;
-        const validationMode = this.isValidationMode ();
-      
+        const {rtl, outline, disabled, icon, className,required} = this.props;
+        const {value} = this.state;
         let names =  {
             [className] : className ? true : false,
             'filled' :String(value).length > 0 || disabled, 
@@ -117,18 +74,19 @@ class Input extends Component {
             'r-bordered': outline,
             'r-disabled' : disabled,
             'r-has-icon' : icon !== null,
-            'r-error' :  validationMode && hasError,
-            'r-success' : validationMode && !hasError,
+            'r-error' : (!value || value.trim() === '') && required
         }
 
         return mapObjectToClassName(names)
     }
 
     render (){
-        const { label, disabled, multiline, icon, onFocus, onBlur, autoFocus, onKeyUp, style} = this.props;
-        const {value, hasError, errorMessage} = this.state;
+        const { label, disabled, multiline, icon, onFocus, onBlur, autoFocus, onKeyUp, style,required} = this.props;
+        const {value} = this.state;
+
+
+        
         const inputIcon = createIcon(icon);
-        const validationMode = this.isValidationMode ();
       
         return (
             <div style={style} className={this.getInputClass()} >  
@@ -164,16 +122,14 @@ class Input extends Component {
                     <span className="r-input-icon">{inputIcon}</span>
                 }
                  
-                {   validationMode && hasError &&
+                {   (!value || value.trim() === '') && required &&
                     <Fragment>
                         <span className="r-icon">{icons.error}</span>  
-                        <span className="r-message">{errorMessage}</span> 
+                        <span className="r-message">وارد کردن این فیلد ضروری میباشد</span> 
                     </Fragment>     
                 }
 
-                {   validationMode && !hasError &&
-                    <span className="r-icon">{icons.success}</span>  
-                }
+               
                 
                 
             </div>
@@ -191,6 +147,7 @@ Input.defaultProps = {
     icon : null,
     style : {},
     className : '',
+    required : true
 }
 
 export default Input

@@ -5,12 +5,11 @@ class DatePicker extends Component {
 
 
     render () {
-        const {change,monthOnly, jalali, startDate, endDtate,approve,outline} = this.props;
-
+        const {change,monthOnly, jalali, startDate, endDtate,approve,outline, value} = this.props;
         return (
             <BaseCalendar 
-                startDtate={startDate}
-                endDtate={endDtate}
+
+                value={value}
                 monthOnly={monthOnly}
                 jalali={jalali}
                 datepicker={true}

@@ -5,6 +5,7 @@ import Backdrop from '../Backdrop/Backdrop';
 import BaseCalendarContext from './BaseCalendarContext';
 import Input from '../Input/Input'
 
+import {persianNumber } from './functions';
 
 
 class DatePicker extends Component {
@@ -49,7 +50,7 @@ class DatePicker extends Component {
     }
 
     render (){
-        const {jalali,toggleCalendar, double, approve,changeHistory,outline} = this.context;
+        const {jalali,toggleCalendar, double, approve,changeHistory,outline,selectedDay, selectedDay2,moment} = this.context;
         const { open, top, left } = this.state;
         let value = '';
 
@@ -58,8 +59,20 @@ class DatePicker extends Component {
                 value =  changeHistory.startDateStr + ' - ' + changeHistory.endDateStr ;
             }
             else {
-                value =  changeHistory.startDateStr  || changeHistory.dateStr ;
+                value =  changeHistory.startDateStr  || changeHistory.dateStr || (jalali ? persianNumber(moment.format('jYYYY/jM/jD')) : moment.format('YYYY/MM/DD'))  ;
             }
+
+        }
+        else {
+            if (double && selectedDay && selectedDay2) {
+                //value =  selectedDay + ' - ' + selectedDay2 ;
+            }
+            else {
+                //موقتا
+                debugger
+                value = selectedDay  ?  (typeof selectedDay === 'string' ? selectedDay :  (jalali ? persianNumber(selectedDay.format('jYYYY/jM/jD')) : selectedDay.format('YYYY/MM/DD'))  ): '' ;
+            }
+
         }
         
         return (

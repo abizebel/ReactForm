@@ -18,7 +18,7 @@ class BaseCalendar extends Component {
             selectedMonth2: m.clone().add(1, `Month`) ,
             selectedYear : m,
             selectedYear2 : m.clone().add(1, `year`),
-            selectedDay:  this.props.defaultValue || null,
+            selectedDay:  this.props.value || null,
             selectedDay2:   null,
             selectStep : 0, //0 = no select, 1 = firstSelect, 2 = secondSelect
             double : this.props.double,

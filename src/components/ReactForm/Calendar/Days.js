@@ -112,7 +112,6 @@ class Days extends Component {
 
     renderDays (){
         const {month, jalali, selectedDay, selectedDay2, multiselect, id, rangeHanlder} = this.context;
-        debugger
         const dayList = getDaysOfMonth(month, jalali);
         const monthFormat = jalali ? 'jMM' : 'MM';
 

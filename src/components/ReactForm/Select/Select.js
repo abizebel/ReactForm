@@ -30,7 +30,6 @@ class Select extends Component {
             // hasError : this.validate(this.selected).hasError,
             // errorMessage : this.validate(this.selected).errorMessage,
             searchValue : '',
-            validate : this.validate.bind(this)
             
         }
         
@@ -48,8 +47,6 @@ class Select extends Component {
                 values : values,
                 initialValues : values,
                 selectedItem : selected,
-                // hasError : state.validate(selected).hasError,
-                // errorMessage : state.validate(selected).errorMessage,
             }
         
         }
@@ -112,38 +109,8 @@ class Select extends Component {
         
     }
  
-    /**
-     * Detect validation mode
-     */
-    isValidationMode (){
-        const {required, serverError} = this.props;
+   
 
-        const validationMode =required || serverError ? true : false;
-        return validationMode;
-    }
-
-    /**
-     * Check if select has error or not depends on our configs
-     */
-    validate (selectedItem){
-        const {serverError, required} = this.props;
-        let hasError = false;
-        let errorMessage = '';
-
-        if(!this.isValidationMode()) return {hasError,errorMessage} ;
-       
-        if(serverError && serverError.status) {
-            hasError = true;
-            errorMessage = serverError.message;
-        }
-        else if(!serverError && required && !selectedItem){
-            hasError = true;
-            errorMessage = required;
-        }
- 
-        this.setState({hasError, errorMessage});
-        return {hasError, errorMessage}
-    }
 
  
     /**
@@ -192,8 +159,6 @@ class Select extends Component {
     }
 
 
-
-
     setPosition = () => {
         const {outline} = this.props;
 
@@ -217,7 +182,6 @@ class Select extends Component {
             defaultValue : item[mapping.value],
         })
            
-        this.validate(item);
         this.close();
         change(item);
       
@@ -232,7 +196,6 @@ class Select extends Component {
         const {change} = this.props;
         
         this.setState({selectedItem : null})
-        this.validate(null)
         this.close();
 
         change(null);
@@ -404,9 +367,8 @@ class Select extends Component {
      * Get style
      */
     getSelectClass (){
-        const { mapping, rtl, disabled, outline, className} = this.props;
-        const { hasError, open} = this.state;
-        const validationMode = this.isValidationMode();
+        const { mapping, rtl, disabled, outline, className,required} = this.props;
+        const { selectedItem, open} = this.state;
 
         let names =  {
             [className] : className ? true : false,
@@ -416,19 +378,22 @@ class Select extends Component {
             'r-bordered': outline,
             'r-disabled' : disabled,
             'r-has-icon' : mapping.icon ,
-            'r-error' :  validationMode && hasError,
+            'r-error' :  (required && (!selectedItem || !selectedItem[mapping.value]) ),
         }
 
         return FN.mapObjectToClassName(names)
     }
 
     render (){
-        const { label, mapping, disabled, style} = this.props;
-        const {errorMessage, hasError,open, selectedItem} = this.state;
+        const { label, mapping, disabled, style,required} = this.props;
+        const {error,open, selectedItem} = this.state;
         const inputValue = this.getInputText();
         const renderIcon = mapping.icon ? FN.createIcon(FN.getValueByProp(selectedItem, mapping.icon)) : '';
 
-    
+        
+         
+            
+        
         return (
             <Fragment>
                 <div tabIndex={0} onKeyDown={this.arrowKey} style={style} className={this.getSelectClass()}>
@@ -449,7 +414,11 @@ class Select extends Component {
 
                     <span onClick={this.open.bind(this)} className="r-icon">{icons.down}</span>     
 
-                    { hasError && <span className="r-message">{errorMessage}</span> }
+                    {   (required && (!selectedItem || !selectedItem[mapping.value]) )  &&
+                    <Fragment>
+                        <span className="r-message"> انتخاب این فیلد ضروری میباشد</span> 
+                    </Fragment>     
+                    }
 
                     {open && this.renderOptions()} 
                 </div>
@@ -464,6 +433,7 @@ Select.defaultProps = {
     disabled : false,
     nullable : false,
     style : {},
+     required : false,
     
 }
 
