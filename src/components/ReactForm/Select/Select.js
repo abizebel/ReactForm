@@ -35,11 +35,12 @@ class Select extends Component {
         
     }
 
-
     static getDerivedStateFromProps (props, state){
         
         if (
-            !isEqual(props.values, state.initialValues)    
+            !isEqual(props.values, state.initialValues) ||
+            props.defaultValue !== props.initialDefaultValue 
+
         ){
             const {values, defaultValue , mapping} = props;
             let selected = FN.findItemById(values, defaultValue, mapping)
@@ -47,6 +48,8 @@ class Select extends Component {
                 values : values,
                 initialValues : values,
                 selectedItem : selected,
+                // hasError : state.validate(selected).hasError,
+                // errorMessage : state.validate(selected).errorMessage,
             }
         
         }
