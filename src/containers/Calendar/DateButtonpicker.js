@@ -24,6 +24,7 @@ class DatepickerContainer extends Component {
             <div className="content-box" >
                 <div className="content-title">Gerogian Datepicker</div>
                 <DatePickerButton 
+                    monthOnly={true}
                     startDtate={"2012/8/1"}
                     endDtate={"2012/8/1"}
                     change={this.changeDatepicker}
