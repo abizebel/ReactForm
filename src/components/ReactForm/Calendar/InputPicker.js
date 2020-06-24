@@ -50,7 +50,7 @@ class DatePicker extends Component {
     }
 
     render (){
-        const {jalali,toggleCalendar, double, approve,changeHistory,outline,selectedDay, selectedDay2,moment} = this.context;
+        const {jalali,toggleCalendar, double, approve,changeHistory,outline,selectedDay, selectedDay2,moment, startDateStr, endDateStr} = this.context;
         const { open, top, left } = this.state;
         let value = '';
 
@@ -64,13 +64,12 @@ class DatePicker extends Component {
 
         }
         else {
-            if (double && selectedDay && selectedDay2) {
-                //value =  selectedDay + ' - ' + selectedDay2 ;
+            if (double) {
+                value =  startDateStr + ' - ' + endDateStr ;
             }
             else {
                 //موقتا
-                debugger
-                value = selectedDay  ?  (typeof selectedDay === 'string' ? selectedDay :  (jalali ? persianNumber(selectedDay.format('jYYYY/jM/jD')) : selectedDay.format('YYYY/MM/DD'))  ): '' ;
+                value = startDateStr;
             }
 
         }

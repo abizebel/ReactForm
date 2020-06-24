@@ -11,14 +11,26 @@ class BaseCalendar extends Component {
     constructor(props){
         super(props);
         const m = moment();
+        let startDateStr = '';
+        let endDateStr =  '';
+        if (props.value && props.value.start && props.value.end) {
+            startDateStr =props.value.start ;
+            endDateStr=props.value.end;
+        }
+        else {
+            startDateStr =props.value
+        }
+
 
         this.state = {
+            startDateStr ,
+            endDateStr,
             moment : m,
             selectedMonth: m,
             selectedMonth2: m.clone().add(1, `Month`) ,
             selectedYear : m,
             selectedYear2 : m.clone().add(1, `year`),
-            selectedDay:  this.props.value || null,
+            selectedDay:   null,
             selectedDay2:   null,
             selectStep : 0, //0 = no select, 1 = firstSelect, 2 = secondSelect
             double : this.props.double,
@@ -131,7 +143,8 @@ BaseCalendar.defaultProps = {
     jalali : false,
     range : false,
     datepikcer : false,
-    double : false
+    double : false,
+    disbaledSides : {},
 }
 
 

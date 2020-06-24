@@ -11,7 +11,7 @@ import TagContainer from './containers/tagContainer';
 import ModalContainer from './containers/modalContainer';
 import ToggleContainer from './containers/toggleContainer';
 import TabContainer from './containers/tabContainer';
-import {SimpleCalendar, RangeCalendar, DisabledCalendar, MonthCalendar, DatePicker, DateButtonPicker} from './containers/Calendar';
+import {SimpleCalendar, RangeCalendar, DisabledCalendar, MonthCalendar, DatePicker, DateButtonPicker, DisabledSides} from './containers/Calendar';
 import DatepickerContainer from './containers/datepickerContainer';
 import TableContainer from './containers/tableContainer';
 import $ from 'jquery'
@@ -19,7 +19,17 @@ import $ from 'jquery'
 class App extends Component {
     toggle = (e) =>{
         e.preventDefault()
-        $(e.target).closest('li').find('ul').toggle(500)
+        $(e.target).closest('li').find('ul').toggle(500);
+        let span = $(e.target).closest('li').find('>a > span').eq(0);
+        var cls = span.attr('class');
+        if (cls === 'mdi mdi-chevron-right') {
+            span.removeClass('mdi-chevron-right')
+            span.addClass('mdi-chevron-down')
+        }
+        else {
+            span.removeClass('mdi-chevron-down')
+            span.addClass('mdi-chevron-right')
+        }
         
     }
     render (){
@@ -69,6 +79,7 @@ class App extends Component {
                                 <li><Link to="/calendar/simple">Simple Calendar</Link> </li>
                                 <li><Link to="/calendar/range">Rangle Calendar</Link> </li>
                                 <li><Link to="/calendar/disabled">Disabled Calendar</Link> </li>
+                                <li><Link to="/calendar/disabledsides">Disabled Sides Calendar</Link> </li>
                                 <li><Link to="/calendar/month">Month Calendar</Link> </li>
                                 <li><Link to="/calendar/datepicker">Datepicker</Link> </li>
                                 <li><Link to="/calendar/datebuttonpicker">DateButtonPicker</Link> </li>
@@ -104,6 +115,8 @@ class App extends Component {
 
                 <Route path="/calendar/simple" component={SimpleCalendar} />
                 <Route path="/calendar/range" component={RangeCalendar} />
+                
+                <Route path="/calendar/disabledsides" component={DisabledSides} />
                 <Route path="/calendar/disabled" component={DisabledCalendar} />
                 <Route path="/calendar/month" component={MonthCalendar} />
                 <Route path="/calendar/datepicker" component={DatePicker} />

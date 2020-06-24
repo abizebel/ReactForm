@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {getDaysOfMonth, persianNumber, checkToday } from './functions';
 import calendarContext from './CalendarContext';
+import moment from 'moment-jalaali';
 
 const weekNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 const jalaliWeekNames = ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'];
@@ -78,6 +79,7 @@ class Days extends Component {
             }
         } 
     }
+    
     blurDay =  (day,e) => {
         const {setDay, multiselect, selectStep} = this.context;
 
@@ -110,18 +112,38 @@ class Days extends Component {
         return selected || selected2   
     }
 
+    /**
+     * Rabish Function :)
+     */
+    disableBforeAfter = (day) =>{
+        const {disbaledSides, jalali} =  this.context;
+        if (!disbaledSides.start || !disbaledSides.end) return false;
+
+        
+        if (jalali) {
+            let startM = moment(disbaledSides.start, 'jYYYY/jM/jD')
+            let endM =  moment(disbaledSides.end, 'jYYYY/jM/jD')
+            return !(day.isBefore(endM) && day.isAfter(startM))
+        }
+        else {
+            let startM = moment(disbaledSides.start, 'YYYY/M/D')
+            let endM =  moment(disbaledSides.end, 'YYYY/M/D')
+            return !(day.isBefore(endM) && day.isAfter(startM))
+        }
+    }
     renderDays (){
         const {month, jalali, selectedDay, selectedDay2, multiselect, id, rangeHanlder} = this.context;
         const dayList = getDaysOfMonth(month, jalali);
         const monthFormat = jalali ? 'jMM' : 'MM';
-
+        
         return dayList.map((day,i) => {
-            const isDisabled = multiselect && (day.isBefore(selectedDay2) && day.isAfter(selectedDay)) ? 'r-disabled' : '' ;
+            let isDisabled = false;
+            isDisabled = multiselect && (day.isBefore(selectedDay2) && day.isAfter(selectedDay)) ? 'r-disabled' : '' ;
+            isDisabled = this.disableBforeAfter(day) ? 'r-disabled' : '' ;
             const isOutOfDays =  day.format(monthFormat) !== month.format(monthFormat)  ? 'r-outOfDays' : ''
             const isToday = checkToday(day) ? 'r-today' : '';
             const isSelected = this.isSelected(day) ? 'r-selected' : '';
             // new method for disabling and highlighting the ranges of days
-            
             const disbaledRange = rangeHanlder.getDayState(day).disabled ? 'r-disabled-range' :'';
             
             return ( 
@@ -140,9 +162,9 @@ class Days extends Component {
 
     renderWeeks () {
         const {jalali} = this.context;
-        const resultWeekNames = jalali ? jalaliWeekNames :weekNames;
+        const WeekNames = jalali ? jalaliWeekNames : weekNames;
 
-        return resultWeekNames.map((name, i) => {
+        return WeekNames.map((name, i) => {
             return (
                 <div key={i} className="r-calendar-item r-week">
                     <span>{name}</span>

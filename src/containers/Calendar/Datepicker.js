@@ -25,8 +25,8 @@ class DatepickerContainer extends Component {
                 <div className="content-title">Gerogian Datepicker</div>
                 <DatePicker 
                     outline={true}
-                    startDtate={"2012/8/1"}
-                    endDtate={"2012/8/1"}
+                    value={'92/1/1'}
+                    jalali={true}
                     change={this.changeDatepicker}
                 />
         
@@ -34,16 +34,15 @@ class DatepickerContainer extends Component {
             </div>
             
         
-            <div className="content-box" >
+            {/* <div className="content-box" >
                 <div className="content-title">Jalali Datepicker</div>
                 <DatePicker 
                     outline={true}
-                    startDtate={"1398/8/1"}
-                    endDtate={"1398/8/1"}
+                    value={"1398/8/1"}
                     jalali={true} 
                     change={this.changeDatepicker}
                 />         
-            </div>
+            </div> */}
 
         </Fragment>
         

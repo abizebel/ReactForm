@@ -105,6 +105,7 @@ class Days extends Component {
             setChange(result)
         }
     }
+
     focusMonth = (month) => {
         const {setMonth, multiselect, selectStep, monthOnly} = this.context;
 
@@ -114,6 +115,7 @@ class Days extends Component {
             }
         } 
     }
+
     blurMonth =  () => {
         const {setMonth, multiselect, selectStep,monthOnly} = this.context;
 
@@ -137,24 +139,22 @@ class Days extends Component {
 
     isDisbaled (month){
         const {selectedMonth, selectedMonth2, monthOnly, multiselect, selectStep} = this.context;
-        
+   
         return (
             multiselect &&
             monthOnly &&
-            selectStep!==0 &&
+            selectStep !==0 &&
             (month.isBefore(selectedMonth2) && month.isAfter(selectedMonth)) 
         )
     }
-    isSelected = (month) => {
 
-      
+    isSelected = (month) => {
         const {selectedYear, selectedYear2,selectedMonth, selectedMonth2, id, mode,selectStep, double} = this.context;
         let selected = false;
         let selected2 = false;
         
         if (selectedYear && selectedYear2 && selectedYear.isSame(selectedYear2, 'month')) {
             if (id === '1') {
-                
                 selected = selectedMonth ? selectedMonth.isSame(month, 'month') && selectStep >0: false;
             }
             else if (id === '2'){
@@ -168,25 +168,43 @@ class Days extends Component {
 
         return selected || selected2   
     }
+
+
+    /**
+     * Rabish Function :)
+     */
+    disableBforeAfter = (month) =>{
+        const {disbaledSides, jalali} = this.context;
+        if (!disbaledSides.start || !disbaledSides.end) return false;
+        if (jalali) {
+            let startM = moment(disbaledSides.start, 'jYYYY/jM/jD');
+            let endM =  moment(disbaledSides.end, 'jYYYY/jM/jD');
+            return !(month.isBefore(endM) && month.isAfter(startM,  'month'));
+        }
+        else {
+            let startM = moment(disbaledSides.start, 'YYYY/M/D');
+            let endM =  moment(disbaledSides.end, 'YYYY/M/D');
+            return !(month.isBefore(endM) && month.isAfter(startM,  'month'));
+        }
+    }
+
     renderMonths (){
-        const {jalali, selectedMonth, selectedMonth2, multiselect, monthOnly,selectStep,mode} = this.context;
+        const {jalali, selectedMonth, selectedMonth2, multiselect, monthOnly, selectStep, mode} = this.context;
         const months = jalali ? jalaliMonths : georgianMonths;
 
-
-
         return months.map((monthItem, i) => {
-            const month = this.createMonth(i+1);
-            const isDisabled = this.isDisbaled(month) ? 'r-disabled' : '' ;
-          
+            const month = this.createMonth(i + 1);
+            const isDisabled = this.isDisbaled(month) || this.disableBforeAfter(month) ? 'r-disabled' : '' ;
             const isSelected = this.isSelected(month) ? 'r-selected' : '';
-            const currentMonth = checkCurentMonth(month) ? 'r-currentMonth' : ''
+            const currentMonth = checkCurentMonth(month) ? 'r-currentMonth' : '';
+
             return ( 
                 <div key={i} 
                     onMouseEnter={this.focusMonth.bind(this, this.createMonth(i+1))}
                     onMouseLeave={this.blurMonth.bind(this, this.createMonth(i+1))}
                     onClick={this.selectMonth.bind(this, this.createMonth(i+1))} 
                     class={`r-calendar-item r-month ${currentMonth} ${isSelected} ${isDisabled} `}>
-                        <span>{monthItem}</span>
+                    <span>{monthItem}</span>
                 </div>
             )
         });
