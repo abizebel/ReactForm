@@ -121,13 +121,13 @@ class Days extends Component {
 
         
         if (jalali) {
-            let startM = moment(disbaledSides.start, 'jYYYY/jM/jD')
-            let endM =  moment(disbaledSides.end, 'jYYYY/jM/jD')
+            let startM = moment(disbaledSides.start, 'jYYYY/jM/jD').add(-1,'day')
+            let endM =  moment(disbaledSides.end, 'jYYYY/jM/jD').add(1,'day')
             return !(day.isBefore(endM) && day.isAfter(startM))
         }
         else {
-            let startM = moment(disbaledSides.start, 'YYYY/M/D')
-            let endM =  moment(disbaledSides.end, 'YYYY/M/D')
+            let startM = moment(disbaledSides.start, 'YYYY/M/D').add(-1,'day')
+            let endM =  moment(disbaledSides.end, 'YYYY/M/D').add(1,'day')
             return !(day.isBefore(endM) && day.isAfter(startM))
         }
     }
