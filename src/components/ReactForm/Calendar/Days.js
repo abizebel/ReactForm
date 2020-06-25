@@ -137,9 +137,8 @@ class Days extends Component {
         const monthFormat = jalali ? 'jMM' : 'MM';
         
         return dayList.map((day,i) => {
-            let isDisabled = false;
-            isDisabled = multiselect && (day.isBefore(selectedDay2) && day.isAfter(selectedDay)) ? 'r-disabled' : '' ;
-            isDisabled = this.disableBforeAfter(day) ? 'r-disabled' : '' ;
+            const isDisabled = multiselect && (day.isBefore(selectedDay2) && day.isAfter(selectedDay)) ? 'r-disabled' : '' ;
+            const isLock = this.disableBforeAfter(day) ? 'r-lock' : '' ;
             const isOutOfDays =  day.format(monthFormat) !== month.format(monthFormat)  ? 'r-outOfDays' : ''
             const isToday = checkToday(day) ? 'r-today' : '';
             const isSelected = this.isSelected(day) ? 'r-selected' : '';
@@ -152,7 +151,7 @@ class Days extends Component {
                     onClick={this.selectDay.bind(this,day)} 
                     onMouseEnter={this.focusDay.bind(this,day)}
                     onMouseLeave={this.blurDay.bind(this,day)}
-                    className={`r-calendar-item ${isSelected} ${isDisabled} ${isOutOfDays} ${isToday} ${disbaledRange}`}>
+                    className={`r-calendar-item ${isSelected} ${isDisabled} ${isOutOfDays} ${isToday} ${disbaledRange} ${isLock}`}>
                     <span> {jalali ? persianNumber(day.format('jD')) : day.format('D')} </span>
                 </div>
             )

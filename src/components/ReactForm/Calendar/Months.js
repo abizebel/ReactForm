@@ -194,7 +194,8 @@ class Days extends Component {
 
         return months.map((monthItem, i) => {
             const month = this.createMonth(i + 1);
-            const isDisabled = this.isDisbaled(month) || this.disableBforeAfter(month) ? 'r-disabled' : '' ;
+            const isDisabled = this.isDisbaled(month) ? 'r-disabled' : '' ;
+            const isLock = this.disableBforeAfter(month) ? 'r-lock' : '' ;
             const isSelected = this.isSelected(month) ? 'r-selected' : '';
             const currentMonth = checkCurentMonth(month) ? 'r-currentMonth' : '';
 
@@ -203,7 +204,7 @@ class Days extends Component {
                     onMouseEnter={this.focusMonth.bind(this, this.createMonth(i+1))}
                     onMouseLeave={this.blurMonth.bind(this, this.createMonth(i+1))}
                     onClick={this.selectMonth.bind(this, this.createMonth(i+1))} 
-                    class={`r-calendar-item r-month ${currentMonth} ${isSelected} ${isDisabled} `}>
+                    class={`r-calendar-item r-month ${currentMonth} ${isSelected} ${isDisabled} ${isLock}`}>
                     <span>{monthItem}</span>
                 </div>
             )
