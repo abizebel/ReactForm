@@ -1,11 +1,12 @@
 import React, {Component, Fragment, createRef} from 'react';
 import icons from '../icons';
-import './Select.scss';
+import './Select.css';
 import $ from 'jquery';
 import * as FN from '../functions';
 import Backdrop from '../Backdrop/Backdrop';
 
 import {isEqual} from 'underscore'
+
 
 class Select extends Component {
     constructor(props) {
@@ -13,33 +14,30 @@ class Select extends Component {
         const {values, defaultValue , mapping} = props;
         this.optionsDom = createRef();
         this.searchDom = createRef();
-        this.inputDom = createRef();
         
-        this.selected = FN.findItemById(values, defaultValue, mapping)
+        this.selected = FN.findItemById(values, defaultValue, mapping);
         
         this.state = {
-            top : null,
-            left :null,
-            width : null,
             open : false,
             values : values,
             initialValues : values,
             selectedItem : this.selected,
             defaultValue,
-            initialDefaultValue : defaultValue,
+           // initialDefaultValue : defaultValue,
             // hasError : this.validate(this.selected).hasError,
             // errorMessage : this.validate(this.selected).errorMessage,
             searchValue : '',
+            validate : this.validate.bind(this)
             
         }
         
     }
 
+
     static getDerivedStateFromProps (props, state){
-        
         if (
             !isEqual(props.values, state.initialValues) ||
-            props.defaultValue !== props.initialDefaultValue 
+            (props.watchDefaultValue &&  props.defaultValue !== null)
 
         ){
             const {values, defaultValue , mapping} = props;
@@ -54,22 +52,19 @@ class Select extends Component {
         
         }
         
-        if (state.initialDefaultValue !== props.defaultValue) {
-            return {
-                defaultValue : props.defaultValue
-            }
-        }
-
+   
         return null
     }
 
     arrowKey = e => {
         const {values, open} = this.state;
         const {search} = this.props;
-        
+
+
         if (e.keyCode === 13 || e.keyCode === 40) {
             e.preventDefault()
         }
+       
         if (e.keyCode === 13 && open){
             const selectedIndex = $(this.optionsDom.current).find('.selected').attr('data-index')
             if(selectedIndex) {
@@ -112,8 +107,38 @@ class Select extends Component {
         
     }
  
-   
+    /**
+     * Detect validation mode
+     */
+    isValidationMode (){
+        const {required, serverError} = this.props;
 
+        const validationMode =required || serverError ? true : false;
+        return validationMode;
+    }
+
+    /**
+     * Check if select has error or not depends on our configs
+     */
+    validate (selectedItem){
+        const {serverError, required} = this.props;
+        let hasError = false;
+        let errorMessage = '';
+
+        if(!this.isValidationMode()) return {hasError,errorMessage} ;
+       
+        if(serverError && serverError.status) {
+            hasError = true;
+            errorMessage = serverError.message;
+        }
+        else if(!serverError && required && !selectedItem){
+            hasError = true;
+            errorMessage = required;
+        }
+ 
+        this.setState({hasError, errorMessage});
+        return {hasError, errorMessage}
+    }
 
  
     /**
@@ -125,9 +150,6 @@ class Select extends Component {
         const {disabled} = this.props;
         if (disabled) return;
 
-        this.setPosition()
-
-        
         this.setState((prevState) => {
             return { open : !prevState.open}
         });
@@ -141,6 +163,7 @@ class Select extends Component {
      */
     close  = e =>{
         this.setState({open : false});
+
     }
 
     /**
@@ -153,24 +176,12 @@ class Select extends Component {
         
         if (disabled) return;
 
-
-        this.setPosition()
         this.setState((prevState) => {
             return { open : !prevState.open}
         });
 
     }
 
-
-    setPosition = () => {
-        const {outline} = this.props;
-
-        this.setState({
-            top : $(this.inputDom.current).offset().top+ (outline ? 44: 30),
-            left : $(this.inputDom.current).offset().left,
-            width : $(this.inputDom.current).parent().width()
-        });
-    }
     /**
      * 
      * @param {Object} item 
@@ -183,8 +194,10 @@ class Select extends Component {
         this.setState({
             selectedItem : item, 
             defaultValue : item[mapping.value],
+           // initialDefaultValue : item[mapping.value]
         })
            
+        this.validate(item);
         this.close();
         change(item);
       
@@ -197,8 +210,9 @@ class Select extends Component {
      */
     deSelect = () =>{
         const {change} = this.props;
-        
+        debugger
         this.setState({selectedItem : null})
+        this.validate(null)
         this.close();
 
         change(null);
@@ -242,15 +256,15 @@ class Select extends Component {
      */
     renderOptions (){
         const {mapping, search , rtl, nullable} = this.props;
-        const {values, top, left, width } = this.state;
+        const {values } = this.state;
         let options;
-        
-        if (values === undefined || values === null  ) {
+        //If options list is empty show "Not Found"
+
+         if (values === undefined || values === null  ) {
             const notFoundText = rtl ? 'داد ه ای موجود نیست' : 'No data Found';
             options = (<div className="r-options-item">{notFoundText}</div>)
         }
-        //If options list is empty show "Not Found"
-        else if (values.length === 0) {
+        else if (values.length === 0  ) {
             const notFoundText = rtl ? 'یافت نشد' : 'Not Found';
             options = (<div className="r-options-item">{notFoundText}</div>)
         }
@@ -274,8 +288,9 @@ class Select extends Component {
                 options.unshift(this.createNullValue())
             }
         }
+        
         return (
-            <div className="r-options" ref={d => {/*FN.handlePosition(d)*/}} style={{top, width, left,position:'fixed'}}>
+            <div className="r-options" ref={d => {FN.handlePosition(d)}}>
                 {search && this.renderSearch()}
                 <div className="r-options-items" ref={this.optionsDom}>{options}</div>
             </div>
@@ -370,8 +385,9 @@ class Select extends Component {
      * Get style
      */
     getSelectClass (){
-        const { mapping, rtl, disabled, outline, className,required} = this.props;
-        const { selectedItem, open} = this.state;
+        const { mapping, rtl, disabled, outline, className} = this.props;
+        const { hasError, open} = this.state;
+        const validationMode = this.isValidationMode();
 
         let names =  {
             [className] : className ? true : false,
@@ -381,29 +397,24 @@ class Select extends Component {
             'r-bordered': outline,
             'r-disabled' : disabled,
             'r-has-icon' : mapping.icon ,
-            'r-error' :  (required && (!selectedItem || !selectedItem[mapping.value]) ),
+            'r-error' :  validationMode && hasError,
         }
 
         return FN.mapObjectToClassName(names)
     }
 
     render (){
-        const { label, mapping, disabled, style,required} = this.props;
-        const {error,open, selectedItem} = this.state;
+        const { label, mapping, disabled, style, id} = this.props;
+        const {errorMessage, hasError,open, selectedItem} = this.state;
         const inputValue = this.getInputText();
         const renderIcon = mapping.icon ? FN.createIcon(FN.getValueByProp(selectedItem, mapping.icon)) : '';
 
-        
-         
-            
-        
         return (
             <Fragment>
-                <div tabIndex={0} onKeyDown={this.arrowKey} style={style} className={this.getSelectClass()}>
+                <div id={id} tabIndex={0} onKeyDown={this.arrowKey} style={style} className={this.getSelectClass()}>
                 {open && <Backdrop onClick={this.close} />}
                    
                     <input 
-                        ref={this.inputDom}
                         onClick={this.toggle.bind(this)}
                         disabled={disabled} 
                         type="text" 
@@ -417,11 +428,7 @@ class Select extends Component {
 
                     <span onClick={this.open.bind(this)} className="r-icon">{icons.down}</span>     
 
-                    {   (required && (!selectedItem || !selectedItem[mapping.value]) )  &&
-                    <Fragment>
-                        <span className="r-message"> انتخاب این فیلد ضروری میباشد</span> 
-                    </Fragment>     
-                    }
+                    { hasError && <span className="r-message">{errorMessage}</span> }
 
                     {open && this.renderOptions()} 
                 </div>
@@ -436,9 +443,7 @@ Select.defaultProps = {
     disabled : false,
     nullable : false,
     style : {},
-     required : false,
     
 }
 
 export default Select
-
