@@ -1,6 +1,6 @@
 import React, {Component, Fragment, createRef} from 'react';
 import icons from '../icons';
-import './Select.css';
+import './Select.scss';
 import $ from 'jquery';
 import * as FN from '../functions';
 import Backdrop from '../Backdrop/Backdrop';

@@ -15,6 +15,7 @@ import {SimpleCalendar, RangeCalendar, DisabledCalendar, MonthCalendar, DatePick
 import DatepickerContainer from './containers/datepickerContainer';
 import TableContainer from './containers/tableContainer';
 import $ from 'jquery'
+import TreeContainer from './containers/treeContainer';
 
 class App extends Component {
     toggle = (e) =>{
@@ -85,6 +86,13 @@ class App extends Component {
                                 <li><Link to="/calendar/datebuttonpicker">DateButtonPicker</Link> </li>
                             </ul>
                         </li>
+                        <li onClick={this.toggle}>
+                            <a href=""><span className="mdi mdi-chevron-right"></span>Tree</a>
+                            <ul>
+                                <li><Link to="/tree">TreeList</Link></li>
+        
+                            </ul>
+                        </li>
 
                     </ul>
                 </div>
@@ -124,56 +132,12 @@ class App extends Component {
 
 
                 <Route path="/datepicker/" component={DatepickerContainer} />
+
+                <Route path="/tree/" component={TreeContainer} />
                 <Route path="/table/" component={TableContainer} />
             </div>
         </div>
     
-
-
-
-
-
-
-
-
-            {/* <div className="page-sidebar">
-                <h3 >React Material Forms </h3>  
-                <h4 >Author : Abbas Hosseini</h4>
-                <ul>
-                <li><Link to="/button/">Button</Link></li>
-                <li><Link to="/checkbox/">Checkbox</Link></li>
-                <li><Link to="/input/">Input</Link></li>
-                <li><Link to="/select/">Select</Link></li>
-                <li><Link to="/multiselect/">MultiSelect</Link></li>
-                <li><Link to="/autocomplete/">Autocomplete</Link> </li>
-                <li><Link to="/tag/">Tag</Link> </li>
-                <li><Link to="/modal/">Modal</Link> </li>
-                <li><Link to="/toggle/">Toggle</Link> </li>
-                <li><Link to="/tab/">Tab</Link> </li>
-                <li><Link to="/calendar/">Calendar</Link> </li>
-                <li><Link to="/datepicker/">Datepicker</Link> </li>
-                <li><Link to="/table/">Table</Link> </li>
-
-                </ul>
-            
-            </div>
-
-            <div  className="page-content">
-            <Route exact path="/" component={ButtonContainer} />
-            <Route path="/button/" component={ButtonContainer} />
-            <Route path="/checkbox/" component={CheckboxContainer} />
-            <Route path="/input/" component={InputContainer} />
-            <Route path="/select/" component={SelectContainer} />
-            <Route path="/multiselect/" component={MultiSelectContainer} />
-            <Route path="/autocomplete/" component={AutocompleteContainer} />
-            <Route path="/tag/" component={TagContainer} />
-            <Route path="/modal/" component={ModalContainer} />
-            <Route path="/toggle/" component={ToggleContainer} />
-            <Route path="/tab/" component={TabContainer} />
-            <Route path="/calendar/" component={CalendarContainer} />
-            <Route path="/datepicker/" component={DatepickerContainer} />
-            <Route path="/table/" component={TableContainer} />
-            </div> */}
         </Router>
         
         );
