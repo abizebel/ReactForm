@@ -1,28 +1,45 @@
 /**************
 * Tree View
 **************/
-
 .r-tree {
     ul {
         padding:20;
         margin: 0;
     }
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10+ and Edge */
-    user-select: none; /* Standard syntax */
+    user-select: none; 
     li {
         position: relative;
         color: #333;
         padding: 10px 5px 0 5px;
+        white-space: nowrap;
         .toggle-icon {
             position: relative;
             padding:0 12px;
             top: 5px
         }
+
+        .add-node {
+            position: relative;
+            padding:0 8px;
+            top: 5px;
+        }
+        .remove-node {
+            position: relative;
+            top: 5px;
+        }
         ul {
             padding:0 24px;
         }
+        input {
+            outline: 0;
+            border: 0;
+            border: 1px solid #00A1F1;
+            padding:2px   ;
+            font-family: inherit;
+            font-size: 16px;
+            border-radius: 3px;
+            color: #00A1F1;
+        }
     }
-    ul ul{
-    }
+
 }

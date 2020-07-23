@@ -14,6 +14,8 @@ class CompositionTree extends Tree {
     this.children = mapping.children;
     this.parentId = mapping.parentId;
     this.id = mapping.id;
+    this.text = mapping.text;
+    this.code = mapping.code;
   }
 
   /**
@@ -107,10 +109,10 @@ class CompositionTree extends Tree {
       var node = this.findNode(model, id);
     }
     if (node == null) {
-      model.push({ title: 'blank', [this.children]: [] });
+      model.push({ [this.code] :'00', [this.text]: 'blank', [this.children]: [] });
       return model
     }
-    node[this.children].push({ title: 'blank', [this.children]: [] })
+    node[this.children].push({[this.code] :'00', [this.text]: 'blank', [this.children]: [] })
     this.updateModel(model);
 
     return model
@@ -136,6 +138,7 @@ class CompositionTree extends Tree {
         }
       }
     }
+    return model
   }
 
   /**

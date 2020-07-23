@@ -12,9 +12,9 @@ class RenderTree extends Component{
     renderFlat(model, parentId = '#') {
         const {mapping, TREE} = this.context;
 
-        let nodes = model.map(o =>{
+        let nodes = model.map((o, i) =>{
             if (o[mapping.parentId] === parentId) {
-                return <Node node={o} cb={()=> TREE.hasChild(o, model) && this.renderFlat(model, o[mapping.id]) } /> 
+                return <Node key={o[mapping.id]} node={o} recursive={()=> TREE.hasChild(o, model) && this.renderFlat(model, o[mapping.id]) } /> 
             }
         });
 
@@ -24,8 +24,8 @@ class RenderTree extends Component{
     renderComposition(model) {
         const {mapping, TREE} = this.context;
 
-        let nodes = model.map(o =>{
-            return  <Node node={o} cb={()=> TREE.hasChild(o) && this.renderComposition(o[mapping.children])} />
+        let nodes = model.map((o, i) =>{
+            return  <Node key={o[mapping.id]} node={o} recursive={()=> TREE.hasChild(o) && this.renderComposition(o[mapping.children])} />
         });
 
         return (<ul>{nodes}</ul>);

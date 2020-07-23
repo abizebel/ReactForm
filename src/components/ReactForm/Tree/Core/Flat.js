@@ -10,6 +10,8 @@ class FlatTree extends Tree {
     this.children = mapping.children;
     this.parentId = mapping.parentId;
     this.id = mapping.id;
+    this.text = mapping.text;
+    this.code = mapping.code;
   }
 
   /**
@@ -88,12 +90,12 @@ class FlatTree extends Tree {
       var parentNode = this.findParent(model, id);
       let parentId = (parentNode == null) ? '#' : parentNode[this.id];
       let level =(parentNode == null) ? 1 :  parentNode.level  ;
-      model.push({ title: 'blank', parentId: parentId, id: (Math.random() * 100), level: level })
+      model.push({[this.code]: '00', [this.text]: 'blank',  [this.parentId]: parentId, id: (Math.random() * 100), level: level })
     }
     //add as a child
     else {
       var node = this.findNode(model, id);
-      model.push({ title: 'blank', parentId: node[this.id], [this.id]: (Math.random() * 100), level: node.level })
+      model.push({[this.code]: '00', [this.text]: 'blank', [this.parentId]: node[this.id], [this.id]: (Math.random() * 100), level: node.level })
     }
 
     return model
@@ -106,7 +108,8 @@ class FlatTree extends Tree {
    */
   removeNode(model, id) {
     var index = this.findNodeIndex(model, id);
-    model.splice(index, 1)
+    model.splice(index, 1);
+    return model
   }
 
   /**
@@ -226,7 +229,7 @@ class FlatTree extends Tree {
    */
   findNodeIndex(model, id) {
     for (var i = 0; i < model.length; i++) {
-      if (model[i].id == id) {
+      if (model[i][this.id] == id) {
         return i
       }
     }

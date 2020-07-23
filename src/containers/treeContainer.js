@@ -21,12 +21,12 @@ class TreeContainer extends Component {
           <div className="content-title">Tree</div>
         </div>
             <Tree
-                mapping = {{ parentId : 'ParentId',id : 'Id', children : 'Children'}}
+                mapping = {{ parentId : 'ParentId',id : 'Id', children : 'Children', code : 'Code', text : 'Name'}}
+                code={true}
                 data = {flatData}// 
                 dataType = "flat" //(flat/composition)
-                fields ={{ text : 'Name' }}
                 iconTempalte ={icon =>{
-                  return (<span style={{paddingRight : 5, color:icon.color}} className={icon.name}></span>)
+                  return (<img style={{width:50, padding:10}} src={icon.url} />)
                 }}
             />
         </div>
