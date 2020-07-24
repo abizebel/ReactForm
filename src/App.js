@@ -16,6 +16,10 @@ import DatepickerContainer from './containers/datepickerContainer';
 import TableContainer from './containers/tableContainer';
 import $ from 'jquery'
 import TreeContainer from './containers/treeContainer';
+import DependencySelect from './containers/dependencyContainer';
+
+
+
 
 class App extends Component {
     toggle = (e) =>{
@@ -93,6 +97,13 @@ class App extends Component {
         
                             </ul>
                         </li>
+                        <li onClick={this.toggle}>
+                            <a href=""><span className="mdi mdi-chevron-right"></span>Dependency Select</a>
+                            <ul>
+                                <li><Link to="/dependencyselect">Dependency Select</Link></li>
+        
+                            </ul>
+                        </li>
 
                     </ul>
                 </div>
@@ -134,6 +145,7 @@ class App extends Component {
                 <Route path="/datepicker/" component={DatepickerContainer} />
 
                 <Route path="/tree/" component={TreeContainer} />
+                <Route path="/dependencyselect/" component={DependencySelect} />
                 <Route path="/table/" component={TableContainer} />
             </div>
         </div>

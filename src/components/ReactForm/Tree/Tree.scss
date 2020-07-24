@@ -17,11 +17,15 @@
             padding:0 12px;
             top: 5px
         }
-
+        .node-actions {
+           display: inline-block;
+        }
+ 
         .add-node {
             position: relative;
             padding:0 8px;
             top: 5px;
+            color: #ccc;
         }
         .remove-node {
             position: relative;

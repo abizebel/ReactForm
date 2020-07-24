@@ -37,7 +37,7 @@ class Select extends Component {
     static getDerivedStateFromProps (props, state){
         if (
             !isEqual(props.values, state.initialValues) ||
-            (props.watchDefaultValue &&  props.defaultValue !== null)
+            (props.watchDefaultValue &&  props.defaultValue !== null)  
 
         ){
             const {values, defaultValue , mapping} = props;

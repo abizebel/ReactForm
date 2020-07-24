@@ -14,6 +14,7 @@ import DatePicker from './Calendar/DatePicker';
 import Table from './Table/Table';
 import DatePickerButton from './Calendar/DatePickerButton'
 import Tree from './Tree/Tree'
+import DependencySelect from './DependencySelect/DependencySelect'
 
 // without default
 export {
@@ -31,5 +32,6 @@ export {
     DatePicker,
     DatePickerButton,
     Table,
-    Tree
+    Tree,
+    DependencySelect
 }

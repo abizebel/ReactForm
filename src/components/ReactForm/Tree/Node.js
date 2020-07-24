@@ -3,7 +3,7 @@ import TreeContext from './TreeContext'
 import Icons from './Icons';
 import Input from './Input';
 
-
+import $ from 'jquery'
 
 class Node extends Component {
     static contextType = TreeContext;
@@ -13,8 +13,9 @@ class Node extends Component {
 
     state = {
         editInput : false,
-        editCode : false
+        editCode : false,
     }
+
 
     startEdit = (type) =>{
         this.setState({[type]:true})
@@ -140,10 +141,10 @@ class Node extends Component {
     renderActions = () =>{
 
         return (
-            <Fragment>
+            <div className="node-actions">
                 <span onClick={this.addNode} className="add-node">{Icons.plus}</span>
                 <span onClick={this.removeNode} className="remove-node">{Icons.remove}</span>
-            </Fragment>
+            </div>
         ) 
     }
 
@@ -172,7 +173,7 @@ class Node extends Component {
         return (
             <Fragment>
                 {   node.show && 
-                    <li className={`r-tree-node ${hasChild ? 'has-child' : ''}`}  >              
+                    <li  className={`r-tree-node ${hasChild ? 'has-child' : ''}`}  >              
                         {this.renderArrow(hasChild)}
                         {this.renderIcon()}
                         {this.renderCode()}
