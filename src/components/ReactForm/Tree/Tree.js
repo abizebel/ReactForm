@@ -23,8 +23,10 @@ class Tree extends Component {
      * 'this.TREE.updateModel' before setState and broadcasting for render
      */
     changeData = data => {
+        const {change} = this.props;
         const model = this.TREE.updateModel(data)
         this.setState({ model })
+        change(model)
     }
 
     /**

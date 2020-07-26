@@ -21,6 +21,7 @@ class TreeContainer extends Component {
           <div className="content-title">Tree</div>
         </div>
             <Tree
+                change ={(value)=>{console.log(value)}}
                 mapping = {{ parentId : 'ParentId',id : 'Id', children : 'Children', code : 'Code', text : 'Name'}}
                 code={true}
                 data = {flatData}// 
