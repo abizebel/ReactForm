@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ButtonContainer from './containers/buttonContainerjs';
-import CheckboxContainer from './containers/checkboxContainer';
 import {SimpleInput, IconInput, RequiredInput, RegexInput, DisabledInput, Textarea} from './containers/Input';
+import {SimpleCalendar, RangeCalendar, DisabledCalendar, MonthCalendar, DatePicker, DateButtonPicker, DisabledSides,RangeDatepicker} from './containers/Calendar';
+import {SimpleCheckbox ,DisabledCheckbox} from './containers/Checkbox';
 import SelectContainer from './containers/selectContainer';
 import MultiSelectContainer from './containers/multiSelectContainer';
 
@@ -11,7 +12,6 @@ import TagContainer from './containers/tagContainer';
 import ModalContainer from './containers/modalContainer';
 import ToggleContainer from './containers/toggleContainer';
 import TabContainer from './containers/tabContainer';
-import {SimpleCalendar, RangeCalendar, DisabledCalendar, MonthCalendar, DatePicker, DateButtonPicker, DisabledSides,RangeDatepicker} from './containers/Calendar';
 import DatepickerContainer from './containers/datepickerContainer';
 import TableContainer from './containers/tableContainer';
 import $ from 'jquery'
@@ -62,6 +62,13 @@ class App extends Component {
                                 <li><Link to="/input/regex">Regex</Link></li>
                                 <li><Link to="/input/disabled">Disabled</Link></li>
                                 <li><Link to="/input/textarea">Textarea</Link></li>
+                            </ul>
+                        </li>
+                        <li onClick={this.toggle}> 
+                            <a href=""><span className="mdi mdi-chevron-right"></span>Checkboxes</a>
+                            <ul>
+                                <li><Link to="/checkbox/simple">Simple</Link></li>
+                                <li><Link to="/checkbox/disbaled">Diabled</Link></li>
                             </ul>
                         </li>
                         <li>
@@ -115,13 +122,16 @@ class App extends Component {
                 </div>
                 <Route exact path="/" component={ButtonContainer} />
                 <Route path="/button/" component={ButtonContainer} />
-                <Route path="/checkbox/" component={CheckboxContainer} />
                 <Route path="/input/simple" component={SimpleInput} />
                 <Route path="/input/icon" component={IconInput} />
                 <Route path="/input/required" component={RequiredInput} />
                 <Route path="/input/regex" component={RegexInput} />
                 <Route path="/input/disabled" component={DisabledInput} />
                 <Route path="/input/textarea" component={Textarea} />
+
+
+                <Route path="/checkbox/simple" component={SimpleCheckbox} />
+                <Route path="/checkbox/disbaled" component={DisabledCheckbox} />
 
 
 

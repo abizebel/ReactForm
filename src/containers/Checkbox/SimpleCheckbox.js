@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import {Checkbox} from '../components/ReactForm';
+import {Checkbox} from '../../components/ReactForm';
 
 class CheckboxContainer extends Component {
 
@@ -10,7 +10,6 @@ class CheckboxContainer extends Component {
     return (
       <Fragment>
         
-     
         <div className="content-box" >
           <div className="content-title">Checkbox & Disabled</div>
             <Checkbox 
@@ -19,32 +18,19 @@ class CheckboxContainer extends Component {
                 change={this.changeCheckbox.bind(this)}
                 size={'lg'}
             />
-            <Checkbox 
-                label={'I Agree'}
-                change={this.changeCheckbox.bind(this)}
-                disabled={true}
-                size={'lg'}
-            /><br />
+            <br />
+ 
             <Checkbox 
                 label={'I Agree'}
                 change={this.changeCheckbox.bind(this)}
             />
-            <Checkbox 
-                label={'I Agree'}
-                disabled={true}
-                change={this.changeCheckbox.bind(this)}
-            /><br />
+            <br />
             <Checkbox 
                 label={'I Agree'}
                 change={this.changeCheckbox.bind(this)}
                 size={'xs'}
             />
-            <Checkbox 
-                label={'I Agree'}
-                change={this.changeCheckbox.bind(this)}
-                disabled={true}
-                size={'xs'}
-            /><br />
+   
  
 
         </div>
@@ -55,34 +41,21 @@ class CheckboxContainer extends Component {
                 change={this.changeCheckbox.bind(this)}
                 size={'lg'}
             />
-            <Checkbox 
-                label={'موافقم'}
-                change={this.changeCheckbox.bind(this)}
-                disabled={true}
-                size={'lg'}
-            /><br />
+             <br />
             <Checkbox 
                 label={'موافقم'}
                 change={this.changeCheckbox.bind(this)}
             />
-            <Checkbox 
-                label={'موافقم'}
-                disabled={true}
-                change={this.changeCheckbox.bind(this)}
-            /><br />
+             <br />
             <Checkbox 
                 label={'موافقم'}
                 change={this.changeCheckbox.bind(this)}
                 size={'xs'}
             />
-            <Checkbox 
-                label={'موافقم'}
-                change={this.changeCheckbox.bind(this)}
-                disabled={true}
-                size={'xs'}
-            /><br />
+ 
 
         </div>
+    
     
       </Fragment>
       
