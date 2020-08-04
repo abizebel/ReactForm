@@ -8,12 +8,13 @@ class Checkbox extends Component {
         super(props);
         this.inputDom = createRef();
         this.state = {
+            initialDefaultValue :  this.props.defaultValue || false , 
             checked : this.props.defaultValue || false,
         }
     }
 
     static getDerivedStateFromProps(props,state){
-        if(props.defaultValue !== state.checked){
+        if(props.defaultValue !== state.initialDefaultValue){
             return {
                 checked:props.defaultValue
             }
@@ -26,11 +27,7 @@ class Checkbox extends Component {
 
         if(justViewMode) return;
 
-        this.setState(prevState => {
-            return {
-                checked : !prevState.checked
-            }
-        })   
+        this.setState({checked : !this.state.checked})   
 
         change(e.target.checked)
     }

@@ -12,7 +12,7 @@ class CheckboxContainer extends Component {
         
      
         <div className="content-box" >
-          <div className="content-title">Checkbox & Disabled</div>
+          <div className="content-title">Disabled Checkbox </div>
             <Checkbox 
                 disabled={true}
                 defaultValue={true}
@@ -39,7 +39,7 @@ class CheckboxContainer extends Component {
 
         </div>
         <div className="content-box" style={{textAlign:'right',direction:'rtl'}}>
-          <div className="content-title">RTL Checkbox  & Disabled</div>
+          <div className="content-title">Disabled RTL Checkbox  </div>
           <Checkbox 
                 disabled={true}
                 label={'موافقم'}
