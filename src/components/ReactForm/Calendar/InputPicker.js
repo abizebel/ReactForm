@@ -5,7 +5,7 @@ import Backdrop from '../Backdrop/Backdrop';
 import BaseCalendarContext from './BaseCalendarContext';
 import Input from '../Input/Input'
 
-import {persianNumber } from './functions';
+import {validatePersion, getDate } from './functions';
 
 
 class DatePicker extends Component {
@@ -56,20 +56,20 @@ class DatePicker extends Component {
 
         if (changeHistory) {
             if (double && changeHistory.startDateStr && changeHistory.endDateStr) {
-                value =  changeHistory.startDateStr + ' - ' + changeHistory.endDateStr ;
+                value =  getDate(changeHistory.startD, jalali)  + ' - ' + getDate(changeHistory.endD, jalali) ;
             }
             else {
-                value =  changeHistory.startDateStr  || changeHistory.dateStr || (jalali ? persianNumber(moment.format('jYYYY/jM/jD')) : moment.format('YYYY/MM/DD'))  ;
+                value =  validatePersion(changeHistory.startDateStr,jalali)  || validatePersion(changeHistory.dateStr,jalali) || getDate(moment, jalali)  ;
             }
 
         }
         else {
             if (double) {
-                value =  startDateStr + ' - ' + endDateStr ;
+                value =  validatePersion(startDateStr,jalali) + ' - ' + validatePersion(endDateStr,jalali) ;
             }
             else {
                 //موقتا
-                value = startDateStr;
+                value = validatePersion(startDateStr,jalali);
             }
 
         }

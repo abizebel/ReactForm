@@ -11,7 +11,7 @@ import TagContainer from './containers/tagContainer';
 import ModalContainer from './containers/modalContainer';
 import ToggleContainer from './containers/toggleContainer';
 import TabContainer from './containers/tabContainer';
-import {SimpleCalendar, RangeCalendar, DisabledCalendar, MonthCalendar, DatePicker, DateButtonPicker, DisabledSides} from './containers/Calendar';
+import {SimpleCalendar, RangeCalendar, DisabledCalendar, MonthCalendar, DatePicker, DateButtonPicker, DisabledSides,RangeDatepicker} from './containers/Calendar';
 import DatepickerContainer from './containers/datepickerContainer';
 import TableContainer from './containers/tableContainer';
 import $ from 'jquery'
@@ -87,6 +87,7 @@ class App extends Component {
                                 <li><Link to="/calendar/disabledsides">Disabled Sides Calendar</Link> </li>
                                 <li><Link to="/calendar/month">Month Calendar</Link> </li>
                                 <li><Link to="/calendar/datepicker">Datepicker</Link> </li>
+                                <li><Link to="/calendar/rangedatepicker">RangeDatepicker</Link> </li>
                                 <li><Link to="/calendar/datebuttonpicker">DateButtonPicker</Link> </li>
                             </ul>
                         </li>
@@ -139,6 +140,8 @@ class App extends Component {
                 <Route path="/calendar/disabled" component={DisabledCalendar} />
                 <Route path="/calendar/month" component={MonthCalendar} />
                 <Route path="/calendar/datepicker" component={DatePicker} />
+                <Route path="/calendar/rangedatepicker" component={RangeDatepicker} />
+
                 <Route path="/calendar/datebuttonpicker" component={DateButtonPicker} />
 
 

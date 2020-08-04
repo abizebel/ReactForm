@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getDaysOfMonth, persianNumber, checkToday } from './functions';
+import {getDaysOfMonth, persianNumber, checkToday,getDate } from './functions';
 import calendarContext from './CalendarContext';
 import moment from 'moment-jalaali';
 
@@ -9,14 +9,19 @@ const jalaliWeekNames = ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'];
 class Days extends Component {
     static contextType = calendarContext;
 
-
+    /**
+     * 
+     * @param {Object} day  - Object Created by moment method
+     * @description {Deside witch type of data provide for use -  single or double calender}
+     */
     getResult = (day) => {
         const {jalali,  selectedDay, selectedDay2, multiselect} = this.context;
         let result = {};
+
         if(multiselect ){
             result = {
-                startDateStr :selectedDay && (jalali ? persianNumber(selectedDay.format('jYYYY/jM/jD')) : selectedDay.format('YYYY/MM/DD'))  ,
-                endDateStr : selectedDay2 && (jalali ? persianNumber(selectedDay2.format('jYYYY/jM/jD')) : selectedDay2.format('YYYY/MM/DD') ),
+                startDateStr :selectedDay &&  getDate(selectedDay) ,
+                endDateStr : selectedDay2 && getDate(selectedDay2),
                 startD :selectedDay,
                 endD: selectedDay2
             }
@@ -31,13 +36,20 @@ class Days extends Component {
         return result
     }
 
+    /**
+     * 
+     * @param {Object} day  - Object Created by moment method
+     * @description {Deside witch type of data provide for use -  single or double calender}
+     */
     selectDay = day => {
         const { change , setDay,selectedDay,selectedDay2, multiselect, setSelectStep, selectStep, id, setChange} = this.context;
         if (multiselect) {
+            //First Select
             if (selectStep === 0) {
                 setSelectStep(1);
                 setDay(day);
             }
+            //Second Select
             else if (selectStep === 1) {
                 const result = this.getResult(day)
                 if ( day.isBefore(selectedDay) || (id === '2' && day.isBefore(selectedDay2)) )   {
@@ -53,6 +65,7 @@ class Days extends Component {
                 change(result)
                 setChange(result)
             }
+            //Clear All Selects
             else if (selectStep === 2) {
                 
                 setSelectStep(1);
@@ -119,7 +132,6 @@ class Days extends Component {
         const {disbaledSides, jalali} =  this.context;
         if (!disbaledSides.start || !disbaledSides.end) return false;
 
-        
         if (jalali) {
             let startM = moment(disbaledSides.start, 'jYYYY/jM/jD').add(-1,'day')
             let endM =  moment(disbaledSides.end, 'jYYYY/jM/jD').add(1,'day')
@@ -131,6 +143,7 @@ class Days extends Component {
             return !(day.isBefore(endM) && day.isAfter(startM))
         }
     }
+
     renderDays (){
         const {month, jalali, selectedDay, selectedDay2, multiselect, id, rangeHanlder} = this.context;
         const dayList = getDaysOfMonth(month, jalali);

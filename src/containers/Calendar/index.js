@@ -3,6 +3,8 @@ import SimpleCalendar from './SimpleCalendar';
 import RangeCalendar from './RangeCalendar';
 import MonthCalendar from './MonthCalendar';
 import DatePicker from './Datepicker';
+import RangeDatepicker from './RangeDatepicker';
+
 import DateButtonPicker from './DateButtonpicker'
 import DisabledSides from './DisabledSides'
 
@@ -13,6 +15,8 @@ export {
     MonthCalendar,
     DatePicker,
     DateButtonPicker,
-    DisabledSides
+    DisabledSides,
+    RangeDatepicker
+
 
 }

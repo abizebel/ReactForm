@@ -94,7 +94,13 @@ class BaseCalendar extends Component {
         this.setState({ [isSecondSelect ? 'selectedMonth2' : 'selectedMonth' ] : day });
     }
     toggleCalendar = ()=> {
-        this.setState({ double : !this.state.double })
+        if (this.state.double === true) {
+            this.setState({ double : !this.state.double, selectedMonth2 :null,selectedDay2:null  })
+
+        }else {
+            this.setState({ double : !this.state.double })
+        }
+      
     }
 
     getContextValue (){

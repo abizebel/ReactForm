@@ -19,6 +19,7 @@ class MonthsHeader extends Component {
 
     render () {
         const {year, jalali} = this.context;
+        
         const jalaliYear = persianNumber(year.format('jYYYY')) ;
         const georgianYear = year.format('YYYY');
         

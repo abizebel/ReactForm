@@ -1,31 +1,29 @@
 import React , {Component} from 'react';
 import BaseCalendar from './BaseCalendar';
 
-class DatePicker extends Component {
+class RangeDatePicker extends Component {
 
 
     render () {
-        const {change,monthOnly, jalali, double,approve,outline, value, disbaledSides} = this.props;
+        const {change,monthOnly, jalali, startDate, endDtate,approve,outline, value, disbaledSides} = this.props;
         return (
             <BaseCalendar 
                 disbaledSides = {disbaledSides}
                 value={value}
                 monthOnly={monthOnly}
                 jalali={jalali}
-                datepicker={true}
+                rangedatepicker={true}
                 change={change}
                 outline={outline}
                 approve = {approve}
-                double={double}
           />
         )
     }
 }
 
-DatePicker.defaultProps = {
+RangeDatePicker.defaultProps = {
     monthOnly : false,
     outline:false,
-    double : false,
     
 }
-export default DatePicker
+export default RangeDatePicker

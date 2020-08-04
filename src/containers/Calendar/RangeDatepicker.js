@@ -5,7 +5,7 @@ import moment from 'moment-jalaali';
 
 
 
-class DatepickerContainer extends Component {
+class RangeDatepickerContainer extends Component {
     changeDatepicker (val){
         console.log(val)
     }
@@ -14,21 +14,22 @@ class DatepickerContainer extends Component {
         return (
         <Fragment>
             <div className="content-box" >
-                <div className="content-title">Gerogian Datepicker</div>
+                <div className="content-title">Gerogian  Range Datepicker</div>
                 <DatePicker 
+                    double={true}
                     outline={true}
-                    value={'92/1/1'}
+                    value={{start : '2020/08/04', end  :'2020/08/06'}}
                     change={this.changeDatepicker}
                 />
         
 
             </div>
             <div className="content-box" >
-                <div className="content-title">Jalali Datepicker</div>
+                <div className="content-title">Jalali Range Datepicker</div>
                 <DatePicker 
-                    
+                    double={true}
                     outline={true}
-                    value={'92/1/1'}
+                    value={{start : '92/1/1', end  :'92/1/2'}}
                     jalali={true}
                     change={this.changeDatepicker}
                 />
@@ -37,28 +38,31 @@ class DatepickerContainer extends Component {
             </div>
 
             <div className="content-box" >
-                <div className="content-title">MonthOnly Gerogian Datepicker</div>
+                <div className="content-title">Gerogian  Range Datepicker</div>
                 <DatePicker 
                     monthOnly={true}
+                    double={true}
                     outline={true}
-                    value={'92/1/1'}
+                    value={{start : '2020/08/01', end  :'2020/09/01'}}
                     change={this.changeDatepicker}
                 />
         
 
             </div>
             <div className="content-box" >
-                <div className="content-title">MonthOnly Jalali Datepicker</div>
+                <div className="content-title">Jalali Range Datepicker</div>
                 <DatePicker 
                     monthOnly={true}
+                    double={true}
                     outline={true}
-                    value={'92/1/1'}
+                    value={{start : '92/1/1', end  :'92/2/1'}}
                     jalali={true}
                     change={this.changeDatepicker}
                 />
         
 
             </div>
+            
             
         
           
@@ -70,4 +74,4 @@ class DatepickerContainer extends Component {
   
 }
 
-export default DatepickerContainer;
+export default RangeDatepickerContainer;

@@ -11,6 +11,8 @@ import Tabs from './Tabs/Tabs';
 import Calendar from './Calendar/BaseCalendar';
 import RangeCalendar from './Calendar/RangeCalendar';
 import DatePicker from './Calendar/DatePicker';
+import RangeDatePicker from './Calendar/RangeDatePicker';
+
 import Table from './Table/Table';
 import DatePickerButton from './Calendar/DatePickerButton'
 import Tree from './Tree/Tree'
@@ -33,5 +35,6 @@ export {
     DatePickerButton,
     Table,
     Tree,
-    DependencySelect
+    DependencySelect,
+    RangeDatePicker,
 }

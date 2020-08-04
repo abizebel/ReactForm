@@ -95,14 +95,21 @@ export function getDay (m, isJalai) {
 export function getMonth (m, isJalai) {
   return isJalai ? persianNumber(m.locale('fa').format('jMM')) :  m.locale('en').format('MM')
 }
+export function getYear (m, isJalai) {
+  return isJalai ? persianNumber(m.locale('fa').format('jYYYY')) :  m.locale('en').format('YYYY')
+}
 export function getMonthName (m, isJalai) {
   return isJalai ?  mapPersianMonths(persianNumber(m.locale('fa').format('jMMMM'))) :  m.locale('en').format('MMMM')
 }
 
-export function getYear (m, isJalai) {
-  return isJalai ? persianNumber(m.locale('fa').format('jYYYY')) :  m.locale('en').format('YYYY')
-}
+
 export function getShortYear (m, isJalai) {
   return isJalai ? persianNumber(m.locale('fa').format('jYY')) :  m.locale('en').format('YY')
+}
+export function getDate (m, isJalai) {
+  return isJalai ? persianNumber(m.locale('fa').format('jYYYY/jM/jD')) :  m.locale('en').format('YYYY/MM/DD')
+}
+export function validatePersion (str, isJalai) {
+  return isJalai ? persianNumber(str) :  str
 }
 
