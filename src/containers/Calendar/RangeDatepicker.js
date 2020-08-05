@@ -16,6 +16,7 @@ class RangeDatepickerContainer extends Component {
             <div className="content-box" >
                 <div className="content-title">Gerogian  Range Datepicker</div>
                 <DatePicker 
+                    label={'test'}
                     switchMode={true}
                     double={true}
                     outline={true}
@@ -28,6 +29,7 @@ class RangeDatepickerContainer extends Component {
             <div className="content-box" >
                 <div className="content-title">Jalali Range Datepicker</div>
                 <DatePicker 
+                  label={'test'}
                     double={true}
                     outline={true}
                     value={{start : '92/1/1', end  :'92/1/2'}}
@@ -41,6 +43,7 @@ class RangeDatepickerContainer extends Component {
             <div className="content-box" >
                 <div className="content-title">Gerogian  Range Datepicker</div>
                 <DatePicker 
+                  label={'test'}
                     monthOnly={true}
                     double={true}
                     outline={true}
@@ -53,6 +56,7 @@ class RangeDatepickerContainer extends Component {
             <div className="content-box" >
                 <div className="content-title">Jalali Range Datepicker</div>
                 <DatePicker 
+                   label={'test'}
                     monthOnly={true}
                     double={true}
                     outline={true}
