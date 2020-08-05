@@ -46,15 +46,15 @@ class Days extends Component {
         let result = {};
         if(multiselect ){
             result = {
-                startDateStr :selectedMonth && (jalali ? persianNumber(selectedMonth.format('jYYYY/jM/1')) : selectedMonth.format('YYYY/MM/1'))  ,
-                endDateStr : selectedMonth2 && (jalali ? persianNumber(selectedMonth2.format('jYYYY/jM/1')) : selectedMonth2.format('YYYY/MM/1') ),
+                startDateStr :selectedMonth && (jalali ? selectedMonth.format('jYYYY/jM/1') : selectedMonth.format('YYYY/MM/1'))  ,
+                endDateStr : selectedMonth2 && (jalali ?selectedMonth2.format('jYYYY/jM/1') : selectedMonth2.format('YYYY/MM/1') ),
                 startD :selectedMonth,
                 endD: selectedMonth2
             }
         }
         else {
             result = {
-               dateStr :jalali ? persianNumber(month.format('jYYYY/jM/1')) : month.format('YYYY/MM/1') ,
+               dateStr :jalali ? month.format('jYYYY/jM/1') : month.format('YYYY/MM/1') ,
                 d :month,
             }
         }

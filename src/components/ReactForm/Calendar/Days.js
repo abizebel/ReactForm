@@ -28,7 +28,7 @@ class Days extends Component {
         }
         else {
             result = {
-               dateStr :jalali ? persianNumber(day.format('jYYYY/jM/jD')) : day.format('YYYY/MM/DD'),
+               dateStr :jalali ? day.format('jYYYY/jM/jD') : day.format('YYYY/MM/DD'),
                d :day,
             }
         }
