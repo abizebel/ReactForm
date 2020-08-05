@@ -28,7 +28,6 @@ class DatePicker extends Component {
 
     open = () => {
         const {outline} = this.context;
-
         this.setState({open:true})
 
         var x = $(this.inputDom.current).offset().left;
@@ -50,26 +49,26 @@ class DatePicker extends Component {
     }
 
     render (){
-        const {jalali,toggleCalendar, double, approve,changeHistory,outline,selectedDay, selectedDay2,moment, startDateStr, endDateStr, label} = this.context;
+        const {jalali,toggleCalendar, double, approve,changeHistory,outline,selectedDay, selectedDay2,moment, startDateStr, endDateStr , label, monthOnly} = this.context;
         const { open, top, left } = this.state;
         let value = '';
 
         if (changeHistory) {
             if (double && changeHistory.startDateStr && changeHistory.endDateStr) {
-                value =  getDate(changeHistory.startD, jalali)  + ' - ' + getDate(changeHistory.endD, jalali) ;
+                value =  getDate(changeHistory.startD, jalali,monthOnly)  + ' - ' + getDate(changeHistory.endD, jalali, monthOnly) ;
             }
             else {
-                value =  validatePersion(changeHistory.startDateStr,jalali)  || validatePersion(changeHistory.dateStr,jalali) || getDate(moment, jalali)  ;
+                value =  validatePersion(changeHistory.startDateStr,jalali, monthOnly)  || validatePersion(changeHistory.dateStr,jalali) || getDate(moment, jalali, monthOnly)  ;
             }
 
         }
         else {
             if (double) {
-                value =  validatePersion(startDateStr,jalali) + ' - ' + validatePersion(endDateStr,jalali) ;
+                value =  validatePersion(startDateStr,jalali, monthOnly) + ' - ' + validatePersion(endDateStr,jalali, monthOnly) ;
             }
             else {
                 //موقتا
-                value = validatePersion(startDateStr,jalali);
+                value = validatePersion(startDateStr,jalali, monthOnly);
             }
 
         }
@@ -80,8 +79,8 @@ class DatePicker extends Component {
                         {open && <Backdrop onClick={this.close} />}
                         <span onClick={this.open} className="r-icon"><svg viewBox="0 0 24 24"><path fill="#000000" d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" /></svg></span>
                         <Input
-                            label={label}
                             rtl={jalali}
+                            label={label}
                             onFocus = {this.open}
                             disabled={false} 
                             type="text" 
