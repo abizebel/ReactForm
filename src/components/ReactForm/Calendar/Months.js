@@ -149,7 +149,7 @@ class Days extends Component {
     }
 
     isSelected = (month) => {
-        const {selectedYear, selectedYear2,selectedMonth, selectedMonth2, id, mode,selectStep, double} = this.context;
+        const {selectedYear, selectedYear2,selectedMonth, selectedMonth2, id, mode,selectStep, multiselect} = this.context;
         let selected = false;
         let selected2 = false;
         
@@ -163,7 +163,8 @@ class Days extends Component {
         }
         else {
             selected = selectedMonth && mode !=='months' &&  selectStep >0  ?  selectedMonth.isSame(month, 'month') : false;
-            selected2 = selectedMonth2 && mode !=='months' && selectStep>1 ? selectedMonth2.isSame(month, 'month') : false;
+            selected2  = multiselect ?  ( selectedMonth2 && mode !=='months' && selectStep>1 ? selectedMonth2.isSame(month, 'month') : false) : false;
+           
         }
 
         return selected || selected2   

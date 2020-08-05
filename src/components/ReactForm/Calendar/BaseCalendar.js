@@ -94,17 +94,18 @@ class BaseCalendar extends Component {
         this.setState({ [isSecondSelect ? 'selectedMonth2' : 'selectedMonth' ] : day });
     }
     toggleCalendar = ()=> {
-        if (this.state.double === true) {
-            this.setState({ double : !this.state.double, selectedMonth2 :null,selectedDay2:null  })
+        this.setState({ double : !this.state.double })
+        // if (this.state.double === true) {
+        //     this.setState({ double : !this.state.double, selectedMonth2 :null,selectedDay2:null  })
 
-        }else {
-            this.setState({ double : !this.state.double })
-        }
+        // }else {
+        //     this.setState({ double : !this.state.double })
+        // }
       
     }
 
     getContextValue (){
-        const {jalali,range, monthOnly } = this.props;
+        const {jalali,range, monthOnly , switchMode } = this.props;
         const { double} = this.state;
 
         return {
@@ -113,6 +114,7 @@ class BaseCalendar extends Component {
             jalali ,
             multiselect :double ? true :  range ,
             double  ,
+            switchMode  ,
             monthOnly,
             setDay : this.setDay,
             setSelectStep : this.setSelectStep,
@@ -151,6 +153,7 @@ BaseCalendar.defaultProps = {
     datepikcer : false,
     double : false,
     disbaledSides : {},
+    switch : false
 }
 
 

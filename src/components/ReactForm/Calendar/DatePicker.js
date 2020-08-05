@@ -5,7 +5,7 @@ class DatePicker extends Component {
 
 
     render () {
-        const {change,monthOnly, jalali, double,approve,outline, value, disbaledSides} = this.props;
+        const {change,monthOnly, jalali, double,approve,outline, value, disbaledSides, switchMode} = this.props;
         return (
             <BaseCalendar 
                 disbaledSides = {disbaledSides}
@@ -17,6 +17,7 @@ class DatePicker extends Component {
                 outline={outline}
                 approve = {approve}
                 double={double}
+                switchMode={switchMode}
           />
         )
     }
@@ -26,6 +27,7 @@ DatePicker.defaultProps = {
     monthOnly : false,
     outline:false,
     double : false,
+    switchMode : false
     
 }
 export default DatePicker

@@ -105,7 +105,7 @@ class Days extends Component {
 
 
     isSelected = (day) => {
-        const {selectedDay, selectedDay2,selectedMonth, selectedMonth2, id} = this.context;
+        const {selectedDay, selectedDay2,selectedMonth, selectedMonth2, id, multiselect} = this.context;
         let selected = false;
         let selected2 = false;
 
@@ -119,7 +119,7 @@ class Days extends Component {
         }
         else {
             selected = selectedDay ? selectedDay.isSame(day, 'day') : false;
-            selected2 = selectedDay2 ? selectedDay2.isSame(day, 'day') : false;
+            selected2 = multiselect ?  (selectedDay2 ? selectedDay2.isSame(day, 'day') : false ) : false;
         }
 
         return selected || selected2   

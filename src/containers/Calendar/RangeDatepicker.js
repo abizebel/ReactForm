@@ -16,6 +16,7 @@ class RangeDatepickerContainer extends Component {
             <div className="content-box" >
                 <div className="content-title">Gerogian  Range Datepicker</div>
                 <DatePicker 
+                    switchMode={true}
                     double={true}
                     outline={true}
                     value={{start : '2020/08/04', end  :'2020/08/06'}}
