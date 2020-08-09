@@ -232,7 +232,7 @@
 
 /* Month */
 .r-calendar-item.r-month {
-  width:33.33%;
+  width: calc(33.33% - 8px);
   margin-bottom:12px;
 
   border:4px solid transparent
