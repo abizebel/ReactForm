@@ -5,10 +5,10 @@ class RangeDatePicker extends Component {
 
 
     render () {
-        const {change,monthOnly, jalali, startDate, endDtate,approve,outline, value, disbaledSides} = this.props;
+        const {change,monthOnly, jalali, startDate, endDtate,approve,outline, value, disabledSides} = this.props;
         return (
             <BaseCalendar 
-                disbaledSides = {disbaledSides}
+                disabledSides = {disabledSides}
                 value={value}
                 monthOnly={monthOnly}
                 jalali={jalali}

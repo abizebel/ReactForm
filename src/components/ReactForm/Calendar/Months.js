@@ -175,16 +175,16 @@ class Days extends Component {
      * Rabish Function :)
      */
     disableBforeAfter = (month) =>{
-        const {disbaledSides, jalali} = this.context;
-        if (!disbaledSides.start || !disbaledSides.end) return false;
+        const {disabledSides, jalali} = this.context;
+        if (!disabledSides.start || !disabledSides.end) return false;
         if (jalali) {
-            let startM = moment(disbaledSides.start, 'jYYYY/jM/jD').add(-1,'month');
-            let endM = moment(disbaledSides.end, 'jYYYY/jM/jD').add(1,'month');
+            let startM = moment(disabledSides.start, 'jYYYY/jM/jD').add(-1,'month');
+            let endM = moment(disabledSides.end, 'jYYYY/jM/jD').add(1,'month');
             return !(month.isBefore(endM) && month.isAfter(startM,  'month'));
         }
         else {
-            let startM = moment(disbaledSides.start, 'YYYY/M/D').add(-1,'month');
-            let endM =  moment(disbaledSides.end, 'YYYY/M/D').add(1,'month');
+            let startM = moment(disabledSides.start, 'YYYY/M/D').add(-1,'month');
+            let endM =  moment(disabledSides.end, 'YYYY/M/D').add(1,'month');
             return !(month.isBefore(endM) && month.isAfter(startM,  'month'));
         }
     }

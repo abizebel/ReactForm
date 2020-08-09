@@ -18,14 +18,14 @@ class CalendarContainer extends Component {
                 <div className="content-title">Disabled Sides Goergian Calendar</div>
                 <Calendar 
                   jalali={true} 
-                  disbaledSides={{start :'1399/4/1', end  :'1399/4/20'}} 
+                  disabledSides={{start :'1399/4/1', end  :'1399/4/20'}} 
                   change={this.changeCalendar.bind(this)}
                 />
           </div>
           <div className="content-box" >
               <div className="content-title">Disabled Sides Jalai Calendar</div>
               <Calendar 
-                disbaledSides={{start :'2020/6/1', end  :'2020/6/20'}} 
+                disabledSides={{start :'2020/6/1', end  :'2020/6/20'}} 
                 change={this.changeCalendar.bind(this)}
               />
           </div>
@@ -34,7 +34,7 @@ class CalendarContainer extends Component {
                 <Calendar 
                   monthOnly={true}
                   jalali={true} 
-                  disbaledSides={{start :'1399/4/1', end  :'1399/6/1'}} 
+                  disabledSides={{start :'1398/01/1', end  :'1400/12/1'}} 
                   change={this.changeCalendar.bind(this)}
                 />
           </div>
@@ -42,7 +42,7 @@ class CalendarContainer extends Component {
               <div className="content-title">Monthonly Disabled Sides Jalai Calendar</div>
               <Calendar 
                 monthOnly={true}
-                disbaledSides={{start :'2020/6/1', end  :'2020/8/1'}} 
+                disabledSides={{start :'2020/6/1', end  :'2020/8/1'}} 
                 change={this.changeCalendar.bind(this)}
               />
           </div>

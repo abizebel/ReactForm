@@ -7,6 +7,7 @@ import Input from '../Input/Input'
 
 import {validatePersion, getDate } from './functions';
 
+import {handlePosition } from '../functions';
 
 class DatePicker extends Component {
 
@@ -89,7 +90,7 @@ class DatePicker extends Component {
                             className=" r-input filled" 
                             value={value}  
                         />
-                        {open && <div className="r-datepicker-content" style={{width:this.getWidth(),top,left, direction : jalali ? 'rtl' : 'ltr'}}>
+                        {open && <div className="r-datepicker-content"  style={{width:this.getWidth(),top,left, direction : jalali ? 'rtl' : 'ltr'}}>
                  
                         {!double && <div className="r-rangeCalendar"><Calendar id="1" /></div>}
 
