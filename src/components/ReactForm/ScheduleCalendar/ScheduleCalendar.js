@@ -36,7 +36,9 @@ function ScheduleScheduleCalendar (props) {
     const {api} = props;
 
     const [data, setData] = useState(null);
-    const [showMenu, setShowMenu] = useState(false)
+    const [showMenu, setShowMenu] = useState(false);
+    const [posX, setPosX] = useState(null);
+    const [posY, setPosY] = useState(null)
 
 
     useEffect ( ()=>{
@@ -52,7 +54,10 @@ function ScheduleScheduleCalendar (props) {
 
     const handler = e =>{
         e.preventDefault();
+        e.stopPropagation()
         setShowMenu(true)
+        setPosX( e.pageX)
+        setPosY(e.pageY)
     }
     const close = () =>{
         setShowMenu(false)
@@ -62,7 +67,7 @@ function ScheduleScheduleCalendar (props) {
        
         let days = month.days.map( (o, i) =>{
             return (
-                <div onContextMenu={handler} class="r-calendar-item"><span> {persianNumber(o.name)} </span></div>
+                <div onContextMenu={handler} class="r-calendar-item"><div> {persianNumber(o.name)} </div></div>
             )
         })
 
@@ -96,17 +101,27 @@ function ScheduleScheduleCalendar (props) {
             return renderCalendar(o)
         })
     }
-    
+    const getMenuItems = () =>{
+        return [
+            {   
+                icon : 'mdi mdi-content-cut',
+                name : 'روز تعطیل',
+                cb : () =>{
+                    alert(1)
+                }
+            },
+        ]
+    }
     return (
         <div class="r-schedule r-rtl">
              <div className="r-schedule-toolbar">
-               asdasdasdasdasd
+               tool bar will be here
             </div>
             <div className="r-schedule-calendars">
-                {showMenu && <h1>adasdasdasdasdasdsadasdasdasd</h1> }
                 {renderCalendars()}
             </div>
-           
+            {showMenu && <RightClick  style={{minHeight:100, minWidth:60}} rtl={true} onClose={close} items={getMenuItems()} posX={posX} posY={posY}  /> }
+
         </div>
     )
 

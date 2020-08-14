@@ -20,11 +20,18 @@ class RightClick extends Component {
             </Fragment>
         )
     }
+
+    clickHandler = (o) =>{
+        const {onClose} = this.props;
+        
+        o.cb ();
+        onClose()
+    }
     traverseMenu = items =>{
         return items.map((o, i) =>{
             return (
-                <Fragment>
-                    <div className="r-clickmenu-item">
+                <Fragment key={i}>
+                    <div className="r-clickmenu-item" onClick={this.clickHandler.bind(this, o)}>
                         <div className="r-clickmenu-item-content">
                             <span className={`r-clickmenu-item-icon ${o.icon}` }></span>
                             <span className="r-clickmenu-item-label">{o.name}</span>
@@ -41,10 +48,10 @@ class RightClick extends Component {
     }
 
     renderMenu = () =>{
-        const { posX, posY, rtl, items} = this.props;
+        const { posX, posY, rtl, items, style} = this.props;
         
         return (
-            <div className={`r-clickmenu-menu ${rtl ?'rtl' : ''}`} style={{top :  posY, left :posX }}>
+            <div className={`r-clickmenu-menu ${rtl ?'rtl' : ''}`} style={{top :  posY, left :posX, ...style }}>
                 {this.traverseMenu(items)}
             </div>
         )
@@ -56,11 +63,11 @@ class RightClick extends Component {
         const {onClose} = this.props;
 
         return (
-            <Fragment>
+            <div>
                 {this.renderMenu()}
                 <Backdrop onClick={onClose} />
 
-            </Fragment>
+            </div>
         )
     }
 }
@@ -68,6 +75,7 @@ class RightClick extends Component {
 
 RightClick.defaultProps = {
     rtl : false,
+    style : {}
 }
 
 export default RightClick

@@ -35,7 +35,7 @@ class RightClickContainer extends Component {
 
         this.setState({show:false})
     }
-    getMenuitems = () =>{
+    getMenuItems = () =>{
         return [
             {   
                 icon : 'mdi mdi-content-cut',
@@ -109,11 +109,11 @@ class RightClickContainer extends Component {
                 <div 
                     onContextMenu={this.handler} 
                     ref={this.dom} 
-                    style={{width:600, height: 600, border: '1px solid #ccc'}}
+                    style={{position:'relative',width:600, height: 600, border: '1px solid #ccc'}}
                 >
                 </div>
                
-                {show && <RightClick onClose={this.close} items={this.getMenuitems()} posX={posX} posY={posY}  /> }
+                {show && <RightClick onClose={this.close} items={this.getMenuItems()} posX={posX} posY={posY}  /> }
             </div>
             
             

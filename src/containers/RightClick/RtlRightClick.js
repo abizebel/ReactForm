@@ -21,8 +21,6 @@ class RightClickContainer extends Component {
     }
     
     handler = e =>{
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
         e.preventDefault();
         e.stopPropagation()
         this.setState({
@@ -30,13 +28,15 @@ class RightClickContainer extends Component {
             posY : e.pageY,
             show:true
         })
+
+        
       
     }
     close = () => {
 
         this.setState({show:false})
     }
-    getMenuitems = () =>{
+    getMenuItems = () =>{
         return [
             {   
                 icon : 'mdi mdi-content-cut',
@@ -103,7 +103,6 @@ class RightClickContainer extends Component {
     render (){
         const {posX, posY, show } = this.state;
         return (
-        <Fragment>
             <div className="content-box" >
                 <div className="content-title">RTL Right Click</div>
 
@@ -111,16 +110,20 @@ class RightClickContainer extends Component {
                 <div 
                     onContextMenu={this.handler} 
                     ref={this.dom} 
-                    style={{width:600, height: 600, border: '1px solid #ccc'}}
+                    style={{position:'relative',width:600, height: 600, border: '1px solid #ccc'}}
                 >
                 </div>
                
-                {show && <RightClick onClose={this.close} items={this.getMenuitems()} posX={posX} posY={posY} rtl={true} /> }
-            </div>
-            
-
-        </Fragment>
-        
+                {   show && 
+                    <RightClick 
+                    onClose={this.close} 
+                    items={this.getMenuItems()} 
+                    posX={posX} 
+                    posY={posY} 
+                    style={{minHeight:100}}
+                    rtl={true} />
+                }
+            </div>        
         );
     }
   
