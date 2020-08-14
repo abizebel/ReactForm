@@ -1,6 +1,5 @@
 import React, {Component,Fragment, createRef} from 'react';
 import { RightClick } from '../../components/ReactForm';
-import Backdrop from '../../components/ReactForm/Backdrop/Backdrop';
 
 
 
@@ -114,8 +113,7 @@ class RightClickContainer extends Component {
                 >
                 </div>
                
-                {show && <RightClick items={this.getMenuitems()} posX={posX} posY={posY}  /> }
-                {show && <Backdrop onClick={this.close} />}
+                {show && <RightClick onClose={this.close} items={this.getMenuitems()} posX={posX} posY={posY}  /> }
             </div>
             
             

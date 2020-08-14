@@ -115,8 +115,7 @@ class RightClickContainer extends Component {
                 >
                 </div>
                
-                {show && <RightClick items={this.getMenuitems()} posX={posX} posY={posY} rtl={true} /> }
-                {show && <Backdrop onClick={this.close} />}
+                {show && <RightClick onClose={this.close} items={this.getMenuitems()} posX={posX} posY={posY} rtl={true} /> }
             </div>
             
 

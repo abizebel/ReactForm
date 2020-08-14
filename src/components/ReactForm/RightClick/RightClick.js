@@ -1,6 +1,6 @@
 import React, {Fragment, Component, createRef, useCallback} from 'react';
 import './RightClick.scss'
-
+import Backdrop from '../Backdrop/Backdrop'
 
 class RightClick extends Component {
 
@@ -53,12 +53,13 @@ class RightClick extends Component {
  
 
     render () {
-      
+        const {onClose} = this.props;
 
         return (
             <Fragment>
                 {this.renderMenu()}
-                {this.props.children}
+                <Backdrop onClick={onClose} />
+
             </Fragment>
         )
     }

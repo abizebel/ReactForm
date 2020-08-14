@@ -1,7 +1,6 @@
 import React , { Component, useEffect, useState} from 'react';
 import './ScheduleCalendar.scss';
 import RightClick from '../RightClick/RightClick';
-import Backdrop from '../Backdrop/Backdrop';
 
 const latinToPersianMap = ['۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '۰'];
 const latinNumbers = [/1/g, /2/g, /3/g, /4/g, /5/g, /6/g, /7/g, /8/g, /9/g, /0/g];
@@ -105,7 +104,6 @@ function ScheduleScheduleCalendar (props) {
             </div>
             <div className="r-schedule-calendars">
                 {showMenu && <h1>adasdasdasdasdasdsadasdasdasd</h1> }
-                {showMenu && <Backdrop onClick={close} />}
                 {renderCalendars()}
             </div>
            
