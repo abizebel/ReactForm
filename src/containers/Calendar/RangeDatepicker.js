@@ -13,7 +13,7 @@ class RangeDatepickerContainer extends Component {
     render (){
         return (
         <Fragment>
-            {/* <div className="content-box" >
+            <div className="content-box" >
                 <div className="content-title">Gerogian  Range Datepicker</div>
                 <DatePicker 
                     label={'test'}
@@ -52,7 +52,7 @@ class RangeDatepickerContainer extends Component {
                 />
         
 
-            </div> */}
+            </div>
             <div className="content-box" >
                 <div className="content-title">Jalali MonthOnly Range Datepicker</div>
                 <DatePicker 

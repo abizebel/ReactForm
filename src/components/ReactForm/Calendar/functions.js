@@ -118,6 +118,7 @@ export function getDate (m, isJalai, monthOnly) {
  
 }
 export function validatePersion (str, isJalai, monthOnly) {
+  if(!str) return '';
   if (monthOnly) {
     let arr = str.split('/');
     let newStr = `${arr[0]}/${arr[1]}`;

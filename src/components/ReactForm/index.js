@@ -17,6 +17,8 @@ import Table from './Table/Table';
 import DatePickerButton from './Calendar/DatePickerButton'
 import Tree from './Tree/Tree'
 import DependencySelect from './DependencySelect/DependencySelect'
+import ScheduleCalendar from './ScheduleCalendar/ScheduleCalendar'
+import RightClick from './RightClick/RightClick'
 
 // without default
 export {
@@ -37,4 +39,6 @@ export {
     Tree,
     DependencySelect,
     RangeDatePicker,
+    ScheduleCalendar,
+    RightClick
 }

@@ -74,7 +74,7 @@ class Input extends Component {
             'r-bordered': outline,
             'r-disabled' : disabled,
             'r-has-icon' : icon !== null,
-            'r-error' : (!value || value.trim() === '') && required
+            'r-error' : (!value || String(value).trim() === '') && required
         }
 
         return mapObjectToClassName(names)
@@ -122,7 +122,7 @@ class Input extends Component {
                     <span className="r-input-icon">{inputIcon}</span>
                 }
                  
-                {    (!value || value.trim() === '') && required &&
+                {    (!value || String(value).trim() === '') && required &&
                     <Fragment>
                         <span className="r-icon">{icons.error}</span>  
                         <span className="r-message">وارد کردن این فیلد ضروری میباشد</span> 

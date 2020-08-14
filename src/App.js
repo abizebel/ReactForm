@@ -4,6 +4,9 @@ import ButtonContainer from './containers/buttonContainerjs';
 import {SimpleInput, IconInput, RequiredInput, RegexInput, DisabledInput, Textarea} from './containers/Input';
 import {SimpleCalendar, RangeCalendar, DisabledCalendar, MonthCalendar, DatePicker, DateButtonPicker, DisabledSides,RangeDatepicker} from './containers/Calendar';
 import {SimpleCheckbox ,DisabledCheckbox} from './containers/Checkbox';
+import {SimpleScheduleCalendar} from './containers/ScheduleCalendar';
+import {RtlRightClick, LtrRightClick} from './containers/RightClick';
+
 import SelectContainer from './containers/selectContainer';
 import MultiSelectContainer from './containers/multiSelectContainer';
 
@@ -99,6 +102,21 @@ class App extends Component {
                             </ul>
                         </li>
                         <li onClick={this.toggle}>
+                            <a href=""><span className="mdi mdi-chevron-right"></span>Schedule Calendars</a>
+                            <ul>
+                                <li><Link to="/schedulecalendar/simple">Simple Scehdule Calendar</Link> </li>
+                            </ul>
+                        </li>
+                        <li onClick={this.toggle}>
+                            <a href=""><span className="mdi mdi-chevron-right"></span>Right Clicks</a>
+                            <ul>
+                                <li><Link to="/rightclick/rtl">Rtl RightClick</Link> </li>
+                                <li><Link to="/rightclick/ltr">Ltr RightClick</Link> </li>
+                            </ul>
+                        </li>
+
+                        
+                        <li onClick={this.toggle}>
                             <a href=""><span className="mdi mdi-chevron-right"></span>Tree</a>
                             <ul>
                                 <li><Link to="/tree">TreeList</Link></li>
@@ -153,8 +171,10 @@ class App extends Component {
                 <Route path="/calendar/rangedatepicker" component={RangeDatepicker} />
 
                 <Route path="/calendar/datebuttonpicker" component={DateButtonPicker} />
-
-
+                <Route path="/schedulecalendar/simple" component={SimpleScheduleCalendar} />
+                <Route path="/rightclick/rtl" component={RtlRightClick} />
+                <Route path="/rightclick/ltr" component={LtrRightClick} />
+                
                 <Route path="/datepicker/" component={DatepickerContainer} />
 
                 <Route path="/tree/" component={TreeContainer} />

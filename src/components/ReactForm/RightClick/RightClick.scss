@@ -1,0 +1,158 @@
+
+.r-clickmenu-menu{
+    min-width : 286px;
+    min-height: 400px;
+   direction:ltr;
+    user-select: none;
+    /*overflow-y: auto;*/
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    border-radius:0;
+    -webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);
+    -moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);
+    box-shadow:0 2px 4px rgba(0,0,0,0.2);
+    -webkit-transition:opacity 0.218s;
+    -moz-transition:opacity 0.218s;
+    -o-transition:opacity 0.218s;
+    transition:opacity 0.218s;
+    background:#fff;
+    border:1px solid #ccc;
+    border:1px solid rgba(0,0,0,.2);
+    cursor:default;
+    font-size:14px;
+    margin:0;
+    outline:none;
+    padding:8px 8px 8px 0;
+    position: fixed;
+    z-index: 20;
+ }
+.r-clickmenu-item{
+   position:relative;
+   color:#333;
+   cursor:pointer;
+   list-style:none;
+   margin:0;
+   padding:11px 8em 11px 35px;
+   white-space:nowrap;
+}
+.r-clickmenu-item:hover .r-clickmenu-submenu  {
+  display:block
+}
+.r-clickmenu-submenu {
+   display:none;
+   min-width : 286px;
+   min-height: 400px;
+   position:absolute;
+   left : 100%;;
+   top:0;
+   z-index:999999999999999999999999999999999999;
+   user-select: none;
+   overflow-y: auto;
+   -webkit-border-radius:0;
+   -moz-border-radius:0;
+   border-radius:0;
+   -webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);
+   -moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);
+   box-shadow:0 2px 4px rgba(0,0,0,0.2);
+   -webkit-transition:opacity 0.218s;
+   -moz-transition:opacity 0.218s;
+   -o-transition:opacity 0.218s;
+   transition:opacity 0.218s;
+   background:#fff;
+   border:1px solid #ccc;
+   border:1px solid rgba(0,0,0,.2);
+   cursor:default;
+   font-size:13px;
+   margin:0;
+   outline:none;
+   padding:8px 8px 8px 0;
+   
+}
+
+
+
+
+.r-clickmenu-item-content {
+}
+
+.r-clickmenu-item:hover{
+   background-color:#eee;
+
+
+}
+
+.r-clickmenu-item-accel{
+   color: #808080;
+   direction:ltr;
+   left:auto;
+   padding-right:6px;
+   position:absolute;
+   right:0;
+   text-align:right;
+  
+}
+.r-clickmenu-item-icon{
+   left:8px;
+   position:absolute;
+   right:auto;
+   top:8px;
+   vertical-align:middle;
+   width:21px;
+  font-size:20px !important;
+  color: #6e6e6e;
+}
+
+.r-clickmenu-menuseparator{
+   border-top:1px solid #ebebeb;
+   margin-top:6px;
+   margin-bottom:6px
+}
+
+.r-clickmenu-submenu-arrow{
+   color: #808080;
+   left:auto;
+   padding-right:6px;
+   position:absolute;
+   right:0;
+   text-align:right
+}
+
+/* RTL */
+.r-clickmenu-menu.rtl {
+   padding:8px 0 8px 8px;
+}
+.r-clickmenu-menu.rtl .r-clickmenu-item-icon{
+   right:8px;
+   left:auto;
+}
+.r-clickmenu-menu.rtl .r-clickmenu-submenu-arrow{
+   right:auto;
+   padding-left:6px;
+   left:0;
+   text-align:left
+}
+.r-clickmenu-menu.rtl .r-clickmenu-item-accel{
+   right:auto;
+   padding-left:6px;
+   left:0;
+   text-align:left;
+  
+}
+
+.r-clickmenu-menu.rtl .r-clickmenu-item{
+   direction:rtl;
+   text-align:right;
+   position:relative;
+   color:#333;
+   cursor:pointer;
+   list-style:none;
+   margin:0;
+   padding:11px 35px 11px 8em ;
+   white-space:nowrap;
+}
+.r-clickmenu-menu.rtl .r-clickmenu-submenu {
+  padding:8px 0 8px 8px;
+   position:absolute;
+   right : 100%;;
+   top:0;  
+}

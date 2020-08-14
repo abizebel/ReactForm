@@ -1,0 +1,168 @@
+
+  /***************
+  * calendar 
+  ***************/
+  .r-schedule {
+    padding: 24px;
+    position: fixed;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+    overflow-y: auto;
+    height: 100%;
+
+    .r-schedule-toolbar {
+      padding: 8px;
+      background: red;
+    }
+
+    .r-schedule-calendars {
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+    .r-schedule-calendar  {
+      flex: 0 0 calc(25% - 24px);
+      margin: 12px;
+
+    }
+    
+    .r-calendar-wrapper {
+      background:#FCFCFC;
+      padding:16px;
+      border-radius:15px;
+      width:280px;
+      border:1px solid #eee;
+      border-radius:15px;
+      -webkit-user-select: none;
+      user-select: none; 
+      z-index: 2;
+  
+  
+    }
+    
+    
+    /* Header */
+    .r-calendar-header {
+      display: flex;
+      justify-content: center;
+  
+    }
+   
+    .r-calendar-header .r-title {
+      font-size: 14px;
+      cursor: pointer;
+      font-weight:bold;
+    }
+    
+    
+    /* Content */
+    .r-calendar-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .r-calendar-item{
+      color: var(--text-color);
+      width: 14.28571428571429%;
+      cursor: pointer;
+      height: 32px;
+      line-height: 36px;
+      text-align: center;
+      font-size: 13px;
+      vertical-align: middle;
+      position: relative
+    }
+    .r-calendar-item > span{
+      width:30px;
+      height:30px;
+      line-height: 30px;
+      display: block;
+    
+    }
+    
+    /* Out of days */
+    .r-calendar-item.r-outOfDays {
+      color: #aaa;
+      pointer-events: none;
+      display: none;
+    }
+    
+    /* Disbaled */
+    .r-calendar-item.r-disabled {
+      background: #f1f1f1;
+    
+    
+    }
+    /* Disbaled */
+    .r-calendar-item.r-lock {
+      background: #f1f1f1;
+      opacity: .5;
+    
+      pointer-events: none;
+    }
+    .r-calendar-item.r-disabled-range {
+      background: #f1f1f1;
+    
+      pointer-events: none; 
+    }
+    .r-calendar-item.r-forbidden {
+      background: #f1f1f1;
+      pointer-events: none;
+    }
+    .r-calendar-item.r-disabled:hover span {
+      color: #000
+    }
+    /* Selected */
+    .r-calendar-item.r-selected span {
+      background: var(--focus-color);
+      border-radius: 50%;
+      color: #fff;
+    }
+    .r-calendar-item:hover span {
+      border: 1px solid var(--focus-color);
+      border-radius: 50%;
+    }
+    
+    /* Today && Current Month */
+    .r-calendar-item.r-today span,
+    .r-calendar-item.r-currentMonth span{
+      border:1px solid var(--focus-color);
+      border-radius: 50%;
+    } 
+    
+    /* Week */
+    .r-calendar-item.r-week {
+      pointer-events: none;
+      font-weight: bold
+    }
+    
+    /* Month */
+    .r-calendar-item.r-month {
+      width: calc(33.33% - 8px);
+      margin-bottom:12px;
+    
+      border:4px solid transparent
+    }
+    .r-calendar-item.r-month span {
+      border-radius:5px;
+      width:unset;
+    }
+    
+    
+    /* Footer */
+    .r-calendar-footer {
+      margin-top: 16px
+    }
+    
+    
+    /* RTL */
+    .r-Schedule.r-rtl {
+      direction: rtl
+    }   
+}
+  
