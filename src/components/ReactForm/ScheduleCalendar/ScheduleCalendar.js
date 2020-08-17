@@ -1,7 +1,8 @@
 import React , { Component, useEffect, useState} from 'react';
 import './ScheduleCalendar.scss';
 import RightClick from '../RightClick/RightClick';
-
+import Select from '../Select/Select';
+import Icons from '../icons'
 const latinToPersianMap = ['۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '۰'];
 const latinNumbers = [/1/g, /2/g, /3/g, /4/g, /5/g, /6/g, /7/g, /8/g, /9/g, /0/g];
 function latinToPersian(string) {
@@ -115,12 +116,43 @@ function ScheduleScheduleCalendar (props) {
     return (
         <div class="r-schedule r-rtl">
              <div className="r-schedule-toolbar">
-               tool bar will be here
+                 <div>
+                    <Select
+                        style={{margin: 0}} 
+                        change={val => {}}   
+                        rtl = {true} 
+                        label={'نام تقویم کاری'}
+                        values ={ //icon can be <svg></svg> or 'mdi mdi-home'
+                            [{id:'11',name:'Hosseini' },
+                            {id:'22',name:'feiz'},
+                            {id:'33',name:'mohammadi'},
+                            {id:'44',name:'khosravi'},
+                            {id:'44',name:'ranjbar'}
+                        ]}
+                        mapping = {{text : 'name', value : 'id'}} //dataset for managing server model diffrences
+                        defaultValue ={33} // is id of selected value
+                        nullable={true} // user cant select no item
+                        outline={true}  // outlined input
+                        search = {true} // active search tool in select list
+                    />
+                </div>
+                <div className="change-year">
+                    <ul>
+                        <li className="change-icon">{Icons.left}</li>
+                        <li className="change-year">سال 1396</li>
+                        <li className="change-icon">{Icons.right}</li>
+                    </ul>
+                </div>
+                <div className="toolbar-buttons" >
+                    <button type="button" class="r-button r-ripple r-xs "> {Icons.close} </button>
+                    <button type="button" class="r-button r-ripple  r-xs"> {Icons.save} </button>
+        
+                </div>
             </div>
             <div className="r-schedule-calendars">
                 {renderCalendars()}
             </div>
-            {showMenu && <RightClick  style={{minHeight:100, minWidth:60}} rtl={true} onClose={close} items={getMenuItems()} posX={posX} posY={posY}  /> }
+            {showMenu && <RightClick  style={{minHeight:100, minWidth:40}} rtl={true} onClose={close} items={getMenuItems()} posX={posX} posY={posY}  /> }
 
         </div>
     )

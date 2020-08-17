@@ -13,10 +13,53 @@
     right: 0;
     overflow-y: auto;
     height: 100%;
-
+    
+    
     .r-schedule-toolbar {
-      padding: 8px;
-      background: red;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row-reverse;
+      align-items: center;
+      margin:0 12px 24px 12px;
+      .toolbar-buttons {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     
+      
+        button {
+          margin: 0 6px;
+        }
+        cursor: pointer;
+        text-align: center;
+      }
+      .change-year ul{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        li {
+          margin: 5px;
+        }
+        .change-icon {
+          cursor: pointer;
+          border: 1px solid #ccc;
+          border-radius: 50%;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          font-size: 22px;
+          &:hover {
+            color: #fff;
+            background: #0095DA;
+          }
+        }
+      }
+
     }
 
     .r-schedule-calendars {

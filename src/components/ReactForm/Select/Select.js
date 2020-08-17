@@ -210,7 +210,6 @@ class Select extends Component {
      */
     deSelect = () =>{
         const {change} = this.props;
-        debugger
         this.setState({selectedItem : null})
         this.validate(null)
         this.close();

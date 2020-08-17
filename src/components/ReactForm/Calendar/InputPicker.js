@@ -50,7 +50,7 @@ class DatePicker extends Component {
     }
 
     render (){
-        const {jalali,toggleCalendar, double, approve,changeHistory,outline,selectedDay, selectedDay2,moment, startDateStr, endDateStr , label, monthOnly} = this.context;
+        const {jalali,toggleCalendar, double, approve,changeHistory,outline,selectedDay, selectedDay2,moment, startDateStr, endDateStr , label, monthOnly,disabled} = this.context;
         const { open, top, left } = this.state;
         let value = '';
 
@@ -78,12 +78,12 @@ class DatePicker extends Component {
            <div className={`r-input r-datepicker ${jalali ? 'r-rtl' : ''} ${outline ? 'r-bordered' : ''}`}  ref={this.inputDom}>
                
                         {open && <Backdrop onClick={this.close} />}
-                        <span onClick={this.open} className="r-icon"><svg viewBox="0 0 24 24"><path fill="#000000" d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" /></svg></span>
+                        {!disabled && <span onClick={this.open} className="r-icon"><svg viewBox="0 0 24 24"><path fill="#000000" d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" /></svg></span>}
                         <Input
                             rtl={jalali}
                             label={label}
                             onFocus = {this.open}
-                            disabled={false} 
+                            disabled={disabled} 
                             type="text" 
                             change={()=>{}}
                             //onChange={this.inputChange.bind(this)}

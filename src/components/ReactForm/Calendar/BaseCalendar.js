@@ -153,7 +153,8 @@ BaseCalendar.defaultProps = {
     datepikcer : false,
     double : false,
     disabledSides : {},
-    switch : false
+    switch : false,
+    disabled : false
 }
 
 
