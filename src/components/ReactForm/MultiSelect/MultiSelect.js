@@ -1,3 +1,11 @@
+/***************************************************************
+ * Component Name : Multiselect
+ * Library : React
+ * Author : Abbas Hosseini
+ * Liscense : Free
+ * Under Development : nullable multiselect in grouped mode :)
+ * Bugs : search
+ ***************************************************************/
 import React, {Component, Fragment, createRef} from 'react';
 import Checkbox from '../Checkbox/Checkbox';
 import Backdrop from '../Backdrop/Backdrop';
@@ -18,12 +26,14 @@ function addSelectedProp (arr, mapping, ids){
 
     for (var i=0; i< arr.length; i++) {
         let id = arr[i][mapping.value];
-        if (ids.indexOf(id) != -1) {
+        if (ids.indexOf(Number(id)) != -1) {
             arr[i].selected = true;
         }
         else {
             arr[i].selected = false;
         }
+        arr[i].show = true;
+        arr[i].index = i
     }
 
     return arr
@@ -47,11 +57,12 @@ class MultiSelect extends Component {
         this.state = {
             open : false,
             values :finalValues ,
+            initialValues : finalValues,
             selectedItems ,
-            initilaValues : values,
             // hasError : this.validate(selectedItems).hasError,
             // errorMessage : this.validate(selectedItems).errorMessage,
             searchValue : '',
+            temp :null,
             //validate : this.validate.bind(this)
         }
         
@@ -70,7 +81,7 @@ class MultiSelect extends Component {
     //         return {
     //             values :finalValues ,
     //             selectedItems ,
-    //             initilaValues : values,
+    //             initialValues : values,
     //             initialDefaultValue : defaultValue,
     //         }
 
@@ -166,6 +177,8 @@ class MultiSelect extends Component {
      * @param {Object} item 
      */
     toggleSelect = (item ,index) =>{
+        const {searchValue} = this.state;
+        
         let values = Array.from(this.state.values);
         values[index].selected = !values[index].selected;
 
@@ -240,68 +253,71 @@ class MultiSelect extends Component {
         }
         else if  (groupField) {
             let grouped = this.groupByData(values);
-            var index = 0;
 
             for(let prop in grouped) {
                 grouped[prop].forEach((o, i) => {
-                   options.push (
-                        <Fragment>
-                            {i===0 && <div className="r-options-group">{prop}</div>}
-                            <div key={i} className="r-options-item" onClick={this.toggleSelect.bind(this,o,index)}>
-                            
-                                {
-                                    <Checkbox 
-                                        //size={'xs'}
-                                        justViewMode={true} 
-                                        nospace={true} 
-                                        rtl={rtl} 
-                                        defaultValue={o.selected}
-                                    />
-                                }
-        
-                                {   mapping.icon &&
-                                    <span className="r-option-icon">
-                                        {FN.createIcon(FN.getValueByProp(o, mapping.icon))}
-                                    </span> 
-                                }
-        
-                                {this.getItemText(o, '-')}
-                            </div>
-                        </Fragment>
-                    )
-                    index++
+                    if (o.show) {
+                        options.push (
+                            <Fragment >
+                                {i===0 && <div className="r-options-group">{prop}</div>}
+                                <div key={o.index} className="r-options-item" onClick={this.toggleSelect.bind(this,o,o.index)}>
+                                
+                                    {
+                                        <Checkbox 
+                                            //size={'xs'}
+                                            justViewMode={true} 
+                                            nospace={true} 
+                                            rtl={rtl} 
+                                            defaultValue={o.selected}
+                                        />
+                                    }
+            
+                                    {   mapping.icon &&
+                                        <span className="r-option-icon">
+                                            {FN.createIcon(FN.getValueByProp(o, mapping.icon))}
+                                        </span> 
+                                    }
+            
+                                    {this.getItemText(o, '-')}
+                                </div>
+                            </Fragment>
+                        )
+                    }
+                   
                 })
 
             }
             
-            // if (nullable) {
-            //     options.unshift(this.createNullValue())
-            // }
+            if (nullable) {
+                options.unshift(this.createNullValue())
+            }
         }
         else {
             options = values.map((o, i) => {
-                return (
-                    <div key={i} className="r-options-item" onClick={this.toggleSelect.bind(this,o,i)}>
-                      
-                        {
-                            <Checkbox 
-                                //size={'xs'}
-                                justViewMode={true} 
-                                nospace={true} 
-                                rtl={rtl} 
-                                defaultValue={o.selected}
-                            />
-                        }
+                if (o.show) {
+                    return (
+                        <div key={i} className="r-options-item" onClick={this.toggleSelect.bind(this,o,i)}>
+                        
+                            {
+                                <Checkbox 
+                                    //size={'xs'}
+                                    justViewMode={true} 
+                                    nospace={true} 
+                                    rtl={rtl} 
+                                    defaultValue={o.selected}
+                                />
+                            }
 
-                        {   mapping.icon &&
-                            <span className="r-option-icon">
-                                {FN.createIcon(FN.getValueByProp(o, mapping.icon))}
-                            </span> 
-                        }
+                            {   mapping.icon &&
+                                <span className="r-option-icon">
+                                    {FN.createIcon(FN.getValueByProp(o, mapping.icon))}
+                                </span> 
+                            }
 
-                        {this.getItemText(o, '-')}
-                    </div>
-                )
+                            {this.getItemText(o, '-')}
+                        </div>
+                    )
+                }
             })
             if (nullable) {
                 options.unshift(this.createNullValue())
@@ -324,25 +340,29 @@ class MultiSelect extends Component {
      */
     search (e){
         const {mapping} = this.props;
-        const {initilaValues} = this.state;
-
+        let values = Array.from(this.state.values);
         const value = e.target.value;
-
         //Store search value in state
         this.setState({searchValue : value})
 
         //Reset list if input hasnt value
         if(value.length === 0) {
-            this.setState({values :initilaValues})
+            values.forEach(o => o.show=true)
+            this.setState({values})
         }
 
         //Search
         const target = value.toLowerCase();
-        const foundValues = initilaValues.filter(o => {
-            return o[mapping.text].toLowerCase().indexOf(target)!== -1
+        values.forEach(o => {
+            if (o[mapping.text].toLowerCase().indexOf(target)!== -1) {
+                o.show = true
+            }
+            else {
+                o.show = false
+            }
         });
 
-        this.setState({values : foundValues})
+        this.setState({values})
     }
 
     /**
@@ -389,7 +409,7 @@ class MultiSelect extends Component {
         const {mapping, showKey, rtl} = this.props;
         const {selectedItems} = this.state
         let inputText = '';
-
+        
         if (!selectedItems || selectedItems.length === 0) {
             const notSelected = rtl ? 'انتخاب نشده' : 'No Selected';
             return notSelected;      
