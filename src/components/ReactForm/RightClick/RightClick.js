@@ -4,8 +4,11 @@ import Backdrop from '../Backdrop/Backdrop'
 
 class RightClick extends Component {
 
-
-
+    constructor(props){
+        super(props)
+        this.dom = createRef()
+    
+    }
     renderChild = item=> {
         const{rtl} = this.props;
 
@@ -63,7 +66,7 @@ class RightClick extends Component {
         const {onClose} = this.props;
 
         return (
-            <div>
+            <div ref={this.dom}>
                 {this.renderMenu()}
                 <Backdrop onClick={onClose} />
 

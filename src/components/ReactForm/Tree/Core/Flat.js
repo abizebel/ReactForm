@@ -106,9 +106,22 @@ class FlatTree extends Tree {
    * @param {String} id
    * @description Remove a requested node by id
    */
-  removeNode(model, id) {
-    var index = this.findNodeIndex(model, id);
-    model.splice(index, 1);
+  removeNode(model, id , removeList = []) {
+    //let index = this.findNodeIndex(model, id);
+    let node = this.findNode(model, id);
+    let children = this.findChilds(model, node);
+
+    removeList.push(id)
+    if (this.hasChild(node, model )) {
+      children.forEach(o => {
+          this.removeNode(model, o[this.id], removeList)
+      })
+      
+    }
+    model  = model.filter(o => {
+      return   removeList.indexOf(o[this.id]) === -1
+    });
+
     return model
   }
 
@@ -178,10 +191,11 @@ class FlatTree extends Tree {
 
  /**
    * @param {Array} model
-   * @param {String} id
+   * @param {Object} node
    * @description Find node childs
    */
-  findChilds (model, id){
+  findChilds (model, node){
+    let id = node[this.id];
     let childs = [];
     model.forEach(o => {
       if (o[this.parentId] == id) {
@@ -219,7 +233,7 @@ class FlatTree extends Tree {
    */
   findParent(model, id) {
     var obj = this.findNode(model, id);
-    return this.findNode(model, obj.parentId)
+    return this.findNode(model, obj[this.parentId])
   }
 
   /**

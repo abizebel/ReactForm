@@ -15,16 +15,17 @@ class TreeContainer extends Component {
   render (){
     return (
       <Fragment>
-        <div className="content-box" >
+        <div className="content-box"  dir="rtl">
          
         <div className="content-box" >
           <div className="content-title">Tree</div>
-        </div>
+        </div >
             <Tree
                 change ={(value)=>{console.log(value)}}
                 mapping = {{ parentId : 'ParentId',id : 'Id', children : 'Children', code : 'Code', text : 'Name'}}
                 code={true}
                 data = {flatData}// 
+                rtl={true}
                 dataType = "flat" //(flat/composition)
                 iconTempalte ={icon =>{
                   return (<img style={{width:50, padding:10}} src={icon.url} />)

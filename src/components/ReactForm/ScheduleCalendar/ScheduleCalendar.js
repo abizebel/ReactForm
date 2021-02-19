@@ -1,8 +1,11 @@
-import React , { Component, useEffect, useState} from 'react';
+import React , { Component, useEffect, useState,createRef} from 'react';
 import './ScheduleCalendar.scss';
 import RightClick from '../RightClick/RightClick';
 import Select from '../Select/Select';
-import Icons from '../icons'
+import Icons from '../icons';
+import $ from 'jquery';
+import * as FN from '../functions';
+
 const latinToPersianMap = ['۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '۰'];
 const latinNumbers = [/1/g, /2/g, /3/g, /4/g, /5/g, /6/g, /7/g, /8/g, /9/g, /0/g];
 function latinToPersian(string) {
@@ -40,7 +43,7 @@ function ScheduleScheduleCalendar (props) {
     const [showMenu, setShowMenu] = useState(false);
     const [posX, setPosX] = useState(null);
     const [posY, setPosY] = useState(null)
-
+    const wrapperDom = createRef()
 
     useEffect ( ()=>{
         load()
@@ -57,8 +60,9 @@ function ScheduleScheduleCalendar (props) {
         e.preventDefault();
         e.stopPropagation()
         setShowMenu(true)
+        
         setPosX( e.pageX)
-        setPosY(e.pageY)
+        setPosY(e.pageY +  $(wrapperDom.current).scrollTop());
     }
     const close = () =>{
         setShowMenu(false)
@@ -68,13 +72,13 @@ function ScheduleScheduleCalendar (props) {
        
         let days = month.days.map( (o, i) =>{
             return (
-                <div onContextMenu={handler} class="r-calendar-item"><div> {persianNumber(o.name)} </div></div>
+                <div  onContextMenu={handler} class="r-calendar-item"><div> {persianNumber(o.name)} </div></div>
             )
         })
 
 
         return (
-            <div class="r-schedule-calendar">
+            <div class="r-schedule-calendar" >
                 <div class="r-calendar-wrapper">
                     <div class="r-calendar-header">
                         <div class="r-title">{month.name}</div>
@@ -114,7 +118,7 @@ function ScheduleScheduleCalendar (props) {
         ]
     }
     return (
-        <div class="r-schedule r-rtl">
+        <div class="r-schedule r-rtl" ref={wrapperDom}>
              <div className="r-schedule-toolbar">
                  <div>
                     <Select
@@ -152,7 +156,12 @@ function ScheduleScheduleCalendar (props) {
             <div className="r-schedule-calendars">
                 {renderCalendars()}
             </div>
-            {showMenu && <RightClick  style={{minHeight:100, minWidth:40}} rtl={true} onClose={close} items={getMenuItems()} posX={posX} posY={posY}  /> }
+            {showMenu && <RightClick ref={d => {
+                if (d) {
+                    FN.handlePosition(d.dom.current)
+                }
+               
+                }}  style={{minHeight:100, minWidth:40}} rtl={true} onClose={close} items={getMenuItems()} posX={posX} posY={posY}  /> }
 
         </div>
     )

@@ -13,8 +13,10 @@ class RenderTree extends Component{
         const {mapping, TREE} = this.context;
 
         let nodes = model.map((o, i) =>{
-            if (o[mapping.parentId] === parentId) {
-                return <Node key={o[mapping.id]} node={o} recursive={()=> TREE.hasChild(o, model) && this.renderFlat(model, o[mapping.id]) } /> 
+            if (String(o[mapping.parentId]) === String(parentId)) {
+                return <Node key={o[mapping.id]} node={o} recursive={()=> {
+                    return TREE.hasChild(o, model) && this.renderFlat(model, o[mapping.id]) 
+                }} /> 
             }
         });
 

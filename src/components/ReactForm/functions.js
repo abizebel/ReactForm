@@ -42,8 +42,6 @@ export function getClickedPosition (elementDom) {
 
 }
 
-
-
 /**
  * Handle element position when advance from page area
  * @param {Dom Object} elementDom
@@ -82,6 +80,9 @@ export function handlePosition (elementDom) {
     
 
 }
+
+
+
 
 /**
  * Convert object to class name

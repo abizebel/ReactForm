@@ -17,8 +17,8 @@ import * as _ from 'underscore'
 function addSelectedProp (arr, mapping, ids){
 
     for (var i=0; i< arr.length; i++) {
-        let id = Number(arr[i][mapping.value]);
-        if (ids.indexOf(id) !== -1) {
+        let id = arr[i][mapping.value];
+        if (ids.indexOf(id) != -1) {
             arr[i].selected = true;
         }
         else {
@@ -38,6 +38,7 @@ class MultiSelect extends Component {
     constructor(props) {
         super(props);
         const {values ,mapping, defaultValue} = this.props;
+        
         this.optionsDom = createRef();
         
         let finalValues = addSelectedProp(values, mapping, defaultValue);
@@ -57,26 +58,26 @@ class MultiSelect extends Component {
     }
 
 
-    static getDerivedStateFromProps (props, state) {
-        if (
-            !_.isEqual(props.values, state.initialValues) 
-        )
-        {
-            const {values ,mapping, defaultValue} = props;     
-            let finalValues = addSelectedProp(values, mapping, defaultValue);
-            let selectedItems = getSelectedItems(finalValues);
+    // static getDerivedStateFromProps (props, state) {
+    //     if (
+    //         !_.isEqual(props.values, state.initialValues) 
+    //     )
+    //     {
+    //         const {values ,mapping, defaultValue} = props;     
+    //         let finalValues = addSelectedProp(values, mapping, defaultValue);
+    //         let selectedItems = getSelectedItems(finalValues);
 
-            return {
-                values :finalValues ,
-                selectedItems ,
-                initilaValues : values,
-                initialDefaultValue : defaultValue,
-            }
+    //         return {
+    //             values :finalValues ,
+    //             selectedItems ,
+    //             initilaValues : values,
+    //             initialDefaultValue : defaultValue,
+    //         }
 
-        }
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
     /**
      * Detect validation mode
@@ -208,17 +209,74 @@ class MultiSelect extends Component {
     }
 
     /**
+     * 
+     * @param {Array} data 
+     * @description Group by Reduce function
+     */
+    groupByData =(data) =>{
+        return  data.reduce( (res, val) =>{
+            var {groupField} = this.props;
+
+            let group = res[val[groupField]] ||  (res[val[groupField]] = []);   
+            group.push(val)     
+
+            return res;
+        },{})
+    }
+
+
+    /**
      * Render select optionsmulti
      */
     renderOptions (){
-        const {mapping, search , rtl, nullable} = this.props;
+        const {mapping, search , rtl, nullable, groupField} = this.props;
         const {values  } = this.state;
-        let options;
-
+        let options = [];
+        
         //If options list is empty show "Not Found"
         if (values.length === 0) {
             const notFoundText = rtl ? 'یافت نشد' : 'Not Found';
             options = (<div className="r-options-item">{notFoundText}</div>)
+        }
+        else if  (groupField) {
+            let grouped = this.groupByData(values);
+            var index = 0;
+
+            for(let prop in grouped) {
+                grouped[prop].forEach((o, i) => {
+                   options.push (
+                        <Fragment>
+                            {i===0 && <div className="r-options-group">{prop}</div>}
+                            <div key={i} className="r-options-item" onClick={this.toggleSelect.bind(this,o,index)}>
+                            
+                                {
+                                    <Checkbox 
+                                        //size={'xs'}
+                                        justViewMode={true} 
+                                        nospace={true} 
+                                        rtl={rtl} 
+                                        defaultValue={o.selected}
+                                    />
+                                }
+        
+                                {   mapping.icon &&
+                                    <span className="r-option-icon">
+                                        {FN.createIcon(FN.getValueByProp(o, mapping.icon))}
+                                    </span> 
+                                }
+        
+                                {this.getItemText(o, '-')}
+                            </div>
+                        </Fragment>
+                    )
+                    index++
+                })
+
+            }
+            
+            // if (nullable) {
+            //     options.unshift(this.createNullValue())
+            // }
         }
         else {
             options = values.map((o, i) => {
@@ -227,7 +285,7 @@ class MultiSelect extends Component {
                       
                         {
                             <Checkbox 
-                                size={'xs'}
+                                //size={'xs'}
                                 justViewMode={true} 
                                 nospace={true} 
                                 rtl={rtl} 
@@ -382,6 +440,7 @@ class MultiSelect extends Component {
             <Fragment>
                  
                 <div style={style} className={this.getSelectClass()}>
+                {label && <label>{label}</label>}
                 {open && <Backdrop onClick={this.close} />}
                    
                     <input 
@@ -393,7 +452,7 @@ class MultiSelect extends Component {
                         value={inputValue.trim()}   
                     />
 
-                    {label && <label>{label}</label>}
+                  
 
                     { mapping.icon && <span className="r-input-icon">{renderIcon}</span> }
 

@@ -59,7 +59,7 @@ class SelectContainer extends Component {
           />
 
         </div>
-        {/* <div className="content-box" >
+         <div className="content-box" >
           <div className="content-title">Outlined Select</div>
           <Select   change={this.changeSelect.bind(this)}
             label={'Last Name'}
@@ -432,7 +432,7 @@ class SelectContainer extends Component {
             mapping = {{text : 'name', value : 'id'}}
           /> 
 
-        </div> */}
+        </div> 
 
 
 

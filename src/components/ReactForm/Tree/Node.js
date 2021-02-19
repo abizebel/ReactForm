@@ -160,15 +160,18 @@ class Node extends Component {
         const {node} = this.props;
         const {TREE, model, changeData, mapping} = this.context;
 
+
+        let hasParent = TREE.hasParent(model, node[mapping.id]) ? true : false;
+        if (!hasParent) return ;
+
         let newData = TREE.removeNode(model, node[mapping.id])
-                
         changeData(newData); 
     }
     
     render () {
         const {node, recursive} = this.props;
         const {TREE, model} = this.context;
-        let hasChild = (TREE.hasChild(node, model)) ? true : false;
+        let hasChild = TREE.hasChild(node, model) ? true : false;
 
         return (
             <Fragment>

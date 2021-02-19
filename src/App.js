@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ButtonContainer from './containers/buttonContainerjs';
 import {SimpleInput, IconInput, RequiredInput, RegexInput, DisabledInput, Textarea} from './containers/Input';
+import {SimpleSelect} from './containers/Select';
+import {SimpleMultiSelect} from './containers/MultiSelect';
+
 import {SimpleCalendar, RangeCalendar, DisabledCalendar, MonthCalendar, DatePicker, DateButtonPicker, DisabledSides,RangeDatepicker} from './containers/Calendar';
 import {SimpleCheckbox ,DisabledCheckbox} from './containers/Checkbox';
 import {SimpleScheduleCalendar} from './containers/ScheduleCalendar';
@@ -74,18 +77,18 @@ class App extends Component {
                                 <li><Link to="/checkbox/disbaled">Diabled</Link></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href=""><span className="mdi mdi-chevron-right"></span>Select</a>
+                        <li onClick={this.toggle}> 
+                            <a href=""><span className="mdi mdi-chevron-right"></span>Selects</a>
                             <ul>
-                                <li><Link to="/select">Simple</Link></li>
-        
+                                <li><Link to="/select/simple">Simple</Link></li>
+                               
                             </ul>
                         </li>
-                        <li>
-                            <a href=""><span className="mdi mdi-chevron-right"></span>MultiSelect</a>
+                        <li onClick={this.toggle}> 
+                            <a href=""><span className="mdi mdi-chevron-right"></span>MultiSelects</a>
                             <ul>
-                                <li><Link to="/multiselect">MultiSelect</Link></li>
-        
+                                <li><Link to="/multiselect/simple">Simple</Link></li>
+                               
                             </ul>
                         </li>
                         <li onClick={this.toggle}>
@@ -151,10 +154,9 @@ class App extends Component {
                 <Route path="/checkbox/simple" component={SimpleCheckbox} />
                 <Route path="/checkbox/disbaled" component={DisabledCheckbox} />
 
-
-
-                <Route path="/select/" component={SelectContainer} />
-                <Route path="/multiselect/" component={MultiSelectContainer} />
+                <Route path="/select/simple" component={SimpleSelect} />
+               
+                <Route path="/multiselect/simple" component={SimpleMultiSelect} />
                 <Route path="/autocomplete/" component={AutocompleteContainer} />
                 <Route path="/tag/" component={TagContainer} />
                 <Route path="/modal/" component={ModalContainer} />

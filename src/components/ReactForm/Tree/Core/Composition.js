@@ -252,7 +252,7 @@ class CompositionTree extends Tree {
   findParent(model, id) {
     var obj = this.findNode(model, id);
     if (obj.parentId == '#') return null;
-    return this.findNode(model, obj.parentId)
+    return this.findNode(model, obj[this.parentId])
   }
 
   /**
